@@ -1,0 +1,15 @@
+lamp
+sun
+tree
+vase
+plate
+bowl
+cup
+ball
+plant_pot
+flower
+signature
+salt
+pepper
+spaghetti
+television
