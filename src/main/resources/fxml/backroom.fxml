@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BackRoomController">
+   <children>
+      <ImageView fitHeight="470.0" fitWidth="600.0">
+         <image>
+            <Image url="@../images/rooms/backroom.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="signature" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="27.0" layoutX="150.0" layoutY="219.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="flower" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" layoutX="117.0" layoutY="125.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="51.0" />
+      <Rectangle fx:id="television" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" layoutX="429.0" layoutY="257.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="128.0" />
+      <Rectangle fx:id="spaghetti" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="182.0" layoutY="317.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
+      <Rectangle fx:id="salt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="66.0" layoutY="314.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+      <Rectangle fx:id="pepper" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="95.0" layoutY="314.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+      <ImageView fx:id="mainRoomArrow" fitHeight="47.0" fitWidth="134.0" layoutX="278.0" layoutY="421.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-180.0">
+         <image>
+            <Image url="@../images/arrow.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="302.0" layoutY="421.0" onMouseClicked="#switchToMainRoom" onMouseEntered="#hoverArrow" onMouseExited="#unhoverArrow" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="43.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Label fx:id="actionLabel" layoutX="16.0" layoutY="10.0" prefHeight="20.0" prefWidth="209.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

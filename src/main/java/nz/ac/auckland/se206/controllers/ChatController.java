@@ -1,12 +1,16 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -20,19 +24,34 @@ public class ChatController {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
+  @FXML private Label thinkingLabel;
 
-  private ChatCompletionRequest chatCompletionRequest;
+  private ChatCompletionRequest mainChatCompletionRequest;
+  private ChatCompletionRequest flavourTxtChatCompletionRequest;
+  private Thread chatThread;
+  private Pattern riddlePattern;
 
-  /**
-   * Initializes the chat view, loading the riddle.
-   *
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   */
+  /** Initializes the chat view and sets up the GPT model. */
   @FXML
-  public void initialize() throws ApiProxyException {
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+  public void initialize() {
+    mainChatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
+    flavourTxtChatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
+
+    chatThread = new Thread();
+
+    riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
+  }
+
+  /** Asks the GPT model to a request, then appends it to the chatbox */
+  public void askGPT(String request) {
+    try {
+      runGpt(new ChatMessage("user", request), mainChatCompletionRequest);
+    } catch (ApiProxyException e) {
+      // TODO handle exception appropriately
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -40,8 +59,14 @@ public class ChatController {
    *
    * @param msg the chat message to append
    */
-  private void appendChatMessage(ChatMessage msg) {
-    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+  public void appendChatMessage(ChatMessage msg) {
+    String role = msg.getRole();
+    if (role.equals("user")) {
+      chatTextArea.appendText("You: " + msg.getContent() + "\n\n");
+    } else {
+      chatTextArea.appendText("AI System: " + msg.getContent() + "\n\n");
+    }
+    ;
   }
 
   /**
@@ -51,18 +76,75 @@ public class ChatController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    chatCompletionRequest.addMessage(msg);
+  private void runGpt(ChatMessage msg, ChatCompletionRequest chatCompletionRequest)
+      throws ApiProxyException {
+    // If there is a chat thread already running, do nothing
+    if (chatThread.isAlive()) {
+      return;
+    }
+
+    // Show thinking label and disable send button
+    thinkingLabel.setOpacity(100);
+    sendButton.setDisable(true);
+
+    // Set up task to run GPT model in new thread
+    Task<ChatMessage> chatTask =
+        new Task<ChatMessage>() {
+          @Override
+          protected ChatMessage call() throws Exception {
+            chatCompletionRequest.addMessage(msg);
+            try {
+              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+              chatCompletionRequest.addMessage(result.getChatMessage());
+              return result.getChatMessage();
+            } catch (ApiProxyException e) {
+              // TODO handle exception appropriately
+              System.out.println("Error communicating with API proxy");
+              return null;
+            }
+          }
+        };
+
+    // When task is complete, check if the assistant has sent a message
+    // starting with "Correct". Also, remove thinking label and enable send button.
+    chatTask.setOnSucceeded(
+        (event) -> {
+          // Play notification sound, remove thinking label and enable send button
+          GameMediaPlayer.playNotificationSound();
+          thinkingLabel.setOpacity(0);
+          sendButton.setDisable(false);
+
+          // Use regex to see if response is a riddle
+          String gptResponse = chatTask.getValue().getContent();
+          Matcher matcher = riddlePattern.matcher(gptResponse);
+
+          System.out.println(gptResponse);
+
+          // If response is a riddle, extract the riddle and append to chat box
+          if (matcher.find()) {
+            String riddle = matcher.group(1);
+            ChatMessage riddleMsg = new ChatMessage("assistant", riddle);
+            GameState.currRiddle = riddle;
+            appendChatMessage(riddleMsg);
+          } else {
+            appendChatMessage(chatTask.getValue());
+            checkCorrectAnswer(chatTask.getValue());
+          }
+        });
+
+    chatThread = new Thread(chatTask);
+    chatThread.start();
+  }
+
+  public void sayFlavourText(String object) {
     try {
-      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
-      return result.getChatMessage();
+      runGpt(
+          new ChatMessage("user", GptPromptEngineering.getFlavourText(object)),
+          flavourTxtChatCompletionRequest);
     } catch (ApiProxyException e) {
       // TODO handle exception appropriately
       e.printStackTrace();
-      return null;
     }
   }
 
@@ -82,21 +164,18 @@ public class ChatController {
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
-    ChatMessage lastMsg = runGpt(msg);
-    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
-      GameState.isRiddleResolved = true;
-    }
+    runGpt(msg, mainChatCompletionRequest);
   }
 
   /**
-   * Navigates back to the previous view.
+   * Checks if the assistant has sent a message starting with "Correct". If so, sets the
+   * isRiddleResolved flag to true.
    *
-   * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @param msg the chat message to check
    */
-  @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("room");
+  private void checkCorrectAnswer(ChatMessage msg) {
+    if (msg.getRole().equals("assistant") && msg.getContent().startsWith("Correct")) {
+      GameState.isRiddleResolved = true;
+    }
   }
 }
