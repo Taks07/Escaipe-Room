@@ -41,14 +41,14 @@ public class GameState {
 
   public static boolean isDoorCodeEntered = false;
 
-  /** The current loaded room */
-  public static String currRoom;
-
-  /** The randomised rooms */
+  /** The randomised rooms from text file */
   public static ArrayList<String> randomRooms = new ArrayList<String>();
 
-  public static String room1;
-  public static String room2;
+  /** Rooms in current game */
+  public static ArrayList<String> currRooms = new ArrayList<String>();
+
+  /** The current loaded room as index in currRooms array */
+  public static int currRoom;
 
   static {
     // Read riddle answers from file
@@ -94,7 +94,6 @@ public class GameState {
   }
 
   public static void switchRoom(String room) {
-    currRoom = room;
     gameController.switchRoom(room);
   }
 
@@ -187,12 +186,52 @@ public class GameState {
 
     // Get random room from array, then remove from array
     int randInt = rand.nextInt(randomRooms.size());
-    room1 = randomRoomsCopy.get(randInt);
+    currRooms.add(randomRoomsCopy.get(randInt));
     randomRoomsCopy.remove(randInt);
 
     // Get a different random room from array
     randInt = rand.nextInt(randomRooms.size() - 1);
-    room2 = randomRoomsCopy.get(randInt);
+    currRooms.add(randomRoomsCopy.get(randInt));
+  }
+
+  public static void prevRoom() {
+    currRoom--;
+
+    if (currRoom < 0) {
+      currRoom += currRooms.size();
+    }
+
+    switchRoom(currRooms.get(currRoom));
+  }
+
+  public static void nextRoom() {
+    currRoom++;
+
+    if (currRoom == currRooms.size()) {
+      currRoom -= currRooms.size();
+    }
+
+    switchRoom(currRooms.get(currRoom));
+  }
+
+  public static String getPrevRoom() {
+    int temp = currRoom - 1;
+
+    if (temp < 0) {
+      temp += currRooms.size();
+    }
+
+    return currRooms.get(temp);
+  }
+
+  public static String getNextRoom() {
+    int temp = currRoom + 1;
+
+    if (temp == currRooms.size()) {
+      temp -= currRooms.size();
+    }
+
+    return currRooms.get(temp);
   }
 
   /** Resets all flags in the game, making it ready for the next round */
@@ -202,6 +241,8 @@ public class GameState {
     currRiddle = null;
     gameWon = true;
     isDoorCodeEntered = false;
-    currRoom = "mainroom";
+    currRoom = 0;
+    currRooms.clear();
+    currRooms.add("mainroom");
   }
 }

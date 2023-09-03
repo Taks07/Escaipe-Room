@@ -74,58 +74,24 @@ public abstract class RoomController {
 
   @FXML
   private void clickArrow1(MouseEvent event) {
-    if (GameState.currRoom.equals("mainroom")) {
-      GameState.switchRoom(GameState.room1);
-    } else {
-      GameState.switchRoom("mainroom");
-    }
+    GameState.prevRoom();
   }
 
   @FXML
   private void clickArrow2(MouseEvent event) {
-    if (GameState.currRoom.equals("mainroom")) {
-      GameState.switchRoom(GameState.room2);
-    } else {
-      if (GameState.currRoom.equals(GameState.room1)) {
-        GameState.switchRoom(GameState.room2);
-      } else {
-        GameState.switchRoom(GameState.room1);
-      }
-    }
+    GameState.nextRoom();
   }
 
   @FXML
   private void hoverArrow1(MouseEvent event) {
     arrow1.setOpacity(1);
-
-    String nextRoom;
-
-    if (GameState.currRoom.equals("mainroom")) {
-      nextRoom = GameState.room1;
-    } else {
-      nextRoom = "mainroom";
-    }
-
-    actionLabel.setText("Go to " + nextRoom);
+    actionLabel.setText("Go to " + GameState.getPrevRoom());
   }
 
   @FXML
   private void hoverArrow2(MouseEvent event) {
     arrow2.setOpacity(1);
-
-    String nextRoom;
-
-    if (GameState.currRoom.equals("mainroom")) {
-      nextRoom = GameState.room2;
-    } else {
-      if (GameState.currRoom.equals(GameState.room1)) {
-        nextRoom = GameState.room2;
-      } else {
-        nextRoom = GameState.room1;
-      }
-    }
-
-    actionLabel.setText("Go to " + nextRoom);
+    actionLabel.setText("Go to " + GameState.getNextRoom());
   }
 
   @FXML
