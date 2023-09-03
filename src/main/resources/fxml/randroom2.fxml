@@ -4,12 +4,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom2Controller">
    <children>
       <ImageView fitHeight="408.0" fitWidth="738.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="flagImage" fitHeight="430.0" fitWidth="605.0" layoutX="48.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand2/flag1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="oxygenImage" fitHeight="59.0" fitWidth="121.0" layoutX="130.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand2/oxygen.png" />
          </image>
       </ImageView>
    </children>
