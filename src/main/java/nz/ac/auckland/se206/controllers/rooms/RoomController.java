@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers.rooms;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.GameMediaPlayer;
@@ -12,6 +13,8 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public abstract class RoomController {
   @FXML protected Label actionLabel;
+  @FXML protected ImageView arrow1;
+  @FXML protected ImageView arrow2;
 
   /**
    * Displays a dialog box with the given title, header text, and message.
@@ -67,5 +70,73 @@ public abstract class RoomController {
   @FXML
   private void unhoverObject(MouseEvent event) {
     actionLabel.setText("");
+  }
+
+  @FXML
+  private void clickArrow1(MouseEvent event) {
+    if (GameState.currRoom.equals("mainroom")) {
+      GameState.switchRoom(GameState.room1);
+    } else {
+      GameState.switchRoom("mainroom");
+    }
+  }
+
+  @FXML
+  private void clickArrow2(MouseEvent event) {
+    if (GameState.currRoom.equals("mainroom")) {
+      GameState.switchRoom(GameState.room2);
+    } else {
+      if (GameState.currRoom.equals(GameState.room1)) {
+        GameState.switchRoom(GameState.room2);
+      } else {
+        GameState.switchRoom(GameState.room1);
+      }
+    }
+  }
+
+  @FXML
+  private void hoverArrow1(MouseEvent event) {
+    arrow1.setOpacity(1);
+
+    String nextRoom;
+
+    if (GameState.currRoom.equals("mainroom")) {
+      nextRoom = GameState.room1;
+    } else {
+      nextRoom = "mainroom";
+    }
+
+    actionLabel.setText("Go to " + nextRoom);
+  }
+
+  @FXML
+  private void hoverArrow2(MouseEvent event) {
+    arrow2.setOpacity(1);
+
+    String nextRoom;
+
+    if (GameState.currRoom.equals("mainroom")) {
+      nextRoom = GameState.room2;
+    } else {
+      if (GameState.currRoom.equals(GameState.room1)) {
+        nextRoom = GameState.room2;
+      } else {
+        nextRoom = GameState.room1;
+      }
+    }
+
+    actionLabel.setText("Go to " + nextRoom);
+  }
+
+  @FXML
+  private void unhoverArrow1(MouseEvent event) {
+    unhoverObject(event);
+    arrow1.setOpacity(0.7);
+  }
+
+  @FXML
+  private void unhoverArrow2(MouseEvent event) {
+    unhoverObject(event);
+    arrow2.setOpacity(0.7);
   }
 }

@@ -41,6 +41,9 @@ public class GameState {
 
   public static boolean isDoorCodeEntered = false;
 
+  /** The current loaded room */
+  public static String currRoom;
+
   /** The randomised rooms */
   public static ArrayList<String> randomRooms = new ArrayList<String>();
 
@@ -91,6 +94,7 @@ public class GameState {
   }
 
   public static void switchRoom(String room) {
+    currRoom = room;
     gameController.switchRoom(room);
   }
 
@@ -198,5 +202,6 @@ public class GameState {
     currRiddle = null;
     gameWon = true;
     isDoorCodeEntered = false;
+    currRoom = "mainroom";
   }
 }
