@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
    <children>
       <ImageView fitHeight="470.0" fitWidth="600.0" layoutX="2.0" />
       <Label fx:id="actionLabel" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="209.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="-5.0" layoutY="405.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
+         <image>
+            <Image url="@../images/arrow.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="30.0" layoutY="405.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="486.0" layoutY="404.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
+         <image>
+            <Image url="@../images/arrow.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="521.0" layoutY="406.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Label layoutX="213.0" layoutY="159.0" prefHeight="20.0" prefWidth="209.0" text="MAINROOM">
          <font>
             <Font size="14.0" />
          </font>
