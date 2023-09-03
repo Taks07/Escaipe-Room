@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -40,6 +41,12 @@ public class GameState {
 
   public static boolean isDoorCodeEntered = false;
 
+  /** The randomised rooms */
+  public static ArrayList<String> randomRooms = new ArrayList<String>();
+
+  public static String room1;
+  public static String room2;
+
   static {
     // Read riddle answers from file
     try {
@@ -55,6 +62,22 @@ public class GameState {
       }
     } catch (Exception e) {
       System.out.println("Could not read from riddleAnswers.txt");
+    }
+
+    // Read random rooms from file
+    try {
+      InputStream is = App.class.getResourceAsStream("/randomRooms.txt");
+      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+      while (true) {
+        String line = reader.readLine();
+        if (line == null) {
+          break;
+        }
+        randomRooms.add(line);
+      }
+    } catch (Exception e) {
+      System.out.println("Could not read from randomRooms.txt");
     }
   }
 
@@ -152,6 +175,20 @@ public class GameState {
 
   public static String getCurrRiddleAnswer() {
     return currRiddleAnswer;
+  }
+
+  public static void setRandomRooms() {
+    Random rand = new Random();
+    ArrayList<String> randomRoomsCopy = (ArrayList<String>) randomRooms.clone();
+
+    // Get random room from array, then remove from array
+    int randInt = rand.nextInt(randomRooms.size());
+    room1 = randomRoomsCopy.get(randInt);
+    randomRoomsCopy.remove(randInt);
+
+    // Get a different random room from array
+    randInt = rand.nextInt(randomRooms.size() - 1);
+    room2 = randomRoomsCopy.get(randInt);
   }
 
   /** Resets all flags in the game, making it ready for the next round */
