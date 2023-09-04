@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -40,6 +41,15 @@ public class GameState {
 
   public static boolean isDoorCodeEntered = false;
 
+  /** The randomised rooms from text file */
+  public static ArrayList<String> randomRooms = new ArrayList<String>();
+
+  /** Rooms in current game */
+  public static ArrayList<String> currRooms = new ArrayList<String>();
+
+  /** The current loaded room as index in currRooms array */
+  public static int currRoom;
+
   static {
     // Read riddle answers from file
     try {
@@ -55,6 +65,22 @@ public class GameState {
       }
     } catch (Exception e) {
       System.out.println("Could not read from riddleAnswers.txt");
+    }
+
+    // Read random rooms from file
+    try {
+      InputStream is = App.class.getResourceAsStream("/randomRooms.txt");
+      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+      while (true) {
+        String line = reader.readLine();
+        if (line == null) {
+          break;
+        }
+        randomRooms.add(line);
+      }
+    } catch (Exception e) {
+      System.out.println("Could not read from randomRooms.txt");
     }
   }
 
@@ -154,6 +180,60 @@ public class GameState {
     return currRiddleAnswer;
   }
 
+  public static void setRandomRooms() {
+    Random rand = new Random();
+    ArrayList<String> randomRoomsCopy = (ArrayList<String>) randomRooms.clone();
+
+    // Get random room from array, then remove from array
+    int randInt = rand.nextInt(randomRooms.size());
+    currRooms.add(randomRoomsCopy.get(randInt));
+    randomRoomsCopy.remove(randInt);
+
+    // Get a different random room from array
+    randInt = rand.nextInt(randomRooms.size() - 1);
+    currRooms.add(randomRoomsCopy.get(randInt));
+  }
+
+  public static void prevRoom() {
+    currRoom--;
+
+    if (currRoom < 0) {
+      currRoom += currRooms.size();
+    }
+
+    switchRoom(currRooms.get(currRoom));
+  }
+
+  public static void nextRoom() {
+    currRoom++;
+
+    if (currRoom == currRooms.size()) {
+      currRoom -= currRooms.size();
+    }
+
+    switchRoom(currRooms.get(currRoom));
+  }
+
+  public static String getPrevRoom() {
+    int temp = currRoom - 1;
+
+    if (temp < 0) {
+      temp += currRooms.size();
+    }
+
+    return currRooms.get(temp);
+  }
+
+  public static String getNextRoom() {
+    int temp = currRoom + 1;
+
+    if (temp == currRooms.size()) {
+      temp -= currRooms.size();
+    }
+
+    return currRooms.get(temp);
+  }
+
   /** Resets all flags in the game, making it ready for the next round */
   public static void resetGameState() {
     isRiddleResolved = false;
@@ -161,5 +241,8 @@ public class GameState {
     currRiddle = null;
     gameWon = true;
     isDoorCodeEntered = false;
+    currRoom = 0;
+    currRooms.clear();
+    currRooms.add("mainroom");
   }
 }

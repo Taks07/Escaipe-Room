@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -10,8 +9,8 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class MainRoomController extends RoomController {
-  @FXML private ImageView backRoomArrow;
 
+  // TODO: Change to rocket instead of door?
   /**
    * Handles the click event on the door.
    *
@@ -45,41 +44,5 @@ public class MainRoomController extends RoomController {
       GameState.askGPT(
           GptPromptEngineering.getRiddleWithGivenWord(GameState.getCurrRiddleAnswer()));
     }
-  }
-
-  @FXML
-  private void hoverDoor(MouseEvent event) {
-    if (GameState.isDoorCodeEntered) {
-      actionLabel.setText("Open the door");
-    } else {
-      actionLabel.setText("Approach the door");
-    }
-  }
-
-  @FXML
-  private void switchToBackRoom() {
-    GameState.switchRoom("backroom");
-  }
-
-  @FXML
-  private void hoverArrow(MouseEvent event) {
-    backRoomArrow.setOpacity(1);
-    actionLabel.setText("Go to back of room");
-  }
-
-  @FXML
-  private void unhoverArrow(MouseEvent event) {
-    backRoomArrow.setOpacity(0.7);
-    actionLabel.setText("");
-  }
-
-  @FXML
-  private void hoverKeypad(MouseEvent event) {
-    actionLabel.setText("Enter the code");
-  }
-
-  @FXML
-  private void switchToKeypad() {
-    GameState.switchRoom("keypad");
   }
 }

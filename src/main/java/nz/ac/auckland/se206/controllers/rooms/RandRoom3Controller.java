@@ -1,3 +1,3 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
-public class RandRoom3Controller {}
+public class RandRoom3Controller extends RoomController {}

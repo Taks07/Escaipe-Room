@@ -31,6 +31,7 @@ public class TitleController {
     GameState.resetGameState();
     GameState.setRandomCurrRiddleAnswer();
     GameState.createDoorCode();
+    GameState.setRandomRooms();
     GameState.askGPT(GptPromptEngineering.getGameContext());
   }
 
