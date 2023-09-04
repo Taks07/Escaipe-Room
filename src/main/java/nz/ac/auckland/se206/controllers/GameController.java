@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.controllers.rooms.TranslatorRoomController;
 
 /** Controller class for the main game view. */
 public class GameController {
@@ -28,10 +29,21 @@ public class GameController {
   /** Code that is run when first starting game */
   public void initialize() {
     try {
-      // Load the main room view and chat view
+      FXMLLoader translatorRoomLoader = loadFxml("translatorroom");
+
+      mainBorderPane.setBottom(translatorRoomLoader.load());
+
+      timerLabel.textProperty().bind(GameTimer.timerLabel);
+
+      TranslatorRoomController translatorRoomController = translatorRoomLoader.getController();
+
+      // Change this to the string you want to display
+      translatorRoomController.transformStringAndDisplay("Example Text For Alien Translation");
+
       mainBorderPane.setCenter(loadFxml("mainroom").load());
 
       FXMLLoader chatFxmlLoader = loadFxml("chat");
+
       mainBorderPane.setRight(chatFxmlLoader.load());
 
       // Get the controller of the chat pane and pass it to GameState
