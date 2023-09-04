@@ -35,6 +35,7 @@ public class TranslatorRoomController extends RoomController {
     signConverter.randomTransform(input); // Call the method on the signConverter
   }
 
+  // TODO: Bug where you can only click translate button in random rooms but not in main room
   /**
    * This class is used to convert a string into a string of random characters. It also has a method
    * to transform the string into the original string.

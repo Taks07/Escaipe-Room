@@ -32,25 +32,17 @@ public class GameController {
       FXMLLoader translatorRoomLoader = loadFxml("translatorroom");
 
       mainBorderPane.setBottom(translatorRoomLoader.load());
-
-      timerLabel.textProperty().bind(GameTimer.timerLabel);
-
       TranslatorRoomController translatorRoomController = translatorRoomLoader.getController();
-
-      // Change this to the string you want to display
+      // Change this to the string you want to display (will be response from chatgpt)
       translatorRoomController.transformStringAndDisplay("Example Text For Alien Translation");
 
       mainBorderPane.setCenter(loadFxml("mainroom").load());
 
       FXMLLoader chatFxmlLoader = loadFxml("chat");
-
       mainBorderPane.setRight(chatFxmlLoader.load());
-
       // Get the controller of the chat pane and pass it to GameState
       GameState.setChatController(chatFxmlLoader.getController());
-
       timerLabel.textProperty().bind(GameTimer.timerLabel);
-
       GameState.setGameController(this);
 
     } catch (IOException e) {
