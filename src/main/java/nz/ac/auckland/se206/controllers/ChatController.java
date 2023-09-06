@@ -68,9 +68,9 @@ public class ChatController {
       chatTextArea.appendText("You: " + msg.getContent() + "\n\n");
     } else {
 
-      // Change this to the string you want to display (will be response from chatgpt)
       RandomSignConverter randomsignconverter =
           new RandomSignConverter(msg.getContent(), chatTextArea);
+      randomsignconverter.randomTransform(msg.getContent());
     }
     ;
   }
