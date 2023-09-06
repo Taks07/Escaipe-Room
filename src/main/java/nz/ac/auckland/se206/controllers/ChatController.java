@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +31,8 @@ public class ChatController {
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private Thread chatThread;
   private Pattern riddlePattern;
+  String input = "";
+  RandomSignConverter signConverter;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -64,7 +67,10 @@ public class ChatController {
     if (role.equals("user")) {
       chatTextArea.appendText("You: " + msg.getContent() + "\n\n");
     } else {
-      chatTextArea.appendText("AI System: " + msg.getContent() + "\n\n");
+
+      // Change this to the string you want to display (will be response from chatgpt)
+      RandomSignConverter randomsignconverter =
+          new RandomSignConverter(msg.getContent(), chatTextArea);
     }
     ;
   }
@@ -177,5 +183,101 @@ public class ChatController {
     if (msg.getRole().equals("assistant") && msg.getContent().startsWith("Correct")) {
       GameState.isRiddleResolved = true;
     }
+  }
+
+  /**
+   * This class is used to convert a string into a string of random characters. It also has a method
+   * to transform the string into the original string.
+   */
+  public class RandomSignConverter {
+    String converted;
+    String randomSigns =
+        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
+
+    String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private TextArea textArea;
+
+    public RandomSignConverter(String input, TextArea textArea) {
+      this.textArea = textArea;
+      converted = convertToRandomSigns(input);
+      textArea.setText(converted);
+    }
+
+    /**
+     * Converts a string into the correctponding alien string.
+     *
+     * @param input The string to be converted.
+     * @return The converted string.
+     */
+    public String convertToRandomSigns(String input) {
+      StringBuilder converted = new StringBuilder();
+
+      for (char c : input.toCharArray()) {
+        switch (c) {
+          case ' ':
+          case ',':
+          case '.':
+          case '!':
+          case '?':
+            converted.append(c);
+            break;
+          default:
+            int index = alphabet.indexOf(c);
+            if (index >= 0 && index < randomSigns.length()) {
+              char randomChar = randomSigns.charAt(index);
+              converted.append(randomChar);
+            } else {
+              converted.append(c);
+            }
+        }
+      }
+
+      return converted.toString();
+    }
+
+    /**
+     * Transforms the alien string back into its original form and displays it in the TextField with
+     * each letter taking 0.06 seconds to transform.
+     *
+     * @param word The original string.
+     */
+    public void randomTransform(String word) {
+      StringBuilder currentMessage = new StringBuilder(converted);
+
+      new Thread(
+              () -> {
+                for (int i = 0; i < word.length(); i++) {
+                  char alienChar = word.charAt(i);
+                  if (alienChar == ' ') {
+                    continue; // Ignore spaces
+                  }
+
+                  char randomChar = word.charAt(i);
+
+                  // Replace the corresponding character in the current message
+                  currentMessage.setCharAt(i, randomChar);
+
+                  // Update the TextField with the current message
+                  Platform.runLater(() -> textArea.setText(currentMessage.toString()));
+
+                  try {
+                    Thread.sleep(60); // Sleep for 0.06 seconds
+                  } catch (InterruptedException e) {
+                    e.printStackTrace();
+                  }
+                }
+              })
+          .start();
+    }
+  }
+
+  /**
+   * Call this method from another class to display the string in the translating room.
+   *
+   * @param input The string to be transformed.
+   */
+  public void transformStringAndDisplay(String input) {
+    this.input = input;
+    signConverter = new RandomSignConverter(input, chatTextArea);
   }
 }
