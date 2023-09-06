@@ -25,7 +25,7 @@ public class ChatController {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
-  @FXML private Label thinkingLabel;
+  @FXML private Label translatingLabel;
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
@@ -90,7 +90,7 @@ public class ChatController {
     }
 
     // Show thinking label and disable send button
-    thinkingLabel.setOpacity(100);
+    translatingLabel.setOpacity(100);
     sendButton.setDisable(true);
 
     // Set up task to run GPT model in new thread
@@ -118,7 +118,7 @@ public class ChatController {
         (event) -> {
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
-          thinkingLabel.setOpacity(0);
+          translatingLabel.setOpacity(0);
           sendButton.setDisable(false);
 
           // Use regex to see if response is a riddle
