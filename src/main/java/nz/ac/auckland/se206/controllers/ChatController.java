@@ -135,6 +135,9 @@ public class ChatController {
           String gptResponse = chatTask.getValue().getContent();
           Matcher matcher = riddlePattern.matcher(gptResponse);
 
+          // Call the correctLength method with the textArea and input
+          signConverter.correctLength(chatTextArea, gptResponse);
+
           System.out.println(gptResponse);
 
           // If response is a riddle, extract the riddle and append to chat box
@@ -202,10 +205,13 @@ public class ChatController {
   public class RandomSignConverter {
     String converted = "";
     String randomSigns;
+    String input = "";
     TextArea textArea;
 
     public RandomSignConverter(String input, TextArea textArea) {
       this.textArea = textArea;
+      this.input = input;
+
       this.randomSigns =
           "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
       textArea.setText(converted);
@@ -243,6 +249,49 @@ public class ChatController {
       timeline.getKeyFrames().add(keyFrame); // Add the new key frame to the timeline
       timeline.setCycleCount(1000);
       timeline.play();
+    }
+
+    public void correctLength(TextArea textArea, String input) {
+      int length = textArea.getLength();
+      int inputLength = input.length();
+      Random random = new Random();
+
+      new Thread(
+              () -> {
+                if (length < inputLength) {
+                  // Append a random character from randomSigns to the TextArea
+                  char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
+
+                  Platform.runLater(() -> textArea.appendText(String.valueOf(randomChar)));
+
+                  try {
+                    Thread.sleep(40); // Sleep for 0.06 seconds
+                  } catch (InterruptedException e) {
+                    e.printStackTrace();
+                  }
+
+                  correctLength(textArea, input); // Call the method again
+                } else if (length > inputLength) {
+                  // Delete one character from the end of the TextArea
+                  int caretPosition = textArea.getCaretPosition();
+                  if (caretPosition > 0) {
+
+                    Platform.runLater(() -> textArea.deleteText(caretPosition - 1, caretPosition));
+
+                    try {
+                      Thread.sleep(40); // Sleep for 0.06 seconds
+                    } catch (InterruptedException e) {
+                      e.printStackTrace();
+                    }
+
+                    correctLength(textArea, input); // Call the method again
+                  }
+
+                } else {
+                  return; // Length matches input length, stop recursion
+                }
+              })
+          .start();
     }
   }
 }
