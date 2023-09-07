@@ -251,6 +251,8 @@ public class ChatController {
       timeline.play();
     }
 
+    // TODO: fix part where if textarea if longer than input, it correctly decreases the legnth of
+    // textarea
     public void correctLength(TextArea textArea, String input) {
       int length = textArea.getLength();
       int inputLength = input.length();
