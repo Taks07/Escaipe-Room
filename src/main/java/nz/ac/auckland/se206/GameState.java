@@ -50,6 +50,12 @@ public class GameState {
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
+  /** The number of hints allowed */
+  public static int hintsAllowed;
+
+  /** The time limit for the game */
+  public static int timeLimit;
+
   static {
     // Read riddle answers from file
     try {
@@ -232,6 +238,21 @@ public class GameState {
     }
 
     return currRooms.get(temp);
+  }
+
+  public static void setHintsAllowed(String difficulty) {
+    if (difficulty.equals("easy")) {
+      hintsAllowed = Integer.MAX_VALUE;
+    } else if (difficulty.equals("medium")) {
+      hintsAllowed = 5;
+    } else {
+      hintsAllowed = 0;
+    }
+  }
+
+  public static void setTimeLimit(int minutes) {
+    timeLimit = minutes * 60;
+    System.out.println(timeLimit);
   }
 
   /** Resets all flags in the game, making it ready for the next round */
