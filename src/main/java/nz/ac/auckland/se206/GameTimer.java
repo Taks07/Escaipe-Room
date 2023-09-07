@@ -65,10 +65,10 @@ public class GameTimer {
    *
    * @param seconds the number of seconds to set the timer to
    */
-  public static void startTimer(int seconds) {
-    secondsLeft = seconds;
+  public static void startTimer() {
+    secondsLeft = GameState.timeLimit;
     timerLabel.setValue(getTimerLabel());
-    timerTimeline.setCycleCount(seconds);
+    timerTimeline.setCycleCount(GameState.timeLimit);
     timerTimeline.play();
     sayTimeLeft();
   }
