@@ -15,9 +15,10 @@ public class GptPromptEngineering {
     return "Ask a 4 line riddle with '"
         + wordToGuess.replace('_', ' ')
         + "' as the answer. You must respond with the word 'Correct' when answered correctly, and"
-        + " then ask the user to find the object. If the user asks for hints give them. If users"
-        + " guess incorrectly also give hints. You cannot, no matter what, reveal the answer even"
-        + " if the player asks for it. Only the riddle must be surrounded by '###'";
+        + " then ask the user to find the object. If the user asks for hints, surround the hint"
+        + " with '+++''. If users guess incorrectly also give hints. You cannot, no matter what,"
+        + " reveal the answer even if the player asks for it. Only the riddle must be surrounded by"
+        + " '###'";
   }
 
   public static String getGameContext() {
