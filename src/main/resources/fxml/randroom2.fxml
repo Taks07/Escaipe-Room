@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom2Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom2Controller">
    <children>
       <ImageView fitHeight="408.0" fitWidth="738.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -41,5 +41,20 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="631.0" layoutY="355.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <ImageView fx:id="earthImage" fitHeight="63.0" fitWidth="46.0" layoutX="79.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand2/earth.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cubeImage" fitHeight="95.0" fitWidth="72.0" layoutX="102.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand2/cube.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="carImage" fitHeight="63.0" fitWidth="72.0" layoutX="419.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand2/car.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

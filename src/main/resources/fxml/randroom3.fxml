@@ -7,11 +7,16 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom3Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom3Controller">
    <children>
-      <ImageView fitHeight="408.0" fitWidth="738.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pipeImage" fitHeight="408.0" fitWidth="738.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="plantsImage" fitHeight="278.0" fitWidth="640.0" layoutX="133.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand3/plants.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="5.0" layoutY="356.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
@@ -31,10 +36,10 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="631.0" layoutY="355.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <Label layoutX="318.0" layoutY="128.0" text="ROOM 3" textFill="RED">
-         <font>
-            <Font size="44.0" />
-         </font>
-      </Label>
+      <ImageView fitHeight="145.0" fitWidth="133.0" layoutX="223.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/rand3/pipe.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

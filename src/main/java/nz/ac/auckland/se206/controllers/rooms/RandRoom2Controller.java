@@ -7,4 +7,7 @@ public class RandRoom2Controller extends RoomController {
 
   @FXML private ImageView oxygenImage;
   @FXML private ImageView flagImage;
+  @FXML private ImageView cubeImage;
+  @FXML private ImageView carImage;
+  @FXML private ImageView earthImage;
 }

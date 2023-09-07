@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -9,6 +10,8 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class MainRoomController extends RoomController {
+
+  @FXML private ImageView rocketImage;
 
   // TODO: Change to rocket instead of door?
   /**
