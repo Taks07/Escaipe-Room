@@ -261,7 +261,7 @@ public class ChatController {
                   Platform.runLater(() -> textArea.setText(currentMessage.toString()));
 
                   try {
-                    Thread.sleep(60); // Sleep for 0.06 seconds
+                    Thread.sleep(40); // Sleep for 0.04 seconds
                   } catch (InterruptedException e) {
                     e.printStackTrace();
                   }
