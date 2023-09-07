@@ -288,7 +288,32 @@ public class ChatController {
                   }
 
                 } else {
+                  originalTransform(input);
                   return; // Length matches input length, stop recursion
+                }
+              })
+          .start();
+    }
+
+    public void originalTransform(String word) {
+      StringBuilder currentMessage = new StringBuilder(textArea.getText());
+
+      new Thread(
+              () -> {
+                for (int i = 0; i < word.length(); i++) {
+                  char originalChar = word.charAt(i);
+
+                  // Update the corresponding character in the current message
+                  currentMessage.setCharAt(i, originalChar);
+
+                  // Update the TextArea with the current message
+                  Platform.runLater(() -> textArea.setText(currentMessage.toString()));
+
+                  try {
+                    Thread.sleep(40); // Sleep for 0.04 seconds
+                  } catch (InterruptedException e) {
+                    e.printStackTrace();
+                  }
                 }
               })
           .start();
