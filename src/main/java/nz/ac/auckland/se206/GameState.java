@@ -50,6 +50,9 @@ public class GameState {
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
+  /** The number of hints given */
+  public static int hintsCounter;
+
   /** The number of hints allowed */
   public static int hintsAllowed;
 
@@ -255,6 +258,10 @@ public class GameState {
     System.out.println(timeLimit);
   }
 
+  public static boolean isHintAvailable() {
+    return hintsCounter < hintsAllowed;
+  }
+
   /** Resets all flags in the game, making it ready for the next round */
   public static void resetGameState() {
     isRiddleResolved = false;
@@ -262,6 +269,7 @@ public class GameState {
     currRiddle = null;
     gameWon = true;
     isDoorCodeEntered = false;
+    hintsCounter = 0;
     currRoom = 0;
     currRooms.clear();
     currRooms.add("mainroom");
