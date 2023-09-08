@@ -14,9 +14,9 @@
             <Image url="@../images/rooms/background1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="plantsImage" fitHeight="278.0" fitWidth="640.0" layoutX="133.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="plantsImage" fitHeight="278.0" fitWidth="640.0" layoutX="131.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand3/plants.png" />
+            <Image url="@../images/objects/plants.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="5.0" layoutY="356.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
@@ -36,9 +36,9 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="631.0" layoutY="355.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView fx:id="pipeImage" fitHeight="145.0" fitWidth="133.0" layoutX="223.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="pipe" fx:id="pipeImage" fitHeight="145.0" fitWidth="133.0" layoutX="223.0" layoutY="151.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand3/pipe.png" />
+            <Image url="@../images/objects/pipe.png" />
          </image>
       </ImageView>
    </children>

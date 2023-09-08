@@ -20,6 +20,7 @@ public abstract class RoomController {
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
 
+  // TODO This is being initialised every time a room is loaded. It should be initialised once.
   @FXML
   private void initialize() {
     animate();
@@ -73,11 +74,17 @@ public abstract class RoomController {
 
   @FXML
   private void hoverObject(MouseEvent event) {
-    actionLabel.setText("Point at object");
+    ImageView object = (ImageView) event.getSource();
+    String objectID = object.getId();
+    object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    actionLabel.setText(":D");
   }
 
   @FXML
   private void unhoverObject(MouseEvent event) {
+    ImageView object = (ImageView) event.getSource();
+    String objectID = object.getId();
+    object.setImage(new Image("/images/objects/" + objectID + ".png"));
     actionLabel.setText("");
   }
 
@@ -105,16 +112,17 @@ public abstract class RoomController {
 
   @FXML
   private void unhoverArrow1(MouseEvent event) {
-    unhoverObject(event);
+    actionLabel.setText("");
     arrow1.setOpacity(0.7);
   }
 
   @FXML
   private void unhoverArrow2(MouseEvent event) {
-    unhoverObject(event);
+    actionLabel.setText("");
     arrow2.setOpacity(0.7);
   }
 
+  // TODO This is being initialised every time a room is loaded. It should be initialised once.
   private void animate() {
     Task<Void> animation =
         new Task<Void>() {

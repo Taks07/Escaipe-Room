@@ -31,7 +31,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="623.0" layoutY="337.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView fx:id="rocketImage" fitHeight="291.0" fitWidth="261.0" layoutX="410.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="rocket" fx:id="rocketImage" fitHeight="291.0" fitWidth="261.0" layoutX="410.0" layoutY="103.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/rocket.png" />
          </image>

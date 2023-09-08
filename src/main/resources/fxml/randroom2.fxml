@@ -16,12 +16,12 @@
       </ImageView>
       <ImageView fx:id="flagImage" fitHeight="430.0" fitWidth="605.0" layoutX="48.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand2/flag1.png" />
+            <Image url="@../images/objects/flag1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="oxygenImage" fitHeight="59.0" fitWidth="121.0" layoutX="130.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="oxygen" fx:id="oxygenImage" fitHeight="59.0" fitWidth="121.0" layoutX="133.0" layoutY="266.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand2/oxygen.png" />
+            <Image url="@../images/objects/oxygen.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="5.0" layoutY="356.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
@@ -41,19 +41,19 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="631.0" layoutY="355.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView fx:id="earthImage" fitHeight="63.0" fitWidth="46.0" layoutX="79.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="earth" fx:id="earthImage" fitHeight="63.0" fitWidth="46.0" layoutX="79.0" layoutY="309.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand2/earth.png" />
+            <Image url="@../images/objects/earth.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cubeImage" fitHeight="95.0" fitWidth="72.0" layoutX="102.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="cube" fx:id="cubeImage" fitHeight="95.0" fitWidth="72.0" layoutX="102.0" layoutY="334.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand2/cube.png" />
+            <Image url="@../images/objects/cube.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="carImage" fitHeight="63.0" fitWidth="72.0" layoutX="419.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="car" fx:id="carImage" fitHeight="63.0" fitWidth="72.0" layoutX="419.0" layoutY="335.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/rand2/car.png" />
+            <Image url="@../images/objects/car.png" />
          </image>
       </ImageView>
    </children>
