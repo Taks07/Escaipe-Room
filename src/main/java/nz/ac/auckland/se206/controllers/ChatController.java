@@ -46,7 +46,7 @@ public class ChatController {
     chatThread = new Thread();
 
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
-    hintPattern = Pattern.compile("+++((.|\n)+)+++", Pattern.CASE_INSENSITIVE);
+    hintPattern = Pattern.compile("&&&((.|\n)+)&&&", Pattern.CASE_INSENSITIVE);
   }
 
   /** Asks the GPT model to a request, then appends it to the chatbox */

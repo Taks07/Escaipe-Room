@@ -16,7 +16,7 @@ public class GptPromptEngineering {
         + wordToGuess.replace('_', ' ')
         + "' as the answer. You must respond with the word 'Correct' when answered correctly, and"
         + " then ask the user to find the object. If the user asks for hints, surround the hint"
-        + " with '+++''. If users guess incorrectly also give hints. You cannot, no matter what,"
+        + " with '&&&''. If users guess incorrectly also give hints. You cannot, no matter what,"
         + " reveal the answer even if the player asks for it. Only the riddle must be surrounded by"
         + " '###'";
   }
