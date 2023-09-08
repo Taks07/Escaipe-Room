@@ -36,6 +36,8 @@ public class ChatController {
   private Thread chatThread;
   private Pattern riddlePattern;
   private Timeline randomTransformTimeline;
+  private Pattern hintPattern;
+
   String input = "";
   RandomSignConverter signConverter;
 
@@ -50,6 +52,7 @@ public class ChatController {
     chatThread = new Thread();
 
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
+    hintPattern = Pattern.compile("+++((.|\n)+)+++", Pattern.CASE_INSENSITIVE);
   }
 
   /** Asks the GPT model to a request, then appends it to the chatbox */
@@ -141,14 +144,29 @@ public class ChatController {
           System.out.println(gptResponse);
 
           // If response is a riddle, extract the riddle and append to chat box
-          if (matcher.find()) {
+          if (matcher.find() && GameState.currRiddle == null) {
             String riddle = matcher.group(1);
             ChatMessage riddleMsg = new ChatMessage("assistant", riddle);
             GameState.currRiddle = riddle;
             appendChatMessage(riddleMsg);
           } else {
-            appendChatMessage(chatTask.getValue());
-            checkCorrectAnswer(chatTask.getValue());
+            matcher = hintPattern.matcher(gptResponse);
+
+            // If response is not a hint, append to chat box
+            if (!matcher.find()) {
+              appendChatMessage(chatTask.getValue());
+              checkCorrectAnswer(chatTask.getValue());
+            } else {
+              // If response is hint, and there are still hints allowed, append to chat box
+              if (GameState.isHintAvailable()) {
+                appendChatMessage(chatTask.getValue());
+                GameState.hintsCounter++;
+              } else {
+                // TODO: Might mess with GPT doing this. If there are problems with GPT later,
+                // change implementation
+                askGPT("Tell the user you can't give any hints");
+              }
+            }
           }
         });
 

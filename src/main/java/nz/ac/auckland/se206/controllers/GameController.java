@@ -28,7 +28,7 @@ public class GameController {
   /** Code that is run when first starting game */
   public void initialize() {
     try {
-
+      mainBorderPane.setCenter(loadFxml("mainroom").load());
       FXMLLoader chatFxmlLoader = loadFxml("chat");
       mainBorderPane.setRight(chatFxmlLoader.load());
       // Get the controller of the chat pane and pass it to GameState
