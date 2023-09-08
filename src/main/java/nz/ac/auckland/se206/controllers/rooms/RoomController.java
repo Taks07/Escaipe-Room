@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Shape;
@@ -15,6 +18,12 @@ public abstract class RoomController {
   @FXML protected Label actionLabel;
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
+  @FXML protected ImageView background;
+
+  @FXML
+  private void initialize() {
+    animate();
+  }
 
   /**
    * Displays a dialog box with the given title, header text, and message.
@@ -104,5 +113,31 @@ public abstract class RoomController {
   private void unhoverArrow2(MouseEvent event) {
     unhoverObject(event);
     arrow2.setOpacity(0.7);
+  }
+
+  private void animate() {
+    Task<Void> animation =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            while (true) {
+              Thread.sleep(500);
+              Platform.runLater(
+                  () -> {
+                    // Animate 1
+                    background.setImage(new Image("/images/rooms/background2.png"));
+                  });
+              Thread.sleep(500);
+              Platform.runLater(
+                  () -> {
+                    // Animate 2
+                    background.setImage(new Image("/images/rooms/background1.png"));
+                  });
+            }
+          }
+        };
+    Thread animateThread = new Thread(animation);
+    animateThread.setDaemon(true);
+    animateThread.start();
   }
 }

@@ -9,9 +9,9 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
    <children>
-      <ImageView fitHeight="408.0" fitWidth="708.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="806.0" fitWidth="1111.0" layoutX="-180.0" layoutY="-194.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/rooms/background1.jpg" />
+            <Image url="@../images/rooms/background1.png" />
          </image>
       </ImageView>
       <Label fx:id="actionLabel" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="209.0">
