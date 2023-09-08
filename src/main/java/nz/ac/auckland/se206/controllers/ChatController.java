@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -11,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -25,13 +29,15 @@ public class ChatController {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
-  @FXML private Label thinkingLabel;
+  @FXML private Label translatingLabel;
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private Thread chatThread;
   private Pattern riddlePattern;
+  private Timeline randomTransformTimeline;
   private Pattern hintPattern;
+
   String input = "";
   RandomSignConverter signConverter;
 
@@ -69,10 +75,8 @@ public class ChatController {
     if (role.equals("user")) {
       chatTextArea.appendText("You: " + msg.getContent() + "\n\n");
     } else {
+      // TODO: CONVERT THE RANDOM STRING OF LENGTH GPTRESPONSE TO THE ORIGINAL STRING HERE
 
-      // Change this to the string you want to display (will be response from chatgpt)
-      RandomSignConverter randomsignconverter =
-          new RandomSignConverter(msg.getContent(), chatTextArea);
     }
     ;
   }
@@ -92,10 +96,15 @@ public class ChatController {
     }
 
     // Show thinking label and disable send button
-    thinkingLabel.setOpacity(100);
+    translatingLabel.setOpacity(100);
     sendButton.setDisable(true);
+    signConverter = new RandomSignConverter(input, chatTextArea);
 
-    // Set up task to run GPT model in new thread
+    // Start the random string loading sequence and store the timeline
+    randomTransformTimeline = new Timeline();
+    signConverter.randomTransform(chatTextArea, randomTransformTimeline);
+
+    // Set up task to run GPT model in a new thread
     Task<ChatMessage> chatTask =
         new Task<ChatMessage>() {
           @Override
@@ -107,25 +116,30 @@ public class ChatController {
               chatCompletionRequest.addMessage(result.getChatMessage());
               return result.getChatMessage();
             } catch (ApiProxyException e) {
-              // TODO handle exception appropriately
               System.out.println("Error communicating with API proxy");
               return null;
             }
           }
         };
 
-    // When task is complete, check if the assistant has sent a message
-    // starting with "Correct". Also, remove thinking label and enable send button.
+    // When the task is complete, check if the assistant has sent a message
+    // starting with "Correct". Also, remove the thinking label and enable the send button.
     chatTask.setOnSucceeded(
         (event) -> {
+          // Stop the randomTransform animation
+          randomTransformTimeline.stop();
+
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
-          thinkingLabel.setOpacity(0);
+          translatingLabel.setOpacity(0);
           sendButton.setDisable(false);
 
           // Use regex to see if response is a riddle
           String gptResponse = chatTask.getValue().getContent();
           Matcher matcher = riddlePattern.matcher(gptResponse);
+
+          // Call the correctLength method with the textArea and input
+          signConverter.correctLength(chatTextArea, gptResponse);
 
           System.out.println(gptResponse);
 
@@ -207,49 +221,18 @@ public class ChatController {
    * to transform the string into the original string.
    */
   public class RandomSignConverter {
-    String converted;
-    String randomSigns =
-        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
-
-    String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private TextArea textArea;
+    String converted = "";
+    String randomSigns;
+    String input = "";
+    TextArea textArea;
 
     public RandomSignConverter(String input, TextArea textArea) {
       this.textArea = textArea;
-      converted = convertToRandomSigns(input);
+      this.input = input;
+
+      this.randomSigns =
+          "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
       textArea.setText(converted);
-    }
-
-    /**
-     * Converts a string into the correctponding alien string.
-     *
-     * @param input The string to be converted.
-     * @return The converted string.
-     */
-    public String convertToRandomSigns(String input) {
-      StringBuilder converted = new StringBuilder();
-
-      for (char c : input.toCharArray()) {
-        switch (c) {
-          case ' ':
-          case ',':
-          case '.':
-          case '!':
-          case '?':
-            converted.append(c);
-            break;
-          default:
-            int index = alphabet.indexOf(c);
-            if (index >= 0 && index < randomSigns.length()) {
-              char randomChar = randomSigns.charAt(index);
-              converted.append(randomChar);
-            } else {
-              converted.append(c);
-            }
-        }
-      }
-
-      return converted.toString();
     }
 
     /**
@@ -258,27 +241,96 @@ public class ChatController {
      *
      * @param word The original string.
      */
-    public void randomTransform(String word) {
+    public void randomTransform(TextArea textArea, Timeline timeline) {
+
       StringBuilder currentMessage = new StringBuilder(converted);
+      int interval = 40; // 0.04 seconds in milliseconds
+
+      timeline.getKeyFrames().clear(); // Clear existing key frames to stop the animation
+
+      KeyFrame keyFrame =
+          new KeyFrame(
+              Duration.millis(interval),
+              event -> {
+                Random random = new Random();
+
+                // Get a random character from the randomSigns string
+                char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
+
+                // Append the random character to the current message
+                currentMessage.append(randomChar);
+
+                // Update the TextArea with the current message
+                Platform.runLater(() -> textArea.setText(currentMessage.toString()));
+              });
+
+      timeline.getKeyFrames().add(keyFrame); // Add the new key frame to the timeline
+      timeline.setCycleCount(1000);
+      timeline.play();
+    }
+
+    // TODO: fix part where if textarea if longer than input, it correctly decreases the legnth of
+    // textarea
+    public void correctLength(TextArea textArea, String input) {
+      int length = textArea.getLength();
+      int inputLength = input.length();
+      Random random = new Random();
+
+      new Thread(
+              () -> {
+                if (length < inputLength) {
+                  // Append a random character from randomSigns to the TextArea
+                  char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
+
+                  Platform.runLater(() -> textArea.appendText(String.valueOf(randomChar)));
+
+                  try {
+                    Thread.sleep(40); // Sleep for 0.06 seconds
+                  } catch (InterruptedException e) {
+                    e.printStackTrace();
+                  }
+
+                  correctLength(textArea, input); // Call the method again
+                } else if (length > inputLength) {
+                  // Delete one character from the end of the TextArea
+                  int caretPosition = textArea.getCaretPosition();
+                  if (caretPosition > 0) {
+
+                    Platform.runLater(() -> textArea.deleteText(caretPosition - 1, caretPosition));
+
+                    try {
+                      Thread.sleep(40); // Sleep for 0.06 seconds
+                    } catch (InterruptedException e) {
+                      e.printStackTrace();
+                    }
+
+                    correctLength(textArea, input); // Call the method again
+                  }
+
+                } else {
+                  originalTransform(input);
+                  return; // Length matches input length, stop recursion
+                }
+              })
+          .start();
+    }
+
+    public void originalTransform(String word) {
+      StringBuilder currentMessage = new StringBuilder(textArea.getText());
 
       new Thread(
               () -> {
                 for (int i = 0; i < word.length(); i++) {
-                  char alienChar = word.charAt(i);
-                  if (alienChar == ' ') {
-                    continue; // Ignore spaces
-                  }
+                  char originalChar = word.charAt(i);
 
-                  char randomChar = word.charAt(i);
+                  // Update the corresponding character in the current message
+                  currentMessage.setCharAt(i, originalChar);
 
-                  // Replace the corresponding character in the current message
-                  currentMessage.setCharAt(i, randomChar);
-
-                  // Update the TextField with the current message
+                  // Update the TextArea with the current message
                   Platform.runLater(() -> textArea.setText(currentMessage.toString()));
 
                   try {
-                    Thread.sleep(60); // Sleep for 0.06 seconds
+                    Thread.sleep(40); // Sleep for 0.04 seconds
                   } catch (InterruptedException e) {
                     e.printStackTrace();
                   }
@@ -286,15 +338,5 @@ public class ChatController {
               })
           .start();
     }
-  }
-
-  /**
-   * Call this method from another class to display the string in the translating room.
-   *
-   * @param input The string to be transformed.
-   */
-  public void transformStringAndDisplay(String input) {
-    this.input = input;
-    signConverter = new RandomSignConverter(input, chatTextArea);
   }
 }

@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="218.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="218.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
    <children>
       <TextArea fx:id="chatTextArea" editable="false" prefHeight="498.0" prefWidth="214.0" wrapText="true" />
-      <Label fx:id="thinkingLabel" opacity="0.0" text="Let me think..." />
+      <Label fx:id="translatingLabel" opacity="0.0" text="Translating..." />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <TextField fx:id="inputText" prefHeight="26.0" prefWidth="171.0" promptText="Speak to the AI system" />
