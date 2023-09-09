@@ -19,8 +19,9 @@ public abstract class RoomController {
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
+  protected Thread backgroundThread;
+  protected Thread flagThread;
 
-  // TODO This is being initialised every time a room is loaded. It should be initialised once.
   @FXML
   private void initialize() {
     animate();
@@ -90,11 +91,19 @@ public abstract class RoomController {
 
   @FXML
   private void clickArrow1(MouseEvent event) {
+    backgroundThread.interrupt();
+    if (flagThread != null) {
+      flagThread.interrupt();
+    }
     GameState.prevRoom();
   }
 
   @FXML
   private void clickArrow2(MouseEvent event) {
+    backgroundThread.interrupt();
+    if (flagThread != null) {
+      flagThread.interrupt();
+    }
     GameState.nextRoom();
   }
 
@@ -122,8 +131,7 @@ public abstract class RoomController {
     arrow2.setOpacity(0.7);
   }
 
-  // TODO This is being initialised every time a room is loaded. It should be initialised once.
-  private void animate() {
+  protected void animate() {
     Task<Void> animation =
         new Task<Void>() {
           @Override
@@ -144,8 +152,9 @@ public abstract class RoomController {
             }
           }
         };
-    Thread animateThread = new Thread(animation);
-    animateThread.setDaemon(true);
-    animateThread.start();
+    backgroundThread = new Thread(animation);
+
+    backgroundThread.setDaemon(true);
+    backgroundThread.start();
   }
 }
