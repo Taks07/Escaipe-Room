@@ -7,4 +7,7 @@ public class RandRoom3Controller extends RoomController {
 
   @FXML private ImageView plantsImage;
   @FXML private ImageView pipeImage;
+  @FXML private ImageView shovelImage;
+  @FXML private ImageView flowerImage;
+  @FXML private ImageView grassImage;
 }

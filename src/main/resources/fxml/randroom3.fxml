@@ -24,7 +24,6 @@
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="40.0" layoutY="356.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
       <Label fx:id="actionLabel" layoutX="34.0" layoutY="34.0" prefHeight="20.0" prefWidth="209.0">
          <font>
             <Font size="14.0" />
@@ -41,5 +40,21 @@
             <Image url="@../images/objects/pipe.png" />
          </image>
       </ImageView>
+      <ImageView id="shovel" fx:id="shovelImage" fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="168.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/shovel.png" />
+         </image>
+      </ImageView>
+      <ImageView id="flower" fx:id="flowerImage" fitHeight="75.0" fitWidth="114.0" layoutX="65.0" layoutY="269.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/flower.png" />
+         </image>
+      </ImageView>
+      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="114.0" layoutX="26.0" layoutY="315.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/grass.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="40.0" layoutY="356.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
    </children>
 </Pane>
