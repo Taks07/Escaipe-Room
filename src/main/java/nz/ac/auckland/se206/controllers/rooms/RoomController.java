@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Shape;
@@ -15,6 +18,14 @@ public abstract class RoomController {
   @FXML protected Label actionLabel;
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
+  @FXML protected ImageView background;
+  protected Thread backgroundThread;
+  protected Thread flagThread;
+
+  @FXML
+  private void initialize() {
+    animate();
+  }
 
   /**
    * Displays a dialog box with the given title, header text, and message.
@@ -64,21 +75,35 @@ public abstract class RoomController {
 
   @FXML
   private void hoverObject(MouseEvent event) {
-    actionLabel.setText("Point at object");
+    ImageView object = (ImageView) event.getSource();
+    String objectID = object.getId();
+    object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    actionLabel.setText(":D");
   }
 
   @FXML
   private void unhoverObject(MouseEvent event) {
+    ImageView object = (ImageView) event.getSource();
+    String objectID = object.getId();
+    object.setImage(new Image("/images/objects/" + objectID + ".png"));
     actionLabel.setText("");
   }
 
   @FXML
   private void clickArrow1(MouseEvent event) {
+    backgroundThread.interrupt();
+    if (flagThread != null) {
+      flagThread.interrupt();
+    }
     GameState.prevRoom();
   }
 
   @FXML
   private void clickArrow2(MouseEvent event) {
+    backgroundThread.interrupt();
+    if (flagThread != null) {
+      flagThread.interrupt();
+    }
     GameState.nextRoom();
   }
 
@@ -96,13 +121,40 @@ public abstract class RoomController {
 
   @FXML
   private void unhoverArrow1(MouseEvent event) {
-    unhoverObject(event);
+    actionLabel.setText("");
     arrow1.setOpacity(0.7);
   }
 
   @FXML
   private void unhoverArrow2(MouseEvent event) {
-    unhoverObject(event);
+    actionLabel.setText("");
     arrow2.setOpacity(0.7);
+  }
+
+  protected void animate() {
+    Task<Void> animation =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            while (true) {
+              Thread.sleep(500);
+              Platform.runLater(
+                  () -> {
+                    // Animate 1
+                    background.setImage(new Image("/images/rooms/background2.png"));
+                  });
+              Thread.sleep(500);
+              Platform.runLater(
+                  () -> {
+                    // Animate 2
+                    background.setImage(new Image("/images/rooms/background1.png"));
+                  });
+            }
+          }
+        };
+    backgroundThread = new Thread(animation);
+
+    backgroundThread.setDaemon(true);
+    backgroundThread.start();
   }
 }
