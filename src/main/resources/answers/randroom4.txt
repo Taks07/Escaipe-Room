@@ -1,1 +1,3 @@
-spikes
+stalagmite
+stalactite
+cave
