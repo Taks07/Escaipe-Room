@@ -9,7 +9,7 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
    <children>
-      <ImageView fx:id="background" fitHeight="806.0" fitWidth="1111.0" layoutX="-180.0" layoutY="-194.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien" fx:id="background" fitHeight="806.0" fitWidth="1111.0" layoutX="-179.0" layoutY="-194.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.png" />
          </image>
@@ -34,6 +34,11 @@
       <ImageView id="rocket" fx:id="rocketImage" fitHeight="291.0" fitWidth="261.0" layoutX="410.0" layoutY="103.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/rocket.png" />
+         </image>
+      </ImageView>
+      <ImageView id="alien" fx:id="alienImage" fitHeight="251.0" fitWidth="101.0" layoutX="163.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alien.png" />
          </image>
       </ImageView>
    </children>
