@@ -39,6 +39,7 @@ public class GameTimer {
                     sayTimeLeft();
                   }
 
+                  // TODO: Check whether prompts still make sense after
                   if (secondsLeft == 90 && GameState.currRiddle == null) {
                     GameState.askGPT(GptPromptEngineering.getComeToDoor());
                   }
