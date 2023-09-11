@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 public class MainRoomController extends RoomController {
 
   @FXML private ImageView rocketImage;
+  @FXML private ImageView alienImage;
 
   // TODO: Change to rocket instead of door?
   /**
