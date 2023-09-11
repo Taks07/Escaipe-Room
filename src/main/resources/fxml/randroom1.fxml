@@ -29,9 +29,9 @@
             <Image url="@../images/objects/tire.png" />
          </image>
       </ImageView>
-      <ImageView id="panel" fx:id="panelImage" fitHeight="150.0" fitWidth="200.0" layoutX="109.0" layoutY="221.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="solar_panel" fx:id="panelImage" fitHeight="150.0" fitWidth="200.0" layoutX="109.0" layoutY="221.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/panel.png" />
+            <Image url="@../images/objects/solar_panel.png" />
          </image>
       </ImageView>
       <ImageView id="helmet" fx:id="helmetImage" fitHeight="63.0" fitWidth="93.0" layoutX="209.0" layoutY="317.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
