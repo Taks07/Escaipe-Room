@@ -97,6 +97,7 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
+    translatingLabel.setText("Processing...");
     sendButton.setDisable(true);
     signConverter = new RandomSignConverter(input, chatTextArea);
 
@@ -131,7 +132,6 @@ public class ChatController {
 
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
-          translatingLabel.setOpacity(0);
           sendButton.setDisable(false);
 
           // Use regex to see if response is a riddle
@@ -243,8 +243,9 @@ public class ChatController {
      */
     public void randomTransform(TextArea textArea, Timeline timeline) {
 
+      sendButton.setVisible(false);
       StringBuilder currentMessage = new StringBuilder(converted);
-      int interval = 40; // 0.04 seconds in milliseconds
+      int interval = 10; // 0.04 seconds in milliseconds
 
       timeline.getKeyFrames().clear(); // Clear existing key frames to stop the animation
 
@@ -254,11 +255,17 @@ public class ChatController {
               event -> {
                 Random random = new Random();
 
-                // Get a random character from the randomSigns string
-                char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
+                // Generate a random number between 0 and 2
+                int randomNumber = random.nextInt(3);
 
-                // Append the random character to the current message
-                currentMessage.append(randomChar);
+                if (randomNumber == 0 && currentMessage.length() > 20) {
+                  // Delete a character from the current message
+                  currentMessage.deleteCharAt(random.nextInt(currentMessage.length()));
+                } else {
+                  // Add a random character to the current message
+                  char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
+                  currentMessage.append(randomChar);
+                }
 
                 // Update the TextArea with the current message
                 Platform.runLater(() -> textArea.setText(currentMessage.toString()));
@@ -269,8 +276,6 @@ public class ChatController {
       timeline.play();
     }
 
-    // TODO: fix part where if textarea if longer than input, it correctly decreases the legnth of
-    // textarea
     public void correctLength(TextArea textArea, String input) {
       int length = textArea.getLength();
       int inputLength = input.length();
@@ -285,7 +290,7 @@ public class ChatController {
                   Platform.runLater(() -> textArea.appendText(String.valueOf(randomChar)));
 
                   try {
-                    Thread.sleep(40); // Sleep for 0.06 seconds
+                    Thread.sleep(10); // Sleep for 0.06 seconds
                   } catch (InterruptedException e) {
                     e.printStackTrace();
                   }
@@ -293,13 +298,25 @@ public class ChatController {
                   correctLength(textArea, input); // Call the method again
                 } else if (length > inputLength) {
                   // Delete one character from the end of the TextArea
-                  int caretPosition = textArea.getCaretPosition();
+                  int caretPosition = textArea.getLength();
                   if (caretPosition > 0) {
 
-                    Platform.runLater(() -> textArea.deleteText(caretPosition - 1, caretPosition));
+                    Platform.runLater(
+                        () -> {
+                          String currentText = textArea.getText();
+
+                          // Check if the TextArea has content
+                          if (!currentText.isEmpty()) {
+                            // Remove the last character
+                            String updatedText = currentText.substring(0, currentText.length() - 1);
+
+                            // Set the updated text back to the TextArea
+                            textArea.setText(updatedText);
+                          }
+                        });
 
                     try {
-                      Thread.sleep(40); // Sleep for 0.06 seconds
+                      Thread.sleep(10); // Sleep for 0.06 seconds
                     } catch (InterruptedException e) {
                       e.printStackTrace();
                     }
@@ -308,6 +325,7 @@ public class ChatController {
                   }
 
                 } else {
+                  Platform.runLater(() -> translatingLabel.setText("Translating..."));
                   originalTransform(input);
                   return; // Length matches input length, stop recursion
                 }
@@ -330,11 +348,13 @@ public class ChatController {
                   Platform.runLater(() -> textArea.setText(currentMessage.toString()));
 
                   try {
-                    Thread.sleep(40); // Sleep for 0.04 seconds
+                    Thread.sleep(10); // Sleep for 0.04 seconds
                   } catch (InterruptedException e) {
                     e.printStackTrace();
                   }
                 }
+                sendButton.setVisible(true);
+                translatingLabel.setOpacity(0);
               })
           .start();
     }
