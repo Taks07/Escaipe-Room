@@ -3,4 +3,3 @@ flower
 dirt
 pipe
 grass
-plant
