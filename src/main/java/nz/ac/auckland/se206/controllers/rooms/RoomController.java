@@ -55,17 +55,17 @@ public abstract class RoomController {
   }
 
   /**
-   * Handles the click event on an object other than the door.
+   * Handles the click event on an object.
    *
    * @param event the mouse event
    */
   @FXML
-  private void clickObject(MouseEvent event) {
+  protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectID = object.getId();
 
     if (GameState.isRiddleAnswerCorrect(objectID)) {
-      // Correct object found. Tell user they can click the door to end the game.
+      // TODO: Correct object found. Tell user they can click the rocket to end the game.
 
       GameState.isObjectFound = true;
 

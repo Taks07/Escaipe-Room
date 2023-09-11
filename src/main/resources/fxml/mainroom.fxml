@@ -41,6 +41,7 @@
             <Image url="@../images/alien.png" />
          </image>
       </ImageView>
-      <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="265.0" layoutX="422.0" layoutY="103.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
+      <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="265.0" layoutX="422.0" layoutY="103.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="209.0" layoutX="164.0" layoutY="164.0" onMouseClicked="#clickAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
    </children>
 </Pane>

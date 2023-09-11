@@ -14,7 +14,6 @@ public class MainRoomController extends RoomController {
   @FXML private ImageView rocketImage;
   @FXML private ImageView alienImage;
 
-  // TODO: Change to rocket instead of door?
   /**
    * Handles the click event on the door.
    *
@@ -22,31 +21,22 @@ public class MainRoomController extends RoomController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  private void clickDoor(MouseEvent event) throws IOException {
-    // Check if the door code has been entered
-    if (GameState.isDoorCodeEntered) {
-      App.setRoot("results");
-      return;
-    }
-
-    // Check if the riddle has been resolved and the object has been found
-    if (GameState.isRiddleResolved && GameState.isObjectFound) {
-      showDialog("Enter the code at the keypad to unlock the door.");
-      return;
-    }
-
-    // Check if the riddle has been resolved but the object has not been found
-    if (GameState.isRiddleResolved && !GameState.isObjectFound) {
-      showDialog("You must find the object before you can get the code.");
-      return;
-    }
-
+  private void clickAlien(MouseEvent event) throws IOException {
     // Check if the riddle has been asked
     if (GameState.currRiddle != null) {
       showDialog("Here is the riddle again:\n" + GameState.currRiddle);
     } else {
       GameState.askGPT(
           GptPromptEngineering.getRiddleWithGivenWord(GameState.getCurrRiddleAnswer()));
+    }
+  }
+
+  @FXML
+  private void clickRocket(MouseEvent event) throws IOException {
+    if (GameState.isObjectFound) {
+      App.setRoot("result");
+    } else {
+      clickObject(event);
     }
   }
 }
