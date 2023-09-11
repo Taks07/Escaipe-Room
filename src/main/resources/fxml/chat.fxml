@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="218.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
    <children>
-      <TextArea fx:id="chatTextArea" editable="false" prefHeight="498.0" prefWidth="214.0" wrapText="true" />
+      <TextArea fx:id="chatTextArea" editable="false" prefHeight="204.0" prefWidth="628.0" wrapText="true" />
       <Label fx:id="translatingLabel" opacity="0.0" text="Translating..." />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="inputText" prefHeight="26.0" prefWidth="171.0" promptText="Speak to the AI system" />
             <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="26.0" prefWidth="47.0" text="Send" />
          </children>
       </HBox>
+      <TextField fx:id="inputText" prefHeight="26.0" prefWidth="209.0" promptText="Speak to the AI system" />
    </children>
    <padding>
       <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

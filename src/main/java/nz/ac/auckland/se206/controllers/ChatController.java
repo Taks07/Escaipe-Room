@@ -97,6 +97,7 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
+    translatingLabel.setText("Processing...");
     sendButton.setDisable(true);
     signConverter = new RandomSignConverter(input, chatTextArea);
 
@@ -131,7 +132,6 @@ public class ChatController {
 
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
-          translatingLabel.setOpacity(0);
           sendButton.setDisable(false);
 
           // Use regex to see if response is a riddle
@@ -325,6 +325,7 @@ public class ChatController {
                   }
 
                 } else {
+                  Platform.runLater(() -> translatingLabel.setText("Translating..."));
                   originalTransform(input);
                   return; // Length matches input length, stop recursion
                 }
@@ -353,6 +354,7 @@ public class ChatController {
                   }
                 }
                 sendButton.setVisible(true);
+                translatingLabel.setOpacity(0);
               })
           .start();
     }

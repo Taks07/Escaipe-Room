@@ -12,7 +12,6 @@ import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public abstract class RoomController {
   @FXML protected Label actionLabel;
@@ -65,8 +64,10 @@ public abstract class RoomController {
 
     if (GameState.isRiddleAnswerCorrect(objectID)) {
       // Correct object found. Tell user they can click the door to end the game.
-      GameState.askGPT(GptPromptEngineering.getDoorCode());
+
       GameState.isObjectFound = true;
+
+      // TODO: Swap fxml to Mini game starts here
     } else {
       // Not the correct object. Provide some flavour text.
       GameState.sayFlavourText(objectID);

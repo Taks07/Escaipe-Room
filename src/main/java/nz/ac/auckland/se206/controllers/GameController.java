@@ -30,7 +30,7 @@ public class GameController {
     try {
       mainBorderPane.setCenter(loadFxml("mainroom").load());
       FXMLLoader chatFxmlLoader = loadFxml("chat");
-      mainBorderPane.setRight(chatFxmlLoader.load());
+      mainBorderPane.setBottom(chatFxmlLoader.load());
       // Get the controller of the chat pane and pass it to GameState
       GameState.setChatController(chatFxmlLoader.getController());
       timerLabel.textProperty().bind(GameTimer.timerLabel);
