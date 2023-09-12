@@ -145,7 +145,7 @@ public class GameState {
   }
 
   public static void showChatMessage(ChatMessage chat) {
-    chatController.appendChatMessage(chat);
+    chatController.appendChatMessage(chat.getContent());
   }
 
   /** Sets the current riddle answer to a random answer from the list of riddle answers */

@@ -66,7 +66,7 @@ public abstract class RoomController {
 
     if (GameState.isRiddleAnswerCorrect(objectID)) {
       // TODO: Correct object found. Tell user they can click the rocket to end the game.
-
+      System.out.println("Got object");
       GameState.isObjectFound = true;
 
       // TODO: Swap fxml to Mini game starts here
