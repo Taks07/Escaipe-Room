@@ -35,22 +35,22 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="631.0" layoutY="355.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView id="pipe" fx:id="pipeImage" fitHeight="145.0" fitWidth="133.0" layoutX="223.0" layoutY="151.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="pipe" fx:id="pipeImage" fitHeight="145.0" fitWidth="133.0" layoutX="223.0" layoutY="151.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/pipe.png" />
          </image>
       </ImageView>
-      <ImageView id="shovel" fx:id="shovelImage" fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="168.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="shovel" fx:id="shovelImage" fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="168.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/shovel.png" />
          </image>
       </ImageView>
-      <ImageView id="flower" fx:id="flowerImage" fitHeight="75.0" fitWidth="114.0" layoutX="65.0" layoutY="269.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="flower" fx:id="flowerImage" fitHeight="75.0" fitWidth="114.0" layoutX="65.0" layoutY="269.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/flower.png" />
          </image>
       </ImageView>
-      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="114.0" layoutX="26.0" layoutY="315.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="114.0" layoutX="26.0" layoutY="315.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/grass.png" />
          </image>

@@ -61,6 +61,7 @@ public abstract class RoomController {
   private void clickObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
+    System.out.println("Clicked " + objectID);
 
     // if the object of the room is clicked, go to the room's minigame
     if (GameState.isRiddleAnswerCorrect(objectID)) {

@@ -14,32 +14,32 @@
             <Image url="@../images/rooms/background1.png" />
          </image>
       </ImageView>
-      <ImageView id="rocks" fx:id="rocksImage" fitHeight="211.0" fitWidth="247.0" layoutX="8.0" layoutY="185.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="rocks" fx:id="rocksImage" fitHeight="211.0" fitWidth="247.0" layoutX="8.0" layoutY="185.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/rocks.png" />
          </image>
       </ImageView>
-      <ImageView id="ufo" fx:id="ufoImage" fitHeight="275.0" fitWidth="362.0" layoutX="292.0" layoutY="123.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="ufo" fx:id="ufoImage" fitHeight="275.0" fitWidth="362.0" layoutX="292.0" layoutY="123.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/ufo.png" />
          </image>
       </ImageView>
-      <ImageView id="tire" fx:id="tireImage" fitHeight="73.0" fitWidth="92.0" layoutX="63.0" layoutY="313.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="tire" fx:id="tireImage" fitHeight="73.0" fitWidth="92.0" layoutX="63.0" layoutY="313.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/tire.png" />
          </image>
       </ImageView>
-      <ImageView id="panel" fx:id="panelImage" fitHeight="150.0" fitWidth="200.0" layoutX="109.0" layoutY="221.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="panel" fx:id="panelImage" fitHeight="150.0" fitWidth="200.0" layoutX="109.0" layoutY="221.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/panel.png" />
          </image>
       </ImageView>
-      <ImageView id="helmet" fx:id="helmetImage" fitHeight="63.0" fitWidth="93.0" layoutX="209.0" layoutY="317.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="helmet" fx:id="helmetImage" fitHeight="63.0" fitWidth="93.0" layoutX="209.0" layoutY="317.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/helmet.png" />
          </image>
       </ImageView>
-      <ImageView id="boot" fx:id="bootImage" fitHeight="66.0" fitWidth="109.0" layoutX="485.0" layoutY="327.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="boot" fx:id="bootImage" fitHeight="66.0" fitWidth="109.0" layoutX="485.0" layoutY="327.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/boot.png" />
          </image>
