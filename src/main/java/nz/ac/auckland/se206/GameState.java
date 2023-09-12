@@ -203,6 +203,10 @@ public class GameState {
     currRooms.add(randomRoomsCopy.get(randInt));
   }
 
+  public static int getCurrRoom() {
+    return currRoom;
+  }
+
   public static void prevRoom() {
     currRoom--;
 

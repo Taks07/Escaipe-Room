@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -56,18 +55,21 @@ public abstract class RoomController {
    * Handles the click event on an object other than the door.
    *
    * @param event the mouse event
+   * @throws IOException
    */
   @FXML
   private void clickObject(MouseEvent event) {
-    Shape object = (Shape) event.getSource();
+    ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
 
+    // if the object of the room is clicked, go to the room's minigame
     if (GameState.isRiddleAnswerCorrect(objectID)) {
-      // Correct object found. Tell user they can click the door to end the game.
 
       GameState.isObjectFound = true;
 
-      // TODO: Swap fxml to Mini game starts here
+      String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
+      GameState.switchRoom(fxmlPath);
+
     } else {
       // Not the correct object. Provide some flavour text.
       GameState.sayFlavourText(objectID);
