@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
@@ -97,6 +99,22 @@ public class ChatController {
     translatingLabel.setText("Processing...");
     sendButton.setDisable(true);
 
+    // Set up task and thread to create changing alien text while GPT is thinking
+    TimerTask alienTextTask =
+        new TimerTask() {
+          @Override
+          public void run() {
+            String randomAlienText = getAlienText(-1);
+            Platform.runLater(
+                () -> {
+                  chatTextArea.setText(randomAlienText);
+                });
+          }
+        };
+
+    Timer myTimer = new Timer();
+    myTimer.scheduleAtFixedRate(alienTextTask, 0, 300);
+
     // Set up task to run GPT model in a new thread
     Task<ChatMessage> chatTask =
         new Task<ChatMessage>() {
@@ -119,13 +137,19 @@ public class ChatController {
     // starting with "Correct". Also, remove the thinking label and enable the send button.
     chatTask.setOnSucceeded(
         (event) -> {
+          // Stop displaying fluctuating alien text
+          myTimer.cancel();
+
+          // Set random alien text to length of response, then start trnaslating
+          String gptResponse = chatTask.getValue().getContent();
+          chatTextArea.setText(getAlienText(gptResponse.length()));
+          originalTransform(gptResponse);
 
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
           sendButton.setDisable(false);
 
           // Use regex to see if response is a riddle
-          String gptResponse = chatTask.getValue().getContent();
           Matcher matcher = riddlePattern.matcher(gptResponse);
 
           System.out.println(gptResponse);
@@ -211,7 +235,7 @@ public class ChatController {
     Random random = new Random();
 
     if (length == -1) {
-      length = random.nextInt(15) + 10;
+      length = random.nextInt(300) + 20;
     }
 
     StringBuilder sb = new StringBuilder();
@@ -223,13 +247,14 @@ public class ChatController {
     return sb.toString();
   }
 
-  public void originalTransform(String word) {
+  public void originalTransform(String gptResponse) {
     StringBuilder currentMessage = new StringBuilder(chatTextArea.getText());
+    translatingLabel.setText("Translating...");
 
     new Thread(
             () -> {
-              for (int i = 0; i < word.length(); i++) {
-                char originalChar = word.charAt(i);
+              for (int i = 0; i < gptResponse.length(); i++) {
+                char originalChar = gptResponse.charAt(i);
 
                 // Update the corresponding character in the current message
                 currentMessage.setCharAt(i, originalChar);
@@ -243,7 +268,6 @@ public class ChatController {
                   e.printStackTrace();
                 }
               }
-              sendButton.setVisible(true);
               translatingLabel.setOpacity(0);
             })
         .start();
