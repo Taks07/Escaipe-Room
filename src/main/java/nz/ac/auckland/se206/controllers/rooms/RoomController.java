@@ -63,7 +63,7 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    // if the object of the room is clicked, go to the room's minigame
+    // TODO: If the correct object is clicked, go to the room's minigame
     if (GameState.isRiddleAnswerCorrect(objectID)) {
 
       GameState.isObjectFound = true;
