@@ -1,16 +1,12 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.util.Map;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class KeypadController {
   @FXML private Label actionLabel;
@@ -53,14 +49,14 @@ public class KeypadController {
 
   @FXML
   private void clickEnterButton(MouseEvent event) {
-    if (GameState.isDoorCodeEntered) {
+    /*if (GameState.isDoorCodeEntered) {
       return;
-    }
+    }*/
 
     String currentCode = keypadLabel.getText().replaceAll(" ", "");
 
     // Check if code is correct
-    if (currentCode.equals(GameState.doorCode)) {
+    /*if (currentCode.equals(GameState.doorCode)) {
       GameState.isDoorCodeEntered = true;
       keypadLabel.setText("Correct!");
       GameState.askGPT(GptPromptEngineering.getDoorUnlocked());
@@ -76,14 +72,14 @@ public class KeypadController {
                     keypadLabel.setText("_ _ _ _");
                   }));
       timeline.play();
-    }
+    }*/
   }
 
   @FXML
   private void clickDeleteButton(MouseEvent event) {
-    if (GameState.isDoorCodeEntered) {
+    /*if (GameState.isDoorCodeEntered) {
       return;
-    }
+    }*/
 
     keypadLabel.setText("_ _ _ _");
   }

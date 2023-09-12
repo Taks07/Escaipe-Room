@@ -3,11 +3,13 @@ package nz.ac.auckland.se206.controllers.rooms;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
@@ -53,18 +55,18 @@ public abstract class RoomController {
   }
 
   /**
-   * Handles the click event on an object other than the door.
+   * Handles the click event on an object.
    *
    * @param event the mouse event
    */
   @FXML
-  private void clickObject(MouseEvent event) {
+  protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectID = object.getId();
 
     if (GameState.isRiddleAnswerCorrect(objectID)) {
-      // Correct object found. Tell user they can click the door to end the game.
-
+      // TODO: Correct object found. Tell user they can click the rocket to end the game.
+      System.out.println("Got object");
       GameState.isObjectFound = true;
 
       // TODO: Swap fxml to Mini game starts here
@@ -76,17 +78,25 @@ public abstract class RoomController {
 
   @FXML
   private void hoverObject(MouseEvent event) {
-    ImageView object = (ImageView) event.getSource();
+    Rectangle object = (Rectangle) event.getSource();
     String objectID = object.getId();
-    object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+
+    Scene scene = object.getScene();
+    ImageView image = (ImageView) scene.lookup("#" + objectID);
+    image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+
     actionLabel.setText(":D");
   }
 
   @FXML
   private void unhoverObject(MouseEvent event) {
-    ImageView object = (ImageView) event.getSource();
+    Rectangle object = (Rectangle) event.getSource();
     String objectID = object.getId();
-    object.setImage(new Image("/images/objects/" + objectID + ".png"));
+
+    Scene scene = object.getScene();
+    ImageView image = (ImageView) scene.lookup("#" + objectID);
+    image.setImage(new Image("/images/objects/" + objectID + ".png"));
+
     actionLabel.setText("");
   }
 

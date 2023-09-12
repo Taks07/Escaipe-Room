@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
@@ -27,8 +28,9 @@ public class GameState {
   /** Reference to game controller */
   private static GameController gameController;
 
-  /** The list of riddle answers */
-  private static ArrayList<String> riddleAnswers = new ArrayList<String>();
+  /** The hashmap to array of riddle answers */
+  private static HashMap<String, ArrayList<String>> riddleAnswers =
+      new HashMap<String, ArrayList<String>>();
 
   /** The current answer to the riddle */
   private static String currRiddleAnswer;
@@ -60,33 +62,38 @@ public class GameState {
   public static int timeLimit;
 
   static {
-    // Read riddle answers from file
+    // Read random rooms and their riddle answers from file
     try {
-      InputStream is = App.class.getResourceAsStream("/riddleAnswers.txt");
-      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+      InputStream isRoom = App.class.getResourceAsStream("/randomRooms.txt");
+      BufferedReader readerRoom = new BufferedReader(new InputStreamReader(isRoom));
 
       while (true) {
-        String line = reader.readLine();
-        if (line == null) {
-          break;
-        }
-        riddleAnswers.add(line);
-      }
-    } catch (Exception e) {
-      System.out.println("Could not read from riddleAnswers.txt");
-    }
-
-    // Read random rooms from file
-    try {
-      InputStream is = App.class.getResourceAsStream("/randomRooms.txt");
-      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-      while (true) {
-        String line = reader.readLine();
+        String line = readerRoom.readLine();
         if (line == null) {
           break;
         }
         randomRooms.add(line);
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+        // Read riddle answers from the room
+        try {
+          InputStream isRiddle = App.class.getResourceAsStream("/answers/" + line + ".txt");
+          BufferedReader readerRiddle = new BufferedReader(new InputStreamReader(isRiddle));
+
+          while (true) {
+            String line2 = readerRiddle.readLine();
+            if (line2 == null) {
+              break;
+            }
+
+            temp.add(line2);
+          }
+        } catch (Exception e) {
+          System.out.println("Could not read from riddleAnswers.txt");
+        }
+
+        riddleAnswers.put(line, temp);
       }
     } catch (Exception e) {
       System.out.println("Could not read from randomRooms.txt");
@@ -138,13 +145,18 @@ public class GameState {
   }
 
   public static void showChatMessage(ChatMessage chat) {
-    chatController.appendChatMessage(chat);
+    chatController.appendChatMessage(chat.getContent());
   }
 
   /** Sets the current riddle answer to a random answer from the list of riddle answers */
   public static void setRandomCurrRiddleAnswer() {
-    int index = (int) (Math.random() * riddleAnswers.size());
-    currRiddleAnswer = riddleAnswers.get(index);
+    ArrayList<String> temp = new ArrayList<String>();
+    temp.addAll(riddleAnswers.get(currRooms.get(1)));
+    temp.addAll(riddleAnswers.get(currRooms.get(2)));
+
+    int index = (int) (Math.random() * temp.size());
+    currRiddleAnswer = temp.get(index);
+    System.out.println(currRiddleAnswer);
   }
 
   /**

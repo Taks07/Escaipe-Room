@@ -69,15 +69,9 @@ public class ChatController {
    *
    * @param msg the chat message to append
    */
-  public void appendChatMessage(ChatMessage msg) {
-    String role = msg.getRole();
-    if (role.equals("user")) {
-      chatTextArea.appendText("You: " + msg.getContent() + "\n\n");
-    } else {
-      // TODO: CONVERT THE RANDOM STRING OF LENGTH GPTRESPONSE TO THE ORIGINAL STRING HERE
-
-    }
-    ;
+  public void appendChatMessage(String msg) {
+    chatTextArea.setText(getAlienText(msg.length()));
+    originalTransform(msg);
   }
 
   /**
@@ -113,7 +107,7 @@ public class ChatController {
         };
 
     Timer myTimer = new Timer();
-    myTimer.scheduleAtFixedRate(alienTextTask, 0, 300);
+    myTimer.scheduleAtFixedRate(alienTextTask, 0, 600);
 
     // Set up task to run GPT model in a new thread
     Task<ChatMessage> chatTask =
@@ -142,8 +136,6 @@ public class ChatController {
 
           // Set random alien text to length of response, then start trnaslating
           String gptResponse = chatTask.getValue().getContent();
-          chatTextArea.setText(getAlienText(gptResponse.length()));
-          originalTransform(gptResponse);
 
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
@@ -157,27 +149,11 @@ public class ChatController {
           // If response is a riddle, extract the riddle and append to chat box
           if (matcher.find() && GameState.currRiddle == null) {
             String riddle = matcher.group(1);
-            ChatMessage riddleMsg = new ChatMessage("assistant", riddle);
             GameState.currRiddle = riddle;
-            appendChatMessage(riddleMsg);
+            appendChatMessage(riddle);
           } else {
-            matcher = hintPattern.matcher(gptResponse);
-
-            // If response is not a hint, append to chat box
-            if (!matcher.find()) {
-              appendChatMessage(chatTask.getValue());
-              checkCorrectAnswer(chatTask.getValue());
-            } else {
-              // If response is hint, and there are still hints allowed, append to chat box
-              if (GameState.isHintAvailable()) {
-                appendChatMessage(chatTask.getValue());
-                GameState.hintsCounter++;
-              } else {
-                // TODO: Might mess with GPT doing this. If there are problems with GPT later,
-                // change implementation
-                askGPT("Tell the user you can't give any hints");
-              }
-            }
+            appendChatMessage(gptResponse);
+            checkCorrectAnswer(gptResponse);
           }
         });
 
@@ -211,7 +187,7 @@ public class ChatController {
     }
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
-    appendChatMessage(msg);
+    // appendChatMessage(msg);
     runGpt(msg, mainChatCompletionRequest);
   }
 
@@ -221,8 +197,8 @@ public class ChatController {
    *
    * @param msg the chat message to check
    */
-  private void checkCorrectAnswer(ChatMessage msg) {
-    if (msg.getRole().equals("assistant") && msg.getContent().startsWith("Correct")) {
+  private void checkCorrectAnswer(String msg) {
+    if (msg.startsWith("Correct")) {
       GameState.isRiddleResolved = true;
     }
   }
