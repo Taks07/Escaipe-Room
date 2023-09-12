@@ -2,10 +2,10 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -35,11 +34,8 @@ public class ChatController {
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private Thread chatThread;
   private Pattern riddlePattern;
-  private Timeline randomTransformTimeline;
   private Pattern hintPattern;
-
-  String input = "";
-  RandomSignConverter signConverter;
+  private String randomSigns;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -53,6 +49,9 @@ public class ChatController {
 
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
     hintPattern = Pattern.compile("&&&((.|\n)+)&&&", Pattern.CASE_INSENSITIVE);
+
+    this.randomSigns =
+        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
   }
 
   /** Asks the GPT model to a request, then appends it to the chatbox */
@@ -99,11 +98,22 @@ public class ChatController {
     translatingLabel.setOpacity(100);
     translatingLabel.setText("Processing...");
     sendButton.setDisable(true);
-    signConverter = new RandomSignConverter(input, chatTextArea);
 
-    // Start the random string loading sequence and store the timeline
-    randomTransformTimeline = new Timeline();
-    signConverter.randomTransform(chatTextArea, randomTransformTimeline);
+    // Set up task and thread to create changing alien text while GPT is thinking
+    TimerTask alienTextTask =
+        new TimerTask() {
+          @Override
+          public void run() {
+            String randomAlienText = getAlienText(-1);
+            Platform.runLater(
+                () -> {
+                  chatTextArea.setText(randomAlienText);
+                });
+          }
+        };
+
+    Timer myTimer = new Timer();
+    myTimer.scheduleAtFixedRate(alienTextTask, 0, 300);
 
     // Set up task to run GPT model in a new thread
     Task<ChatMessage> chatTask =
@@ -127,19 +137,20 @@ public class ChatController {
     // starting with "Correct". Also, remove the thinking label and enable the send button.
     chatTask.setOnSucceeded(
         (event) -> {
-          // Stop the randomTransform animation
-          randomTransformTimeline.stop();
+          // Stop displaying fluctuating alien text
+          myTimer.cancel();
+
+          // Set random alien text to length of response, then start trnaslating
+          String gptResponse = chatTask.getValue().getContent();
+          chatTextArea.setText(getAlienText(gptResponse.length()));
+          originalTransform(gptResponse);
 
           // Play notification sound, remove thinking label and enable send button
           GameMediaPlayer.playNotificationSound();
           sendButton.setDisable(false);
 
           // Use regex to see if response is a riddle
-          String gptResponse = chatTask.getValue().getContent();
           Matcher matcher = riddlePattern.matcher(gptResponse);
-
-          // Call the correctLength method with the textArea and input
-          signConverter.correctLength(chatTextArea, gptResponse);
 
           System.out.println(gptResponse);
 
@@ -217,146 +228,48 @@ public class ChatController {
   }
 
   /**
-   * This class is used to convert a string into a string of random characters. It also has a method
-   * to transform the string into the original string.
+   * Creates random alien text of a given length and returns it. If given length is -1, alien text
+   * is 10 to 25 chars long
    */
-  public class RandomSignConverter {
-    String converted = "";
-    String randomSigns;
-    String input = "";
-    TextArea textArea;
+  private String getAlienText(int length) {
+    Random random = new Random();
 
-    public RandomSignConverter(String input, TextArea textArea) {
-      this.textArea = textArea;
-      this.input = input;
-
-      this.randomSigns =
-          "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
-      textArea.setText(converted);
+    if (length == -1) {
+      length = random.nextInt(300) + 20;
     }
 
-    /**
-     * Transforms the alien string back into its original form and displays it in the TextField with
-     * each letter taking 0.06 seconds to transform.
-     *
-     * @param word The original string.
-     */
-    public void randomTransform(TextArea textArea, Timeline timeline) {
+    StringBuilder sb = new StringBuilder();
 
-      sendButton.setVisible(false);
-      StringBuilder currentMessage = new StringBuilder(converted);
-      int interval = 10; // 0.04 seconds in milliseconds
+    for (int i = 0; i < length; i++) {
+      sb.append(randomSigns.charAt(random.nextInt(randomSigns.length())));
+    }
 
-      timeline.getKeyFrames().clear(); // Clear existing key frames to stop the animation
+    return sb.toString();
+  }
 
-      KeyFrame keyFrame =
-          new KeyFrame(
-              Duration.millis(interval),
-              event -> {
-                Random random = new Random();
+  public void originalTransform(String gptResponse) {
+    StringBuilder currentMessage = new StringBuilder(chatTextArea.getText());
+    translatingLabel.setText("Translating...");
 
-                // Generate a random number between 0 and 2
-                int randomNumber = random.nextInt(3);
+    new Thread(
+            () -> {
+              for (int i = 0; i < gptResponse.length(); i++) {
+                char originalChar = gptResponse.charAt(i);
 
-                if (randomNumber == 0 && currentMessage.length() > 20) {
-                  // Delete a character from the current message
-                  currentMessage.deleteCharAt(random.nextInt(currentMessage.length()));
-                } else {
-                  // Add a random character to the current message
-                  char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
-                  currentMessage.append(randomChar);
-                }
+                // Update the corresponding character in the current message
+                currentMessage.setCharAt(i, originalChar);
 
                 // Update the TextArea with the current message
-                Platform.runLater(() -> textArea.setText(currentMessage.toString()));
-              });
+                Platform.runLater(() -> chatTextArea.setText(currentMessage.toString()));
 
-      timeline.getKeyFrames().add(keyFrame); // Add the new key frame to the timeline
-      timeline.setCycleCount(1000);
-      timeline.play();
-    }
-
-    public void correctLength(TextArea textArea, String input) {
-      int length = textArea.getLength();
-      int inputLength = input.length();
-      Random random = new Random();
-
-      new Thread(
-              () -> {
-                if (length < inputLength) {
-                  // Append a random character from randomSigns to the TextArea
-                  char randomChar = randomSigns.charAt(random.nextInt(randomSigns.length()));
-
-                  Platform.runLater(() -> textArea.appendText(String.valueOf(randomChar)));
-
-                  try {
-                    Thread.sleep(10); // Sleep for 0.06 seconds
-                  } catch (InterruptedException e) {
-                    e.printStackTrace();
-                  }
-
-                  correctLength(textArea, input); // Call the method again
-                } else if (length > inputLength) {
-                  // Delete one character from the end of the TextArea
-                  int caretPosition = textArea.getLength();
-                  if (caretPosition > 0) {
-
-                    Platform.runLater(
-                        () -> {
-                          String currentText = textArea.getText();
-
-                          // Check if the TextArea has content
-                          if (!currentText.isEmpty()) {
-                            // Remove the last character
-                            String updatedText = currentText.substring(0, currentText.length() - 1);
-
-                            // Set the updated text back to the TextArea
-                            textArea.setText(updatedText);
-                          }
-                        });
-
-                    try {
-                      Thread.sleep(10); // Sleep for 0.06 seconds
-                    } catch (InterruptedException e) {
-                      e.printStackTrace();
-                    }
-
-                    correctLength(textArea, input); // Call the method again
-                  }
-
-                } else {
-                  Platform.runLater(() -> translatingLabel.setText("Translating..."));
-                  originalTransform(input);
-                  return; // Length matches input length, stop recursion
+                try {
+                  Thread.sleep(10); // Sleep for 0.04 seconds
+                } catch (InterruptedException e) {
+                  e.printStackTrace();
                 }
-              })
-          .start();
-    }
-
-    public void originalTransform(String word) {
-      StringBuilder currentMessage = new StringBuilder(textArea.getText());
-
-      new Thread(
-              () -> {
-                for (int i = 0; i < word.length(); i++) {
-                  char originalChar = word.charAt(i);
-
-                  // Update the corresponding character in the current message
-                  currentMessage.setCharAt(i, originalChar);
-
-                  // Update the TextArea with the current message
-                  Platform.runLater(() -> textArea.setText(currentMessage.toString()));
-
-                  try {
-                    Thread.sleep(10); // Sleep for 0.04 seconds
-                  } catch (InterruptedException e) {
-                    e.printStackTrace();
-                  }
-                }
-                sendButton.setVisible(true);
-                translatingLabel.setOpacity(0);
-              })
-          .start();
-    }
+              }
+              translatingLabel.setOpacity(0);
+            })
+        .start();
   }
 }
