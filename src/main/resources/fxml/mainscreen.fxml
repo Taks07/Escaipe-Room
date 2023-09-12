@@ -17,14 +17,14 @@
             <Image url="@../images/title_screen/titlename.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="flyingrocket" fitHeight="669.0" fitWidth="888.0" layoutX="-30.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="flyingrocket" fitHeight="669.0" fitWidth="888.0" layoutX="-30.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/title_screen/flyingrocket1.png" />
          </image>
       </ImageView>
-      <ImageView id="start" fx:id="startImage" fitHeight="181.0" fitWidth="347.0" layoutX="234.0" layoutY="431.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="start" fx:id="startImage" fitHeight="181.0" fitWidth="347.0" layoutX="234.0" layoutY="431.0" onMouseClicked="#clickStart" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/title_screen/start.png" />
+            <Image url="@../images/objects/start.png" />
          </image>
       </ImageView>
    </children>

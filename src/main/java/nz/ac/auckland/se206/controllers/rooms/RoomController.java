@@ -79,7 +79,7 @@ public abstract class RoomController {
     ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
     object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
-    actionLabel.setText(":D");
+    // actionLabel.setText(":D");
   }
 
   @FXML
@@ -87,7 +87,7 @@ public abstract class RoomController {
     ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
     object.setImage(new Image("/images/objects/" + objectID + ".png"));
-    actionLabel.setText("");
+    // actionLabel.setText("");
   }
 
   @FXML
