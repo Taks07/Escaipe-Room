@@ -20,7 +20,9 @@ public class MainScreenController extends RoomController {
   @FXML
   private void initialize() {
     animate();
-    animateRocket();
+    if (flyingrocket != null) {
+      animateRocket();
+    }
   }
 
   @FXML
