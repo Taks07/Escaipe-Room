@@ -29,7 +29,9 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label translatingLabel;
+
   @FXML private Label hintLabel;
+
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
@@ -37,6 +39,9 @@ public class ChatController {
   private Thread chatThread;
   private Pattern riddlePattern;
   private String randomSigns;
+  TimerTask alienTextTask;
+
+  // private boolean isChattingWithAlien = false;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -102,8 +107,10 @@ public class ChatController {
     translatingLabel.setText("Processing...");
     sendButton.setDisable(true);
 
+    Timer myTimer = new Timer();
+
     // Set up task and thread to create changing alien text while GPT is thinking
-    TimerTask alienTextTask =
+    alienTextTask =
         new TimerTask() {
           @Override
           public void run() {
@@ -115,8 +122,7 @@ public class ChatController {
           }
         };
 
-    Timer myTimer = new Timer();
-    myTimer.scheduleAtFixedRate(alienTextTask, 0, 600);
+    myTimer.scheduleAtFixedRate(alienTextTask, 0, 200);
 
     // Set up task to run GPT model in a new thread
     Task<ChatMessage> chatTask =
@@ -283,4 +289,24 @@ public class ChatController {
             })
         .start();
   }
+
+  // @FXML
+  // /*  TODO: This doesn't work when you switch rooms. */
+  // public void chatWithAlien(ActionEvent event) {
+  //   if (isChattingWithAlien) {
+  //     chatTextArea.setVisible(false);
+  //     inputText.setVisible(false);
+  //     sendButton.setVisible(false);
+  //     chatwithalien.setText("Chat with Alien");
+  //     isChattingWithAlien = false;
+  //     return;
+  //   } else {
+  //     chatTextArea.setVisible(true);
+  //     inputText.setVisible(true);
+  //     sendButton.setVisible(true);
+  //     chatwithalien.setText("Stop Chatting");
+  //     isChattingWithAlien = true;
+  //     return;
+  //   }
+  // }
 }

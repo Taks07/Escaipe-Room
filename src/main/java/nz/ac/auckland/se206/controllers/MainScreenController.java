@@ -104,4 +104,20 @@ public class MainScreenController extends RoomController {
     rocketThread.setDaemon(true);
     rocketThread.start();
   }
+
+  @FXML
+  private void hoverObject(MouseEvent event) {
+    ImageView object = (ImageView) event.getSource();
+    String objectID = object.getId();
+
+    object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+  }
+
+  @FXML
+  private void unhoverObject(MouseEvent event) {
+    ImageView object = (ImageView) event.getSource();
+    String objectID = object.getId();
+
+    object.setImage(new Image("/images/objects/" + objectID + ".png"));
+  }
 }

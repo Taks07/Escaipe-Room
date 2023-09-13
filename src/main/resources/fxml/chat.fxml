@@ -4,20 +4,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="153.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
    <children>
-      <TextArea fx:id="chatTextArea" editable="false" layoutX="10.0" layoutY="31.0" prefHeight="91.0" prefWidth="541.0" wrapText="true" />
-      <Label fx:id="translatingLabel" layoutX="399.0" layoutY="4.0" opacity="0.0" prefHeight="26.0" prefWidth="152.0" text="Translating..." />
-      <HBox layoutX="10.0" layoutY="122.0" prefHeight="28.0" prefWidth="541.0">
-         <children>
-            <TextField fx:id="inputText" prefHeight="26.0" prefWidth="485.0" promptText="Speak to the alien" />
-            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="26.0" prefWidth="65.0" text="Send" />
-         </children>
-      </HBox>
-      <Label fx:id="hintLabel" layoutX="10.0" layoutY="4.0" prefHeight="26.0" prefWidth="152.0" text="Hints Left: " />
+      <ImageView fitHeight="259.0" fitWidth="840.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/chatroom/chat_background.jpg" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="chatTextArea" editable="false" layoutX="36.0" layoutY="19.0" prefHeight="139.0" prefWidth="649.0" wrapText="true" />
+      <Label fx:id="translatingLabel" layoutX="36.0" layoutY="157.0" opacity="0.0" prefHeight="35.0" prefWidth="238.0" text="Translating..." textFill="#cccbcb">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="inputText" layoutX="36.0" layoutY="195.0" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the AI system" />
+      <Button fx:id="sendButton" layoutX="734.0" layoutY="192.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Send" />
    </children>
 </Pane>
