@@ -140,6 +140,33 @@ public class GameState {
     }
   }
 
+  public static String getHint() {
+    String roomName = currRooms.get(currRoom);
+
+    // Tell user to talk to alien by rocket to get a riddle
+    if (currRiddle == null) {
+      if (roomName.equals("mainroom")) {
+        return "Ask the user to come to you for a riddle. Do not say a riddle";
+      } else {
+        return "Ask the user to talk to the alien by the rocket for a riddle. Do not say a riddle";
+      }
+    }
+
+    // As more puzzles are added, add more cases to provide context for hints
+    switch (roomName) {
+      case "mainroom":
+        return "Give a short hint for a riddle with the answer "
+            + currRiddleAnswer
+            + ". Do not say the word "
+            + currRiddleAnswer;
+      default:
+        return "Give a short hint for a riddle with the answer "
+            + currRiddleAnswer
+            + ". Do not say the word "
+            + currRiddleAnswer;
+    }
+  }
+
   public static void sayFlavourText(String object) {
     chatController.sayFlavourText(object);
   }

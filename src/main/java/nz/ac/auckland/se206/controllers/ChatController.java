@@ -32,6 +32,7 @@ public class ChatController {
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
+  private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
   private Pattern riddlePattern;
   private Pattern hintPattern;
@@ -186,9 +187,31 @@ public class ChatController {
       return;
     }
     inputText.clear();
-    ChatMessage msg = new ChatMessage("user", message);
-    // appendChatMessage(msg);
-    runGpt(msg, mainChatCompletionRequest);
+
+    ChatMessage msg;
+
+    if (message.contains("tawlung seya")) {
+      // User asks for hint
+      hintTxtCompletionRequest =
+          new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
+
+      if (GameState.isHintAvailable()) {
+        // Hints available
+        GameState.hintsCounter++;
+        message = GameState.getHint();
+      } else {
+        // No hints avaialble
+        message = "Tell the user they are out of hints";
+      }
+      msg = new ChatMessage("user", message);
+      runGpt(msg, hintTxtCompletionRequest);
+
+    } else {
+      // User talks to AI normally
+      msg = new ChatMessage("user", message);
+      // appendChatMessage(msg);
+      runGpt(msg, mainChatCompletionRequest);
+    }
   }
 
   /**
