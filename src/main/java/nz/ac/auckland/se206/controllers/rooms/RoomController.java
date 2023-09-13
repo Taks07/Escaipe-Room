@@ -98,6 +98,7 @@ public abstract class RoomController {
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
 
     actionLabel.setText("");
+
   }
 
   @FXML
