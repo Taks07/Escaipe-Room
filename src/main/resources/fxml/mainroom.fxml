@@ -7,11 +7,16 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="525.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
    <children>
-      <ImageView id="alien" fx:id="background" fitHeight="806.0" fitWidth="1111.0" layoutX="-179.0" layoutY="-194.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien" fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-223.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="556.0" fitWidth="882.0" layoutX="-16.0" layoutY="-17.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/rooms/border.png" />
          </image>
       </ImageView>
       <Label fx:id="actionLabel" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="209.0">
@@ -19,29 +24,29 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="-5.0" layoutY="337.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
+      <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="19.0" layoutY="425.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="30.0" layoutY="327.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="597.0" layoutY="336.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
+      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="693.0" layoutY="419.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="623.0" layoutY="337.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView id="rocket" fx:id="rocketImage" fitHeight="291.0" fitWidth="261.0" layoutX="410.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="rocket" fx:id="rocketImage" fitHeight="383.0" fitWidth="250.0" layoutX="452.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/rocket.png" />
          </image>
       </ImageView>
-      <ImageView id="alien" fx:id="alienImage" fitHeight="251.0" fitWidth="101.0" layoutX="163.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien" fx:id="alienImage" fitHeight="254.0" fitWidth="126.0" layoutX="140.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/alien.png" />
          </image>
       </ImageView>
-      <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="265.0" layoutX="422.0" layoutY="103.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="209.0" layoutX="164.0" layoutY="164.0" onMouseClicked="#clickAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="54.0" layoutY="425.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="723.0" layoutY="425.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="369.0" layoutX="461.0" layoutY="101.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="265.0" layoutX="143.0" layoutY="200.0" onMouseClicked="#clickAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
    </children>
 </Pane>
