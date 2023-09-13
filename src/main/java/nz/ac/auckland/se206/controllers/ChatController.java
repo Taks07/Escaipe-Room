@@ -36,6 +36,7 @@ public class ChatController {
   private Pattern riddlePattern;
   private Pattern hintPattern;
   private String randomSigns;
+  TimerTask alienTextTask;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -93,8 +94,10 @@ public class ChatController {
     translatingLabel.setText("Processing...");
     sendButton.setDisable(true);
 
+    Timer myTimer = new Timer();
+
     // Set up task and thread to create changing alien text while GPT is thinking
-    TimerTask alienTextTask =
+    alienTextTask =
         new TimerTask() {
           @Override
           public void run() {
@@ -106,8 +109,7 @@ public class ChatController {
           }
         };
 
-    Timer myTimer = new Timer();
-    myTimer.scheduleAtFixedRate(alienTextTask, 0, 600);
+    myTimer.scheduleAtFixedRate(alienTextTask, 0, 200);
 
     // Set up task to run GPT model in a new thread
     Task<ChatMessage> chatTask =
