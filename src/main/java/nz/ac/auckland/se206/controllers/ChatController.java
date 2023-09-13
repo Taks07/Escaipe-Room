@@ -29,7 +29,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label translatingLabel;
-  @FXML private Button chatwithalien;
+  // @FXML private Button chatwithalien;
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
@@ -37,7 +37,8 @@ public class ChatController {
   private Pattern riddlePattern;
   private Pattern hintPattern;
   private String randomSigns;
-  private boolean isChattingWithAlien = false;
+
+  // private boolean isChattingWithAlien = false;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -251,23 +252,23 @@ public class ChatController {
         .start();
   }
 
-  @FXML
-  /*  TODO: This doesn't work when you switch rooms. */
-  public void chatWithAlien(ActionEvent event) {
-    if (isChattingWithAlien) {
-      chatTextArea.setVisible(false);
-      inputText.setVisible(false);
-      sendButton.setVisible(false);
-      chatwithalien.setText("Chat with Alien");
-      isChattingWithAlien = false;
-      return;
-    } else {
-      chatTextArea.setVisible(true);
-      inputText.setVisible(true);
-      sendButton.setVisible(true);
-      chatwithalien.setText("Stop Chatting");
-      isChattingWithAlien = true;
-      return;
-    }
-  }
+  // @FXML
+  // /*  TODO: This doesn't work when you switch rooms. */
+  // public void chatWithAlien(ActionEvent event) {
+  //   if (isChattingWithAlien) {
+  //     chatTextArea.setVisible(false);
+  //     inputText.setVisible(false);
+  //     sendButton.setVisible(false);
+  //     chatwithalien.setText("Chat with Alien");
+  //     isChattingWithAlien = false;
+  //     return;
+  //   } else {
+  //     chatTextArea.setVisible(true);
+  //     inputText.setVisible(true);
+  //     sendButton.setVisible(true);
+  //     chatwithalien.setText("Stop Chatting");
+  //     isChattingWithAlien = true;
+  //     return;
+  //   }
+  // }
 }
