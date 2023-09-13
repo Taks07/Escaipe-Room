@@ -20,7 +20,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="31.0" layoutY="339.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="604.0" layoutY="338.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
+      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="604.0" layoutY="347.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0" scaleZ="0.0">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
@@ -31,20 +31,23 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView id="cave" fx:id="caveImage" fitHeight="251.0" fitWidth="461.0" layoutX="101.0" layoutY="115.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="cave" fx:id="caveImage" fitHeight="251.0" fitWidth="461.0" layoutX="101.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/cave.png" />
          </image>
       </ImageView>
-      <ImageView id="spikes1" fx:id="spikes1Image" fitHeight="130.0" fitWidth="88.0" layoutX="124.0" layoutY="248.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="stalagmite" fx:id="spikesImage" fitHeight="130.0" fitWidth="88.0" layoutX="124.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/spikes1.png" />
+            <Image url="@../images/objects/stalagmite.png" />
          </image>
       </ImageView>
-      <ImageView id="spikes2" fx:id="spikes2Image" fitHeight="103.0" fitWidth="65.0" layoutX="419.0" layoutY="267.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="stalactite" fx:id="spikesImage1" fitHeight="93.0" fitWidth="49.0" layoutX="325.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" rotate="-176.1">
          <image>
-            <Image url="@../images/objects/spikes2.png" />
+            <Image url="@../images/objects/stalactite.png" />
          </image>
       </ImageView>
+      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="198.0" layoutX="130.0" layoutY="127.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="420.0" />
+      <Rectangle id="stalagmite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="93.0" layoutX="130.0" layoutY="265.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle id="stalactite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="70.0" layoutX="323.0" layoutY="162.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
    </children>
 </Pane>
