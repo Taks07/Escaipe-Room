@@ -22,9 +22,15 @@ public class GptPromptEngineering {
   }
 
   public static String getGameContext() {
-    return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
-        + " for a riddle on where the item they want is. Do not ask the riddle. Respond in"
-        + " 30 words.";
+    if (GameState.hintsAllowed != 0) {
+      return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
+          + " for a riddle on where the gear they want is. Ask them to say 'tawlung seya' for"
+          + " hints from any alien. Do not ask the riddle. Respond in 40 words.";
+    } else {
+      return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
+          + " for a riddle on where the gear they want is. Do not ask the riddle. Respond in"
+          + " 30 words.";
+    }
   }
 
   public static String getDoorCode() {
