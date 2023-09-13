@@ -29,13 +29,13 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label translatingLabel;
+  @FXML private Label hintLabel;
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
   private Pattern riddlePattern;
-  private Pattern hintPattern;
   private String randomSigns;
 
   /** Initializes the chat view and sets up the GPT model. */
@@ -49,10 +49,18 @@ public class ChatController {
     chatThread = new Thread();
 
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
-    hintPattern = Pattern.compile("&&&((.|\n)+)&&&", Pattern.CASE_INSENSITIVE);
 
     this.randomSigns =
         "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
+
+    // Set hint counter
+    if (GameState.hintsAllowed > 5) {
+      hintLabel.setText("Hints Left: Unlimited");
+    } else if (GameState.hintsAllowed == 0) {
+      hintLabel.setText("Hints Left: None");
+    } else {
+      hintLabel.setText("Hints Left: 5");
+    }
   }
 
   /** Asks the GPT model to a request, then appends it to the chatbox */
@@ -199,6 +207,10 @@ public class ChatController {
         // Hints available
         GameState.hintsCounter++;
         message = GameState.getHint();
+
+        if (GameState.hintsAllowed == 5) {
+          hintLabel.setText("Hints Left: " + (5 - GameState.hintsCounter));
+        }
       } else {
         // No hints avaialble
         message = "Tell the user they are out of hints";

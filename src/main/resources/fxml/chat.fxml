@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="153.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
    <children>
-      <TextArea fx:id="chatTextArea" editable="false" prefHeight="204.0" prefWidth="628.0" wrapText="true" />
-      <Label fx:id="translatingLabel" opacity="0.0" text="Translating..." />
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <TextArea fx:id="chatTextArea" editable="false" layoutX="10.0" layoutY="31.0" prefHeight="91.0" prefWidth="541.0" wrapText="true" />
+      <Label fx:id="translatingLabel" layoutX="399.0" layoutY="4.0" opacity="0.0" prefHeight="26.0" prefWidth="152.0" text="Translating..." />
+      <HBox layoutX="10.0" layoutY="122.0" prefHeight="28.0" prefWidth="541.0">
          <children>
-            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="26.0" prefWidth="47.0" text="Send" />
+            <TextField fx:id="inputText" prefHeight="26.0" prefWidth="485.0" promptText="Speak to the alien" />
+            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="26.0" prefWidth="65.0" text="Send" />
          </children>
       </HBox>
-      <TextField fx:id="inputText" prefHeight="26.0" prefWidth="209.0" promptText="Speak to the AI system" />
+      <Label fx:id="hintLabel" layoutX="10.0" layoutY="4.0" prefHeight="26.0" prefWidth="152.0" text="Hints Left: " />
    </children>
-   <padding>
-      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-   </padding>
-</VBox>
+</Pane>
