@@ -59,6 +59,8 @@ public abstract class RoomController {
    */
   @FXML
   private void clickObject(MouseEvent event) {
+    // String fxmlPath = "randroomminigame" + 1;
+    // GameState.switchRoom(fxmlPath);
     ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
