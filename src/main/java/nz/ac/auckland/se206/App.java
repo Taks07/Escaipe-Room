@@ -48,7 +48,7 @@ public class App extends Application {
           System.exit(0);
         });
 
-    Parent root = loadFxml("title");
+    Parent root = loadFxml("mainscreen");
     scene = new Scene(root, 850, 525);
     stage.setScene(scene);
     stage.show();

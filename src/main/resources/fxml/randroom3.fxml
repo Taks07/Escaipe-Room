@@ -7,19 +7,24 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom3Controller">
+<Pane prefHeight="525.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom3Controller">
    <children>
-      <ImageView fx:id="background" fitHeight="806.0" fitWidth="1111.0" layoutX="-181.0" layoutY="-195.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-223.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="plantsImage" fitHeight="278.0" fitWidth="640.0" layoutX="131.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="556.0" fitWidth="882.0" layoutX="-16.0" layoutY="-17.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/rooms/border.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="plantsImage" fitHeight="337.0" fitWidth="680.0" layoutX="139.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/plants.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="5.0" layoutY="356.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
+      <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="21.0" layoutY="445.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
@@ -29,32 +34,43 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="596.0" layoutY="355.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
+      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="713.0" layoutY="423.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="631.0" layoutY="355.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <ImageView id="pipe" fx:id="pipeImage" fitHeight="145.0" fitWidth="133.0" layoutX="223.0" layoutY="151.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+
+      <ImageView id="pipe" fx:id="pipeImage" fitHeight="160.0" fitWidth="149.0" layoutX="258.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/pipe.png" />
          </image>
       </ImageView>
-      <ImageView id="shovel" fx:id="shovelImage" fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="168.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+
+      <ImageView id="shovel" fx:id="shovelImage" fitHeight="183.0" fitWidth="89.0" layoutX="68.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/shovel.png" />
          </image>
       </ImageView>
-      <ImageView id="flower" fx:id="flowerImage" fitHeight="75.0" fitWidth="114.0" layoutX="65.0" layoutY="269.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+
+      <ImageView id="flower" fx:id="flowerImage" fitHeight="100.0" fitWidth="108.0" layoutX="84.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/flower.png" />
          </image>
       </ImageView>
-      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="114.0" layoutX="26.0" layoutY="315.0" onMouseClicked="#clickObject" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+
+      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="130.0" layoutX="36.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+
          <image>
             <Image url="@../images/objects/grass.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="40.0" layoutY="356.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="748.0" layoutY="424.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Rectangle id="grass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="36.0" layoutY="407.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="56.0" layoutY="445.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Rectangle id="shovel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="170.0" layoutX="95.0" layoutY="233.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-15.1" scaleZ="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0" />
+      <Rectangle id="flower" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="68.0" layoutX="135.0" layoutY="350.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" scaleZ="0.0" stroke="BLACK" strokeType="INSIDE" width="46.0" />
+      <Rectangle id="pipe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="260.0" layoutY="240.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" scaleZ="0.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
    </children>
 </Pane>

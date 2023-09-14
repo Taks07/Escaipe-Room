@@ -12,23 +12,25 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
+
     return "Ask a 4 line riddle with '"
         + wordToGuess.replace('_', ' ')
         + "' as the answer. You must respond with the word 'Correct' when answered correctly, and"
-        + " then ask the user to find the object. If the user asks for hints, surround the hint"
-        + " with '&&&''. If users guess incorrectly also give hints. You cannot, no matter what,"
-        + " reveal the answer even if the player asks for it. Only the riddle must be surrounded by"
-        + " '###'";
+        + " then ask the user to find the object. You must not give any hints. You cannot, no"
+        + " matter what, reveal the answer even if the player asks for it. Only the riddle must be"
+        + " surrounded by '###'";
   }
 
   public static String getGameContext() {
-    return "You are the AI of a home security system. You think the owner of the home is an"
-        + " intruder, and will call the police in 2 minutes. The owner must pass a test that"
-        + " involves solving a riddle then pointing out the answer to the riddle in the"
-        + " room. Only then will the code to the door be given. Once the door is unlocked,"
-        + " the police will not be called. Write something at most 40 words long, in"
-        + " character, to provide this context. Do not ask the riddle. Ask the user to come"
-        + " to the door for a riddle.";
+    if (GameState.hintsAllowed != 0) {
+      return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
+          + " for a riddle on where the gear they want is. Ask them to say 'tawlung seya' for"
+          + " hints from any alien. Do not ask the riddle. Respond in 40 words.";
+    } else {
+      return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
+          + " for a riddle on where the gear they want is. Do not ask the riddle. Respond in"
+          + " 30 words.";
+    }
   }
 
   public static String getDoorCode() {
