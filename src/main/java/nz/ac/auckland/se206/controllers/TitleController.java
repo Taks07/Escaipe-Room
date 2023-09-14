@@ -44,8 +44,8 @@ public class TitleController extends MainScreenController {
   }
 
   public void startGame() throws IOException {
-    App.setRoot("game");
     setDifficultyAndTimeLimit();
+    App.setRoot("game");
     GameTimer.startTimer();
     GameState.resetGameState();
     GameState.setRandomRooms();

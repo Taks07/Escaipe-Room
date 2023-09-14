@@ -29,9 +29,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label translatingLabel;
-
   @FXML private Label hintLabel;
-
 
   private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
@@ -39,7 +37,7 @@ public class ChatController {
   private Thread chatThread;
   private Pattern riddlePattern;
   private String randomSigns;
-  TimerTask alienTextTask;
+  private TimerTask alienTextTask;
 
   // private boolean isChattingWithAlien = false;
 
@@ -58,6 +56,10 @@ public class ChatController {
     this.randomSigns =
         "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
 
+    setHintCounter();
+  }
+
+  public void setHintCounter() {
     // Set hint counter
     if (GameState.hintsAllowed > 5) {
       hintLabel.setText("Hints Left: Unlimited");
