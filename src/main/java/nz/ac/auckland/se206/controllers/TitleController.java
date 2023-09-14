@@ -7,6 +7,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -26,11 +27,11 @@ public class TitleController extends MainScreenController {
    * @throws IOException if the game view cannot be loaded
    */
   @FXML
-  protected void switchToGame() {
+  protected void switchToGame(MouseEvent event) {
     try {
       // Start the game by switching to the game view, starting a timer, setting the riddle answer,
       // and providing context
-      startGame();
+      startGame(event);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -43,9 +44,13 @@ public class TitleController extends MainScreenController {
     exit.setVisible(false);
   }
 
-  public void startGame() throws IOException {
+  public void startGame(MouseEvent event) throws IOException {
     setDifficultyAndTimeLimit();
-    App.setRoot("game");
+    // makes a new scene and switches to it, but keeps the same stage
+    ImageView image = (ImageView) event.getSource();
+    Stage stage = (Stage) image.getScene().getWindow();
+    App.startGame(stage);
+
     GameTimer.startTimer();
     GameState.resetGameState();
     GameState.setRandomRooms();

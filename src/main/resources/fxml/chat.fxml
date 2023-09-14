@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
    <children>
-      <ImageView fitHeight="259.0" fitWidth="840.0" layoutY="-1.0" pickOnBounds="true">
+      <ImageView fitHeight="259.0" fitWidth="840.0" layoutY="-6.0" pickOnBounds="true">
          <image>
             <Image url="@../images/chatroom/chat_background.jpg" />
          </image>
@@ -25,12 +25,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="inputText" layoutX="36.0" layoutY="195.0" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the alien" style="-fx-background-color: transparent; -fx-text-fill: white;">
+      <TextField fx:id="inputText" layoutX="36.0" layoutY="190.0" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the alien" style="-fx-background-color: transparent; -fx-text-fill: white;">
          <font>
             <Font name="Arial" size="17.0" />
          </font></TextField>
-      <Button fx:id="sendButton" layoutX="734.0" layoutY="192.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Talk" />
-      <Label fx:id="hintLabel" layoutX="447.0" layoutY="157.0" prefHeight="35.0" prefWidth="238.0" text="Hints Left: " textFill="#cccbcb">
+      <Button fx:id="sendButton" layoutX="734.0" layoutY="189.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Talk" />
+      <Label fx:id="hintLabel" layoutX="447.0" layoutY="153.0" prefHeight="35.0" prefWidth="238.0" text="Hints Left: " textFill="#cccbcb">
          <font>
             <Font size="16.0" />
          </font>
