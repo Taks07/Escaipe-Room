@@ -294,7 +294,6 @@ public class GameState {
 
   public static void setTimeLimit(int minutes) {
     timeLimit = minutes * 60;
-    System.out.println(timeLimit);
   }
 
   public static boolean isHintAvailable() {

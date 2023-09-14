@@ -25,5 +25,10 @@
       </Label>
       <TextField fx:id="inputText" layoutX="36.0" layoutY="195.0" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the AI system" />
       <Button fx:id="sendButton" layoutX="734.0" layoutY="192.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Send" />
+      <Label fx:id="hintLabel" layoutX="447.0" layoutY="157.0" prefHeight="35.0" prefWidth="238.0" text="Hints Left: " textFill="#cccbcb">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
