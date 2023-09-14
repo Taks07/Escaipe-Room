@@ -39,22 +39,29 @@
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
+
       <ImageView id="pipe" fx:id="pipeImage" fitHeight="160.0" fitWidth="149.0" layoutX="258.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/pipe.png" />
          </image>
       </ImageView>
+
       <ImageView id="shovel" fx:id="shovelImage" fitHeight="183.0" fitWidth="89.0" layoutX="68.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/shovel.png" />
          </image>
       </ImageView>
+
       <ImageView id="flower" fx:id="flowerImage" fitHeight="100.0" fitWidth="108.0" layoutX="84.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/flower.png" />
          </image>
       </ImageView>
+
       <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="130.0" layoutX="36.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+
          <image>
             <Image url="@../images/objects/grass.png" />
          </image>

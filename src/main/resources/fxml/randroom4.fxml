@@ -34,17 +34,23 @@
             <Font size="14.0" />
          </font>
       </Label>
+
       <ImageView id="cave" fx:id="caveImage" fitHeight="330.0" fitWidth="612.0" layoutX="85.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/cave.png" />
          </image>
       </ImageView>
+
       <ImageView id="stalagmite" fx:id="spikesImage" fitHeight="152.0" fitWidth="117.0" layoutX="158.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/stalagmite.png" />
          </image>
       </ImageView>
+
       <ImageView id="stalactite" fx:id="spikesImage1" fitHeight="102.0" fitWidth="148.0" layoutX="373.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" rotate="-176.1">
+
          <image>
             <Image url="@../images/objects/stalactite.png" />
          </image>

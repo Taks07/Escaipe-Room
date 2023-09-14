@@ -24,6 +24,7 @@
             <Image url="@../images/objects/flag1.png" />
          </image>
       </ImageView>
+
       <ImageView id="oxygen" fx:id="oxygenImage" fitHeight="77.0" fitWidth="101.0" layoutX="178.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/oxygen.png" />
@@ -44,17 +45,23 @@
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
+
       <ImageView id="earth" fx:id="earthImage" fitHeight="70.0" fitWidth="65.0" layoutX="84.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/earth.png" />
          </image>
       </ImageView>
+
       <ImageView id="cube" fx:id="cubeImage" fitHeight="123.0" fitWidth="114.0" layoutX="103.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/cube.png" />
          </image>
       </ImageView>
+
       <ImageView id="car" fx:id="carImage" fitHeight="70.0" fitWidth="115.0" layoutX="519.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/car.png" />
          </image>

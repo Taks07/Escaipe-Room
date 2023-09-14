@@ -58,18 +58,25 @@ public abstract class RoomController {
    * Handles the click event on an object.
    *
    * @param event the mouse event
+   * @throws IOException
    */
   @FXML
+
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectID = object.getId();
+    System.out.println("Clicked " + objectID);
 
+    // TODO: If the correct object is clicked, go to the room's minigame
     if (GameState.isRiddleAnswerCorrect(objectID)) {
+
       // TODO: Correct object found. Tell user they can click the rocket to end the game.
       System.out.println("Got object");
       GameState.isObjectFound = true;
 
-      // TODO: Swap fxml to Mini game starts here
+      String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
+      GameState.switchRoom(fxmlPath);
+
     } else {
       // Not the correct object. Provide some flavour text.
       GameState.sayFlavourText(objectID);
