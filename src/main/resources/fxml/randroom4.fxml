@@ -7,58 +7,58 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="525.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom4Controller">
+<Pane prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom4Controller">
    <children>
-      <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-223.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-247.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="556.0" fitWidth="882.0" layoutX="-16.0" layoutY="-17.0" pickOnBounds="true">
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0" pickOnBounds="true">
          <image>
             <Image url="@../images/rooms/border.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="29.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="29.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
          <image>
             <Image url="@../images/objects/arrow2.png" />
          </image>
       </ImageView>
-      <Label fx:id="actionLabel" layoutX="44.0" layoutY="44.0" prefHeight="20.0" prefWidth="209.0">
+      <Label fx:id="actionLabel" layoutX="44.0" layoutY="20.0" prefHeight="20.0" prefWidth="209.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
 
-      <ImageView id="cave" fx:id="caveImage" fitHeight="330.0" fitWidth="612.0" layoutX="85.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="cave" fx:id="caveImage" fitHeight="330.0" fitWidth="612.0" layoutX="85.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
 
          <image>
             <Image url="@../images/objects/cave.png" />
          </image>
       </ImageView>
 
-      <ImageView id="stalagmite" fx:id="spikesImage" fitHeight="152.0" fitWidth="117.0" layoutX="158.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="stalagmite" fx:id="spikesImage" fitHeight="152.0" fitWidth="117.0" layoutX="158.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
 
          <image>
             <Image url="@../images/objects/stalagmite.png" />
          </image>
       </ImageView>
 
-      <ImageView id="stalactite" fx:id="spikesImage1" fitHeight="102.0" fitWidth="148.0" layoutX="373.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" rotate="-176.1">
+      <ImageView id="stalactite" fx:id="spikesImage1" fitHeight="102.0" fitWidth="148.0" layoutX="373.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" rotate="-176.1">
 
          <image>
             <Image url="@../images/objects/stalactite.png" />
          </image>
       </ImageView>
-      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="47.0" layoutY="435.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
-      <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="708.0" layoutY="435.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
-      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="115.0" layoutY="131.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="556.0" />
-      <Rectangle id="stalagmite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="134.0" layoutX="165.0" layoutY="348.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
-      <Rectangle id="stalactite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="99.0" layoutX="377.0" layoutY="198.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="47.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
+      <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="708.0" layoutY="411.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
+      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="115.0" layoutY="107.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="556.0" />
+      <Rectangle id="stalagmite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="134.0" layoutX="165.0" layoutY="324.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
+      <Rectangle id="stalactite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="99.0" layoutX="377.0" layoutY="174.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
    </children>
 </Pane>
