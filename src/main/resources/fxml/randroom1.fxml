@@ -49,9 +49,9 @@
             <Image url="@../images/objects/boot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrow1" fitHeight="52.0" fitWidth="114.0" layoutX="21.0" layoutY="441.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="-120.0">
+      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="29.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/arrow.png" />
+            <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
       <Label fx:id="actionLabel" layoutX="24.0" layoutY="24.0" prefHeight="20.0" prefWidth="209.0">
@@ -59,18 +59,18 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="arrow2" fitHeight="52.0" fitWidth="114.0" layoutX="716.0" layoutY="428.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="120.0">
+      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/arrow.png" />
+            <Image url="@../images/objects/arrow2.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="56.0" layoutY="435.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverArrow1" onMouseExited="#unhoverArrow1" opacity="0.0" rotate="-120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="744.0" layoutY="429.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverArrow2" onMouseExited="#unhoverArrow2" opacity="0.0" rotate="120.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
+      <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="713.0" layoutY="436.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
       <Rectangle id="rocks" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="179.0" layoutX="66.0" layoutY="227.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="154.0" />
-      <Rectangle id="tire" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="85.0" layoutX="77.0" layoutY="389.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
+      <Rectangle id="tire" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="78.0" layoutX="77.0" layoutY="389.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
       <Rectangle id="helmet" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="283.0" layoutY="382.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
       <Rectangle id="ufo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="178.0" layoutX="522.0" layoutY="193.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-48.8" stroke="BLACK" strokeType="INSIDE" width="284.0" />
       <Rectangle id="boot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="595.0" layoutY="422.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="51.0" />
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="43.0" layoutX="48.0" layoutY="435.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
       <Rectangle id="solar_panel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutX="157.0" layoutY="288.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-32.9" stroke="BLACK" strokeType="INSIDE" width="218.0" />
    </children>
 </Pane>
