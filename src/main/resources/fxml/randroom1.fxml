@@ -7,70 +7,70 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" prefHeight="525.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom1Controller">
+<Pane fx:id="room" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom1Controller">
    <children>
-      <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-223.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-247.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="556.0" fitWidth="882.0" layoutX="-16.0" layoutY="-17.0" pickOnBounds="true">
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0" pickOnBounds="true">
          <image>
             <Image url="@../images/rooms/border.png" />
          </image>
       </ImageView>
-      <ImageView id="rocks" fx:id="rocksImage" fitHeight="277.0" fitWidth="275.0" layoutX="26.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="rocks" fx:id="rocksImage" fitHeight="277.0" fitWidth="275.0" layoutX="26.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/rocks.png" />
          </image>
       </ImageView>
-      <ImageView id="ufo" fx:id="ufoImage" fitHeight="338.0" fitWidth="494.0" layoutX="356.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="ufo" fx:id="ufoImage" fitHeight="338.0" fitWidth="494.0" layoutX="356.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/ufo.png" />
          </image>
       </ImageView>
-      <ImageView id="tire" fx:id="tireImage" fitHeight="85.0" fitWidth="150.0" layoutX="75.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="tire" fx:id="tireImage" fitHeight="85.0" fitWidth="150.0" layoutX="75.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/tire.png" />
          </image>
       </ImageView>
-      <ImageView id="solar_panel" fx:id="panelImage" fitHeight="123.0" fitWidth="240.0" layoutX="148.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="solar_panel" fx:id="panelImage" fitHeight="123.0" fitWidth="240.0" layoutX="148.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/solar_panel.png" />
          </image>
       </ImageView>
-      <ImageView id="helmet" fx:id="helmetImage" fitHeight="84.0" fitWidth="114.0" layoutX="251.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="helmet" fx:id="helmetImage" fitHeight="84.0" fitWidth="114.0" layoutX="251.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/helmet.png" />
          </image>
       </ImageView>
-      <ImageView id="boot" fx:id="bootImage" fitHeight="66.0" fitWidth="109.0" layoutX="578.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="boot" fx:id="bootImage" fitHeight="66.0" fitWidth="109.0" layoutX="578.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/boot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="29.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="29.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <Label fx:id="actionLabel" layoutX="24.0" layoutY="24.0" prefHeight="20.0" prefWidth="209.0">
+      <Label fx:id="actionLabel" layoutX="24.0" prefHeight="20.0" prefWidth="209.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/arrow2.png" />
          </image>
       </ImageView>
-      <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="713.0" layoutY="436.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
-      <Rectangle id="rocks" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="179.0" layoutX="66.0" layoutY="227.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="154.0" />
-      <Rectangle id="tire" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="78.0" layoutX="77.0" layoutY="389.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
-      <Rectangle id="helmet" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="283.0" layoutY="382.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle id="ufo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="178.0" layoutX="522.0" layoutY="193.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-48.8" stroke="BLACK" strokeType="INSIDE" width="284.0" />
-      <Rectangle id="boot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="595.0" layoutY="422.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="51.0" />
-      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="43.0" layoutX="48.0" layoutY="435.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
-      <Rectangle id="solar_panel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutX="157.0" layoutY="288.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-32.9" stroke="BLACK" strokeType="INSIDE" width="218.0" />
+      <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="713.0" layoutY="412.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle id="rocks" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="179.0" layoutX="66.0" layoutY="203.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="154.0" />
+      <Rectangle id="tire" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="78.0" layoutX="77.0" layoutY="365.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
+      <Rectangle id="helmet" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="283.0" layoutY="358.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle id="ufo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="178.0" layoutX="522.0" layoutY="169.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-48.8" stroke="BLACK" strokeType="INSIDE" width="284.0" />
+      <Rectangle id="boot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="595.0" layoutY="398.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="51.0" />
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="43.0" layoutX="48.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle id="solar_panel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutX="157.0" layoutY="264.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-32.9" stroke="BLACK" strokeType="INSIDE" width="218.0" />
    </children>
 </Pane>

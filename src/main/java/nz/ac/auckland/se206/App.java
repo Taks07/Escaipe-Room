@@ -60,7 +60,7 @@ public class App extends Application {
           System.exit(0);
         });
     Parent root = loadFxml("game");
-    scene = new Scene(root, 840, 830);
+    scene = new Scene(root, 840, 745);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
