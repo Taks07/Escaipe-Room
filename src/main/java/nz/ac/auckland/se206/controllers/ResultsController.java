@@ -11,12 +11,16 @@ import nz.ac.auckland.se206.GameTimer;
 public class ResultsController extends TitleController {
   @FXML private Label resultsLabel;
   @FXML private Label resultsExplanationLabel;
+  @FXML private ImageView results;
   @FXML private ImageView mainbackground;
   @FXML private ImageView flyingrocket;
+  @FXML private ImageView exit;
+  @FXML private ImageView mainmenu;
 
   /** Code that is run when first starting game */
   @FXML
   public void initialize() {
+    // backgroundThread.interrupt();
     animate();
     if (flyingrocket != null) {
       animateRocket();
@@ -29,8 +33,25 @@ public class ResultsController extends TitleController {
 
   @FXML
   private void switchToTitle() {
+    backgroundThread.interrupt();
+    if (flyingrocket != null) {
+      rocketThread.interrupt();
+    }
     try {
       App.setRoot("title");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
+  private void switchToMainScreen() {
+    backgroundThread.interrupt();
+    if (flyingrocket != null) {
+      rocketThread.interrupt();
+    }
+    try {
+      App.setRoot("mainscreen");
     } catch (Exception e) {
       e.printStackTrace();
     }

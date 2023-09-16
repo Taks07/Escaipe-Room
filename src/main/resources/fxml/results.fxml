@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -26,25 +23,30 @@
             <Font size="39.0" />
          </font>
       </Label>
-      <ImageView id="flyingrocket" fx:id="flyingrocket" fitHeight="702.0" fitWidth="1243.0" layoutX="-184.0" pickOnBounds="true" preserveRatio="true" rotate="-180.0">
+      <ImageView id="flyingrocket" fx:id="flyingrocket" fitHeight="702.0" fitWidth="1243.0" layoutX="-181.0" pickOnBounds="true" preserveRatio="true" rotate="-180.0">
          <image>
             <Image url="@../images/title_screen/flyingrocket1.png" />
          </image>
       </ImageView>
-      <HBox layoutX="73.0" layoutY="377.0" prefHeight="100.0" prefWidth="686.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#switchToTitle" prefHeight="90.0" prefWidth="170.0" text="To Main Menu">
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToGame" prefHeight="90.0" prefWidth="170.0" text="Retry">
-               <HBox.margin>
-                  <Insets left="120.0" right="120.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#exitApplication" prefHeight="90.0" prefWidth="170.0" text="Exit" />
-         </children>
-      </HBox>
+      <ImageView fx:id="results" fitHeight="217.0" fitWidth="627.0" layoutX="131.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/title_screen/wintext.png" />
+         </image>
+      </ImageView>
+      <ImageView id="exit" fx:id="exit" fitHeight="34.0" fitWidth="189.0" layoutX="682.0" layoutY="424.0" onMouseClicked="#exitApplication" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/exit.png" />
+         </image>
+      </ImageView>
+      <ImageView id="playagain" fitHeight="106.0" fitWidth="384.0" layoutX="253.0" layoutY="419.0" onMouseClicked="#switchToTitle" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/playagain.png" />
+         </image>
+      </ImageView>
+      <ImageView id="mainmenu" fx:id="mainmenu" fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="427.0" onMouseClicked="#switchToMainScreen" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/mainmenu.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
