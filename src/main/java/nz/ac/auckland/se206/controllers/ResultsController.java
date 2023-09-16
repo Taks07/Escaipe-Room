@@ -12,11 +12,15 @@ public class ResultsController extends TitleController {
   @FXML private Label resultsLabel;
   @FXML private Label resultsExplanationLabel;
   @FXML private ImageView mainbackground;
+  @FXML private ImageView flyingrocket;
 
   /** Code that is run when first starting game */
   @FXML
   public void initialize() {
     animate();
+    if (flyingrocket != null) {
+      animateRocket();
+    }
     GameTimer.stopTts();
     GameTimer.stopTimeline();
     resultsLabel.setText("You " + GameState.getResults());
