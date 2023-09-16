@@ -61,26 +61,28 @@ public abstract class RoomController {
    * @throws IOException
    */
   @FXML
-
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    // TODO: If the correct object is clicked, go to the room's minigame
-    if (GameState.isRiddleAnswerCorrect(objectID)) {
+    String fxmlPath = "randroomminigame" + 1;
+    GameState.switchRoom(fxmlPath);
 
-      // TODO: Correct object found. Tell user they can click the rocket to end the game.
-      System.out.println("Got object");
-      GameState.isObjectFound = true;
+    // // TODO: If the correct object is clicked, go to the room's minigame
+    // if (GameState.isRiddleAnswerCorrect(objectID)) {
 
-      String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
-      GameState.switchRoom(fxmlPath);
+    //   // TODO: Correct object found. Tell user they can click the rocket to end the game.
+    //   System.out.println("Got object");
+    //   GameState.isObjectFound = true;
 
-    } else {
-      // Not the correct object. Provide some flavour text.
-      GameState.sayFlavourText(objectID);
-    }
+    //   String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
+    //   GameState.switchRoom(fxmlPath);
+
+    // } else {
+    //   // Not the correct object. Provide some flavour text.
+    //   GameState.sayFlavourText(objectID);
+    // }
   }
 
   @FXML
@@ -105,7 +107,6 @@ public abstract class RoomController {
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
 
     actionLabel.setText("");
-
   }
 
   @FXML
