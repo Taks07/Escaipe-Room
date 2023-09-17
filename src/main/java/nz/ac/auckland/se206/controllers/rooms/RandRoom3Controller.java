@@ -10,4 +10,6 @@ public class RandRoom3Controller extends RoomController {
   @FXML private ImageView shovelImage;
   @FXML private ImageView flowerImage;
   @FXML private ImageView grassImage;
+
+  // TODO: ADD CLICKABLE FOR MINIGAME IN THIS ROOM
 }

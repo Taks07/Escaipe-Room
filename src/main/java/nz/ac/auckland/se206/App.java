@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Scene scene;
+  private static Stage stage;
 
   public static void main(final String[] args) {
     launch();
@@ -47,9 +48,33 @@ public class App extends Application {
         (event) -> {
           System.exit(0);
         });
-
     Parent root = loadFxml("mainscreen");
-    scene = new Scene(root, 850, 525);
+    scene = new Scene(root, 840, 510);
+    stage.setScene(scene);
+    stage.show();
+    root.requestFocus();
+  }
+
+  public static void startGame(final Stage stageInput) throws IOException {
+    stage = stageInput;
+    stage.setOnCloseRequest(
+        (event) -> {
+          System.exit(0);
+        });
+    Parent root = loadFxml("game");
+    scene = new Scene(root, 840, 745);
+    stage.setScene(scene);
+    stage.show();
+    root.requestFocus();
+  }
+
+  public static void endGame() throws IOException {
+    stage.setOnCloseRequest(
+        (event) -> {
+          System.exit(0);
+        });
+    Parent root = loadFxml("results");
+    scene = new Scene(root, 840, 510);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
