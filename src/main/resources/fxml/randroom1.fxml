@@ -72,5 +72,11 @@
       <Rectangle id="boot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="595.0" layoutY="398.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="51.0" />
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="43.0" layoutX="48.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
       <Rectangle id="solar_panel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutX="157.0" layoutY="264.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-32.9" stroke="BLACK" strokeType="INSIDE" width="218.0" />
+      <ImageView fitHeight="285.0" fitWidth="420.0" layoutX="23.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alien1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="258.0" layoutX="160.0" layoutY="207.0" onMouseClicked="#clickAlien1" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
    </children>
 </Pane>
