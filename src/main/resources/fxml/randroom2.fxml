@@ -66,11 +66,17 @@
             <Image url="@../images/objects/car.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="313.0" fitWidth="449.0" layoutX="178.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alien.png" />
+         </image>
+      </ImageView>
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="709.0" layoutY="409.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
       <Rectangle id="earth" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" layoutX="87.0" layoutY="331.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
       <Rectangle id="cube" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="110.0" layoutY="365.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
       <Rectangle id="oxygen" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="70.0" layoutX="190.0" layoutY="316.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" layoutX="49.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="72.0" />
       <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="59.0" layoutX="530.0" layoutY="386.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="285.0" layoutX="322.0" layoutY="165.0" onMouseClicked="#clickAlien2" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
    </children>
 </Pane>
