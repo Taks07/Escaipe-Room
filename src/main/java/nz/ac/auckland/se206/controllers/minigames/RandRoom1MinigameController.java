@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-public class RandRoom1MinigameController {
+public class RandRoom1MinigameController extends MinigameController {
 
   @FXML private GridPane gridPane;
   @FXML private Button button1;

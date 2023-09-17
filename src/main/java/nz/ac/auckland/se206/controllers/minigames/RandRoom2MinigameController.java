@@ -1,3 +1,3 @@
 package nz.ac.auckland.se206.controllers.minigames;
 
-public class RandRoom2MinigameController {}
+public class RandRoom2MinigameController extends MinigameController {}
