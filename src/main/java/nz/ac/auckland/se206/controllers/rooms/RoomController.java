@@ -66,23 +66,24 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    String fxmlPath = "randroomminigame" + 1;
-    GameState.switchRoom(fxmlPath);
+    // TESTING randroomminigames
+    // String fxmlPath = "randroomminigame" + 1;
+    // GameState.switchRoom(fxmlPath);
 
-    // // TODO: If the correct object is clicked, go to the room's minigame
-    // if (GameState.isRiddleAnswerCorrect(objectID)) {
+    // TODO: If the correct object is clicked, go to the room's minigame
+    if (GameState.isRiddleAnswerCorrect(objectID)) {
 
-    //   // TODO: Correct object found. Tell user they can click the rocket to end the game.
-    //   System.out.println("Got object");
-    //   GameState.isObjectFound = true;
+      // TODO: Correct object found. Tell user they can click the rocket to end the game.
+      System.out.println("Got object");
+      GameState.isObjectFound = true;
 
-    //   String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
-    //   GameState.switchRoom(fxmlPath);
+      String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
+      GameState.switchRoom(fxmlPath);
 
-    // } else {
-    //   // Not the correct object. Provide some flavour text.
-    //   GameState.sayFlavourText(objectID);
-    // }
+    } else {
+      // Not the correct object. Provide some flavour text.
+      GameState.sayFlavourText(objectID);
+    }
   }
 
   @FXML

@@ -15,7 +15,7 @@ import javafx.util.Duration;
  * consequetive round it adds an extra button to the sequence once 5 rounds are played you win the
  * game
  */
-public class RandRoomMinigame1Controller {
+public class RandRoom1MinigameController {
 
   @FXML private GridPane gridPane;
   @FXML private Button button1;
@@ -119,6 +119,7 @@ public class RandRoomMinigame1Controller {
             if (round == 5) {
               setAllButtonsGreen();
               System.out.println("You win!");
+              // TODO: if you win, change back to the randroom1controller
             } else {
               startNewRound();
             }
