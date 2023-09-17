@@ -54,7 +54,7 @@ public class GameTimer {
         (event) -> {
           try {
             GameState.gameWon = false;
-            App.setRoot("results");
+            App.endGame();
           } catch (Exception e) {
             e.printStackTrace();
           }
