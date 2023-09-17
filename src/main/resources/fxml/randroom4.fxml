@@ -57,7 +57,7 @@
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="47.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="708.0" layoutY="411.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
-      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="115.0" layoutY="107.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="556.0" />
+      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="115.0" layoutY="107.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickMinigame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="556.0" />
       <Rectangle id="stalagmite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="134.0" layoutX="165.0" layoutY="324.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
       <Rectangle id="stalactite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="99.0" layoutX="377.0" layoutY="174.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
    </children>

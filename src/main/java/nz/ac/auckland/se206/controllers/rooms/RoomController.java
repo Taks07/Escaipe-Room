@@ -61,22 +61,16 @@ public abstract class RoomController {
    * @throws IOException
    */
   @FXML
-
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    // TODO: If the correct object is clicked, go to the room's minigame
     if (GameState.isRiddleAnswerCorrect(objectID)) {
 
       // TODO: Correct object found. Tell user they can click the rocket to end the game.
       System.out.println("Got object");
       GameState.isObjectFound = true;
-
-      String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
-      GameState.switchRoom(fxmlPath);
-
     } else {
       // Not the correct object. Provide some flavour text.
       GameState.sayFlavourText(objectID);
@@ -105,7 +99,12 @@ public abstract class RoomController {
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
 
     actionLabel.setText("");
+  }
 
+  @FXML
+  private void clickMinigame(MouseEvent event) {
+    String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
+    GameState.switchRoom(fxmlPath);
   }
 
   @FXML
