@@ -10,6 +10,7 @@ public class RandRoom4Controller extends RoomController {
   @FXML private ImageView spikes1Image;
   @FXML private ImageView spikes2Image;
 
+  @FXML
   private void clickAlien4(MouseEvent event) {
     // TODO ADD LOGIC HERE
   }

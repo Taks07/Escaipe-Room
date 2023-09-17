@@ -13,6 +13,7 @@ public class RandRoom1Controller extends RoomController {
   @FXML private ImageView bootImage;
   @FXML private ImageView ufoImage;
 
+  @FXML
   private void clickAlien4(MouseEvent event) {
     // TODO ADD LOGIC HERE
   }

@@ -13,7 +13,7 @@ public class RandRoom3Controller extends RoomController {
   @FXML private ImageView grassImage;
 
   // TODO: ADD CLICKABLE FOR MINIGAME IN THIS ROOM
-
+  @FXML
   private void clickAlien3(MouseEvent event) {
     // TODO ADD LOGIC HERE
   }

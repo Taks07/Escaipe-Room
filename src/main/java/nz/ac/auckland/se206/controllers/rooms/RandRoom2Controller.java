@@ -48,6 +48,7 @@ public class RandRoom2Controller extends RoomController {
     flagThread.start();
   }
 
+  @FXML
   private void clickAlien2(MouseEvent event) {
     // TODO ADD LOGIC HERE
   }
