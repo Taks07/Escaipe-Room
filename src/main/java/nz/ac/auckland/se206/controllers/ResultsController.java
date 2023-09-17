@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
@@ -11,7 +10,6 @@ import nz.ac.auckland.se206.GameTimer;
 /** Controller class for the results view. */
 public class ResultsController extends TitleController {
 
-  @FXML private Label resultsExplanationLabel;
   @FXML private ImageView results;
   @FXML private ImageView mainbackground;
   @FXML private ImageView flyingrocket;
@@ -32,8 +30,6 @@ public class ResultsController extends TitleController {
 
     GameTimer.stopTts();
     GameTimer.stopTimeline();
-
-    resultsExplanationLabel.setText(GameState.getResultsExplanation());
   }
 
   @FXML

@@ -18,11 +18,16 @@
       </ImageView>
       <TextArea fx:id="chatTextArea" editable="false" layoutX="36.0" layoutY="14.0" prefHeight="114.0" prefWidth="649.0" stylesheets="@../css/textbox.css" wrapText="true">
          <font>
-            <Font name="Arial" size="19.0" />
+            <Font size="15.0" />
          </font></TextArea>
-      <Label fx:id="translatingLabel" layoutX="52.0" layoutY="125.0" opacity="0.0" prefHeight="35.0" prefWidth="238.0" text="Translating..." textFill="#cccbcb">
+      <Label fx:id="translatingLabel" layoutX="50.0" layoutY="132.0" opacity="0.0" prefHeight="23.0" prefWidth="238.0" text="Translating..." textFill="#cccbcb">
          <font>
-            <Font size="16.0" />
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="457.0" layoutY="127.0" prefHeight="35.0" prefWidth="238.0" text="Hints Left: " textFill="#cccbcb">
+         <font>
+            <Font size="13.0" />
          </font>
       </Label>
       <TextField fx:id="inputText" layoutX="36.0" layoutY="158.0" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the alien" style="-fx-background-color: transparent; -fx-text-fill: white;">
@@ -30,10 +35,5 @@
             <Font name="Arial" size="17.0" />
          </font></TextField>
       <Button fx:id="sendButton" layoutX="729.0" layoutY="154.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Talk" />
-      <Label fx:id="hintLabel" layoutX="457.0" layoutY="125.0" prefHeight="35.0" prefWidth="238.0" text="Hints Left: " textFill="#cccbcb">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
    </children>
 </Pane>
