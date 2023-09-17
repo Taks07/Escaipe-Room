@@ -9,6 +9,8 @@ import java.util.Random;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -51,6 +53,9 @@ public class GameState {
 
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
+
+  public static ArrayList<ChatCompletionRequest> roomChatCompletionRequests =
+      new ArrayList<ChatCompletionRequest>();
 
   /** The number of hints given */
   public static int hintsCounter;
@@ -225,6 +230,24 @@ public class GameState {
     // Get a different random room from array
     randInt = rand.nextInt(randomRooms.size() - 1);
     currRooms.add(randomRoomsCopy.get(randInt));
+
+    // Set chat completion requests for each room
+    for (int i = 0; i < 3; i++) {
+      ChatCompletionRequest chatCompletionRequest =
+          new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
+
+      // Provide context to ai
+      String context = GptPromptEngineering.alienContext(currRooms.get(i));
+
+      ChatMessage msg = new ChatMessage("system", context);
+      chatCompletionRequest.addMessage(msg);
+
+      roomChatCompletionRequests.add(chatCompletionRequest);
+    }
+  }
+
+  public static ChatCompletionRequest getChatCompletionRequest() {
+    return roomChatCompletionRequests.get(currRoom);
   }
 
   public static int getCurrRoom() {
@@ -300,5 +323,6 @@ public class GameState {
     currRoom = 0;
     currRooms.clear();
     currRooms.add("mainroom");
+    roomChatCompletionRequests.clear();
   }
 }

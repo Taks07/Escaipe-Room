@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class RandRoom2Controller extends RoomController {
 
@@ -50,6 +52,6 @@ public class RandRoom2Controller extends RoomController {
 
   @FXML
   private void clickAlien2(MouseEvent event) {
-    // TODO ADD LOGIC HERE
+    GameState.askGPT(GptPromptEngineering.introduction());
   }
 }
