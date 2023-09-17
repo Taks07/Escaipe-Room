@@ -5,6 +5,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class RandRoom2Controller extends RoomController {
 
@@ -45,5 +46,10 @@ public class RandRoom2Controller extends RoomController {
 
     flagThread.setDaemon(true);
     flagThread.start();
+  }
+
+  @FXML
+  private void clickAlien2(MouseEvent event) {
+    // TODO ADD LOGIC HERE
   }
 }

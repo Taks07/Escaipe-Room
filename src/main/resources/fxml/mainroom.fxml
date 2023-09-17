@@ -34,7 +34,7 @@
             <Image url="@../images/objects/rocket.png" />
          </image>
       </ImageView>
-      <ImageView id="alien" fx:id="alienImage" fitHeight="254.0" fitWidth="126.0" layoutX="140.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien" fx:id="alienImage" fitHeight="274.0" fitWidth="389.0" layoutX="45.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/alien.png" />
          </image>
@@ -47,6 +47,6 @@
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="49.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="-2.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="705.0" layoutY="408.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="369.0" layoutX="461.0" layoutY="77.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="265.0" layoutX="143.0" layoutY="176.0" onMouseClicked="#clickAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="238.0" layoutX="162.0" layoutY="199.0" onMouseClicked="#clickAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
    </children>
 </Pane>

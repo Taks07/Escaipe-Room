@@ -55,6 +55,12 @@
             <Image url="@../images/objects/stalactite.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="295.0" fitWidth="471.0" layoutX="453.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alien4.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="279.0" layoutX="587.0" layoutY="177.0" onMouseClicked="#clickAlien4" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="141.0" />
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="47.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="708.0" layoutY="411.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
       <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="115.0" layoutY="107.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickMinigame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="556.0" />
