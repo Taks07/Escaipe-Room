@@ -1,4 +1,3 @@
-ufo
 solar_panel
 rocks
 helmet
