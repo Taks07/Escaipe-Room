@@ -10,7 +10,7 @@ import nz.ac.auckland.se206.GameTimer;
 
 /** Controller class for the results view. */
 public class ResultsController extends TitleController {
-  @FXML private Label resultsLabel;
+
   @FXML private Label resultsExplanationLabel;
   @FXML private ImageView results;
   @FXML private ImageView mainbackground;
@@ -23,6 +23,7 @@ public class ResultsController extends TitleController {
   public void initialize() {
     if (GameState.gameWon) {
       results.setImage(new Image("images/title_screen/wintext.png"));
+      flyingrocket.setVisible(true);
       animateRocket();
     } else {
       results.setImage(new Image("images/title_screen/losetext.png"));
@@ -31,7 +32,7 @@ public class ResultsController extends TitleController {
 
     GameTimer.stopTts();
     GameTimer.stopTimeline();
-    resultsLabel.setText("You " + GameState.getResults());
+
     resultsExplanationLabel.setText(GameState.getResultsExplanation());
   }
 
