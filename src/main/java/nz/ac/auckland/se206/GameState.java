@@ -209,21 +209,6 @@ public class GameState {
     }
   }
 
-  /**
-   * Returns an explanation depending on the results of the game.
-   *
-   * @return the explanation of the results of the game as a string
-   */
-  public static String getResultsExplanation() {
-    if (gameWon) {
-      return "You shut off the system in time! The police haven't been called, and you're free to"
-          + " go about your day.";
-    } else {
-      return "You didn't shut off the system in time! The police are on their way, and you're gonna"
-          + " have to spend all day explaining about your faulty security system.";
-    }
-  }
-
   public static String getCurrRiddleAnswer() {
     return currRiddleAnswer;
   }
