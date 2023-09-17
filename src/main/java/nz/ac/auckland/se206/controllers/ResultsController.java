@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -20,11 +21,14 @@ public class ResultsController extends TitleController {
   /** Code that is run when first starting game */
   @FXML
   public void initialize() {
-    // backgroundThread.interrupt();
-    animate();
-    if (flyingrocket != null) {
+    if (GameState.gameWon) {
+      results.setImage(new Image("images/title_screen/wintext.png"));
       animateRocket();
+    } else {
+      results.setImage(new Image("images/title_screen/losetext.png"));
     }
+    animate();
+
     GameTimer.stopTts();
     GameTimer.stopTimeline();
     resultsLabel.setText("You " + GameState.getResults());
@@ -34,7 +38,7 @@ public class ResultsController extends TitleController {
   @FXML
   private void switchToTitle() {
     backgroundThread.interrupt();
-    if (flyingrocket != null) {
+    if (GameState.gameWon) {
       rocketThread.interrupt();
     }
     try {
@@ -47,7 +51,7 @@ public class ResultsController extends TitleController {
   @FXML
   private void switchToMainScreen() {
     backgroundThread.interrupt();
-    if (flyingrocket != null) {
+    if (GameState.gameWon) {
       rocketThread.interrupt();
     }
     try {
