@@ -103,7 +103,7 @@ public abstract class RoomController {
 
   @FXML
   private void clickMinigame(MouseEvent event) {
-    String fxmlPath = "randroomminigame" + GameState.getCurrRoom();
+    String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
     GameState.switchRoom(fxmlPath);
   }
 

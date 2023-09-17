@@ -1,4 +1,3 @@
 package nz.ac.auckland.se206.controllers.minigames;
 
-
-public class RandRoomMinigame4Controller {}
+public class RandRoom4MinigameController {}
