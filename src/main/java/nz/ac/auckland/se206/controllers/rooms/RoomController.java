@@ -66,6 +66,12 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
+    // TESTING randroomminigames
+    // String fxmlPath = "randroomminigame" + 1;
+    // GameState.switchRoom(fxmlPath);
+
+    // TODO: If the correct object is clicked, go to the room's minigame
+
     if (GameState.isRiddleAnswerCorrect(objectID)) {
 
       // TODO: Correct object found. Tell user they can click the rocket to end the game.
@@ -99,6 +105,7 @@ public abstract class RoomController {
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
 
     actionLabel.setText("");
+
   }
 
   @FXML
