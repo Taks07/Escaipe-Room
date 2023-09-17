@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.controllers.rooms;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class RandRoom3Controller extends RoomController {
 
@@ -15,6 +17,6 @@ public class RandRoom3Controller extends RoomController {
   // TODO: ADD CLICKABLE FOR MINIGAME IN THIS ROOM
   @FXML
   private void clickAlien3(MouseEvent event) {
-    // TODO ADD LOGIC HERE
+    GameState.askGPT(GptPromptEngineering.introduction());
   }
 }

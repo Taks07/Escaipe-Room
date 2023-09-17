@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ public abstract class RoomController {
   @FXML protected ImageView background;
   protected Thread backgroundThread;
   protected Thread flagThread;
+  protected boolean visited;
 
   @FXML
   private void initialize() {
@@ -105,7 +107,6 @@ public abstract class RoomController {
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
 
     actionLabel.setText("");
-
   }
 
   @FXML

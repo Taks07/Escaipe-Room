@@ -23,13 +23,58 @@ public class GptPromptEngineering {
 
   public static String getGameContext() {
     if (GameState.hintsAllowed != 0) {
-      return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
-          + " for a riddle on where the gear they want is. Ask them to say 'tawlung seya' for"
-          + " hints from any alien. Do not ask the riddle. Respond in 40 words.";
+      return "Play the role of a whimsical alien. Welcome the human user, then ask them to come"
+          + " talk to you for a riddle on where the gear they want is. Ask them to say"
+          + " 'tawlung seya' for hints from any alien. Seperately, say other aliens may have"
+          + " gears Do not ask the riddle. Respond in 40 words.";
     } else {
-      return "You are a whimsical alien. Welcome the human user, then ask them to come talk to you"
-          + " for a riddle on where the gear they want is. Do not ask the riddle. Respond in"
-          + " 30 words.";
+      return "Play the role of a whimsical alien. Welcome the human user, then ask them to come"
+          + " talk to you for a riddle on where the gear they want is. Seperately, say other"
+          + " aliens may have gears. Do not ask the riddle. Respond in 30 words.";
+    }
+  }
+
+  public static String alienContext(String room) {
+    switch (room) {
+      case "randroom1":
+        return "Play the role of a sad alien on an alien planet meeting a human visitor to your"
+            + " planet. You know the part they seek can be found in the crashed UFO. Don't"
+            + " reply with over 2 sentences";
+      case "randroom2":
+        return "Play the role of a shy alien on an alien planet meeting a human visitor to your"
+            + " planet. You know the part they seek can be found in the crater. Don't reply"
+            + " with over 2 sentences";
+      case "randroom3":
+        return "Play the role of a excited alien meeting a human visitor to your planet. You know"
+            + " the part they seek can be found in the alien plant. Don't reply with over 2"
+            + " sentences";
+      case "randroom4":
+        return "Play the role of a moody alien on an alien planet meeting a human visitor to your"
+            + " planet. You know the part they seek can be found in the dark cave. Don't"
+            + " reply with over 2 sentences";
+      default:
+        return "Play the role of an alien on an alien planet";
+    }
+  }
+
+  public static String introduction() {
+    String currRoom = GameState.currRooms.get(GameState.getCurrRoom());
+
+    switch (currRoom) {
+      case "mainroom":
+        return "";
+      case "randroom1":
+        return "Introduce yourself if you haven't yet. Say that the part they seek"
+            + " can be found in the crashed UFO. Respond in 30 words";
+      case "randroom2":
+        return "Say that the part they seek" + " can be found in the crater. Respond in 30 words";
+      case "randroom3":
+        return "Say that the part they"
+            + " seek can be found in the alien plant. Respond in 30 words";
+      case "randroom4":
+        return "Say that the part they seek" + " can be found in the cave. Respond in 30 words";
+      default:
+        return "You are an alien. Welcome the human";
     }
   }
 

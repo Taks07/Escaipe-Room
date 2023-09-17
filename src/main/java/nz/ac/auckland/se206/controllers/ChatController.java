@@ -31,21 +31,19 @@ public class ChatController {
   @FXML private Label translatingLabel;
   @FXML private Label hintLabel;
 
-  private ChatCompletionRequest mainChatCompletionRequest;
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
   private Pattern riddlePattern;
   private String randomSigns;
   private TimerTask alienTextTask;
+  private boolean isTranslating;
 
   // private boolean isChattingWithAlien = false;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
   public void initialize() {
-    mainChatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
     flavourTxtChatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
 
@@ -57,6 +55,8 @@ public class ChatController {
         "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
 
     setHintCounter();
+
+    isTranslating = false;
   }
 
   public void setHintCounter() {
@@ -73,9 +73,8 @@ public class ChatController {
   /** Asks the GPT model to a request, then appends it to the chatbox */
   public void askGPT(String request) {
     try {
-      runGpt(new ChatMessage("user", request), mainChatCompletionRequest);
+      runGpt(new ChatMessage("user", request), GameState.getChatCompletionRequest());
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
       e.printStackTrace();
     }
   }
@@ -100,9 +99,13 @@ public class ChatController {
   private void runGpt(ChatMessage msg, ChatCompletionRequest chatCompletionRequest)
       throws ApiProxyException {
     // If there is a chat thread already running, do nothing
-    if (chatThread.isAlive()) {
+    if (isTranslating) {
       return;
     }
+
+    // Check whether AI has been set up yet by user clicking on alien in room
+
+    isTranslating = true;
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
@@ -172,6 +175,8 @@ public class ChatController {
             appendChatMessage(gptResponse);
             checkCorrectAnswer(gptResponse);
           }
+
+          isTranslating = false;
         });
 
     chatThread = new Thread(chatTask);
@@ -230,7 +235,7 @@ public class ChatController {
       // User talks to AI normally
       msg = new ChatMessage("user", message);
       // appendChatMessage(msg);
-      runGpt(msg, mainChatCompletionRequest);
+      runGpt(msg, GameState.getChatCompletionRequest());
     }
   }
 

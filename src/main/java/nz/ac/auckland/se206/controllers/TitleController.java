@@ -62,15 +62,15 @@ public class TitleController extends RoomController {
 
   public void startGame(MouseEvent event) throws IOException {
     setDifficultyAndTimeLimit();
-    // makes a new scene and switches to it, but keeps the same stage
-    ImageView image = (ImageView) event.getSource();
-    Stage stage = (Stage) image.getScene().getWindow();
-    App.startGame(stage);
-
     GameTimer.startTimer();
     GameState.resetGameState();
     GameState.setRandomRooms();
     GameState.setRandomCurrRiddleAnswer();
+
+    // makes a new scene and switches to it, but keeps the same stage
+    ImageView image = (ImageView) event.getSource();
+    Stage stage = (Stage) image.getScene().getWindow();
+    App.startGame(stage);
     GameState.askGPT(GptPromptEngineering.getGameContext());
   }
 
