@@ -24,13 +24,13 @@ public class GptPromptEngineering {
   public static String getGameContext() {
     if (GameState.hintsAllowed != 0) {
       return "Play the role of a whimsical alien. Welcome the human user, then ask them to come"
-          + " talk to you for a riddle on where the gear they want is. Ask them to say"
+          + " talk to you for a riddle on where the part they want is. Ask them to say"
           + " 'tawlung seya' for hints from any alien. Seperately, say other aliens may have"
-          + " gears Do not ask the riddle. Respond in 40 words.";
+          + " parts. Do not ask the riddle. Respond in 40 words.";
     } else {
       return "Play the role of a whimsical alien. Welcome the human user, then ask them to come"
-          + " talk to you for a riddle on where the gear they want is. Seperately, say other"
-          + " aliens may have gears. Do not ask the riddle. Respond in 30 words.";
+          + " talk to you for a riddle on where the part they want is. Seperately, say other"
+          + " aliens may have parts. Do not ask the riddle. Respond in 30 words.";
     }
   }
 
