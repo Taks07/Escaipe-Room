@@ -68,16 +68,10 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    // TESTING randroomminigames
-    // String fxmlPath = "randroomminigame" + 1;
-    // GameState.switchRoom(fxmlPath);
-
-    // TODO: If the correct object is clicked, go to the room's minigame
-
     if (GameState.isRiddleAnswerCorrect(objectID)) {
-
-      // TODO: Correct object found. Tell user they can click the rocket to end the game.
+      // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
+      GameState.partsFound++;
       GameState.isObjectFound = true;
     } else {
       // Not the correct object. Provide some flavour text.
@@ -85,6 +79,11 @@ public abstract class RoomController {
     }
   }
 
+  /**
+   * Handles the hover event on an object.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void hoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
@@ -97,6 +96,11 @@ public abstract class RoomController {
     actionLabel.setText(":D");
   }
 
+  /**
+   * Handles the unhover event on an object.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void unhoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
@@ -109,12 +113,27 @@ public abstract class RoomController {
     actionLabel.setText("");
   }
 
+  /**
+   * Handles the click event on the minigame object.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickMinigame(MouseEvent event) {
+    // Check if minigame has been solved
+    if (GameState.getMinigameSolved()) {
+      return;
+    }
+
     String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
     GameState.switchRoom(fxmlPath);
   }
 
+  /**
+   * Handles the click event on the left arrow.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickArrow1(MouseEvent event) {
     backgroundThread.interrupt();
@@ -124,6 +143,11 @@ public abstract class RoomController {
     GameState.prevRoom();
   }
 
+  /**
+   * Handles the click event on the right arrow.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickArrow2(MouseEvent event) {
     backgroundThread.interrupt();
@@ -133,30 +157,55 @@ public abstract class RoomController {
     GameState.nextRoom();
   }
 
+  /**
+   * Handles the hover event on the left arrow.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void hoverArrow1(MouseEvent event) {
     arrow1.setOpacity(1);
     actionLabel.setText("Go to " + GameState.getPrevRoom());
   }
 
+  /**
+   * Handles the hover event on the right arrow.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void hoverArrow2(MouseEvent event) {
     arrow2.setOpacity(1);
     actionLabel.setText("Go to " + GameState.getNextRoom());
   }
 
+  /**
+   * Handles the unhover event on the left arrow.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void unhoverArrow1(MouseEvent event) {
     actionLabel.setText("");
     arrow1.setOpacity(0.7);
   }
 
+  /**
+   * Handles the unhover event on the right arrow.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void unhoverArrow2(MouseEvent event) {
     actionLabel.setText("");
     arrow2.setOpacity(0.7);
   }
 
+  /**
+   * Animates the background.
+   *
+   * @throws InterruptedException
+   */
   protected void animate() {
     Task<Void> animation =
         new Task<Void>() {

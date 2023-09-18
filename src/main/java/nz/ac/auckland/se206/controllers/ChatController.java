@@ -296,24 +296,4 @@ public class ChatController {
             })
         .start();
   }
-
-  // @FXML
-  // /*  TODO: This doesn't work when you switch rooms. */
-  // public void chatWithAlien(ActionEvent event) {
-  //   if (isChattingWithAlien) {
-  //     chatTextArea.setVisible(false);
-  //     inputText.setVisible(false);
-  //     sendButton.setVisible(false);
-  //     chatwithalien.setText("Chat with Alien");
-  //     isChattingWithAlien = false;
-  //     return;
-  //   } else {
-  //     chatTextArea.setVisible(true);
-  //     inputText.setVisible(true);
-  //     sendButton.setVisible(true);
-  //     chatwithalien.setText("Stop Chatting");
-  //     isChattingWithAlien = true;
-  //     return;
-  //   }
-  // }
 }
