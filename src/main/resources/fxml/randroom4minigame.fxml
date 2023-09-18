@@ -40,66 +40,6 @@
        <RowConstraints maxHeight="218.66664123535156" minHeight="34.00004577636719" prefHeight="106.33335367838544" valignment="CENTER" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <Button fx:id="button00" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button10" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button20" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button30" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button01" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button11" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button21" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button31" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="1">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button02" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button12" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button22" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button32" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
          <ImageView fx:id="image00" fitHeight="105.0" fitWidth="112.0">
             <image>
                <Image url="@../images/minigames/card.png" />
@@ -148,6 +88,66 @@
             <image>
                <Image url="@../images/minigames/card.png" />
             </image></ImageView>
+         <Button fx:id="button00" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button10" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button20" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button30" mnemonicParsing="false" onAction="#clickButton" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3">
+            <font>
+               <Font size="64.0" />
+            </font>
+         </Button>
+         <Button fx:id="button01" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button11" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button21" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button31" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button02" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button12" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button22" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
+         <Button fx:id="button32" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Button>
       </children>
    </GridPane>
 </Pane>
