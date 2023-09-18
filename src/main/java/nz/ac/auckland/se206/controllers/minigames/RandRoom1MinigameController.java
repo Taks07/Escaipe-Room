@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
@@ -128,11 +128,20 @@ public class RandRoom1MinigameController extends MinigameController {
    * @throws IOException
    */
   @FXML
-  private void handleButtonClick(MouseEvent event) {
+  private void handleButtonClick(ActionEvent event) {
+
     if (sequenceNum < sequence.size()) {
       Button clickedButton = (Button) event.getSource();
       int clickedIndex = getIndexFromButton(clickedButton);
       int expectedIndex = sequence.get(sequenceNum);
+      ImageView image = imageViews[clickedIndex / 3][clickedIndex % 3];
+      image.setImage(new Image("images/minigames/clicked_button.png"));
+      PauseTransition pauseBetween = new PauseTransition(Duration.seconds(0.1));
+      pauseBetween.setOnFinished(
+          event2 -> {
+            image.setImage(new Image("images/minigames/unclicked_button.png"));
+          });
+      pauseBetween.play();
 
       if (clickedIndex == expectedIndex) {
         sequenceNum++;
@@ -178,7 +187,8 @@ public class RandRoom1MinigameController extends MinigameController {
   private void setAllButtonsRed() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-        imageViews[i][j].setImage(new Image("images/minigames/red_button.png"));
+        ImageView image = imageViews[i][j];
+        image.setImage(new Image("images/minigames/red_button.png"));
       }
     }
 
@@ -191,7 +201,8 @@ public class RandRoom1MinigameController extends MinigameController {
   private void setAllButtonsGreen() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-        imageViews[i][j].setImage(new Image("images/minigames/green_button.png"));
+        ImageView image = imageViews[i][j];
+        image.setImage(new Image("images/minigames/green_button.png"));
       }
     }
 
@@ -204,7 +215,8 @@ public class RandRoom1MinigameController extends MinigameController {
   private void setAllButtonsToDefaultColor() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-        imageViews[i][j].setImage(new Image("images/minigames/unclicked_button.png"));
+        ImageView image = imageViews[i][j];
+        image.setImage(new Image("images/minigames/unclicked_button.png"));
       }
     }
   }

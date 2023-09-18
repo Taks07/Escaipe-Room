@@ -11,9 +11,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom1MinigameController">
    <children>
-      <ImageView fitHeight="672.0" fitWidth="973.0" layoutX="-53.0" layoutY="-81.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="534.0" fitWidth="917.0" layoutX="-9.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/minigames/room1minigame.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-17.0" layoutY="-14.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/title_screen/border.png" />
          </image>
       </ImageView>
       <GridPane fx:id="gridPane" layoutX="105.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="583.0">
@@ -84,11 +89,11 @@
             <Button fx:id="button9" mnemonicParsing="false" onAction="#handleButtonClick" opacity="0.0" prefHeight="94.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="360.0" layoutY="417.0" preserveRatio="true" rotate="270.0">
+      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="360.0" layoutY="398.0" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="379.0" layoutY="412.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
    </children>
 </Pane>
