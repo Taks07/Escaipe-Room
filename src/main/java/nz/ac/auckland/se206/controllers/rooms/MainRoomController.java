@@ -33,8 +33,7 @@ public class MainRoomController extends RoomController {
 
   @FXML
   private void clickRocket(MouseEvent event) throws IOException {
-    if (GameState.isObjectFound) {
-      GameState.gameWon = true;
+    if (GameState.partsFound == 3) {
       App.endGame();
     } else {
       clickObject(event);

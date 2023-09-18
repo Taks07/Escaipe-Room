@@ -68,16 +68,10 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    // TESTING randroomminigames
-    // String fxmlPath = "randroomminigame" + 1;
-    // GameState.switchRoom(fxmlPath);
-
-    // TODO: If the correct object is clicked, go to the room's minigame
-
     if (GameState.isRiddleAnswerCorrect(objectID)) {
-
-      // TODO: Correct object found. Tell user they can click the rocket to end the game.
+      // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
+      GameState.partsFound++;
       GameState.isObjectFound = true;
     } else {
       // Not the correct object. Provide some flavour text.

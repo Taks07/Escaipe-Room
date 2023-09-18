@@ -54,6 +54,7 @@ public class GameState {
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
+  /** The chat completion requests for each room */
   public static ArrayList<ChatCompletionRequest> roomChatCompletionRequests =
       new ArrayList<ChatCompletionRequest>();
 
@@ -65,6 +66,9 @@ public class GameState {
 
   /** The time limit for the game */
   public static int timeLimit;
+
+  /** The number of parts found */
+  public static int partsFound;
 
   static {
     // Read random rooms and their riddle answers from file
@@ -114,6 +118,11 @@ public class GameState {
     gameController = controller;
   }
 
+  /**
+   * Switches the room.
+   *
+   * @param room the room to switch to
+   */
   public static void switchRoom(String room) {
     gameController.switchRoom(room);
   }
@@ -145,6 +154,7 @@ public class GameState {
     }
   }
 
+  /** Returns a hint prompt depending on game state */
   public static String getHint() {
     String roomName = currRooms.get(currRoom);
 
@@ -172,10 +182,12 @@ public class GameState {
     }
   }
 
+  /** Gets AI to say some flavour text */
   public static void sayFlavourText(String object) {
     chatController.sayFlavourText(object);
   }
 
+  /** Puts message into chatbox */
   public static void showChatMessage(ChatMessage chat) {
     chatController.appendChatMessage(chat.getContent());
   }
@@ -214,10 +226,16 @@ public class GameState {
     }
   }
 
+  /**
+   * Returns the current riddle answer.
+   *
+   * @return the current riddle answer
+   */
   public static String getCurrRiddleAnswer() {
     return currRiddleAnswer;
   }
 
+  /** Chooses 2 random rooms from the pool of 4 */
   public static void setRandomRooms() {
     Random rand = new Random();
     ArrayList<String> randomRoomsCopy = (ArrayList<String>) randomRooms.clone();
@@ -246,14 +264,17 @@ public class GameState {
     }
   }
 
+  /** Returns the chat completion request for the current room */
   public static ChatCompletionRequest getChatCompletionRequest() {
     return roomChatCompletionRequests.get(currRoom);
   }
 
+  /** Returns the current room index */
   public static int getCurrRoom() {
     return currRoom;
   }
 
+  /** Switches to previous room */
   public static void prevRoom() {
     currRoom--;
 
@@ -264,6 +285,7 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
+  /** Switches to next room */
   public static void nextRoom() {
     currRoom++;
 
@@ -274,6 +296,7 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
+  /** Get name of previous room */
   public static String getPrevRoom() {
     int temp = currRoom - 1;
 
@@ -284,6 +307,7 @@ public class GameState {
     return currRooms.get(temp);
   }
 
+  /** Get name of next room */
   public static String getNextRoom() {
     int temp = currRoom + 1;
 
@@ -294,6 +318,7 @@ public class GameState {
     return currRooms.get(temp);
   }
 
+  /** Sets the number of hints allowed for the game */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
       hintsAllowed = Integer.MAX_VALUE;
@@ -304,10 +329,16 @@ public class GameState {
     }
   }
 
+  /** Sets the time limit for the game */
   public static void setTimeLimit(int minutes) {
     timeLimit = minutes * 60;
   }
 
+  /**
+   * Checks if a hint is available.
+   *
+   * @return true if a hint is available, false otherwise
+   */
   public static boolean isHintAvailable() {
     return hintsCounter < hintsAllowed;
   }
@@ -320,6 +351,7 @@ public class GameState {
     gameWon = true;
     isDoorCodeEntered = false;
     hintsCounter = 0;
+    partsFound = 0;
     currRoom = 0;
     currRooms.clear();
     currRooms.add("mainroom");

@@ -146,7 +146,6 @@ public class RandRoom1MinigameController extends MinigameController {
               setAllButtonsGreen();
 
               System.out.println("You win!");
-              // TODO: if you win, change back to the randroom1controller
             } else {
               unclickButton(image);
               startNewRound();
@@ -224,7 +223,11 @@ public class RandRoom1MinigameController extends MinigameController {
     }
 
     PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-    pause.setOnFinished(event -> setAllButtonsToDefaultColor());
+    pause.setOnFinished(
+        event -> {
+          setAllButtonsToDefaultColor();
+          endGame();
+        });
     pause.play();
   }
 
