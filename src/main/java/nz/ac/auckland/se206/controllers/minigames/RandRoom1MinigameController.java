@@ -148,7 +148,13 @@ public class RandRoom1MinigameController extends MinigameController {
         if (sequenceNum == sequence.size()) {
           if (sequence.size() == round) {
             if (round == 5) {
-              setAllButtonsGreen();
+              PauseTransition pauseBetween1 = new PauseTransition(Duration.seconds(0.5));
+              pauseBetween1.setOnFinished(
+                  event3 -> {
+                    setAllButtonsGreen();
+                  });
+              pauseBetween1.play();
+
               System.out.println("You win!");
               // TODO: if you win, change back to the randroom1controller
             } else {
@@ -157,7 +163,13 @@ public class RandRoom1MinigameController extends MinigameController {
           }
         }
       } else {
-        setAllButtonsRed();
+        PauseTransition pauseBetween2 = new PauseTransition(Duration.seconds(0.1));
+        pauseBetween2.setOnFinished(
+            event4 -> {
+              setAllButtonsRed();
+            });
+        pauseBetween2.play();
+
         sequence.clear();
         sequenceNum = 0;
         round = 0;
@@ -192,7 +204,7 @@ public class RandRoom1MinigameController extends MinigameController {
       }
     }
 
-    PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+    PauseTransition pause = new PauseTransition(Duration.seconds(0.3));
     pause.setOnFinished(event -> setAllButtonsToDefaultColor());
     pause.play();
   }
