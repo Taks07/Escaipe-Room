@@ -40,11 +40,6 @@ public class GameState {
   /** The current riddle */
   public static String currRiddle;
 
-  /** The current door code */
-  public static String doorCode;
-
-  public static boolean isDoorCodeEntered = false;
-
   /** The randomised rooms from text file */
   public static ArrayList<String> randomRooms = new ArrayList<String>();
 
@@ -146,15 +141,6 @@ public class GameState {
    */
   public static void askGPT(String request) {
     chatController.askGPT(request);
-  }
-
-  public static void createDoorCode() {
-    // Generate a random 4 digit code
-    doorCode = "";
-
-    for (int i = 0; i < 4; i++) {
-      doorCode += (int) (Math.random() * 10);
-    }
   }
 
   /** Returns a hint prompt depending on game state */
@@ -366,7 +352,6 @@ public class GameState {
     isObjectFound = false;
     currRiddle = null;
     gameWon = true;
-    isDoorCodeEntered = false;
     hintsCounter = 0;
     partsFound = 0;
     currRoom = 0;

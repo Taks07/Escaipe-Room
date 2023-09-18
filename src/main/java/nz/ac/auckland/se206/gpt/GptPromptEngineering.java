@@ -82,10 +82,6 @@ public class GptPromptEngineering {
     }
   }
 
-  public static String getDoorCode() {
-    return "The user has found the object. Now give the code '" + GameState.doorCode + "'";
-  }
-
   public static String getFlavourText(String object) {
     return "Create flavour text for " + object.replace("_", " ") + " that's at most 7 words long";
   }

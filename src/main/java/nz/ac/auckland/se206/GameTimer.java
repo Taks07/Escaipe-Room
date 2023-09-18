@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Utility class for controlling the game timer. */
@@ -37,15 +36,6 @@ public class GameTimer {
                   countDown();
                   if (secondsLeft % 30 == 0 || secondsLeft <= 10) {
                     sayTimeLeft();
-                  }
-
-                  // TODO: Check whether prompts still make sense after
-                  if (secondsLeft == 90 && GameState.currRiddle == null) {
-                    GameState.askGPT(GptPromptEngineering.getComeToDoor());
-                  }
-
-                  if (secondsLeft == 30) {
-                    GameState.askGPT(GptPromptEngineering.getRunningOutOfTime());
                   }
                 }));
 
