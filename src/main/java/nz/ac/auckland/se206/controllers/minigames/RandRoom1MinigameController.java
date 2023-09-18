@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
@@ -15,7 +16,7 @@ import javafx.util.Duration;
  * consequetive round it adds an extra button to the sequence once 5 rounds are played you win the
  * game
  */
-public class RandRoom1MinigameController {
+public class RandRoom1MinigameController extends MinigameController {
 
   @FXML private GridPane gridPane;
   @FXML private Button button1;
@@ -28,7 +29,18 @@ public class RandRoom1MinigameController {
   @FXML private Button button8;
   @FXML private Button button9;
 
+  @FXML private ImageView image1;
+  @FXML private ImageView image2;
+  @FXML private ImageView image3;
+  @FXML private ImageView image4;
+  @FXML private ImageView image5;
+  @FXML private ImageView image6;
+  @FXML private ImageView image7;
+  @FXML private ImageView image8;
+  @FXML private ImageView image9;
+
   private Button[][] buttons;
+  private ImageView[][] imageViews;
   private List<Integer> sequence;
   private int sequenceNum = 0;
   private int round = 0;
@@ -39,6 +51,12 @@ public class RandRoom1MinigameController {
           {button1, button2, button3},
           {button4, button5, button6},
           {button7, button8, button9}
+        };
+    imageViews =
+        new ImageView[][] {
+          {image1, image2, image3},
+          {image4, image5, image6},
+          {image7, image8, image9}
         };
 
     sequence = new ArrayList<>();
@@ -106,7 +124,7 @@ public class RandRoom1MinigameController {
    * @throws IOException
    */
   @FXML
-  private void handleButtonClick(ActionEvent event) {
+  private void handleButtonClick(MouseEvent event) {
     if (sequenceNum < sequence.size()) {
       Button clickedButton = (Button) event.getSource();
       int clickedIndex = getIndexFromButton(clickedButton);

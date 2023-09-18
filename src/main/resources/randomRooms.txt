@@ -1,4 +1,2 @@
 randroom1
 randroom2
-randroom3
-randroom4
