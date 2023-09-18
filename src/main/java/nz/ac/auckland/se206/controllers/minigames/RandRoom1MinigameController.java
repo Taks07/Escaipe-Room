@@ -7,6 +7,8 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
@@ -15,7 +17,7 @@ import javafx.util.Duration;
  * consequetive round it adds an extra button to the sequence once 5 rounds are played you win the
  * game
  */
-public class RandRoom1MinigameController {
+public class RandRoom1MinigameController extends MinigameController {
 
   @FXML private GridPane gridPane;
   @FXML private Button button1;
@@ -28,7 +30,18 @@ public class RandRoom1MinigameController {
   @FXML private Button button8;
   @FXML private Button button9;
 
+  @FXML private ImageView image1;
+  @FXML private ImageView image2;
+  @FXML private ImageView image3;
+  @FXML private ImageView image4;
+  @FXML private ImageView image5;
+  @FXML private ImageView image6;
+  @FXML private ImageView image7;
+  @FXML private ImageView image8;
+  @FXML private ImageView image9;
+
   private Button[][] buttons;
+  private ImageView[][] imageViews;
   private List<Integer> sequence;
   private int sequenceNum = 0;
   private int round = 0;
@@ -39,6 +52,12 @@ public class RandRoom1MinigameController {
           {button1, button2, button3},
           {button4, button5, button6},
           {button7, button8, button9}
+        };
+    imageViews =
+        new ImageView[][] {
+          {image1, image2, image3},
+          {image4, image5, image6},
+          {image7, image8, image9}
         };
 
     sequence = new ArrayList<>();
@@ -80,14 +99,17 @@ public class RandRoom1MinigameController {
   /** Highlights the next button in the sequence */
   private void highlightNextButton() {
     if (sequenceNum < round) {
-      int buttonIndex = sequence.get(sequenceNum);
-      Button button = buttons[buttonIndex / 3][buttonIndex % 3];
-      button.setStyle("-fx-background-color: yellow;");
+      // int buttonIndex = sequence.get(sequenceNum);
+      // Button button = buttons[buttonIndex / 3][buttonIndex % 3];
+      int imageIndex = sequence.get(sequenceNum);
+      ImageView image = imageViews[imageIndex / 3][imageIndex % 3];
+
+      image.setImage(new Image("images/minigames/yellow_button.png"));
 
       PauseTransition pauseBetween = new PauseTransition(Duration.seconds(0.5));
       pauseBetween.setOnFinished(
           event -> {
-            button.setStyle("");
+            image.setImage(new Image("images/minigames/unclicked_button.png"));
             sequenceNum++;
             highlightNextButton();
           });
@@ -107,32 +129,58 @@ public class RandRoom1MinigameController {
    */
   @FXML
   private void handleButtonClick(ActionEvent event) {
+
     if (sequenceNum < sequence.size()) {
       Button clickedButton = (Button) event.getSource();
       int clickedIndex = getIndexFromButton(clickedButton);
       int expectedIndex = sequence.get(sequenceNum);
+      ImageView image = imageViews[clickedIndex / 3][clickedIndex % 3];
+      image.setImage(new Image("images/minigames/clicked_button.png"));
 
       if (clickedIndex == expectedIndex) {
         sequenceNum++;
         if (sequenceNum == sequence.size()) {
           if (sequence.size() == round) {
             if (round == 5) {
+
               setAllButtonsGreen();
+
               System.out.println("You win!");
               // TODO: if you win, change back to the randroom1controller
             } else {
+              unclickButton(image);
               startNewRound();
             }
           }
+        } else {
+          unclickButton(image);
         }
+
       } else {
+
         setAllButtonsRed();
+
         sequence.clear();
         sequenceNum = 0;
         round = 0;
+
         startNewRound();
       }
     }
+  }
+
+  /**
+   * Sets the button to the unclicked image
+   *
+   * @param image the image to set
+   */
+  private void unclickButton(ImageView image) {
+    PauseTransition pauseBetween = new PauseTransition(Duration.seconds(0.1));
+    pauseBetween.setOnFinished(
+        event -> {
+          image.setImage(new Image("images/minigames/unclicked_button.png"));
+        });
+    pauseBetween.play();
   }
 
   /**
@@ -156,11 +204,12 @@ public class RandRoom1MinigameController {
   private void setAllButtonsRed() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-        buttons[i][j].setStyle("-fx-background-color: red;");
+        ImageView image = imageViews[i][j];
+        image.setImage(new Image("images/minigames/red_button.png"));
       }
     }
 
-    PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+    PauseTransition pause = new PauseTransition(Duration.seconds(0.4));
     pause.setOnFinished(event -> setAllButtonsToDefaultColor());
     pause.play();
   }
@@ -169,7 +218,8 @@ public class RandRoom1MinigameController {
   private void setAllButtonsGreen() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-        buttons[i][j].setStyle("-fx-background-color: #00FF00;");
+        ImageView image = imageViews[i][j];
+        image.setImage(new Image("images/minigames/green_button.png"));
       }
     }
 
@@ -182,7 +232,8 @@ public class RandRoom1MinigameController {
   private void setAllButtonsToDefaultColor() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
-        buttons[i][j].setStyle("");
+        ImageView image = imageViews[i][j];
+        image.setImage(new Image("images/minigames/unclicked_button.png"));
       }
     }
   }
