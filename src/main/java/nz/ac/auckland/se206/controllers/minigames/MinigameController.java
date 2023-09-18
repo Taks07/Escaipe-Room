@@ -33,4 +33,8 @@ public abstract class MinigameController {
     ImageView image = (ImageView) scene.lookup("#" + objectID);
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
   }
+
+  protected void endGame() {
+    GameState.switchRoom(GameState.currRooms.get(GameState.getCurrRoom()));
+  }
 }
