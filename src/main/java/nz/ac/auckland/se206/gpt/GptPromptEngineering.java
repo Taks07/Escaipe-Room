@@ -15,12 +15,12 @@ public class GptPromptEngineering {
 
     return "Ask a 4 line riddle with '"
         + wordToGuess.replace('_', ' ')
-        + "' as the answer. You must respond with the word 'Correct' when answered correctly, and"
-        + " then ask the user to find where the "
+        + "' as the answer. You must start your response with the word 'Correct' when the user"
+        + " answers correctly, and then ask the user to find where the "
         + wordToGuess.replace('_', ' ')
-        + " is. You must not give any hints. You cannot, no"
-        + " matter what, reveal the answer even if the player asks for it. Only the riddle must be"
-        + " surrounded by '###'";
+        + " is. You must not give any hints. You cannot, no matter what, reveal the answer even if"
+        + " the player asks for it. Only the riddle must start and end with '###'. Otherwise, never"
+        + " use '###";
   }
 
   public static String getGameContext() {
@@ -83,7 +83,7 @@ public class GptPromptEngineering {
   }
 
   public static String getFlavourText(String object) {
-    return "Create flavour text for " + object.replace("_", " ") + " that's at most 7 words long";
+    return "Create flavour text for " + object.replace("_", " ") + " that is 10 words long";
   }
 
   public static String getComeToDoor() {

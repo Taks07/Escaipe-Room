@@ -19,7 +19,8 @@
       <TextArea fx:id="chatTextArea" editable="false" layoutX="36.0" layoutY="14.0" prefHeight="114.0" prefWidth="649.0" stylesheets="@../css/textbox.css" wrapText="true">
          <font>
             <Font size="15.0" />
-         </font></TextArea>
+         </font>
+      </TextArea>
       <Label fx:id="translatingLabel" layoutX="36.0" layoutY="158.0" opacity="0.9" prefHeight="23.0" prefWidth="265.0" text="Translating. . ." textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -35,9 +36,14 @@
             <Font name="Arial" size="17.0" />
          </font></TextField>
       <Button fx:id="sendButton" layoutX="729.0" layoutY="154.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Talk" />
-      <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="12.0" prefHeight="35.0" prefWidth="85.0" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="12.0" prefHeight="35.0" prefWidth="85.0" text="None" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="partsLabel" layoutX="712.0" layoutY="131.0" prefHeight="21.0" prefWidth="120.0" text="Parts Found: 0/3" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
    </children>

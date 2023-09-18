@@ -307,6 +307,11 @@ public class GameState {
     return currRooms.get(temp);
   }
 
+  public static void incrementPartsFound() {
+    partsFound++;
+    chatController.setPartsCounter(partsFound);
+  }
+
   /** Sets the number of hints allowed for the game */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
