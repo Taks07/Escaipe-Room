@@ -16,26 +16,30 @@ public class GptPromptEngineering {
     return "Ask a 4 line riddle with '"
         + wordToGuess.replace('_', ' ')
         + "' as the answer. You must respond with the word 'Correct' when answered correctly, and"
-        + " then ask the user to find the object. You must not give any hints. You cannot, no"
+        + " then ask the user to find where the "
+        + wordToGuess.replace('_', ' ')
+        + " is. You must not give any hints. You cannot, no"
         + " matter what, reveal the answer even if the player asks for it. Only the riddle must be"
         + " surrounded by '###'";
   }
 
   public static String getGameContext() {
     if (GameState.hintsAllowed != 0) {
-      return "Play the role of a whimsical alien. Welcome the human user, then ask them to come"
+      return "Welcome the human user, then ask them to come"
           + " talk to you for a riddle on where the part they want is. Ask them to say"
           + " 'tawlung seya' for hints from any alien. Seperately, say other aliens may have"
-          + " parts. Do not ask the riddle. Respond in 40 words.";
+          + " other parts. Do not ask the riddle. Respond in 40 words.";
     } else {
-      return "Play the role of a whimsical alien. Welcome the human user, then ask them to come"
+      return "Welcome the human user, then ask them to come"
           + " talk to you for a riddle on where the part they want is. Seperately, say other"
-          + " aliens may have parts. Do not ask the riddle. Respond in 30 words.";
+          + " aliens may have other parts. Do not ask the riddle. Respond in 30 words.";
     }
   }
 
   public static String alienContext(String room) {
     switch (room) {
+      case "mainroom":
+        return "Play the role of a whimsical alien meeting a human visitor to your planet";
       case "randroom1":
         return "Play the role of a sad alien on an alien planet meeting a human visitor to your"
             + " planet. You know the part they seek can be found in the crashed UFO. Don't"
@@ -64,7 +68,7 @@ public class GptPromptEngineering {
       case "mainroom":
         return "";
       case "randroom1":
-        return "Introduce yourself if you haven't yet. Say that the part they seek"
+        return "Say that the part they seek"
             + " can be found in the crashed UFO. Respond in 30 words";
       case "randroom2":
         return "Say that the part they seek" + " can be found in the crater. Respond in 30 words";

@@ -23,10 +23,6 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private Button button12;
   @FXML private Button button22;
   @FXML private Button button32;
-  @FXML private Button button03;
-  @FXML private Button button13;
-  @FXML private Button button23;
-  @FXML private Button button33;
 
   @FXML private ImageView image00;
   @FXML private ImageView image10;
@@ -40,10 +36,6 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private ImageView image12;
   @FXML private ImageView image22;
   @FXML private ImageView image32;
-  @FXML private ImageView image03;
-  @FXML private ImageView image13;
-  @FXML private ImageView image23;
-  @FXML private ImageView image33;
 
   private Button[][] buttons;
   private ImageView[][] imageViews;
@@ -56,15 +48,13 @@ public class RandRoom4MinigameController extends MinigameController {
         new Button[][] {
           {button00, button10, button20, button30},
           {button01, button11, button21, button31},
-          {button02, button12, button22, button32},
-          {button03, button13, button23, button33}
+          {button02, button12, button22, button32}
         };
     imageViews =
         new ImageView[][] {
           {image00, image10, image20, image30},
           {image01, image11, image21, image31},
-          {image02, image12, image22, image32},
-          {image03, image13, image23, image33}
+          {image02, image12, image22, image32}
         };
 
     pairs = 0;
@@ -78,12 +68,12 @@ public class RandRoom4MinigameController extends MinigameController {
     ArrayList<String> symbols =
         new ArrayList<String>(
             Arrays.asList(
-                "\u0E04", "\u0E52", "\u03C2", "\u0E54", "\u0454", "\u0166", "\uFEEE", "\u0452",
-                "\u0E04", "\u0E52", "\u03C2", "\u0E54", "\u0454", "\u0166", "\uFEEE", "\u0452"));
+                "\u0E04", "\u0E52", "\u03C2", "\u0E54", "\u0454", "\u0166", "\u0E04", "\u0E52",
+                "\u03C2", "\u0E54", "\u0454", "\u0166"));
     Random rand = new Random();
 
     // Loop through all buttons
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 4; j++) {
         // Get a random symbol
         int randomIndex = rand.nextInt(symbols.size());
@@ -128,7 +118,7 @@ public class RandRoom4MinigameController extends MinigameController {
         pairs++;
 
         // If all pairs have been found, end the game
-        if (pairs == 8) {
+        if (pairs == 6) {
           pause = new PauseTransition(Duration.seconds(1));
           pause.setOnFinished(
               event2 -> {

@@ -17,7 +17,7 @@
          </image>
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
-   <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="221.0" layoutY="14.0" prefHeight="400.0" prefWidth="400.0">
+   <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="221.0" layoutY="53.0" prefHeight="300.0" prefWidth="400.0">
      <columnConstraints>
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="60.0" />
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="60.0" />
@@ -28,7 +28,6 @@
        <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
        <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
        <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
          <Button fx:id="button00" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
@@ -91,26 +90,6 @@
                <Font size="38.0" />
             </font>
          </Button>
-         <Button fx:id="button03" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button13" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button23" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="3">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
-         <Button fx:id="button33" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="3">
-            <font>
-               <Font size="38.0" />
-            </font>
-         </Button>
          <ImageView fx:id="image00" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" />
          <ImageView fx:id="image10" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="1" />
          <ImageView fx:id="image20" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="2" />
@@ -123,10 +102,6 @@
          <ImageView fx:id="image12" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <ImageView fx:id="image22" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          <ImageView fx:id="image32" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-         <ImageView fx:id="image03" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.rowIndex="3" />
-         <ImageView fx:id="image13" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <ImageView fx:id="image23" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-         <ImageView fx:id="image33" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       </children>
    </GridPane>
 </Pane>
