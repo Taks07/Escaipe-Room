@@ -136,46 +136,51 @@ public class RandRoom1MinigameController extends MinigameController {
       int expectedIndex = sequence.get(sequenceNum);
       ImageView image = imageViews[clickedIndex / 3][clickedIndex % 3];
       image.setImage(new Image("images/minigames/clicked_button.png"));
-      PauseTransition pauseBetween = new PauseTransition(Duration.seconds(0.1));
-      pauseBetween.setOnFinished(
-          event2 -> {
-            image.setImage(new Image("images/minigames/unclicked_button.png"));
-          });
-      pauseBetween.play();
 
       if (clickedIndex == expectedIndex) {
         sequenceNum++;
         if (sequenceNum == sequence.size()) {
           if (sequence.size() == round) {
             if (round == 5) {
-              PauseTransition pauseBetween1 = new PauseTransition(Duration.seconds(0.5));
-              pauseBetween1.setOnFinished(
-                  event3 -> {
-                    setAllButtonsGreen();
-                  });
-              pauseBetween1.play();
+
+              setAllButtonsGreen();
 
               System.out.println("You win!");
               // TODO: if you win, change back to the randroom1controller
             } else {
+              unclickButton(image);
               startNewRound();
             }
           }
+        } else {
+          unclickButton(image);
         }
+
       } else {
-        PauseTransition pauseBetween2 = new PauseTransition(Duration.seconds(0.1));
-        pauseBetween2.setOnFinished(
-            event4 -> {
-              setAllButtonsRed();
-            });
-        pauseBetween2.play();
+
+        setAllButtonsRed();
 
         sequence.clear();
         sequenceNum = 0;
         round = 0;
+
         startNewRound();
       }
     }
+  }
+
+  /**
+   * Sets the button to the unclicked image
+   *
+   * @param image the image to set
+   */
+  private void unclickButton(ImageView image) {
+    PauseTransition pauseBetween = new PauseTransition(Duration.seconds(0.1));
+    pauseBetween.setOnFinished(
+        event -> {
+          image.setImage(new Image("images/minigames/unclicked_button.png"));
+        });
+    pauseBetween.play();
   }
 
   /**
@@ -204,7 +209,7 @@ public class RandRoom1MinigameController extends MinigameController {
       }
     }
 
-    PauseTransition pause = new PauseTransition(Duration.seconds(0.3));
+    PauseTransition pause = new PauseTransition(Duration.seconds(0.4));
     pause.setOnFinished(event -> setAllButtonsToDefaultColor());
     pause.play();
   }
