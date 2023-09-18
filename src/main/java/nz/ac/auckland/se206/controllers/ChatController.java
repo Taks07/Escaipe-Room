@@ -62,11 +62,11 @@ public class ChatController {
   public void setHintCounter() {
     // Set hint counter
     if (GameState.hintsAllowed > 5) {
-      hintLabel.setText("Hints Left: Unlimited");
+      hintLabel.setText("Unlimited");
     } else if (GameState.hintsAllowed == 0) {
-      hintLabel.setText("Hints Left: None");
+      hintLabel.setText("None");
     } else {
-      hintLabel.setText("Hints Left: 5");
+      hintLabel.setText("5");
     }
   }
 
@@ -109,7 +109,8 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
-    translatingLabel.setText("Processing...");
+    translatingLabel.setText("Translating ...");
+    inputText.setVisible(false);
     sendButton.setDisable(true);
 
     Timer myTimer = new Timer();
@@ -222,7 +223,7 @@ public class ChatController {
         message = GameState.getHint();
 
         if (GameState.hintsAllowed == 5) {
-          hintLabel.setText("Hints Left: " + (5 - GameState.hintsCounter));
+          hintLabel.setText("" + (5 - GameState.hintsCounter));
         }
       } else {
         // No hints avaialble
@@ -293,6 +294,7 @@ public class ChatController {
                 }
               }
               translatingLabel.setOpacity(0);
+              inputText.setVisible(true);
             })
         .start();
   }
