@@ -39,8 +39,6 @@ public class ChatController {
   private TimerTask alienTextTask;
   private boolean isTranslating;
 
-  // private boolean isChattingWithAlien = false;
-
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
   public void initialize() {
@@ -109,7 +107,7 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
-    translatingLabel.setText("Translating ...");
+    translatingLabel.setText("Translating...");
     inputText.setVisible(false);
     sendButton.setDisable(true);
 
