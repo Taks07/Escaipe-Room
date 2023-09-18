@@ -11,13 +11,23 @@
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom4MinigameController">
-   <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="360.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+   <ImageView fitHeight="506.0" fitWidth="840.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/minigames/room4minigame.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0" pickOnBounds="true">
+      <image>
+         <Image url="@../images/rooms/border.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="360.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
-   <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="221.0" layoutY="53.0" prefHeight="300.0" prefWidth="400.0">
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="412.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
+   <GridPane alignment="CENTER" layoutX="171.0" layoutY="42.0" prefHeight="339.0" prefWidth="491.0">
      <columnConstraints>
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="60.0" />
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="60.0" />
@@ -25,11 +35,59 @@
          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="60.0" />
      </columnConstraints>
      <rowConstraints>
-       <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
-       <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
-       <RowConstraints minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
+       <RowConstraints maxHeight="126.66665649414062" minHeight="94.00000254313153" prefHeight="94.66665903727215" valignment="CENTER" vgrow="SOMETIMES" />
+       <RowConstraints maxHeight="172.66666412353516" minHeight="73.33334350585938" prefHeight="117.99997965494792" valignment="CENTER" vgrow="SOMETIMES" />
+       <RowConstraints maxHeight="218.66664123535156" minHeight="34.00004577636719" prefHeight="106.33335367838544" valignment="CENTER" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
+         <ImageView fx:id="image00" fitHeight="105.0" fitWidth="112.0">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image10" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="1">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image20" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="2">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image30" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="3">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image01" fitHeight="105.0" fitWidth="112.0" GridPane.rowIndex="1">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image11" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image21" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image31" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image02" fitHeight="105.0" fitWidth="112.0" GridPane.rowIndex="2">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image12" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image22" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
+         <ImageView fx:id="image32" fitHeight="105.0" fitWidth="112.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <image>
+               <Image url="@../images/minigames/card.png" />
+            </image></ImageView>
          <Button fx:id="button00" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
             <font>
                <Font size="38.0" />
@@ -45,9 +103,9 @@
                <Font size="38.0" />
             </font>
          </Button>
-         <Button fx:id="button30" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3">
+         <Button fx:id="button30" mnemonicParsing="false" onAction="#clickButton" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3">
             <font>
-               <Font size="38.0" />
+               <Font size="64.0" />
             </font>
          </Button>
          <Button fx:id="button01" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
@@ -90,18 +148,6 @@
                <Font size="38.0" />
             </font>
          </Button>
-         <ImageView fx:id="image00" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" />
-         <ImageView fx:id="image10" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="1" />
-         <ImageView fx:id="image20" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="2" />
-         <ImageView fx:id="image30" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="3" />
-         <ImageView fx:id="image01" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.rowIndex="1" />
-         <ImageView fx:id="image11" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <ImageView fx:id="image21" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <ImageView fx:id="image31" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         <ImageView fx:id="image02" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.rowIndex="2" />
-         <ImageView fx:id="image12" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <ImageView fx:id="image22" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-         <ImageView fx:id="image32" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
       </children>
    </GridPane>
 </Pane>
