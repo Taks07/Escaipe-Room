@@ -51,6 +51,9 @@ public class GameState {
   /** Rooms in current game */
   public static ArrayList<String> currRooms = new ArrayList<String>();
 
+  /** Whether or not minigame was solved in each room */
+  public static ArrayList<Boolean> minigameSolved = new ArrayList<Boolean>();
+
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
@@ -329,6 +332,20 @@ public class GameState {
     }
   }
 
+  /**
+   * Check whether minigame in current room has been solved
+   *
+   * @return true if minigame has been solved, false otherwise
+   */
+  public static boolean getMinigameSolved() {
+    return minigameSolved.get(currRoom);
+  }
+
+  /** Sets the minigame in the current room as solved */
+  public static void setMinigameSolved() {
+    minigameSolved.set(currRoom, true);
+  }
+
   /** Sets the time limit for the game */
   public static void setTimeLimit(int minutes) {
     timeLimit = minutes * 60;
@@ -353,6 +370,13 @@ public class GameState {
     hintsCounter = 0;
     partsFound = 0;
     currRoom = 0;
+
+    // Reset minigameSolved
+    minigameSolved.clear();
+    for (int i = 0; i < 3; i++) {
+      minigameSolved.add(false);
+    }
+
     currRooms.clear();
     currRooms.add("mainroom");
     roomChatCompletionRequests.clear();

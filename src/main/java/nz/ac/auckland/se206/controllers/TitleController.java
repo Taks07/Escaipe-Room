@@ -61,9 +61,9 @@ public class TitleController extends RoomController {
   }
 
   public void startGame(MouseEvent event) throws IOException {
+    GameState.resetGameState();
     setDifficultyAndTimeLimit();
     GameTimer.startTimer();
-    GameState.resetGameState();
     GameState.setRandomRooms();
     GameState.setRandomCurrRiddleAnswer();
 
