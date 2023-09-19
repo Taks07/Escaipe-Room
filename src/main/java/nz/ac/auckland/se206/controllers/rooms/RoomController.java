@@ -119,7 +119,10 @@ public abstract class RoomController {
    * @param event the mouse event
    */
   @FXML
-  private void clickMinigame(MouseEvent event) {
+  protected void clickMinigame(MouseEvent event) {
+    // Stop background animation
+    backgroundThread.interrupt();
+
     // Check if minigame has been solved
     if (GameState.getMinigameSolved()) {
       return;

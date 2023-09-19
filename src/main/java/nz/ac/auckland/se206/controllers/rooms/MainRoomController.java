@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
@@ -34,7 +33,7 @@ public class MainRoomController extends RoomController {
   @FXML
   private void clickRocket(MouseEvent event) throws IOException {
     if (GameState.partsFound == 3) {
-      App.endGame();
+      clickMinigame(event);
     } else {
       clickObject(event);
     }
