@@ -52,6 +52,7 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
+
     if (GameState.isRiddleAnswerCorrect(objectID)) {
       // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
