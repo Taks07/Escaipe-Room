@@ -263,7 +263,9 @@ public class GameState {
           new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
 
       // Provide context to ai
-      String context = GptPromptEngineering.alienContext(currRooms.get(i));
+      String context = GptPromptEngineering.getAlienContext(currRooms.get(i));
+
+      System.out.println(context);
 
       ChatMessage msg = new ChatMessage("system", context);
       chatCompletionRequest.addMessage(msg);

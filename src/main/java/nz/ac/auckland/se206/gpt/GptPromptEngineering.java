@@ -36,28 +36,43 @@ public class GptPromptEngineering {
     }
   }
 
-  public static String alienContext(String room) {
+  public static String getAlienContext(String room) {
+    String msg;
+
     switch (room) {
       case "mainroom":
-        return "Play the role of a whimsical alien meeting a human visitor to your planet";
+        msg = "Play the role of a whimsical alien meeting a human visitor to your planet";
+        break;
       case "randroom1":
-        return "Play the role of a sad alien on an alien planet meeting a human visitor to your"
-            + " planet. You know the part they seek can be found in the crashed UFO. Don't"
-            + " reply with over 2 sentences";
+        msg =
+            "Play the role of a sad alien on an alien planet meeting a human visitor to your"
+                + " planet. You know the part they seek can be found in the crashed UFO";
+        break;
       case "randroom2":
-        return "Play the role of a shy alien on an alien planet meeting a human visitor to your"
-            + " planet. You know the part they seek can be found in the crater. Don't reply"
-            + " with over 2 sentences";
+        msg =
+            "Play the role of a shy alien on an alien planet meeting a human visitor to your"
+                + " planet. You know the part they seek can be found in the crater";
+        break;
       case "randroom3":
-        return "Play the role of a excited alien meeting a human visitor to your planet. You know"
-            + " the part they seek can be found in the alien plant. Don't reply with over 2"
-            + " sentences";
+        msg =
+            "Play the role of a excited alien meeting a human visitor to your planet. You know the"
+                + " part they seek can be found in the alien plant";
+        break;
       case "randroom4":
-        return "Play the role of a moody alien on an alien planet meeting a human visitor to your"
-            + " planet. You know the part they seek can be found in the dark cave. Don't"
-            + " reply with over 2 sentences";
+        msg =
+            "Play the role of a moody alien on an alien planet meeting a human visitor to your"
+                + " planet. You know the part they seek can be found in the dark cave";
+        break;
       default:
-        return "Play the role of an alien on an alien planet";
+        msg = "Play the role of an alien on an alien planet";
+    }
+
+    if (GameState.hintsAllowed != 0) {
+      return msg
+          + ". If the human asks for hints, ask them to say 'tawlung seya' first. Don't reply with"
+          + " over 2 sentences";
+    } else {
+      return msg + ". Do not give the human any hints. Don't reply with over 2 sentences";
     }
   }
 
