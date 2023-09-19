@@ -66,7 +66,17 @@ public class RandRoom3MinigameController extends MinigameController {
       } else {
         bottomTeeth[i].setImage(largeToothImage);
       }
-      topTeeth[i].setImage(smallToothImage);
+    }
+
+    for (int i = 0; i < 10; i++) {
+      int newNum = random.nextInt(3);
+      if (newNum == 0) {
+        topTeeth[i].setImage(smallToothImage);
+      } else if (newNum == 1) {
+        topTeeth[i].setImage(mediumToothImage);
+      } else {
+        topTeeth[i].setImage(largeToothImage);
+      }
     }
   }
 
