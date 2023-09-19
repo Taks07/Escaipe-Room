@@ -69,10 +69,12 @@ public class GptPromptEngineering {
 
     if (GameState.hintsAllowed != 0) {
       return msg
-          + ". If the human asks for hints, ask them to say 'tawlung seya' first. Don't reply with"
-          + " over 2 sentences";
+          + ". If the human asks for hints, ask them to say 'tawlung seya' first. You can tell them"
+          + " where the part is. Don't reply with over 2 sentences";
     } else {
-      return msg + ". Do not give the human any hints. Don't reply with over 2 sentences";
+      return msg
+          + ". Do not give the human any hints. You can tell them where the part is. Don't reply"
+          + " with over 2 sentences";
     }
   }
 
@@ -83,15 +85,17 @@ public class GptPromptEngineering {
       case "mainroom":
         return "";
       case "randroom1":
-        return "Say that the part they seek"
+        return "Say that the part the human seeks"
             + " can be found in the crashed UFO. Respond in 30 words";
       case "randroom2":
-        return "Say that the part they seek" + " can be found in the crater. Respond in 30 words";
+        return "Say that the part the human seeks"
+            + " can be found in the crater. Respond in 30 words";
       case "randroom3":
-        return "Say that the part they"
-            + " seek can be found in the alien plant. Respond in 30 words";
+        return "Say that the part the human"
+            + " seeks can be found in the alien plant. Respond in 30 words";
       case "randroom4":
-        return "Say that the part they seek" + " can be found in the cave. Respond in 30 words";
+        return "Say that the part the human seeks"
+            + " can be found in the cave. Respond in 30 words";
       default:
         return "You are an alien. Welcome the human";
     }
