@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 public class RandRoom3MinigameController extends MinigameController {
 
+  @FXML private ImageView[] topTeeth;
   @FXML private ImageView[] bottomTeeth;
 
   @FXML private ImageView teeth1;
@@ -41,8 +42,13 @@ public class RandRoom3MinigameController extends MinigameController {
   private Image mediumToothImage;
   private Image largeToothImage;
   private Random random = new Random();
+  private boolean hasPlayerWon = false;
 
   public void initialize() {
+    topTeeth =
+        new ImageView[] {
+          teeth1, teeth2, teeth3, teeth4, teeth5, teeth6, teeth7, teeth8, teeth9, teeth10
+        };
     bottomTeeth =
         new ImageView[] {
           teeth11, teeth12, teeth13, teeth14, teeth15, teeth16, teeth17, teeth18, teeth19, teeth20
@@ -60,11 +66,17 @@ public class RandRoom3MinigameController extends MinigameController {
       } else {
         bottomTeeth[i].setImage(largeToothImage);
       }
+      topTeeth[i].setImage(smallToothImage);
     }
   }
 
   @FXML
   public void clickTeeth(MouseEvent event) {
+    if (hasPlayerWon) {
+      System.out.println("You have won!");
+      return;
+    }
+
     ImageView clickedTooth = (ImageView) event.getSource();
 
     ToothSize currentState = ToothSize.SMALL;
@@ -103,5 +115,19 @@ public class RandRoom3MinigameController extends MinigameController {
       default:
         break;
     }
+
+    if (areAllTeethMatching()) {
+      hasPlayerWon = true;
+      System.out.println("You have won!");
+    }
+  }
+
+  private boolean areAllTeethMatching() {
+    for (int i = 0; i < bottomTeeth.length; i++) {
+      if (bottomTeeth[i].getImage() != topTeeth[i].getImage()) {
+        return false;
+      }
+    }
+    return true;
   }
 }
