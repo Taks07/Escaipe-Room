@@ -306,28 +306,6 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  /** Get name of previous room */
-  public static String getPrevRoom() {
-    int temp = currRoom - 1;
-
-    if (temp < 0) {
-      temp += currRooms.size();
-    }
-
-    return currRooms.get(temp);
-  }
-
-  /** Get name of next room */
-  public static String getNextRoom() {
-    int temp = currRoom + 1;
-
-    if (temp == currRooms.size()) {
-      temp -= currRooms.size();
-    }
-
-    return currRooms.get(temp);
-  }
-
   /** Increment the parts found, and update label in chat controller */
   public static void incrementPartsFound() {
     partsFound++;

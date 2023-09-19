@@ -37,6 +37,21 @@ public class MainRoomController extends RoomController {
   }
 
   @FXML
+  protected void hoverAlien(MouseEvent event) {
+    actionLabel.setText("Ask for riddle");
+  }
+
+  @FXML
+  private void hoverRocket(MouseEvent event) {
+    hoverObject(event);
+    if (GameState.partsFound == 3) {
+      actionLabel.setText("Begin synchronising communication systems for launch");
+    } else {
+      actionLabel.setText("Look at rocket");
+    }
+  }
+
+  @FXML
   private void clickRocket(MouseEvent event) throws IOException {
     if (GameState.partsFound == 3) {
       clickMinigame(event);
