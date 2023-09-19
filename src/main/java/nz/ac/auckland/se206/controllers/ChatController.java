@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -31,6 +33,7 @@ public class ChatController {
   @FXML private Label translatingLabel;
   @FXML private Label hintLabel;
   @FXML private Label partsLabel;
+  @FXML private ImageView alienHeadImage;
 
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
@@ -56,7 +59,13 @@ public class ChatController {
     setHintCounter();
     setPartsCounter(0);
 
+    setAlienHeadImage(new Image("/images/alien.png"));
+
     isTranslating = false;
+  }
+
+  public void setAlienHeadImage(Image image) {
+    alienHeadImage.setImage(image);
   }
 
   public void setPartsCounter(int parts) {
@@ -213,6 +222,9 @@ public class ChatController {
       return;
     }
     inputText.clear();
+
+    // Set alien head to the one that is speaking
+    GameState.setAlienHead();
 
     ChatMessage msg;
 

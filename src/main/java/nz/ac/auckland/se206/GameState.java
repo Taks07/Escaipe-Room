@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.image.Image;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -67,6 +68,18 @@ public class GameState {
 
   /** The number of parts found */
   public static int partsFound;
+
+  /** The hashmap of alien heads */
+  public static final HashMap<String, String> alienHeads =
+      new HashMap<String, String>() {
+        {
+          put("mainroom", "alien.png");
+          put("randroom1", "alien1.png");
+          put("randroom2", "alien.png");
+          put("randroom3", "alien2.png");
+          put("randroom4", "alien4.png");
+        }
+      };
 
   static {
     // Read random rooms and their riddle answers from file
@@ -169,6 +182,12 @@ public class GameState {
             + ". Do not say the word "
             + currRiddleAnswer;
     }
+  }
+
+  /** Sets the alien head image in the chat controller */
+  public static void setAlienHead() {
+    Image alienImage = new Image("/images/" + alienHeads.get(currRooms.get(currRoom)));
+    chatController.setAlienHeadImage(alienImage);
   }
 
   /** Gets AI to say some flavour text */
@@ -307,6 +326,7 @@ public class GameState {
     return currRooms.get(temp);
   }
 
+  /** Increment the parts found, and update label in chat controller */
   public static void incrementPartsFound() {
     partsFound++;
     chatController.setPartsCounter(partsFound);
