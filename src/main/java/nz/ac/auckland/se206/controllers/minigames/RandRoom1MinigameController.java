@@ -146,7 +146,6 @@ public class RandRoom1MinigameController extends MinigameController {
               setAllButtonsGreen();
 
               System.out.println("You win!");
-              // TODO: if you win, change back to the randroom1controller
             } else {
               unclickButton(image);
               startNewRound();

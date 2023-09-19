@@ -68,11 +68,7 @@ public abstract class RoomController {
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
 
-    // TESTING randroomminigames
-    // String fxmlPath = "randroomminigame" + 1;
-    // GameState.switchRoom(fxmlPath);
-
-    // TODO: If the correct object is clicked, go to the room's minigame
+    // // TESTING randroomminigames
 
     if (GameState.isRiddleAnswerCorrect(objectID)) {
 

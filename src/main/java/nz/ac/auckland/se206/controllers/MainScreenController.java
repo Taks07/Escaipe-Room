@@ -18,8 +18,9 @@ public class MainScreenController extends TitleController {
     backgroundThread.interrupt();
     rocketThread.interrupt();
 
+    // set to title
     try {
-      App.setRoot("title");
+      App.setRoot("randroom3minigame");
     } catch (IOException e) {
       e.printStackTrace();
     }
