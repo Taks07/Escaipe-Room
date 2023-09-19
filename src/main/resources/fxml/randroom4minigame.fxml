@@ -103,9 +103,9 @@
                <Font size="38.0" />
             </font>
          </Button>
-         <Button fx:id="button30" mnemonicParsing="false" onAction="#clickButton" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3">
+         <Button fx:id="button30" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3">
             <font>
-               <Font size="64.0" />
+               <Font size="38.0" />
             </font>
          </Button>
          <Button fx:id="button01" mnemonicParsing="false" onAction="#clickButton" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
