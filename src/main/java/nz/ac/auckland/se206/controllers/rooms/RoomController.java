@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,21 +27,6 @@ public abstract class RoomController {
   @FXML
   private void initialize() {
     animate();
-  }
-
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  protected void showDialogBox(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
   }
 
   /**
@@ -85,7 +69,7 @@ public abstract class RoomController {
    * @param event the mouse event
    */
   @FXML
-  private void hoverObject(MouseEvent event) {
+  protected void hoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
     String objectID = object.getId();
 
@@ -93,7 +77,7 @@ public abstract class RoomController {
     ImageView image = (ImageView) scene.lookup("#" + objectID);
     image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
 
-    actionLabel.setText(":D");
+    actionLabel.setText("Search object");
   }
 
   /**
@@ -102,7 +86,7 @@ public abstract class RoomController {
    * @param event the mouse event
    */
   @FXML
-  private void unhoverObject(MouseEvent event) {
+  protected void unhoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
     String objectID = object.getId();
 
@@ -168,7 +152,7 @@ public abstract class RoomController {
   @FXML
   private void hoverArrow1(MouseEvent event) {
     arrow1.setOpacity(1);
-    actionLabel.setText("Go to " + GameState.getPrevRoom());
+    actionLabel.setText("Go to previous room");
   }
 
   /**
@@ -179,7 +163,17 @@ public abstract class RoomController {
   @FXML
   private void hoverArrow2(MouseEvent event) {
     arrow2.setOpacity(1);
-    actionLabel.setText("Go to " + GameState.getNextRoom());
+    actionLabel.setText("Go to next room");
+  }
+
+  @FXML
+  protected void hoverAlien(MouseEvent event) {
+    actionLabel.setText("Talk to alien");
+  }
+
+  @FXML
+  protected void unhoverAlien(MouseEvent event) {
+    actionLabel.setText("");
   }
 
   /**

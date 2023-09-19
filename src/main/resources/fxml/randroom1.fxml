@@ -54,11 +54,6 @@
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <Label fx:id="actionLabel" layoutX="24.0" prefHeight="20.0" prefWidth="209.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/arrow2.png" />
@@ -73,10 +68,15 @@
       <Rectangle id="rocks" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="179.0" layoutX="66.0" layoutY="203.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="154.0" />
       <Rectangle id="tire" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="78.0" layoutX="77.0" layoutY="365.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="101.0" />
       <Rectangle id="helmet" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="63.0" layoutX="283.0" layoutY="358.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle id="ufo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="178.0" layoutX="522.0" layoutY="169.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickMinigame" opacity="0.0" rotate="-48.8" stroke="BLACK" strokeType="INSIDE" width="284.0" />
+      <Rectangle id="ufo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="178.0" layoutX="522.0" layoutY="169.0" onMouseEntered="#hoverUfo" onMouseExited="#unhoverAlien" onMousePressed="#clickMinigame" opacity="0.0" rotate="-48.8" stroke="BLACK" strokeType="INSIDE" width="284.0" />
       <Rectangle id="boot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="595.0" layoutY="398.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="51.0" />
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="43.0" layoutX="48.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
       <Rectangle id="solar_panel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="123.0" layoutX="157.0" layoutY="264.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" rotate="-32.9" stroke="BLACK" strokeType="INSIDE" width="218.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="258.0" layoutX="160.0" layoutY="207.0" onMouseClicked="#clickAlien1" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="258.0" layoutX="160.0" layoutY="207.0" onMouseClicked="#clickAlien1" onMouseEntered="#hoverAlien" onMouseExited="#unhoverAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+      <Label fx:id="actionLabel" alignment="CENTER" layoutX="162.0" layoutY="45.0" prefHeight="25.0" prefWidth="560.0" textFill="#ff6100">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
