@@ -17,6 +17,7 @@ public class RandRoom3Controller extends RoomController {
   // TODO: ADD CLICKABLE FOR MINIGAME IN THIS ROOM
   @FXML
   private void clickAlien3(MouseEvent event) {
+    GameState.setAlienHead();
     GameState.askGPT(GptPromptEngineering.introduction());
   }
 }

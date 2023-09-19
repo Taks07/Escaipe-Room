@@ -59,7 +59,7 @@ public class ChatController {
     setHintCounter();
     setPartsCounter(0);
 
-    setAlienHeadImage(new Image("/images/alien.png"));
+    setAlienHeadImage(new Image("/images/chatroom/alien.png"));
 
     isTranslating = false;
   }

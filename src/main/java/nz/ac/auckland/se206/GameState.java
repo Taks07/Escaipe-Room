@@ -186,7 +186,7 @@ public class GameState {
 
   /** Sets the alien head image in the chat controller */
   public static void setAlienHead() {
-    Image alienImage = new Image("/images/" + alienHeads.get(currRooms.get(currRoom)));
+    Image alienImage = new Image("/images/chatroom/" + alienHeads.get(currRooms.get(currRoom)));
     chatController.setAlienHeadImage(alienImage);
   }
 

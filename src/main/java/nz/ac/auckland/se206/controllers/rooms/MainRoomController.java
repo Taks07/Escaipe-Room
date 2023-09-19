@@ -26,6 +26,7 @@ public class MainRoomController extends RoomController {
    */
   @FXML
   private void clickAlien(MouseEvent event) throws IOException {
+    GameState.setAlienHead();
     // Check if the riddle has been asked
     if (GameState.currRiddle != null) {
       showDialog("Here is the riddle again:\n" + GameState.currRiddle);
