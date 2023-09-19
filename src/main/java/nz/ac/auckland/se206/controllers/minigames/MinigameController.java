@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.GameState;
 public abstract class MinigameController {
   @FXML
   public void clickBackArrow(MouseEvent event) {
+    GameState.inMinigame = false;
     GameState.switchRoom(GameState.currRooms.get(GameState.getCurrRoom()));
   }
 
@@ -35,6 +36,7 @@ public abstract class MinigameController {
   }
 
   protected void endGame() {
+    GameState.inMinigame = false;
     GameState.incrementPartsFound();
     GameState.setMinigameSolved();
     GameState.switchRoom(GameState.currRooms.get(GameState.getCurrRoom()));

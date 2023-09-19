@@ -128,6 +128,7 @@ public abstract class RoomController {
       return;
     }
     backgroundThread.interrupt();
+    GameState.inMinigame = true;
     String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
     GameState.switchRoom(fxmlPath);
   }

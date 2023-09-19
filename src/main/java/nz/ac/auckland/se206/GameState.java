@@ -69,6 +69,9 @@ public class GameState {
   /** The number of parts found */
   public static int partsFound;
 
+  /** Whether or not user is in a minigame */
+  public static boolean inMinigame;
+
   /** The hashmap of alien heads */
   public static final HashMap<String, String> alienHeads =
       new HashMap<String, String>() {
@@ -159,6 +162,11 @@ public class GameState {
   /** Returns a hint prompt depending on game state */
   public static String getHint() {
     String roomName = currRooms.get(currRoom);
+
+    // User has all parts
+    if (partsFound == 3) {
+      return "Ask user to go to the rocket";
+    }
 
     // Tell user to talk to alien by rocket to get a riddle
     if (currRiddle == null) {
@@ -379,6 +387,7 @@ public class GameState {
     isObjectFound = false;
     currRiddle = null;
     gameWon = true;
+    inMinigame = false;
     hintsCounter = 0;
     partsFound = 0;
     currRoom = 0;
