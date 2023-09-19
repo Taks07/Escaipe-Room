@@ -35,7 +35,7 @@ public abstract class MinigameController {
   }
 
   protected void endGame() {
-    GameState.partsFound++;
+    GameState.incrementPartsFound();
     GameState.setMinigameSolved();
     GameState.switchRoom(GameState.currRooms.get(GameState.getCurrRoom()));
   }

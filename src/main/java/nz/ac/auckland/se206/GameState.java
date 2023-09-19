@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.image.Image;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -40,11 +41,6 @@ public class GameState {
   /** The current riddle */
   public static String currRiddle;
 
-  /** The current door code */
-  public static String doorCode;
-
-  public static boolean isDoorCodeEntered = false;
-
   /** The randomised rooms from text file */
   public static ArrayList<String> randomRooms = new ArrayList<String>();
 
@@ -72,6 +68,18 @@ public class GameState {
 
   /** The number of parts found */
   public static int partsFound;
+
+  /** The hashmap of alien heads */
+  public static final HashMap<String, String> alienHeads =
+      new HashMap<String, String>() {
+        {
+          put("mainroom", "alien.png");
+          put("randroom1", "alien1.png");
+          put("randroom2", "alien.png");
+          put("randroom3", "alien2.png");
+          put("randroom4", "alien4.png");
+        }
+      };
 
   static {
     // Read random rooms and their riddle answers from file
@@ -148,15 +156,6 @@ public class GameState {
     chatController.askGPT(request);
   }
 
-  public static void createDoorCode() {
-    // Generate a random 4 digit code
-    doorCode = "";
-
-    for (int i = 0; i < 4; i++) {
-      doorCode += (int) (Math.random() * 10);
-    }
-  }
-
   /** Returns a hint prompt depending on game state */
   public static String getHint() {
     String roomName = currRooms.get(currRoom);
@@ -183,6 +182,12 @@ public class GameState {
             + ". Do not say the word "
             + currRiddleAnswer;
     }
+  }
+
+  /** Sets the alien head image in the chat controller */
+  public static void setAlienHead() {
+    Image alienImage = new Image("/images/" + alienHeads.get(currRooms.get(currRoom)));
+    chatController.setAlienHeadImage(alienImage);
   }
 
   /** Gets AI to say some flavour text */
@@ -258,7 +263,9 @@ public class GameState {
           new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
 
       // Provide context to ai
-      String context = GptPromptEngineering.alienContext(currRooms.get(i));
+      String context = GptPromptEngineering.getAlienContext(currRooms.get(i));
+
+      System.out.println(context);
 
       ChatMessage msg = new ChatMessage("system", context);
       chatCompletionRequest.addMessage(msg);
@@ -321,6 +328,12 @@ public class GameState {
     return currRooms.get(temp);
   }
 
+  /** Increment the parts found, and update label in chat controller */
+  public static void incrementPartsFound() {
+    partsFound++;
+    chatController.setPartsCounter(partsFound);
+  }
+
   /** Sets the number of hints allowed for the game */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
@@ -366,7 +379,6 @@ public class GameState {
     isObjectFound = false;
     currRiddle = null;
     gameWon = true;
-    isDoorCodeEntered = false;
     hintsCounter = 0;
     partsFound = 0;
     currRoom = 0;

@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -30,6 +32,8 @@ public class ChatController {
   @FXML private Button sendButton;
   @FXML private Label translatingLabel;
   @FXML private Label hintLabel;
+  @FXML private Label partsLabel;
+  @FXML private ImageView alienHeadImage;
 
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
@@ -53,8 +57,19 @@ public class ChatController {
         "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
 
     setHintCounter();
+    setPartsCounter(0);
+
+    setAlienHeadImage(new Image("/images/alien.png"));
 
     isTranslating = false;
+  }
+
+  public void setAlienHeadImage(Image image) {
+    alienHeadImage.setImage(image);
+  }
+
+  public void setPartsCounter(int parts) {
+    partsLabel.setText("Parts Found: " + parts + "/3");
   }
 
   public void setHintCounter() {
@@ -207,6 +222,9 @@ public class ChatController {
       return;
     }
     inputText.clear();
+
+    // Set alien head to the one that is speaking
+    GameState.setAlienHead();
 
     ChatMessage msg;
 

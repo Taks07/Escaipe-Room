@@ -71,7 +71,7 @@ public abstract class RoomController {
     if (GameState.isRiddleAnswerCorrect(objectID)) {
       // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
-      GameState.partsFound++;
+      GameState.incrementPartsFound();
       GameState.isObjectFound = true;
     } else {
       // Not the correct object. Provide some flavour text.
