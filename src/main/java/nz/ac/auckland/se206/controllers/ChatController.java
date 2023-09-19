@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -30,6 +32,8 @@ public class ChatController {
   @FXML private Button sendButton;
   @FXML private Label translatingLabel;
   @FXML private Label hintLabel;
+  @FXML private Label partsLabel;
+  @FXML private ImageView alienHeadImage;
 
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
@@ -38,8 +42,6 @@ public class ChatController {
   private String randomSigns;
   private TimerTask alienTextTask;
   private boolean isTranslating;
-
-  // private boolean isChattingWithAlien = false;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -55,18 +57,29 @@ public class ChatController {
         "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
 
     setHintCounter();
+    setPartsCounter(0);
+
+    setAlienHeadImage(new Image("/images/chatroom/alien.png"));
 
     isTranslating = false;
+  }
+
+  public void setAlienHeadImage(Image image) {
+    alienHeadImage.setImage(image);
+  }
+
+  public void setPartsCounter(int parts) {
+    partsLabel.setText("Parts Found: " + parts + "/3");
   }
 
   public void setHintCounter() {
     // Set hint counter
     if (GameState.hintsAllowed > 5) {
-      hintLabel.setText("Hints Left: Unlimited");
+      hintLabel.setText("Unlimited");
     } else if (GameState.hintsAllowed == 0) {
-      hintLabel.setText("Hints Left: None");
+      hintLabel.setText("None");
     } else {
-      hintLabel.setText("Hints Left: 5");
+      hintLabel.setText("5");
     }
   }
 
@@ -109,7 +122,8 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
-    translatingLabel.setText("Processing...");
+    translatingLabel.setText("Translating...");
+    inputText.setVisible(false);
     sendButton.setDisable(true);
 
     Timer myTimer = new Timer();
@@ -209,6 +223,9 @@ public class ChatController {
     }
     inputText.clear();
 
+    // Set alien head to the one that is speaking
+    GameState.setAlienHead();
+
     ChatMessage msg;
 
     if (message.contains("tawlung seya")) {
@@ -222,7 +239,7 @@ public class ChatController {
         message = GameState.getHint();
 
         if (GameState.hintsAllowed == 5) {
-          hintLabel.setText("Hints Left: " + (5 - GameState.hintsCounter));
+          hintLabel.setText("" + (5 - GameState.hintsCounter));
         }
       } else {
         // No hints avaialble
@@ -293,27 +310,8 @@ public class ChatController {
                 }
               }
               translatingLabel.setOpacity(0);
+              inputText.setVisible(true);
             })
         .start();
   }
-
-  // @FXML
-  // /*  TODO: This doesn't work when you switch rooms. */
-  // public void chatWithAlien(ActionEvent event) {
-  //   if (isChattingWithAlien) {
-  //     chatTextArea.setVisible(false);
-  //     inputText.setVisible(false);
-  //     sendButton.setVisible(false);
-  //     chatwithalien.setText("Chat with Alien");
-  //     isChattingWithAlien = false;
-  //     return;
-  //   } else {
-  //     chatTextArea.setVisible(true);
-  //     inputText.setVisible(true);
-  //     sendButton.setVisible(true);
-  //     chatwithalien.setText("Stop Chatting");
-  //     isChattingWithAlien = true;
-  //     return;
-  //   }
-  // }
 }

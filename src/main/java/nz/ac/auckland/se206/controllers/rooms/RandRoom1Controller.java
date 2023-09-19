@@ -17,6 +17,16 @@ public class RandRoom1Controller extends RoomController {
 
   @FXML
   private void clickAlien1(MouseEvent event) {
+    GameState.setAlienHead();
     GameState.askGPT(GptPromptEngineering.introduction());
+  }
+
+  @FXML
+  private void hoverUfo(MouseEvent event) {
+    if (GameState.getMinigameSolved()) {
+      actionLabel.setText("Part already found!");
+      return;
+    }
+    actionLabel.setText("Try to unlock UFO storage for part");
   }
 }

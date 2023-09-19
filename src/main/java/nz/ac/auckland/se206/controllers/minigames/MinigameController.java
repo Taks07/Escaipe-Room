@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.GameState;
 public abstract class MinigameController {
   @FXML
   public void clickBackArrow(MouseEvent event) {
+    GameState.inMinigame = false;
     GameState.switchRoom(GameState.currRooms.get(GameState.getCurrRoom()));
   }
 
@@ -32,5 +33,12 @@ public abstract class MinigameController {
     Scene scene = object.getScene();
     ImageView image = (ImageView) scene.lookup("#" + objectID);
     image.setImage(new Image("/images/objects/" + objectID + ".png"));
+  }
+
+  protected void endGame() {
+    GameState.inMinigame = false;
+    GameState.incrementPartsFound();
+    GameState.setMinigameSolved();
+    GameState.switchRoom(GameState.currRooms.get(GameState.getCurrRoom()));
   }
 }

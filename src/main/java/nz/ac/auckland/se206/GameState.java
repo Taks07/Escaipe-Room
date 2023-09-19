@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.image.Image;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -40,20 +41,19 @@ public class GameState {
   /** The current riddle */
   public static String currRiddle;
 
-  /** The current door code */
-  public static String doorCode;
-
-  public static boolean isDoorCodeEntered = false;
-
   /** The randomised rooms from text file */
   public static ArrayList<String> randomRooms = new ArrayList<String>();
 
   /** Rooms in current game */
   public static ArrayList<String> currRooms = new ArrayList<String>();
 
+  /** Whether or not minigame was solved in each room */
+  public static ArrayList<Boolean> minigameSolved = new ArrayList<Boolean>();
+
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
+  /** The chat completion requests for each room */
   public static ArrayList<ChatCompletionRequest> roomChatCompletionRequests =
       new ArrayList<ChatCompletionRequest>();
 
@@ -65,6 +65,24 @@ public class GameState {
 
   /** The time limit for the game */
   public static int timeLimit;
+
+  /** The number of parts found */
+  public static int partsFound;
+
+  /** Whether or not user is in a minigame */
+  public static boolean inMinigame;
+
+  /** The hashmap of alien heads */
+  public static final HashMap<String, String> alienHeads =
+      new HashMap<String, String>() {
+        {
+          put("mainroom", "alien.png");
+          put("randroom1", "alien1.png");
+          put("randroom2", "alien.png");
+          put("randroom3", "alien2.png");
+          put("randroom4", "alien4.png");
+        }
+      };
 
   static {
     // Read random rooms and their riddle answers from file
@@ -114,6 +132,11 @@ public class GameState {
     gameController = controller;
   }
 
+  /**
+   * Switches the room.
+   *
+   * @param room the room to switch to
+   */
   public static void switchRoom(String room) {
     gameController.switchRoom(room);
   }
@@ -136,17 +159,24 @@ public class GameState {
     chatController.askGPT(request);
   }
 
-  public static void createDoorCode() {
-    // Generate a random 4 digit code
-    doorCode = "";
-
-    for (int i = 0; i < 4; i++) {
-      doorCode += (int) (Math.random() * 10);
-    }
-  }
-
+  /** Returns a hint prompt depending on game state */
   public static String getHint() {
     String roomName = currRooms.get(currRoom);
+    String hint;
+
+    // User has all parts
+    if (partsFound == 3) {
+      if (inMinigame) {
+        // User in rocket minigame
+        return "Tell the user to use the slider on the right to change amplitude and the slider at"
+            + " the bottom to change frequency of the sine wave so that the 2 waves match."
+            + " Explain how amplitude affects height and frequency affects how close the"
+            + " waves are within 40 words";
+      } else {
+        // User in one of the rooms
+        return "Ask user to go to the rocket";
+      }
+    }
 
     // Tell user to talk to alien by rocket to get a riddle
     if (currRiddle == null) {
@@ -157,25 +187,71 @@ public class GameState {
       }
     }
 
-    // As more puzzles are added, add more cases to provide context for hints
-    switch (roomName) {
-      case "mainroom":
-        return "Give a short hint for a riddle with the answer "
-            + currRiddleAnswer
-            + ". Do not say the word "
-            + currRiddleAnswer;
-      default:
-        return "Give a short hint for a riddle with the answer "
-            + currRiddleAnswer
-            + ". Do not say the word "
-            + currRiddleAnswer;
+    // Think about improving the hint system by actually giving the state of the minigame
+    if (inMinigame) {
+      // User is doing a minigame
+      switch (roomName) {
+        case "randroom1":
+          return "Tell the user to click the flashing yellow lights in the shown order to unlock"
+              + " the UFO's storage. Recommend writing down the order if it is too hard to"
+              + " remember. Respond in 30 words";
+        case "randroom3":
+          return "Tell the user to click on each tooth of the plant's top row of teeth so that they"
+              + " match the bottom row. Give a recommendation on how to solve this if this"
+              + " is too hard to do. Respond in 30 words";
+        case "randroom4":
+          return "Tell the user to match up all the pairs of symbols by clicking on a tile to"
+              + " reveal a symbol. Then, give one of the following recommendations: only"
+              + " match 1 symbol at a time or reveal all the tiles first, or write things"
+              + " down if the user finds it too hard. Respond in 30 words";
+        default:
+          return "Tell the user to talk to aliens";
+      }
+    } else {
+      // User in one of the rooms, and not a minigame
+      switch (roomName) {
+        case "mainroom":
+          return "Give a short hint for a riddle with the answer "
+              + currRiddleAnswer
+              + ". Do not say the word "
+              + currRiddleAnswer;
+        case "randroom1":
+          hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
+          break;
+        case "randroom2":
+          hint = "Tell the user the part is in the crater. Respond in 20 words";
+          break;
+        case "randroom3":
+          hint = "Tell the user the part is in the alien plant. Respond in 20 words";
+          break;
+        case "randroom4":
+          hint = "Tell the user the part is in the dark cave. Respond in 20 words";
+          break;
+        default:
+          hint = "Tell the user to talk to aliens";
+      }
+      if (GameState.getMinigameSolved()) {
+        // Minigame in room has been solved, so ask user to go to another room
+        return "Tell the user to try approaching fellow aliens in each room for an idea of"
+            + " where the parts are. Respond in 20 words";
+      } else {
+        return hint;
+      }
     }
   }
 
+  /** Sets the alien head image in the chat controller */
+  public static void setAlienHead() {
+    Image alienImage = new Image("/images/chatroom/" + alienHeads.get(currRooms.get(currRoom)));
+    chatController.setAlienHeadImage(alienImage);
+  }
+
+  /** Gets AI to say some flavour text */
   public static void sayFlavourText(String object) {
     chatController.sayFlavourText(object);
   }
 
+  /** Puts message into chatbox */
   public static void showChatMessage(ChatMessage chat) {
     chatController.appendChatMessage(chat.getContent());
   }
@@ -214,10 +290,16 @@ public class GameState {
     }
   }
 
+  /**
+   * Returns the current riddle answer.
+   *
+   * @return the current riddle answer
+   */
   public static String getCurrRiddleAnswer() {
     return currRiddleAnswer;
   }
 
+  /** Chooses 2 random rooms from the pool of 4 */
   public static void setRandomRooms() {
     Random rand = new Random();
     ArrayList<String> randomRoomsCopy = (ArrayList<String>) randomRooms.clone();
@@ -237,7 +319,9 @@ public class GameState {
           new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
 
       // Provide context to ai
-      String context = GptPromptEngineering.alienContext(currRooms.get(i));
+      String context = GptPromptEngineering.getAlienContext(currRooms.get(i));
+
+      System.out.println(context);
 
       ChatMessage msg = new ChatMessage("system", context);
       chatCompletionRequest.addMessage(msg);
@@ -246,14 +330,17 @@ public class GameState {
     }
   }
 
+  /** Returns the chat completion request for the current room */
   public static ChatCompletionRequest getChatCompletionRequest() {
     return roomChatCompletionRequests.get(currRoom);
   }
 
+  /** Returns the current room index */
   public static int getCurrRoom() {
     return currRoom;
   }
 
+  /** Switches to previous room */
   public static void prevRoom() {
     currRoom--;
 
@@ -264,6 +351,7 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
+  /** Switches to next room */
   public static void nextRoom() {
     currRoom++;
 
@@ -274,26 +362,13 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  public static String getPrevRoom() {
-    int temp = currRoom - 1;
-
-    if (temp < 0) {
-      temp += currRooms.size();
-    }
-
-    return currRooms.get(temp);
+  /** Increment the parts found, and update label in chat controller */
+  public static void incrementPartsFound() {
+    partsFound++;
+    chatController.setPartsCounter(partsFound);
   }
 
-  public static String getNextRoom() {
-    int temp = currRoom + 1;
-
-    if (temp == currRooms.size()) {
-      temp -= currRooms.size();
-    }
-
-    return currRooms.get(temp);
-  }
-
+  /** Sets the number of hints allowed for the game */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
       hintsAllowed = Integer.MAX_VALUE;
@@ -304,10 +379,30 @@ public class GameState {
     }
   }
 
+  /**
+   * Check whether minigame in current room has been solved
+   *
+   * @return true if minigame has been solved, false otherwise
+   */
+  public static boolean getMinigameSolved() {
+    return minigameSolved.get(currRoom);
+  }
+
+  /** Sets the minigame in the current room as solved */
+  public static void setMinigameSolved() {
+    minigameSolved.set(currRoom, true);
+  }
+
+  /** Sets the time limit for the game */
   public static void setTimeLimit(int minutes) {
     timeLimit = minutes * 60;
   }
 
+  /**
+   * Checks if a hint is available.
+   *
+   * @return true if a hint is available, false otherwise
+   */
   public static boolean isHintAvailable() {
     return hintsCounter < hintsAllowed;
   }
@@ -318,9 +413,17 @@ public class GameState {
     isObjectFound = false;
     currRiddle = null;
     gameWon = true;
-    isDoorCodeEntered = false;
+    inMinigame = false;
     hintsCounter = 0;
+    partsFound = 0;
     currRoom = 0;
+
+    // Reset minigameSolved
+    minigameSolved.clear();
+    for (int i = 0; i < 3; i++) {
+      minigameSolved.add(false);
+    }
+
     currRooms.clear();
     currRooms.add("mainroom");
     roomChatCompletionRequests.clear();

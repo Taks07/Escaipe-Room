@@ -14,6 +14,16 @@ public class RandRoom4Controller extends RoomController {
 
   @FXML
   private void clickAlien4(MouseEvent event) {
+    GameState.setAlienHead();
     GameState.askGPT(GptPromptEngineering.introduction());
+  }
+
+  @FXML
+  private void hoverCave(MouseEvent event) {
+    if (GameState.getMinigameSolved()) {
+      actionLabel.setText("Part already found!");
+      return;
+    }
+    actionLabel.setText("Attempt cave puzzle for part");
   }
 }

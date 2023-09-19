@@ -61,9 +61,9 @@ public class TitleController extends RoomController {
   }
 
   public void startGame(MouseEvent event) throws IOException {
+    GameState.resetGameState();
     setDifficultyAndTimeLimit();
     GameTimer.startTimer();
-    GameState.resetGameState();
     GameState.setRandomRooms();
     GameState.setRandomCurrRiddleAnswer();
 
@@ -150,7 +150,7 @@ public class TitleController extends RoomController {
   }
 
   @FXML
-  private void hoverObject(MouseEvent event) {
+  protected void hoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
 
@@ -158,7 +158,7 @@ public class TitleController extends RoomController {
   }
 
   @FXML
-  private void unhoverObject(MouseEvent event) {
+  protected void unhoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
     String objectID = object.getId();
 

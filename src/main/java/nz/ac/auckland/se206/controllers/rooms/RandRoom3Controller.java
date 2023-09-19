@@ -14,9 +14,18 @@ public class RandRoom3Controller extends RoomController {
   @FXML private ImageView flowerImage;
   @FXML private ImageView grassImage;
 
-  // TODO: ADD CLICKABLE FOR MINIGAME IN THIS ROOM
   @FXML
   private void clickAlien3(MouseEvent event) {
+    GameState.setAlienHead();
     GameState.askGPT(GptPromptEngineering.introduction());
+  }
+
+  @FXML
+  private void hoverPlant(MouseEvent event) {
+    if (GameState.getMinigameSolved()) {
+      actionLabel.setText("Part already found!");
+      return;
+    }
+    actionLabel.setText("Search for parts in plant's mouth");
   }
 }

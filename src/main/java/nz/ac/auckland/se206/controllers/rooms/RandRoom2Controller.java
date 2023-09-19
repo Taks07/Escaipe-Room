@@ -52,6 +52,16 @@ public class RandRoom2Controller extends RoomController {
 
   @FXML
   private void clickAlien2(MouseEvent event) {
+    GameState.setAlienHead();
     GameState.askGPT(GptPromptEngineering.introduction());
+  }
+
+  @FXML
+  private void hoverCrater(MouseEvent event) {
+    if (GameState.getMinigameSolved()) {
+      actionLabel.setText("Part already found!");
+      return;
+    }
+    actionLabel.setText("Search the crater for parts");
   }
 }

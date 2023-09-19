@@ -223,7 +223,11 @@ public class RandRoom1MinigameController extends MinigameController {
     }
 
     PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-    pause.setOnFinished(event -> setAllButtonsToDefaultColor());
+    pause.setOnFinished(
+        event -> {
+          setAllButtonsToDefaultColor();
+          endGame();
+        });
     pause.play();
   }
 
