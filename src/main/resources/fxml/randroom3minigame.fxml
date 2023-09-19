@@ -18,52 +18,52 @@
          </image>
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
-      <ImageView fx:id="teeth1" fitHeight="74.0" fitWidth="138.0" layoutX="55.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth1" fitHeight="74.0" fitWidth="138.0" layoutX="55.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth2" fitHeight="74.0" fitWidth="138.0" layoutX="113.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth2" fitHeight="74.0" fitWidth="138.0" layoutX="113.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth3" fitHeight="74.0" fitWidth="138.0" layoutX="180.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth3" fitHeight="74.0" fitWidth="138.0" layoutX="180.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth4" fitHeight="74.0" fitWidth="138.0" layoutX="240.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth4" fitHeight="74.0" fitWidth="138.0" layoutX="240.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth5" fitHeight="74.0" fitWidth="138.0" layoutX="300.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth5" fitHeight="74.0" fitWidth="138.0" layoutX="300.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth6" fitHeight="74.0" fitWidth="138.0" layoutX="360.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth6" fitHeight="74.0" fitWidth="138.0" layoutX="360.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth7" fitHeight="74.0" fitWidth="138.0" layoutX="420.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth7" fitHeight="74.0" fitWidth="138.0" layoutX="420.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth8" fitHeight="74.0" fitWidth="138.0" layoutX="480.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth8" fitHeight="74.0" fitWidth="138.0" layoutX="480.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth9" fitHeight="74.0" fitWidth="138.0" layoutX="540.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth9" fitHeight="74.0" fitWidth="138.0" layoutX="540.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth10" fitHeight="74.0" fitWidth="138.0" layoutX="600.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="teeth10" fitHeight="74.0" fitWidth="138.0" layoutX="600.0" layoutY="143.0" onMouseClicked="#clickTeeth" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
@@ -73,47 +73,47 @@
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth21" fitHeight="74.0" fitWidth="138.0" layoutX="123.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth12" fitHeight="74.0" fitWidth="138.0" layoutX="123.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth31" fitHeight="74.0" fitWidth="138.0" layoutX="190.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth13" fitHeight="74.0" fitWidth="138.0" layoutX="190.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth41" fitHeight="74.0" fitWidth="138.0" layoutX="250.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth14" fitHeight="74.0" fitWidth="138.0" layoutX="250.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth51" fitHeight="74.0" fitWidth="138.0" layoutX="310.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth15" fitHeight="74.0" fitWidth="138.0" layoutX="310.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth61" fitHeight="74.0" fitWidth="138.0" layoutX="370.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth16" fitHeight="74.0" fitWidth="138.0" layoutX="370.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth71" fitHeight="74.0" fitWidth="138.0" layoutX="430.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth17" fitHeight="74.0" fitWidth="138.0" layoutX="430.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth81" fitHeight="74.0" fitWidth="138.0" layoutX="490.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth18" fitHeight="74.0" fitWidth="138.0" layoutX="490.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth91" fitHeight="74.0" fitWidth="138.0" layoutX="550.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth19" fitHeight="74.0" fitWidth="138.0" layoutX="550.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="teeth101" fitHeight="74.0" fitWidth="138.0" layoutX="610.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="teeth20" fitHeight="74.0" fitWidth="138.0" layoutX="610.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/minigames/small.png" />
          </image>
