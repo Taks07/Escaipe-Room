@@ -69,6 +69,9 @@ public class GameState {
   /** The number of parts found */
   public static int partsFound;
 
+  /** Whether or not user is in a minigame */
+  public static boolean inMinigame;
+
   /** The hashmap of alien heads */
   public static final HashMap<String, String> alienHeads =
       new HashMap<String, String>() {
@@ -159,6 +162,21 @@ public class GameState {
   /** Returns a hint prompt depending on game state */
   public static String getHint() {
     String roomName = currRooms.get(currRoom);
+    String hint;
+
+    // User has all parts
+    if (partsFound == 3) {
+      if (inMinigame) {
+        // User in rocket minigame
+        return "Tell the user to use the slider on the right to change amplitude and the slider at"
+            + " the bottom to change frequency of the sine wave so that the 2 waves match."
+            + " Explain how amplitude affects height and frequency affects how close the"
+            + " waves are within 40 words";
+      } else {
+        // User in one of the rooms
+        return "Ask user to go to the rocket";
+      }
+    }
 
     // Tell user to talk to alien by rocket to get a riddle
     if (currRiddle == null) {
@@ -169,18 +187,56 @@ public class GameState {
       }
     }
 
-    // As more puzzles are added, add more cases to provide context for hints
-    switch (roomName) {
-      case "mainroom":
-        return "Give a short hint for a riddle with the answer "
-            + currRiddleAnswer
-            + ". Do not say the word "
-            + currRiddleAnswer;
-      default:
-        return "Give a short hint for a riddle with the answer "
-            + currRiddleAnswer
-            + ". Do not say the word "
-            + currRiddleAnswer;
+    // Think about improving the hint system by actually giving the state of the minigame
+    if (inMinigame) {
+      // User is doing a minigame
+      switch (roomName) {
+        case "randroom1":
+          return "Tell the user to click the flashing yellow lights in the shown order to unlock"
+              + " the UFO's storage. Recommend writing down the order if it is too hard to"
+              + " remember. Respond in 30 words";
+        case "randroom3":
+          return "Tell the user to click on each tooth of the plant's top row of teeth so that they"
+              + " match the bottom row. Give a recommendation on how to solve this if this"
+              + " is too hard to do. Respond in 30 words";
+        case "randroom4":
+          return "Tell the user to match up all the pairs of symbols by clicking on a tile to"
+              + " reveal a symbol. Then, give one of the following recommendations: only"
+              + " match 1 symbol at a time or reveal all the tiles first, or write things"
+              + " down if the user finds it too hard. Respond in 30 words";
+        default:
+          return "Tell the user to talk to aliens";
+      }
+    } else {
+      // User in one of the rooms, and not a minigame
+      switch (roomName) {
+        case "mainroom":
+          return "Give a short hint for a riddle with the answer "
+              + currRiddleAnswer
+              + ". Do not say the word "
+              + currRiddleAnswer;
+        case "randroom1":
+          hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
+          break;
+        case "randroom2":
+          hint = "Tell the user the part is in the crater. Respond in 20 words";
+          break;
+        case "randroom3":
+          hint = "Tell the user the part is in the alien plant. Respond in 20 words";
+          break;
+        case "randroom4":
+          hint = "Tell the user the part is in the dark cave. Respond in 20 words";
+          break;
+        default:
+          hint = "Tell the user to talk to aliens";
+      }
+      if (GameState.getMinigameSolved()) {
+        // Minigame in room has been solved, so ask user to go to another room
+        return "Tell the user to try approaching fellow aliens in each room for an idea of"
+            + " where the parts are. Respond in 20 words";
+      } else {
+        return hint;
+      }
     }
   }
 
@@ -357,6 +413,7 @@ public class GameState {
     isObjectFound = false;
     currRiddle = null;
     gameWon = true;
+    inMinigame = false;
     hintsCounter = 0;
     partsFound = 0;
     currRoom = 0;
