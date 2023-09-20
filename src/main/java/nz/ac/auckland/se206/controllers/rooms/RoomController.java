@@ -266,7 +266,7 @@ public abstract class RoomController {
 
   protected void animateAlien() {
     while (true) {
-      while (GameState.checkIfTranslating()) {
+      while (GameState.getAlienTalking()) {
         try {
 
           changeAlienImage(alienImage.getId(), "_talking1");
@@ -277,7 +277,7 @@ public abstract class RoomController {
           Thread.sleep(200);
           changeAlienImage(alienImage.getId(), "_talking2");
           Thread.sleep(200);
-          if (!GameState.checkIfTranslating()) {
+          if (!GameState.getAlienTalking()) {
             changeAlienImage(alienImage.getId(), "");
           }
         } catch (InterruptedException e) {

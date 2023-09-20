@@ -53,6 +53,9 @@ public class GameState {
   /** Whether or not part found popup has been shown for minigame in room */
   public static ArrayList<Boolean> partFoundPopupShown = new ArrayList<Boolean>();
 
+  /** Whether or not the alien in the room is currently talking */
+  public static ArrayList<Boolean> alienTalking = new ArrayList<Boolean>();
+
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
@@ -397,8 +400,18 @@ public class GameState {
     }
   }
 
-  public static boolean checkIfTranslating() {
-    return chatController.getIsTranslating();
+  /**
+   * Toggles whether or not the alien in the current room is talking
+   *
+   * @param room the room to toggle
+   */
+  public static void toggleAlienTalking(int room) {
+    alienTalking.set(room, !alienTalking.get(room));
+  }
+
+  /** Returns whether or not the alien in the current room is talking */
+  public static boolean getAlienTalking() {
+    return alienTalking.get(currRoom);
   }
 
   /**
@@ -443,9 +456,11 @@ public class GameState {
     // Reset minigameSolved and partFoundPopupShown
     minigameSolved.clear();
     partFoundPopupShown.clear();
+    alienTalking.clear();
     for (int i = 0; i < 3; i++) {
       minigameSolved.add(false);
       partFoundPopupShown.add(false);
+      alienTalking.add(false);
     }
 
     currRooms.clear();
