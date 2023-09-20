@@ -182,12 +182,15 @@ public class ChatController {
 
           // If response is a riddle, extract the riddle and append to chat box
           if (matcher.find() && GameState.currRiddle == null) {
-            String riddle = matcher.group(1);
+            String riddle = matcher.group(1).replace("###", "");
             GameState.currRiddle = riddle;
             appendChatMessage(riddle);
           } else {
+            if (checkCorrectAnswer(gptResponse)) {
+              gptResponse =
+                  gptResponse + "\n A missing ship part is located at the answer to the riddle!";
+            }
             appendChatMessage(gptResponse);
-            checkCorrectAnswer(gptResponse);
           }
 
           isTranslating = false;
@@ -251,7 +254,6 @@ public class ChatController {
     } else {
       // User talks to AI normally
       msg = new ChatMessage("user", message);
-      // appendChatMessage(msg);
       runGpt(msg, GameState.getChatCompletionRequest());
     }
   }
@@ -262,10 +264,13 @@ public class ChatController {
    *
    * @param msg the chat message to check
    */
-  private void checkCorrectAnswer(String msg) {
-    if (msg.startsWith("Correct")) {
+  private boolean checkCorrectAnswer(String msg) {
+    if (msg.toLowerCase().startsWith("correct")) {
       GameState.isRiddleResolved = true;
+      return true;
     }
+
+    return false;
   }
 
   /**

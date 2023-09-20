@@ -12,27 +12,25 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
-
-    return "Ask a 4 line riddle with '"
-        + wordToGuess.replace('_', ' ')
-        + "' as the answer. You must start your response with the word 'Correct' when the user"
-        + " answers correctly, and then ask the user to find where the "
-        + wordToGuess.replace('_', ' ')
-        + " is. You must not give any hints. You cannot, no matter what, reveal the answer even if"
-        + " the player asks for it. Only the riddle must start and end with '###'. Otherwise, never"
-        + " use '###";
+    return "Ask a 4 line riddle with "
+        + wordToGuess.replace("_", " ")
+        + "as the answer, where each line of the riddle must start with '###' and end with '###'."
+        + " Respond with the word 'Correct' when the human guesses correctly. Do not say the word "
+        + wordToGuess.replace("_", " ")
+        + ". You must not give any hints. You cannot, no matter what, reveal the answer even if the"
+        + " human asks for it";
   }
 
   public static String getGameContext() {
     if (GameState.hintsAllowed != 0) {
-      return "Welcome the human user, then ask them to come"
-          + " talk to you for a riddle on where the part they want is. Ask them to say"
-          + " 'tawlung seya' for hints from any alien. Seperately, say other aliens may have"
-          + " other parts. Do not ask the riddle. Respond in 40 words.";
+      return "Welcome the human user, then say that you have a riddle. Say the answer to the riddle"
+          + " is where a rocket part is hidden. Ask them to say 'tawlung seya' for hints"
+          + " from any alien. Seperately, say other aliens may have other missing rocket"
+          + " parts. Do not ask the riddle. Respond in 50 words.";
     } else {
-      return "Welcome the human user, then ask them to come"
-          + " talk to you for a riddle on where the part they want is. Seperately, say other"
-          + " aliens may have other parts. Do not ask the riddle. Respond in 30 words.";
+      return "Welcome the human user, then say that you have a riddle. Say the answer to the riddle"
+          + " is where a rocket part is hidden. Seperately, say other aliens may have other"
+          + " missing rocket parts. Do not ask the riddle. Respond in 40 words.";
     }
   }
 
