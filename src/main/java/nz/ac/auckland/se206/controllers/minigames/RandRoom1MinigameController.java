@@ -100,8 +100,6 @@ public class RandRoom1MinigameController extends MinigameController {
   /** Highlights the next button in the sequence */
   private void highlightNextButton() {
     if (sequenceNum < round) {
-      // int buttonIndex = sequence.get(sequenceNum);
-      // Button button = buttons[buttonIndex / 3][buttonIndex % 3];
       int imageIndex = sequence.get(sequenceNum);
       ImageView image = imageViews[imageIndex / 3][imageIndex % 3];
 

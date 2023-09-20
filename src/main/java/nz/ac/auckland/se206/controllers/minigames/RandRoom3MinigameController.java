@@ -10,6 +10,18 @@ import javafx.util.Duration;
 
 public class RandRoom3MinigameController extends MinigameController {
 
+  private enum ToothSize {
+    SMALL,
+    MEDIUM,
+    LARGE
+  }
+
+  private Image smallToothImage;
+  private Image mediumToothImage;
+  private Image largeToothImage;
+  private Random random = new Random();
+  private boolean hasPlayerWon = false;
+
   @FXML private ImageView[] topTeeth;
   @FXML private ImageView[] bottomTeeth;
 
@@ -33,18 +45,6 @@ public class RandRoom3MinigameController extends MinigameController {
   @FXML private ImageView teeth18;
   @FXML private ImageView teeth19;
   @FXML private ImageView teeth20;
-
-  private enum ToothSize {
-    SMALL,
-    MEDIUM,
-    LARGE
-  }
-
-  private Image smallToothImage;
-  private Image mediumToothImage;
-  private Image largeToothImage;
-  private Random random = new Random();
-  private boolean hasPlayerWon = false;
 
   public void initialize() {
     isSolved = false;
