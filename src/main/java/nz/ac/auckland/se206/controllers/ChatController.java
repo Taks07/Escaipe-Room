@@ -190,11 +190,13 @@ public class ChatController {
           if (matcher.find() && GameState.currRiddle == null) {
             String riddle = matcher.group(1).replace("###", "");
             GameState.currRiddle = riddle;
-            appendChatMessage(riddle);
+            appendChatMessage(
+                riddle + "\nMake sure to tell the answer to me and not any other alien!");
           } else {
             if (checkCorrectAnswer(gptResponse)) {
               gptResponse =
-                  gptResponse + "\n A missing ship part is located at the answer to the riddle!";
+                  gptResponse
+                      + "\nA missing ship part is located where the answer to the riddle is!";
             }
             appendChatMessage(gptResponse);
           }
