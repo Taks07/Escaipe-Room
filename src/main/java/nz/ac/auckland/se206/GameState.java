@@ -397,6 +397,10 @@ public class GameState {
     }
   }
 
+  public static boolean checkIfTranslating() {
+    return chatController.getIsTranslating();
+  }
+
   /**
    * Check whether minigame in current room has been solved
    *
