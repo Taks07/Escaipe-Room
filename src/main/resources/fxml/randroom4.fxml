@@ -55,10 +55,10 @@
             <Image url="@../images/alien4.png" />
          </image>
       </ImageView>
+      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="127.0" layoutY="111.0" onMouseEntered="#hoverCave" onMouseExited="#unhoverAlien" onMousePressed="#clickMinigame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="486.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="269.0" layoutX="596.0" layoutY="177.0" onMouseClicked="#clickAlien4" onMouseEntered="#hoverAlien" onMouseExited="#unhoverAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="117.0" />
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="47.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="708.0" layoutY="411.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
-      <Rectangle id="cave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="295.0" layoutX="124.0" layoutY="107.0" onMouseEntered="#hoverCave" onMouseExited="#unhoverAlien" onMousePressed="#clickMinigame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="486.0" />
       <Rectangle id="stalagmite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="134.0" layoutX="165.0" layoutY="324.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
       <Rectangle id="stalactite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="99.0" layoutX="377.0" layoutY="174.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="74.0" />
       <Label fx:id="actionLabel" alignment="CENTER" layoutX="162.0" layoutY="45.0" prefHeight="25.0" prefWidth="560.0" textFill="#ff6100">
