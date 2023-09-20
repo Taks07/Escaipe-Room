@@ -59,7 +59,7 @@
             <Image url="@../images/objects/arrow2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="285.0" fitWidth="420.0" layoutX="23.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien1" fx:id="alienImage" fitHeight="285.0" fitWidth="420.0" layoutX="23.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/alien1.png" />
          </image>

@@ -38,6 +38,7 @@ public class ChatController {
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
+  private Thread animationThread;
   private Pattern riddlePattern;
   private String randomSigns;
   private TimerTask alienTextTask;
@@ -122,7 +123,8 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
-    translatingLabel.setText("Translating...");
+    animateWhileTranslating();
+    // translatingLabel.setText("Translating...");
     inputText.setVisible(false);
     sendButton.setDisable(true);
 
@@ -295,7 +297,7 @@ public class ChatController {
 
   public void originalTransform(String gptResponse) {
     StringBuilder currentMessage = new StringBuilder(chatTextArea.getText());
-    translatingLabel.setText("Translating...");
+    // translatingLabel.setText("Translating...");
 
     new Thread(
             () -> {
@@ -314,9 +316,57 @@ public class ChatController {
                   e.printStackTrace();
                 }
               }
+
               translatingLabel.setOpacity(0);
               inputText.setVisible(true);
             })
         .start();
+  }
+
+  private void animateWhileTranslating() {
+    Task<Void> translating =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            try {
+              while (isTranslating) {
+                Platform.runLater(
+                    () -> {
+                      // Loading
+                      translatingLabel.setText("Translating");
+                    });
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading.
+                      translatingLabel.setText("Translating .");
+                    });
+
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading..
+                      translatingLabel.setText("Translating . .");
+                    });
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading...
+                      translatingLabel.setText("Translating . . .");
+                    });
+                Thread.sleep(300);
+              }
+
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+              return null;
+            }
+            return null;
+          }
+        };
+
+    animationThread = new Thread(translating);
+    animationThread.setDaemon(true);
+    animationThread.start();
   }
 }

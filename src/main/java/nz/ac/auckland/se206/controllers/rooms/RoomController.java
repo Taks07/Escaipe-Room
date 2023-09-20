@@ -20,6 +20,7 @@ public abstract class RoomController {
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
+  // @FXML protected ImageView alienImage;
   protected Thread backgroundThread;
   protected Thread flagThread;
   protected boolean visited;
@@ -51,7 +52,6 @@ public abstract class RoomController {
     Shape object = (Shape) event.getSource();
     String objectID = object.getId();
     System.out.println("Clicked " + objectID);
-
 
     if (GameState.isRiddleAnswerCorrect(objectID)) {
       // Correct object clicked. Increment parts found and set flag.
@@ -199,6 +199,10 @@ public abstract class RoomController {
     actionLabel.setText("");
     arrow2.setOpacity(0.7);
   }
+
+  // public void changeAlienImage(String objectID, String stageOfAnimation) {
+  //   alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
+  // }
 
   /**
    * Animates the background.
