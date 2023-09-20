@@ -43,6 +43,7 @@ public class ChatController {
   private String randomSigns;
   private TimerTask alienTextTask;
   private boolean isTranslating;
+  private int currRoom;
 
   /** Initializes the chat view and sets up the GPT model. */
   @FXML
@@ -121,8 +122,8 @@ public class ChatController {
       return;
     }
 
-    // Check whether AI has been set up yet by user clicking on alien in room
-
+    currRoom = GameState.getCurrRoom();
+    GameState.toggleAlienTalking(currRoom);
     isTranslating = true;
 
     // Show thinking label and disable send button
@@ -204,6 +205,11 @@ public class ChatController {
     chatThread.start();
   }
 
+  /**
+   * Sends a message to the GPT model to say the flavour text of an object.
+   *
+   * @param object the object to say the flavour text of
+   */
   public void sayFlavourText(String object) {
     try {
       runGpt(
@@ -321,6 +327,7 @@ public class ChatController {
               translatingLabel.setOpacity(0);
               inputText.setVisible(true);
               isTranslating = false;
+              GameState.toggleAlienTalking(currRoom);
             })
         .start();
   }
