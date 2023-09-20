@@ -1,10 +1,12 @@
 package nz.ac.auckland.se206.controllers.minigames;
 
 import java.util.Random;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 public class RandRoom3MinigameController extends MinigameController {
 
@@ -83,7 +85,6 @@ public class RandRoom3MinigameController extends MinigameController {
   @FXML
   public void clickTeeth(MouseEvent event) {
     if (hasPlayerWon) {
-      System.out.println("You have won!");
       return;
     }
 
@@ -126,9 +127,14 @@ public class RandRoom3MinigameController extends MinigameController {
         break;
     }
 
+    // Check if the player has won
     if (areAllTeethMatching()) {
       hasPlayerWon = true;
-      System.out.println("You have won!");
+
+      // Pause for 1 second before ending the game
+      PauseTransition pause = new PauseTransition(Duration.seconds(1));
+      pause.setOnFinished(event2 -> endGame());
+      pause.play();
     }
   }
 
