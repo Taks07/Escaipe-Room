@@ -123,7 +123,8 @@ public class ChatController {
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
-    translatingLabel.setText("Translating...");
+    animateWhileTranslating();
+    // translatingLabel.setText("Translating...");
     inputText.setVisible(false);
     sendButton.setDisable(true);
 
@@ -296,7 +297,7 @@ public class ChatController {
 
   public void originalTransform(String gptResponse) {
     StringBuilder currentMessage = new StringBuilder(chatTextArea.getText());
-    translatingLabel.setText("Translating...");
+    // translatingLabel.setText("Translating...");
 
     new Thread(
             () -> {
@@ -315,6 +316,7 @@ public class ChatController {
                   e.printStackTrace();
                 }
               }
+
               translatingLabel.setOpacity(0);
               inputText.setVisible(true);
             })
@@ -327,7 +329,7 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
             try {
-              while (true) {
+              while (isTranslating) {
                 Platform.runLater(
                     () -> {
                       // Loading
@@ -337,20 +339,20 @@ public class ChatController {
                 Platform.runLater(
                     () -> {
                       // Loading.
-                      translatingLabel.setText("Loading.");
+                      translatingLabel.setText("Translating .");
                     });
 
                 Thread.sleep(300);
                 Platform.runLater(
                     () -> {
                       // Loading..
-                      translatingLabel.setText("Loading. .");
+                      translatingLabel.setText("Translating . .");
                     });
                 Thread.sleep(300);
                 Platform.runLater(
                     () -> {
                       // Loading...
-                      translatingLabel.setText("Loading. . .");
+                      translatingLabel.setText("Translating . . .");
                     });
                 Thread.sleep(300);
               }
@@ -359,12 +361,12 @@ public class ChatController {
               e.printStackTrace();
               return null;
             }
+            return null;
           }
         };
 
-    // Bind the progress property of the task to the progress bar
-
-    Thread thread = new Thread(translating);
-    thread.start();
+    animationThread = new Thread(translating);
+    animationThread.setDaemon(true);
+    animationThread.start();
   }
 }

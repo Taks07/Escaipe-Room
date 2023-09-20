@@ -20,7 +20,7 @@ public abstract class RoomController {
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
-  @FXML protected ImageView alienImage;
+  // @FXML protected ImageView alienImage;
   protected Thread backgroundThread;
   protected Thread flagThread;
   protected boolean visited;
@@ -200,9 +200,9 @@ public abstract class RoomController {
     arrow2.setOpacity(0.7);
   }
 
-  public void changeAlienImage(String objectID, String stageOfAnimation) {
-    alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
-  }
+  // public void changeAlienImage(String objectID, String stageOfAnimation) {
+  //   alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
+  // }
 
   /**
    * Animates the background.
