@@ -93,6 +93,10 @@ public class ChatController {
     }
   }
 
+  public boolean getIsTranslating() {
+    return isTranslating;
+  }
+
   /**
    * Appends a chat message to the chat text area.
    *

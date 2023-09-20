@@ -25,9 +25,10 @@ public abstract class RoomController {
   @FXML protected ImageView partFoundTitleImage;
   @FXML protected ImageView partFoundContentImage;
   @FXML protected ImageView partFoundOkayImage;
-  // @FXML protected ImageView alienImage;
+  @FXML protected ImageView alienImage;
   protected Thread backgroundThread;
   protected Thread flagThread;
+  protected Thread alienThread;
   protected boolean visited;
 
   @FXML
@@ -38,6 +39,21 @@ public abstract class RoomController {
       showPopup();
     }
     animate();
+    alienThread = new Thread(() -> animateAlien());
+    alienThread.setDaemon(true);
+    alienThread.start();
+  }
+
+  protected void stopThreads() {
+    if (backgroundThread != null) {
+      backgroundThread.interrupt();
+    }
+    if (flagThread != null) {
+      flagThread.interrupt();
+    }
+    if (alienThread != null) {
+      alienThread.interrupt();
+    }
   }
 
   /** Show the part found popup */
@@ -157,15 +173,13 @@ public abstract class RoomController {
    */
   @FXML
   protected void clickMinigame(MouseEvent event) {
-    // Stop background animation
-    backgroundThread.interrupt();
 
     // Check if minigame has been solved
     if (GameState.getMinigameSolved()) {
       showPopup();
       return;
     }
-    backgroundThread.interrupt();
+    stopThreads();
     GameState.inMinigame = true;
     String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
     GameState.switchRoom(fxmlPath);
@@ -178,10 +192,7 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow1(MouseEvent event) {
-    backgroundThread.interrupt();
-    if (flagThread != null) {
-      flagThread.interrupt();
-    }
+    stopThreads();
     GameState.prevRoom();
   }
 
@@ -253,9 +264,43 @@ public abstract class RoomController {
     arrow2.setOpacity(0.7);
   }
 
-  // public void changeAlienImage(String objectID, String stageOfAnimation) {
-  //   alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
-  // }
+  protected void animateAlien() {
+    while (true) {
+      while (GameState.checkIfTranslating()) {
+        try {
+
+          changeAlienImage(alienImage.getId(), "_talking1");
+          Thread.sleep(200);
+          changeAlienImage(alienImage.getId(), "_talking2");
+          Thread.sleep(200);
+          changeAlienImage(alienImage.getId(), "_talking3");
+          Thread.sleep(200);
+          changeAlienImage(alienImage.getId(), "_talking2");
+          Thread.sleep(200);
+          if (!GameState.checkIfTranslating()) {
+            changeAlienImage(alienImage.getId(), "");
+          }
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  /**
+   * Changes the image of the alien.
+   *
+   * @param objectID the ID of the alien
+   * @param stageOfAnimation the stage of the animation
+   */
+  public void changeAlienImage(String objectID, String stageOfAnimation) {
+    alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
+  }
 
   /**
    * Animates the background.

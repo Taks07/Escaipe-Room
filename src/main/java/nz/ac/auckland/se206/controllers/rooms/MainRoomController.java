@@ -11,12 +11,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 public class MainRoomController extends RoomController {
 
   @FXML private ImageView rocketImage;
-  @FXML private ImageView alienImage;
-
-  @FXML
-  private void initialize() {
-    animate();
-  }
 
   /**
    * Handles the click event on the door.
