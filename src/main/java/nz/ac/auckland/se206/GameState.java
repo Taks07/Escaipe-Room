@@ -50,6 +50,9 @@ public class GameState {
   /** Whether or not minigame was solved in each room */
   public static ArrayList<Boolean> minigameSolved = new ArrayList<Boolean>();
 
+  /** Whether or not part found popup has been shown for minigame in room */
+  public static ArrayList<Boolean> partFoundPopupShown = new ArrayList<Boolean>();
+
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
@@ -169,7 +172,7 @@ public class GameState {
       if (inMinigame) {
         // User in rocket minigame
         return "Tell the user to use the slider on the right to change amplitude and the slider at"
-            + " the bottom to change frequency of the sine wave so that the 2 waves match."
+            + " the top to change frequency of the sine wave so that the 2 waves match."
             + " Explain how amplitude affects height and frequency affects how close the"
             + " waves are within 40 words";
       } else {
@@ -369,6 +372,20 @@ public class GameState {
     chatController.setPartsCounter(partsFound);
   }
 
+  /**
+   * Returns whether or not the part found popup has been shown for the minigame in the current room
+   *
+   * @return true if the part found popup has been shown, false otherwise
+   */
+  public static boolean getPartFoundPopupShown() {
+    return partFoundPopupShown.get(currRoom);
+  }
+
+  /** Sets the partFoundPopupSHown value for current room to true */
+  public static void setPartFoundPopupShown() {
+    partFoundPopupShown.set(currRoom, true);
+  }
+
   /** Sets the number of hints allowed for the game */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
@@ -419,10 +436,12 @@ public class GameState {
     partsFound = 0;
     currRoom = 0;
 
-    // Reset minigameSolved
+    // Reset minigameSolved and partFoundPopupShown
     minigameSolved.clear();
+    partFoundPopupShown.clear();
     for (int i = 0; i < 3; i++) {
       minigameSolved.add(false);
+      partFoundPopupShown.add(false);
     }
 
     currRooms.clear();
