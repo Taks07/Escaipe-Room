@@ -14,7 +14,7 @@ public class MainRoomMinigameController extends MinigameController {
   @FXML Slider frequencySlider;
   @FXML Slider amplitudeSlider;
 
-  private final int yOffset = 190;
+  private final int yOffset = 143;
   private Polyline playerPolyline;
   private double targetAmplitude;
   private double targetFrequency;
@@ -69,7 +69,7 @@ public class MainRoomMinigameController extends MinigameController {
     Random random = new Random();
 
     // Generate random amplitude and frequency
-    targetAmplitude = 135 * random.nextDouble() + 30;
+    targetAmplitude = 113 * random.nextDouble() + 30;
     targetFrequency = 0.065 * random.nextDouble() + 0.635;
 
     // Create target polyline and display
