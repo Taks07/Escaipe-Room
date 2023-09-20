@@ -50,6 +50,9 @@ public class GameState {
   /** Whether or not minigame was solved in each room */
   public static ArrayList<Boolean> minigameSolved = new ArrayList<Boolean>();
 
+  /** Whether or not part found popup has been shown for minigame in room */
+  public static ArrayList<Boolean> partFoundPopupShown = new ArrayList<Boolean>();
+
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
@@ -169,21 +172,12 @@ public class GameState {
       if (inMinigame) {
         // User in rocket minigame
         return "Tell the user to use the slider on the right to change amplitude and the slider at"
-            + " the bottom to change frequency of the sine wave so that the 2 waves match."
+            + " the top to change frequency of the sine wave so that the 2 waves match."
             + " Explain how amplitude affects height and frequency affects how close the"
             + " waves are within 40 words";
       } else {
         // User in one of the rooms
         return "Ask user to go to the rocket";
-      }
-    }
-
-    // Tell user to talk to alien by rocket to get a riddle
-    if (currRiddle == null) {
-      if (roomName.equals("mainroom")) {
-        return "Ask the user to come to you for a riddle. Do not say a riddle";
-      } else {
-        return "Ask the user to talk to the alien by the rocket for a riddle. Do not say a riddle";
       }
     }
 
@@ -207,36 +201,46 @@ public class GameState {
         default:
           return "Tell the user to talk to aliens";
       }
-    } else {
-      // User in one of the rooms, and not a minigame
-      switch (roomName) {
-        case "mainroom":
-          return "Give a short hint for a riddle with the answer "
-              + currRiddleAnswer
-              + ". Do not say the word "
-              + currRiddleAnswer;
-        case "randroom1":
-          hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
-          break;
-        case "randroom2":
-          hint = "Tell the user the part is in the crater. Respond in 20 words";
-          break;
-        case "randroom3":
-          hint = "Tell the user the part is in the alien plant. Respond in 20 words";
-          break;
-        case "randroom4":
-          hint = "Tell the user the part is in the dark cave. Respond in 20 words";
-          break;
-        default:
-          hint = "Tell the user to talk to aliens";
-      }
-      if (GameState.getMinigameSolved()) {
-        // Minigame in room has been solved, so ask user to go to another room
-        return "Tell the user to try approaching fellow aliens in each room for an idea of"
-            + " where the parts are. Respond in 20 words";
+    }
+
+    // Tell user to talk to alien by rocket to get a riddle
+    if (currRiddle == null) {
+      if (roomName.equals("mainroom")) {
+        return "Ask the user to come to you for a riddle. Do not say a riddle";
       } else {
-        return hint;
+        return "Ask the user to talk to the alien by the rocket for a riddle. Do not say a"
+            + " riddle";
       }
+    }
+
+    // User in one of the rooms, and not a minigame, and the riddle has already been given
+    switch (roomName) {
+      case "mainroom":
+        return "Give a short hint for a riddle with the answer "
+            + currRiddleAnswer
+            + ". Do not say the word "
+            + currRiddleAnswer;
+      case "randroom1":
+        hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
+        break;
+      case "randroom2":
+        hint = "Tell the user the part is in the crater. Respond in 20 words";
+        break;
+      case "randroom3":
+        hint = "Tell the user the part is in the alien plant. Respond in 20 words";
+        break;
+      case "randroom4":
+        hint = "Tell the user the part is in the dark cave. Respond in 20 words";
+        break;
+      default:
+        hint = "Tell the user to talk to aliens";
+    }
+    if (GameState.getMinigameSolved()) {
+      // Minigame in room has been solved, so ask user to go to another room
+      return "Tell the user to try approaching fellow aliens in each room for an idea of"
+          + " where the parts are. Respond in 20 words";
+    } else {
+      return hint;
     }
   }
 
@@ -368,6 +372,20 @@ public class GameState {
     chatController.setPartsCounter(partsFound);
   }
 
+  /**
+   * Returns whether or not the part found popup has been shown for the minigame in the current room
+   *
+   * @return true if the part found popup has been shown, false otherwise
+   */
+  public static boolean getPartFoundPopupShown() {
+    return partFoundPopupShown.get(currRoom);
+  }
+
+  /** Sets the partFoundPopupSHown value for current room to true */
+  public static void setPartFoundPopupShown() {
+    partFoundPopupShown.set(currRoom, true);
+  }
+
   /** Sets the number of hints allowed for the game */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
@@ -418,10 +436,12 @@ public class GameState {
     partsFound = 0;
     currRoom = 0;
 
-    // Reset minigameSolved
+    // Reset minigameSolved and partFoundPopupShown
     minigameSolved.clear();
+    partFoundPopupShown.clear();
     for (int i = 0; i < 3; i++) {
       minigameSolved.add(false);
+      partFoundPopupShown.add(false);
     }
 
     currRooms.clear();

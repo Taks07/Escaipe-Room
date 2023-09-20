@@ -17,9 +17,14 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public abstract class RoomController {
   @FXML protected Label actionLabel;
+  @FXML protected Rectangle grayRectangle;
+  @FXML protected Rectangle okayRectangle;
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
+  @FXML protected ImageView partFoundTitleImage;
+  @FXML protected ImageView partFoundContentImage;
+  @FXML protected ImageView partFoundOkayImage;
   // @FXML protected ImageView alienImage;
   protected Thread backgroundThread;
   protected Thread flagThread;
@@ -27,7 +32,38 @@ public abstract class RoomController {
 
   @FXML
   private void initialize() {
+    // Check if minigame popup shown after solved
+    if (!GameState.getPartFoundPopupShown() && GameState.getMinigameSolved()) {
+      GameState.setPartFoundPopupShown();
+      showPopup();
+    }
     animate();
+  }
+
+  /** Show the part found popup */
+  protected void showPopup() {
+    // Set the correct image for the contents of the popup
+    switch (GameState.partsFound) {
+      case 1:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft2.png"));
+        break;
+      case 2:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft1.png"));
+        break;
+      case 3:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft0.png"));
+        break;
+      default:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft0.png"));
+        break;
+    }
+
+    // Show the popup
+    grayRectangle.setVisible(true);
+    okayRectangle.setVisible(true);
+    partFoundTitleImage.setVisible(true);
+    partFoundContentImage.setVisible(true);
+    partFoundOkayImage.setVisible(true);
   }
 
   /**
@@ -39,6 +75,20 @@ public abstract class RoomController {
     ChatMessage chat = new ChatMessage("assistant", dialog);
     GameState.showChatMessage(chat);
     GameMediaPlayer.playNotificationSound();
+  }
+
+  /**
+   * Handles the click event on the okay button in the part found popup.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  protected void clickOkay(MouseEvent event) {
+    grayRectangle.setVisible(false);
+    okayRectangle.setVisible(false);
+    partFoundTitleImage.setVisible(false);
+    partFoundContentImage.setVisible(false);
+    partFoundOkayImage.setVisible(false);
   }
 
   /**
@@ -58,8 +108,10 @@ public abstract class RoomController {
       System.out.println("Got object");
       GameState.incrementPartsFound();
       GameState.isObjectFound = true;
+      showPopup();
     } else {
       // Not the correct object. Provide some flavour text.
+      GameState.setAlienHead();
       GameState.sayFlavourText(objectID);
     }
   }
@@ -110,6 +162,7 @@ public abstract class RoomController {
 
     // Check if minigame has been solved
     if (GameState.getMinigameSolved()) {
+      showPopup();
       return;
     }
     backgroundThread.interrupt();

@@ -48,22 +48,22 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="510.0" layoutX="-3.0" layoutY="-7.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
-      <ImageView fitHeight="76.0" fitWidth="659.0" layoutX="63.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <Rectangle fx:id="grayRectangle" arcHeight="5.0" arcWidth="5.0" height="510.0" layoutX="-3.0" layoutY="-7.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
+      <ImageView fx:id="partFoundTitleImage" fitHeight="76.0" fitWidth="659.0" layoutX="63.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/rooms/partfound.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="321.0" fitWidth="570.0" layoutX="114.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="partFoundContentImage" fitHeight="321.0" fitWidth="570.0" layoutX="114.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/rooms/partsleft2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="259.0" fitWidth="389.0" layoutX="198.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="okay" fx:id="partFoundOkayImage" fitHeight="259.0" fitWidth="389.0" layoutX="198.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/rooms/okay.png" />
+            <Image url="@../images/objects/okay.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="323.0" layoutY="418.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="151.0" />
+      <Rectangle id="okay" fx:id="okayRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="323.0" layoutY="418.0" onMouseClicked="#clickOkay" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="151.0" />
    </children>
 </Pane>

@@ -194,8 +194,6 @@ public class ChatController {
             }
             appendChatMessage(gptResponse);
           }
-
-          isTranslating = false;
         });
 
     chatThread = new Thread(chatTask);
@@ -297,7 +295,6 @@ public class ChatController {
 
   public void originalTransform(String gptResponse) {
     StringBuilder currentMessage = new StringBuilder(chatTextArea.getText());
-    // translatingLabel.setText("Translating...");
 
     new Thread(
             () -> {
@@ -319,6 +316,7 @@ public class ChatController {
 
               translatingLabel.setOpacity(0);
               inputText.setVisible(true);
+              isTranslating = false;
             })
         .start();
   }
