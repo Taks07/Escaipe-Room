@@ -38,6 +38,7 @@ public class ChatController {
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
+  private Thread animationThread;
   private Pattern riddlePattern;
   private String randomSigns;
   private TimerTask alienTextTask;
@@ -318,5 +319,52 @@ public class ChatController {
               inputText.setVisible(true);
             })
         .start();
+  }
+
+  private void animateWhileTranslating() {
+    Task<Void> translating =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            try {
+              while (true) {
+                Platform.runLater(
+                    () -> {
+                      // Loading
+                      translatingLabel.setText("Translating");
+                    });
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading.
+                      translatingLabel.setText("Loading.");
+                    });
+
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading..
+                      translatingLabel.setText("Loading. .");
+                    });
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading...
+                      translatingLabel.setText("Loading. . .");
+                    });
+                Thread.sleep(300);
+              }
+
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+              return null;
+            }
+          }
+        };
+
+    // Bind the progress property of the task to the progress bar
+
+    Thread thread = new Thread(translating);
+    thread.start();
   }
 }

@@ -50,7 +50,7 @@
             <Image url="@../images/objects/stalactite.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="295.0" fitWidth="471.0" layoutX="453.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien4" fx:id="alienImage" fitHeight="295.0" fitWidth="471.0" layoutX="453.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/alien4.png" />
          </image>
