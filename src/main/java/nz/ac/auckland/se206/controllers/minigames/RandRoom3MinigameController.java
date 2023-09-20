@@ -47,6 +47,8 @@ public class RandRoom3MinigameController extends MinigameController {
   private boolean hasPlayerWon = false;
 
   public void initialize() {
+    isSolved = false;
+
     topTeeth =
         new ImageView[] {
           teeth1, teeth2, teeth3, teeth4, teeth5, teeth6, teeth7, teeth8, teeth9, teeth10

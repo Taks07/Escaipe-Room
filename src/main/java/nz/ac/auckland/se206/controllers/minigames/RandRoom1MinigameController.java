@@ -47,6 +47,7 @@ public class RandRoom1MinigameController extends MinigameController {
   private int round = 0;
 
   public void initialize() {
+    isSolved = false;
     buttons =
         new Button[][] {
           {button1, button2, button3},

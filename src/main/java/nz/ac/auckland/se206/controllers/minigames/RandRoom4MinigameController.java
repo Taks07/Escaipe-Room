@@ -44,6 +44,8 @@ public class RandRoom4MinigameController extends MinigameController {
   private int pairs;
 
   public void initialize() {
+    isSolved = false;
+
     buttons =
         new Button[][] {
           {button00, button10, button20, button30},

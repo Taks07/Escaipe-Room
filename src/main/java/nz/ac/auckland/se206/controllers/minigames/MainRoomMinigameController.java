@@ -22,6 +22,8 @@ public class MainRoomMinigameController extends MinigameController {
 
   @FXML
   public void initialize() {
+    isSolved = false;
+
     round = 0;
 
     amplitudeSlider
