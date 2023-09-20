@@ -60,6 +60,7 @@ public abstract class RoomController {
       GameState.isObjectFound = true;
     } else {
       // Not the correct object. Provide some flavour text.
+      GameState.setAlienHead();
       GameState.sayFlavourText(objectID);
     }
   }
