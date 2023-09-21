@@ -32,6 +32,8 @@ public class RandRoom1Controller extends RoomController {
    */
   @FXML
   private void hoverUfo(MouseEvent event) {
+
+    // If the minigame is solved, don't allow the player to leave manually
     Rectangle object = (Rectangle) event.getSource();
     String objectId = object.getId();
 
@@ -39,9 +41,12 @@ public class RandRoom1Controller extends RoomController {
     ImageView image = (ImageView) scene.lookup("#" + objectId);
     image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
     if (GameState.getMinigameSolved()) {
+
+      // If the minigame is solved, tell the player the part is already found
       actionLabel.setText("Part already found!");
       return;
     }
+    // Otherwise, tell the player to try to unlock the UFO storage for the part
     actionLabel.setText("Try to unlock UFO storage for part");
   }
 }
