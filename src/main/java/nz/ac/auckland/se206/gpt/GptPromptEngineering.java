@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.gpt;
 
+
 import nz.ac.auckland.se206.GameState;
 
 /** Utility class for generating GPT prompt engineering strings. */
@@ -34,6 +35,12 @@ public class GptPromptEngineering {
     }
   }
 
+  /**
+   * Gets the context message for an alien character based on the selected room and game state.
+   *
+   * @param room The room identifier.
+   * @return A context message describing the role of the alien character.
+   */
   public static String getAlienContext(String room) {
     String msg;
 
@@ -76,7 +83,7 @@ public class GptPromptEngineering {
     }
   }
 
-  public static String introduction() {
+  public static String introduceUser() {
     String currRoom = GameState.currRooms.get(GameState.getCurrRoom());
 
     switch (currRoom) {

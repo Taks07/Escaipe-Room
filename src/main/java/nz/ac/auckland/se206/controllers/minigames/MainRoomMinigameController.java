@@ -10,9 +10,9 @@ import javafx.scene.shape.Polyline;
 import nz.ac.auckland.se206.App;
 
 public class MainRoomMinigameController extends MinigameController {
-  @FXML Pane linePane;
-  @FXML Slider frequencySlider;
-  @FXML Slider amplitudeSlider;
+  @FXML private Pane linePane;
+  @FXML private Slider frequencySlider;
+  @FXML private Slider amplitudeSlider;
 
   private final int yOffset = 143;
   private Polyline playerPolyline;
@@ -20,6 +20,10 @@ public class MainRoomMinigameController extends MinigameController {
   private double targetFrequency;
   private int round;
 
+  /**
+   * Initializes the controller, sets initial values, and adds event listeners for the amplitude and
+   * frequency sliders.
+   */
   @FXML
   public void initialize() {
     isSolved = false;
