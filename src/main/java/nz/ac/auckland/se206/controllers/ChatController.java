@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -75,6 +76,27 @@ public class ChatController {
 
     // Initialize the translation flag
     isTranslating = false;
+  }
+
+  /**
+   * Send a message to the GPT model when the user presses the enter key.
+   *
+   * @param event The key event triggered by the enter key.
+   * @throws IOException if there is an I/O error.
+   */
+  @FXML
+  public void onKeyPressed(KeyEvent event) throws IOException {
+    switch (event.getCode()) {
+      case ENTER:
+        try {
+          onSendMessage(new ActionEvent());
+        } catch (ApiProxyException e) {
+          System.out.println("API NOT WORKING");
+        }
+        break;
+      default:
+        break;
+    }
   }
 
   /**
