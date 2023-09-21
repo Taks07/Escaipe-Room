@@ -211,10 +211,7 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow2(MouseEvent event) {
-    backgroundThread.interrupt();
-    if (flagThread != null) {
-      flagThread.interrupt();
-    }
+    stopThreads();
     GameState.nextRoom();
   }
 
@@ -291,12 +288,16 @@ public abstract class RoomController {
           }
         } catch (InterruptedException e) {
           Thread.currentThread().interrupt();
+          return;
+
         }
       }
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
+        return;
+
       }
     }
   }

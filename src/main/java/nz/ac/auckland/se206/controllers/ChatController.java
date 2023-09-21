@@ -100,7 +100,7 @@ public class ChatController {
     try {
       runGpt(new ChatMessage("user", request), GameState.getChatCompletionRequest());
     } catch (ApiProxyException e) {
-      e.printStackTrace();
+      System.out.println("API NOT WORKING");
     }
   }
 
@@ -228,8 +228,7 @@ public class ChatController {
           new ChatMessage("user", GptPromptEngineering.getFlavourText(object)),
           flavourTxtChatCompletionRequest);
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
-      e.printStackTrace();
+      System.out.println("API NOT WORKING");
     }
   }
 
@@ -332,7 +331,8 @@ public class ChatController {
                 try {
                   Thread.sleep(10); // Sleep for 0.04 seconds
                 } catch (InterruptedException e) {
-                  e.printStackTrace();
+                  Thread.currentThread().interrupt();
+                  return;
                 }
               }
 
@@ -340,6 +340,8 @@ public class ChatController {
               inputText.setVisible(true);
               isTranslating = false;
               GameState.toggleAlienTalking(currRoom);
+              Thread.currentThread().interrupt();
+              return;
             })
         .start();
   }
@@ -379,7 +381,7 @@ public class ChatController {
               }
 
             } catch (InterruptedException e) {
-              e.printStackTrace();
+              Thread.currentThread().interrupt();
               return null;
             }
             return null;
