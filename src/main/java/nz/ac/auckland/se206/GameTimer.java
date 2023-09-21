@@ -79,6 +79,7 @@ public class GameTimer {
     return String.format("%2d:%02d", minutes, seconds);
   }
 
+  /** Says the time left on the timer with the ai voice every 30 seconds */
   private static void sayTimeLeft() {
 
     Task<Void> ttsTask =

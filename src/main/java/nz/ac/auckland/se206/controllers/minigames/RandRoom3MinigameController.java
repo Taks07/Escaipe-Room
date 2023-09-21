@@ -46,6 +46,10 @@ public class RandRoom3MinigameController extends MinigameController {
   @FXML private ImageView teeth19;
   @FXML private ImageView teeth20;
 
+  /**
+   * Initializes the controller, sets initial values, and randomly assigns tooth images to top and
+   * bottom teeth.
+   */
   public void initialize() {
     isSolved = false;
 
@@ -84,6 +88,11 @@ public class RandRoom3MinigameController extends MinigameController {
     }
   }
 
+  /**
+   * Handles the mouse click event on teeth ImageView components to change their size.
+   *
+   * @param event The mouse click event.
+   */
   @FXML
   public void clickTeeth(MouseEvent event) {
     if (hasPlayerWon) {
@@ -140,6 +149,11 @@ public class RandRoom3MinigameController extends MinigameController {
     }
   }
 
+  /**
+   * Helper method to check if all top and bottom teeth match in size.
+   *
+   * @return True if all teeth match in size, false otherwise.
+   */
   private boolean areAllTeethMatching() {
     for (int i = 0; i < bottomTeeth.length; i++) {
       if (bottomTeeth[i].getImage() != topTeeth[i].getImage()) {

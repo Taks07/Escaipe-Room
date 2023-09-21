@@ -116,10 +116,10 @@ public abstract class RoomController {
   @FXML
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
-    String objectID = object.getId();
-    System.out.println("Clicked " + objectID);
+    String objectId = object.getId();
+    System.out.println("Clicked " + objectId);
 
-    if (GameState.isRiddleAnswerCorrect(objectID)) {
+    if (GameState.isRiddleAnswerCorrect(objectId)) {
       // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
       GameState.incrementPartsFound();
@@ -128,7 +128,7 @@ public abstract class RoomController {
     } else {
       // Not the correct object. Provide some flavour text.
       GameState.setAlienHead();
-      GameState.sayFlavourText(objectID);
+      GameState.sayFlavourText(objectId);
     }
   }
 
@@ -140,11 +140,19 @@ public abstract class RoomController {
   @FXML
   protected void hoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
+
+    if (objectID.equals("arrow1")) {
+      actionLabel.setText("Go to previous room");
+      return;
+    } else if (objectID.equals("arrow2")) {
+      actionLabel.setText("Go to next room");
+      return;
+    }
 
     actionLabel.setText("Search object");
   }
@@ -157,11 +165,11 @@ public abstract class RoomController {
   @FXML
   protected void unhoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + ".png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + ".png"));
 
     actionLabel.setText("");
   }
@@ -203,10 +211,7 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow2(MouseEvent event) {
-    backgroundThread.interrupt();
-    if (flagThread != null) {
-      flagThread.interrupt();
-    }
+    stopThreads();
     GameState.nextRoom();
   }
 
@@ -235,11 +240,13 @@ public abstract class RoomController {
   @FXML
   protected void hoverAlien(MouseEvent event) {
     actionLabel.setText("Talk to alien");
+    changeAlienImage(alienImage.getId(), "_selected");
   }
 
   @FXML
   protected void unhoverAlien(MouseEvent event) {
     actionLabel.setText("");
+    changeAlienImage(alienImage.getId(), "");
   }
 
   /**
@@ -268,7 +275,6 @@ public abstract class RoomController {
     while (true) {
       while (GameState.getAlienTalking()) {
         try {
-
           changeAlienImage(alienImage.getId(), "_talking1");
           Thread.sleep(200);
           changeAlienImage(alienImage.getId(), "_talking2");
@@ -281,13 +287,17 @@ public abstract class RoomController {
             changeAlienImage(alienImage.getId(), "");
           }
         } catch (InterruptedException e) {
-          e.printStackTrace();
+          Thread.currentThread().interrupt();
+          return;
+
         }
       }
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        Thread.currentThread().interrupt();
+        return;
+
       }
     }
   }
@@ -295,11 +305,11 @@ public abstract class RoomController {
   /**
    * Changes the image of the alien.
    *
-   * @param objectID the ID of the alien
+   * @param objectId the ID of the alien
    * @param stageOfAnimation the stage of the animation
    */
-  public void changeAlienImage(String objectID, String stageOfAnimation) {
-    alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
+  public void changeAlienImage(String objectId, String stageOfAnimation) {
+    alienImage.setImage(new Image("/images/" + objectId + stageOfAnimation + ".png"));
   }
 
   /**

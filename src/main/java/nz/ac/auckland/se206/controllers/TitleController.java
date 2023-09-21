@@ -58,6 +58,7 @@ public class TitleController extends RoomController {
     block.setVisible(false);
     paragraph.setVisible(false);
     xImageView.setVisible(false);
+
   }
 
   public void startGame(MouseEvent event) throws IOException {
@@ -152,17 +153,17 @@ public class TitleController extends RoomController {
   @FXML
   protected void hoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
-    object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    object.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
   }
 
   @FXML
   protected void unhoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
-    object.setImage(new Image("/images/objects/" + objectID + ".png"));
+    object.setImage(new Image("/images/objects/" + objectId + ".png"));
   }
 
   /** Exits the application. */

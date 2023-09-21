@@ -98,7 +98,10 @@ public class RandRoom1MinigameController extends MinigameController {
     pause.play();
   }
 
-  /** Highlights the next button in the sequence */
+  /**
+   * Highlights the next button in the sequence and makes the button cliked then unclicked after 0.5
+   * seconds
+   */
   private void highlightNextButton() {
     if (sequenceNum < round) {
       int imageIndex = sequence.get(sequenceNum);
@@ -143,10 +146,12 @@ public class RandRoom1MinigameController extends MinigameController {
           if (sequence.size() == round) {
             if (round == 5) {
 
+              // when player finished 5 rounds finish the game
               setAllButtonsGreen();
 
               System.out.println("You win!");
             } else {
+              // if player has finished the round, go onto the next roudn
               unclickButton(image);
               startNewRound();
             }
@@ -157,6 +162,7 @@ public class RandRoom1MinigameController extends MinigameController {
 
       } else {
 
+        // restart the game if the player clicks the wrong button
         setAllButtonsRed();
 
         sequence.clear();
@@ -199,7 +205,10 @@ public class RandRoom1MinigameController extends MinigameController {
     return -1;
   }
 
-  /** Sets all the buttons to red, indicating that the player has lost the game */
+  /**
+   * Sets all the buttons to red, indicating that the player has lost the game and must restart the
+   * game
+   */
   private void setAllButtonsRed() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {

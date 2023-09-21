@@ -17,7 +17,7 @@ public abstract class MinigameController {
    * @param event mouse event
    */
   @FXML
-  public void clickBackArrow(MouseEvent event) {
+  public void handleBackArrowClick(MouseEvent event) {
     // If the minigame is solved, don't allow the player to leave manually
     if (isSolved) {
       return;
@@ -35,11 +35,11 @@ public abstract class MinigameController {
   @FXML
   private void hoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
   }
 
   /**
@@ -50,11 +50,11 @@ public abstract class MinigameController {
   @FXML
   private void unhoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + ".png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + ".png"));
   }
 
   /** Ends minigame, incrementing part counter and setting the game to solved */
