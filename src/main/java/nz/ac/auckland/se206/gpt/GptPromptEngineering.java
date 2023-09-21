@@ -13,6 +13,8 @@ public class GptPromptEngineering {
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
     return "Ask a 4 line riddle with "
+
+        // Replace underscores with spaces in the word to guess
         + wordToGuess.replace("_", " ")
         + "as the answer, where each line of the riddle must start with '###' and end with '###'."
         + " Respond with the word 'Correct' when the human guesses correctly. Do not say the word "
@@ -28,12 +30,16 @@ public class GptPromptEngineering {
    * @return A context message for the game.
    */
   public static String getGameContext() {
+
+    // If hints are allowed, include a hint request for the user. Otherwise, do not request hints.
     if (GameState.hintsAllowed != 0) {
       return "Welcome the human user, then say that you have a riddle. Say the answer to the riddle"
           + " is where a rocket part is hidden. Ask them to say 'tawlung seya' for hints"
           + " from any alien. Separately, say other aliens may have other missing rocket"
           + " parts. Do not ask the riddle. Respond in 50 words.";
     } else {
+
+      // If hints are not allowed, do not include a hint request for the user.
       return "Welcome the human user, then say that you have a riddle. Say the answer to the riddle"
           + " is where a rocket part is hidden. Separately, say other aliens may have other"
           + " missing rocket parts. Do not ask the riddle. Respond in 40 words.";
@@ -51,6 +57,8 @@ public class GptPromptEngineering {
   public static String getAlienContext(String room) {
     String msg;
 
+    // If the current room is the main room, return the main room context message. Otherwise, return
+    // the context message for the current room.
     switch (room) {
       case "mainroom":
         msg = "Play the role of a whimsical alien meeting a human visitor to your planet";
@@ -79,6 +87,8 @@ public class GptPromptEngineering {
         msg = "Play the role of an alien on an alien planet";
     }
 
+    // If hints are allowed, include instructions for hint requests. Otherwise, specify not to give
+    // any hints.
     if (GameState.hintsAllowed != 0) {
       return msg
           + ". If the human asks for hints, ask them to say 'tawlung seya' first. You can tell them"
@@ -99,6 +109,8 @@ public class GptPromptEngineering {
   public static String getIntroduction() {
     String currRoom = GameState.currRooms.get(GameState.getCurrRoom());
 
+    // If the current room is the main room, return the main room introduction message. Otherwise,
+    // return the introduction message for the current room.
     switch (currRoom) {
       case "mainroom":
         return "";

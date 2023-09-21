@@ -13,6 +13,7 @@ import javafx.util.Duration;
 /** Controller for the random symbol matching minigame in Room 4. */
 public class RandRoom4MinigameController extends MinigameController {
 
+  // The buttons in the grid pane that the player must click on.
   @FXML private Button button00;
   @FXML private Button button10;
   @FXML private Button button20;
@@ -26,6 +27,7 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private Button button22;
   @FXML private Button button32;
 
+  // The ImageView components for the symbols on the buttons
   @FXML private ImageView image00;
   @FXML private ImageView image10;
   @FXML private ImageView image20;
@@ -39,6 +41,7 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private ImageView image22;
   @FXML private ImageView image32;
 
+  // The buttons and images in the grid pane. These are used to get the index of the button that was
   private Button[][] buttons;
   private Button prevButton;
   private PauseTransition pause;
@@ -48,6 +51,7 @@ public class RandRoom4MinigameController extends MinigameController {
   public void initialize() {
     isSolved = false;
 
+    // Initialize the buttons array and the number of pairs found
     buttons =
         new Button[][] {
           {button00, button10, button20, button30},
@@ -56,6 +60,8 @@ public class RandRoom4MinigameController extends MinigameController {
         };
     pairs = 0;
     pause = new PauseTransition(Duration.seconds(1));
+
+    // Hide all symbols on the buttons and randomize the symbols on the buttons
     randomizeSymbols();
   }
 

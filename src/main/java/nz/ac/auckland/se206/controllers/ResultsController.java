@@ -37,9 +37,13 @@ public class ResultsController extends TitleController {
   @FXML
   private void switchToTitle() {
     backgroundThread.interrupt();
+
+    // Stop any ongoing game-related timers and audio
     if (GameState.gameWon) {
       rocketThread.interrupt();
     }
+
+    // set the game state to the title screen
     try {
       App.setRoot("title");
     } catch (Exception e) {
@@ -51,9 +55,13 @@ public class ResultsController extends TitleController {
   @FXML
   private void switchToMainScreen() {
     backgroundThread.interrupt();
+
+    // Stop any ongoing game-related timers and audio
     if (GameState.gameWon) {
       rocketThread.interrupt();
     }
+
+    // set the game state to the mainscreen
     try {
       App.setRoot("mainscreen");
     } catch (Exception e) {
