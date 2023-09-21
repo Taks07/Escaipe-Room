@@ -78,7 +78,7 @@
             <Image url="@../images/title_screen/context_paragraph.png" />
          </image>
       </ImageView>
-      <ImageView id="X" fx:id="X" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="X" fx:id="xImageView" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/X.png" />
          </image>
