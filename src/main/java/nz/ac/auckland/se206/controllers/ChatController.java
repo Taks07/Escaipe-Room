@@ -56,10 +56,13 @@ public class ChatController {
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
 
     this.randomSigns =
-    "\\u0E04\\u0E52\\u03C2\\u0E54\\u0454\\u0166\\uFEEE\\u0452\\u0E40\\u05DF\\u043A\\u026D\\u0E53" +
-    "\\u0E20\\u0E4F\\u05E7\\u1EE3\\u0433\\u0E23\\u0547\\u0E22\\u028B\\u0E2C\\u05D0\\u05E5\\u0579" +
-    "\\u0E04\\u0E52\\u03C2\\u0E54\\u0454\\u0166\\uFEEE\\u0452\\u0E40\\u05DF\\u043A\\u026D\\u0E53" +
-    "\\u0E20\\u0E4F\\u05E7\\u1EE3\\u0433\\u0E23\\u0547\\u0E22\\u05E9\\u0E2C\\u05D0\\u05E5\\u0579";
+        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE"
+            + "\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F"
+            + "\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B"
+            + "\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54"
+            + "\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D"
+            + "\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547"
+            + "\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
 
     setHintCounter();
     setPartsCounter(0);

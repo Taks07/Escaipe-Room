@@ -70,8 +70,8 @@ public class RandRoom4MinigameController extends MinigameController {
     ArrayList<String> symbols =
         new ArrayList<String>(
             Arrays.asList(
-                "\\u0E04", "\\u0E52", "\\u03C2", "\\u0E54", "\\u0454", "\\u0166", "\\u0E04",
-                "\\u0E52", "\\u03C2", "\\u0E54", "\\u0454", "\\u0166"));
+                "\u0E04", "\u0E52", "\u03C2", "\u0E54", "\u0454", "\u0166", "\u0E04", "\u0E52",
+                "\u03C2", "\u0E54", "\u0454", "\u0166"));
     Random rand = new Random();
 
     // Loop through all buttons
