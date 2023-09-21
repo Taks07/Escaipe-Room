@@ -18,15 +18,18 @@ public class RandRoom3MinigameController extends MinigameController {
     LARGE
   }
 
+  // The tooth images of different sizes
   private Image smallToothImage;
   private Image mediumToothImage;
   private Image largeToothImage;
   private Random random = new Random();
   private boolean hasPlayerWon = false;
 
+  // Arrays to store top and bottom teeth ImageView components
   @FXML private ImageView[] topTeeth;
   @FXML private ImageView[] bottomTeeth;
 
+  // The ImageView components for the top and bottom teeth
   @FXML private ImageView teeth1;
   @FXML private ImageView teeth2;
   @FXML private ImageView teeth3;

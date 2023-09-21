@@ -20,7 +20,10 @@ import javafx.util.Duration;
  */
 public class RandRoom1MinigameController extends MinigameController {
 
+  // The grid pane containing the buttons. This is used to get the index of the button that was
   @FXML private GridPane gridPane;
+
+  // The buttons in the grid pane that the player must click on.
   @FXML private Button button1;
   @FXML private Button button2;
   @FXML private Button button3;
@@ -30,7 +33,6 @@ public class RandRoom1MinigameController extends MinigameController {
   @FXML private Button button7;
   @FXML private Button button8;
   @FXML private Button button9;
-
   @FXML private ImageView image1;
   @FXML private ImageView image2;
   @FXML private ImageView image3;
@@ -41,6 +43,8 @@ public class RandRoom1MinigameController extends MinigameController {
   @FXML private ImageView image8;
   @FXML private ImageView image9;
 
+  // The buttons and images in the grid pane. These are used to get the index of the button that was
+  // clicked.
   private Button[][] buttons;
   private ImageView[][] imageViews;
   private List<Integer> sequence;
@@ -53,6 +57,8 @@ public class RandRoom1MinigameController extends MinigameController {
    */
   public void initialize() {
     isSolved = false;
+
+    // Initialize the buttons and images.
     buttons =
         new Button[][] {
           {button1, button2, button3},
@@ -66,7 +72,10 @@ public class RandRoom1MinigameController extends MinigameController {
           {image7, image8, image9}
         };
 
+    // Initialize the sequence of buttons the player must click on.
     sequence = new ArrayList<>();
+
+    // Start the first round of the game.
     startNewRound();
   }
 
@@ -79,17 +88,23 @@ public class RandRoom1MinigameController extends MinigameController {
     Random random = new Random();
     int lastNumber;
 
+    // If the sequence is empty, set the last number to -1 to avoid duplicates.
     if (sequence.isEmpty()) {
       lastNumber = -1;
+
+      // Otherwise, set the last number to the last number in the sequence.
     } else {
       lastNumber = sequence.get(sequence.size() - 1);
     }
     int newNumber;
 
+    // Generate a new number that is not the same as the last number. This ensures that the new
+    // button is not the same as the previous one.
     do {
       newNumber = random.nextInt(9);
     } while (newNumber == lastNumber);
 
+    // Add the new number to the sequence and highlight the sequence.
     sequence.add(newNumber);
     sequenceNum = 0;
 
@@ -109,14 +124,21 @@ public class RandRoom1MinigameController extends MinigameController {
    */
   private void highlightNextButton() {
     if (sequenceNum < round) {
+
+      // Highlight the next button in the sequence. The sequence number is used to keep track of
+      // which button to highlight.
       int imageIndex = sequence.get(sequenceNum);
       ImageView image = imageViews[imageIndex / 3][imageIndex % 3];
 
+      // Click and unclick the button after 0.5 seconds. This is to indicate to the player which
+      // button to click on.
       image.setImage(new Image("images/minigames/yellow_button.png"));
 
       PauseTransition pauseBetween = new PauseTransition(Duration.seconds(0.5));
       pauseBetween.setOnFinished(
           event -> {
+
+            // Set the button back to the unclicked image.
             image.setImage(new Image("images/minigames/unclicked_button.png"));
             sequenceNum++;
             highlightNextButton();
@@ -200,9 +222,13 @@ public class RandRoom1MinigameController extends MinigameController {
    * @return the index of the button
    */
   private int getIndexFromButton(Button button) {
+
+    // Go through all the buttons and return the index of the button.
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
         if (buttons[i][j] == button) {
+
+          // The index of the button is the row number multiplied by 3 plus the column number.
           return i * 3 + j;
         }
       }
@@ -215,13 +241,18 @@ public class RandRoom1MinigameController extends MinigameController {
    * This method will be called when the player clicks on the wrong button.
    */
   private void setAllButtonsRed() {
+
+    // Go through all the buttons and set them to red.
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
+
+        // Get the image of the button and set it to red.
         ImageView image = imageViews[i][j];
         image.setImage(new Image("images/minigames/red_button.png"));
       }
     }
 
+    // Set the buttons back to the unclicked image after 0.4 seconds.
     PauseTransition pause = new PauseTransition(Duration.seconds(0.4));
     pause.setOnFinished(event -> setAllButtonsToDefaultColor());
     pause.play();
@@ -232,6 +263,8 @@ public class RandRoom1MinigameController extends MinigameController {
    * called after the player has completed 5 rounds.
    */
   private void setAllButtonsGreen() {
+
+    // Go through all the buttons and set them to green.
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
         ImageView image = imageViews[i][j];
@@ -239,9 +272,12 @@ public class RandRoom1MinigameController extends MinigameController {
       }
     }
 
+    // Set the buttons back to the unclicked image after 0.5 seconds.
     PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
     pause.setOnFinished(
         event -> {
+
+          // Set the buttons back to the unclicked image and end the game.
           setAllButtonsToDefaultColor();
           endGame();
         });
@@ -253,6 +289,8 @@ public class RandRoom1MinigameController extends MinigameController {
    * been set to red or green.
    */
   private void setAllButtonsToDefaultColor() {
+
+    // Go through all the buttons and set them to the unclicked image.
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
         ImageView image = imageViews[i][j];

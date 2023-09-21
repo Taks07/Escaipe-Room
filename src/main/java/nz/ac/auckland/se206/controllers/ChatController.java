@@ -46,7 +46,12 @@ public class ChatController {
   private boolean isTranslating;
   private int currRoom;
 
-  /** Initializes the chat view and sets up the GPT model. */
+  /**
+   * Initializes the chat view and sets up the GPT model. This method performs the following tasks:
+   * - Configures the ChatCompletionRequest parameters. - Initializes the chatThread. - Compiles the
+   * riddlePattern for pattern matching. - Sets randomSigns for use in the chat. - Sets hint and
+   * parts counters. - Loads the alien head image. - Initializes the translation flag.
+   */
   @FXML
   public void initialize() {
     // Initialize GPT request configuration
@@ -59,7 +64,14 @@ public class ChatController {
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
 
     // Random signs for creating alien-like text
-    this.randomSigns = "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE" + " ..."; // (Truncated)
+    this.randomSigns =
+        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE"
+            + "\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F"
+            + "\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B"
+            + "\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54"
+            + "\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D"
+            + "\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547"
+            + "\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
 
     // Initialize hint and parts counters
     setHintCounter();
@@ -181,9 +193,12 @@ public class ChatController {
           protected ChatMessage call() throws Exception {
             chatCompletionRequest.addMessage(msg);
             try {
+
+              // Get the response from the GPT model and return it
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
+              // If the response is a riddle, set the riddle flag to true and extract the riddle
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               System.out.println("Error communicating with API proxy");
@@ -315,13 +330,17 @@ public class ChatController {
   private String getAlienText(int length) {
     Random random = new Random();
 
+    // If length is -1, generate random length between 20 to 319 characters
     if (length == -1) {
       length = random.nextInt(300) + 20;
     }
 
+    // Create random alien text of given length
     StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < length; i++) {
+
+      // Randomly choose a character from randomSigns and append to string
       sb.append(randomSigns.charAt(random.nextInt(randomSigns.length())));
     }
 
