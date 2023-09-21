@@ -68,6 +68,7 @@ public class ChatController {
             + "\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D"
             + "\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547"
             + "\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
+
     setHintCounter();
     setPartsCounter(0);
 
@@ -96,7 +97,7 @@ public class ChatController {
   }
 
   /** Asks the GPT model to a request, then appends it to the chatbox */
-  public void askGPT(String request) {
+  public void askGpt(String request) {
     try {
       runGpt(new ChatMessage("user", request), GameState.getChatCompletionRequest());
     } catch (ApiProxyException e) {

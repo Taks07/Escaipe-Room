@@ -33,7 +33,7 @@
             <Image url="@../images/title_screen/wintext.png" />
          </image>
       </ImageView>
-      <ImageView id="exit" fx:id="exit" fitHeight="34.0" fitWidth="98.0" layoutX="690.0" layoutY="430.0" onMouseClicked="#exitApplication" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="exit" fx:id="exit" fitHeight="34.0" fitWidth="98.0" layoutX="690.0" layoutY="430.0" onMouseClicked="#onExitApplication" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/exit.png" />
          </image>

@@ -21,7 +21,7 @@ public class TitleController extends RoomController {
   @FXML private ToggleGroup difficulty;
   @FXML private ToggleGroup timeLimit;
   @FXML private ImageView begin;
-  @FXML private ImageView xImage;
+  @FXML private ImageView xImageView;
   @FXML private ImageView paragraph;
   @FXML private Rectangle block;
 
@@ -57,7 +57,8 @@ public class TitleController extends RoomController {
   public void clickX(MouseEvent event) {
     block.setVisible(false);
     paragraph.setVisible(false);
-    xImage.setVisible(false);
+    xImageView.setVisible(false);
+
   }
 
   public void startGame(MouseEvent event) throws IOException {
@@ -71,7 +72,7 @@ public class TitleController extends RoomController {
     ImageView image = (ImageView) event.getSource();
     Stage stage = (Stage) image.getScene().getWindow();
     App.startGame(stage);
-    GameState.askGPT(GptPromptEngineering.getGameContext());
+    GameState.askGpt(GptPromptEngineering.getGameContext());
   }
 
   public void setDifficultyAndTimeLimit() {
@@ -167,7 +168,7 @@ public class TitleController extends RoomController {
 
   /** Exits the application. */
   @FXML
-  protected void exitApplication() {
+  protected void onExitApplication() {
     System.exit(0);
   }
 }

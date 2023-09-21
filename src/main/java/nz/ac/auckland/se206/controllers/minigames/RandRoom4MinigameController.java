@@ -84,7 +84,7 @@ public class RandRoom4MinigameController extends MinigameController {
 
   /** Handles click on button */
   @FXML
-  private void clickButton(ActionEvent event) {
+  private void onButtonClick(ActionEvent event) {
     Button button = (Button) event.getSource();
 
     // If button is already visible, don't do anything

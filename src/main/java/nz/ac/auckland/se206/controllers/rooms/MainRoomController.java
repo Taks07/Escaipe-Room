@@ -25,7 +25,7 @@ public class MainRoomController extends RoomController {
     if (GameState.currRiddle != null) {
       showDialog("Here is the riddle again:\n" + GameState.currRiddle);
     } else {
-      GameState.askGPT(
+      GameState.askGpt(
           GptPromptEngineering.getRiddleWithGivenWord(GameState.getCurrRiddleAnswer()));
     }
   }

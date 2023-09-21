@@ -21,7 +21,7 @@
             <Image url="@../images/title_screen/border.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="430.0" mnemonicParsing="false" onAction="#exitApplication" opacity="0.0" prefHeight="45.0" prefWidth="124.0" text="Exit">
+      <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="430.0" mnemonicParsing="false" onAction="#onExitApplication" opacity="0.0" prefHeight="45.0" prefWidth="124.0" text="Exit">
          <font>
             <Font size="21.0" />
          </font>
@@ -78,7 +78,8 @@
             <Image url="@../images/title_screen/context_paragraph.png" />
          </image>
       </ImageView>
-      <ImageView id="X" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true" fx:id="xImage">
+      <ImageView id="X" fx:id="xImageView" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/X.png" />
          </image>
