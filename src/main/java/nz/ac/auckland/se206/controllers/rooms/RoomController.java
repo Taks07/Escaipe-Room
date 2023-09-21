@@ -278,7 +278,6 @@ public abstract class RoomController {
     while (true) {
       while (GameState.getAlienTalking()) {
         try {
-
           changeAlienImage(alienImage.getId(), "_talking1");
           Thread.sleep(200);
           changeAlienImage(alienImage.getId(), "_talking2");
@@ -291,13 +290,13 @@ public abstract class RoomController {
             changeAlienImage(alienImage.getId(), "");
           }
         } catch (InterruptedException e) {
-          e.printStackTrace();
+          Thread.currentThread().interrupt();
         }
       }
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        Thread.currentThread().interrupt();
       }
     }
   }
