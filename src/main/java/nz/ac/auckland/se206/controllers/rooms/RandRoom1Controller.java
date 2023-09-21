@@ -24,6 +24,12 @@ public class RandRoom1Controller extends RoomController {
     GameState.askGpt(GptPromptEngineering.getIntroduction());
   }
 
+  /**
+   * Hovering over the helmet image will change the image to the selected version and display a
+   * message in the action label.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void hoverUfo(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();

@@ -8,8 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
+/** Controller for the random tooth resizing minigame in Room 3. */
 public class RandRoom3MinigameController extends MinigameController {
 
+  // Enumeration to represent tooth size options
   private enum ToothSize {
     SMALL,
     MEDIUM,
@@ -53,6 +55,7 @@ public class RandRoom3MinigameController extends MinigameController {
   public void initialize() {
     isSolved = false;
 
+    // Arrays to store top and bottom teeth ImageView components
     topTeeth =
         new ImageView[] {
           teeth1, teeth2, teeth3, teeth4, teeth5, teeth6, teeth7, teeth8, teeth9, teeth10
@@ -61,10 +64,13 @@ public class RandRoom3MinigameController extends MinigameController {
         new ImageView[] {
           teeth11, teeth12, teeth13, teeth14, teeth15, teeth16, teeth17, teeth18, teeth19, teeth20
         };
+
+    // Load tooth images of different sizes
     smallToothImage = new Image("/images/minigames/small.png");
     mediumToothImage = new Image("/images/minigames/medium.png");
     largeToothImage = new Image("/images/minigames/large.png");
 
+    // Randomly assign tooth images to both top and bottom teeth
     for (int i = 0; i < 10; i++) {
       int newNum = random.nextInt(3);
       if (newNum == 0) {
@@ -101,6 +107,7 @@ public class RandRoom3MinigameController extends MinigameController {
 
     ImageView clickedTooth = (ImageView) event.getSource();
 
+    // Determine the current size of the clicked tooth
     ToothSize currentState = ToothSize.SMALL;
     if (clickedTooth.getImage() == mediumToothImage) {
       currentState = ToothSize.MEDIUM;
@@ -109,6 +116,7 @@ public class RandRoom3MinigameController extends MinigameController {
     }
 
     ToothSize nextState;
+    // Determine the next size of the tooth based on the current size
     switch (currentState) {
       case SMALL:
         nextState = ToothSize.MEDIUM;
@@ -124,6 +132,7 @@ public class RandRoom3MinigameController extends MinigameController {
         break;
     }
 
+    // Set the image of the clicked tooth to the next size
     switch (nextState) {
       case SMALL:
         clickedTooth.setImage(smallToothImage);
@@ -138,7 +147,7 @@ public class RandRoom3MinigameController extends MinigameController {
         break;
     }
 
-    // Check if the player has won
+    // Check if the player has won the game
     if (areAllTeethMatching()) {
       hasPlayerWon = true;
 

@@ -133,19 +133,28 @@ public abstract class RoomController {
   }
 
   /**
-   * Handles the hover event on an object.
+   * Handles the hover event on an object and updates the action label based on the object's ID.
    *
-   * @param event the mouse event
+   * @param event the mouse event triggered by hovering over the object
    */
   @FXML
   protected void hoverObject(MouseEvent event) {
+    // Get the object that triggered the event
     Rectangle object = (Rectangle) event.getSource();
+
+    // Retrieve the object's unique identifier (ID)
     String objectId = object.getId();
 
+    // Obtain the scene containing the object
     Scene scene = object.getScene();
+
+    // Locate the corresponding image associated with the object
     ImageView image = (ImageView) scene.lookup("#" + objectId);
+
+    // Change the displayed image to indicate the object is selected
     image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
 
+    // Update the action label based on the object's ID
     if (objectId.equals("arrow1")) {
       actionLabel.setText("Go to previous room");
       return;
@@ -154,23 +163,34 @@ public abstract class RoomController {
       return;
     }
 
+    // Default action label when hovering over other objects
     actionLabel.setText("Search object");
   }
 
   /**
-   * Handles the unhover event on an object.
+   * Handles the event when the mouse pointer stops hovering over an object and resets its
+   * appearance.
    *
-   * @param event the mouse event
+   * @param event the mouse event triggered when unhovering over the object
    */
   @FXML
   protected void unhoverObject(MouseEvent event) {
+    // Get the object that triggered the event
     Rectangle object = (Rectangle) event.getSource();
+
+    // Retrieve the object's unique identifier (ID)
     String objectId = object.getId();
 
+    // Obtain the scene containing the object
     Scene scene = object.getScene();
+
+    // Locate the corresponding image associated with the object
     ImageView image = (ImageView) scene.lookup("#" + objectId);
+
+    // Restore the default image for the object
     image.setImage(new Image("/images/objects/" + objectId + ".png"));
 
+    // Clear the action label when unhovering over the object
     actionLabel.setText("");
   }
 
@@ -271,29 +291,48 @@ public abstract class RoomController {
     arrow2.setOpacity(0.7);
   }
 
+  /**
+   * Continuously animates the alien character's talking expression based on the state of the game.
+   * The animation consists of cycling through different talking frames at regular intervals.
+   */
   protected void animateAlien() {
     while (true) {
+      // Check if the alien is currently talking
       while (GameState.getAlienTalking()) {
         try {
+          // Display talking frame 1
           changeAlienImage(alienImage.getId(), "_talking1");
           Thread.sleep(200);
+
+          // Display talking frame 2
           changeAlienImage(alienImage.getId(), "_talking2");
           Thread.sleep(200);
+
+          // Display talking frame 3
           changeAlienImage(alienImage.getId(), "_talking3");
           Thread.sleep(200);
+
+          // Revert to talking frame 2
           changeAlienImage(alienImage.getId(), "_talking2");
           Thread.sleep(200);
+
+          // Check if the alien has stopped talking during animation
           if (!GameState.getAlienTalking()) {
+            // Reset the alien's image to the default state
             changeAlienImage(alienImage.getId(), "");
           }
         } catch (InterruptedException e) {
+          // Handle interruption gracefully
           Thread.currentThread().interrupt();
           return;
         }
       }
+
+      // Delay for a second before checking the talking state again
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
+        // Handle interruption gracefully
         Thread.currentThread().interrupt();
         return;
       }

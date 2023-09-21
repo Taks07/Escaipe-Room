@@ -21,21 +21,29 @@ public class GptPromptEngineering {
         + " human asks for it";
   }
 
+  /**
+   * Generates a game context message based on the current game state. If hints are allowed, it
+   * includes a hint request for the user. Otherwise, it does not request hints.
+   *
+   * @return A context message for the game.
+   */
   public static String getGameContext() {
     if (GameState.hintsAllowed != 0) {
       return "Welcome the human user, then say that you have a riddle. Say the answer to the riddle"
           + " is where a rocket part is hidden. Ask them to say 'tawlung seya' for hints"
-          + " from any alien. Seperately, say other aliens may have other missing rocket"
+          + " from any alien. Separately, say other aliens may have other missing rocket"
           + " parts. Do not ask the riddle. Respond in 50 words.";
     } else {
       return "Welcome the human user, then say that you have a riddle. Say the answer to the riddle"
-          + " is where a rocket part is hidden. Seperately, say other aliens may have other"
+          + " is where a rocket part is hidden. Separately, say other aliens may have other"
           + " missing rocket parts. Do not ask the riddle. Respond in 40 words.";
     }
   }
 
   /**
-   * Gets the context message for an alien character based on the selected room and game state.
+   * Gets the context message for an alien character based on the selected room and game state. If
+   * hints are allowed, it includes instructions for hint requests. Otherwise, it specifies not to
+   * give any hints.
    *
    * @param room The room identifier.
    * @return A context message describing the role of the alien character.
@@ -59,7 +67,7 @@ public class GptPromptEngineering {
         break;
       case "randroom3":
         msg =
-            "Play the role of a excited alien meeting a human visitor to your planet. You know the"
+            "Play the role of an excited alien meeting a human visitor to your planet. You know the"
                 + " part they seek can be found in the alien plant";
         break;
       case "randroom4":
@@ -82,6 +90,12 @@ public class GptPromptEngineering {
     }
   }
 
+  /**
+   * Generates an introduction message based on the current room. It provides information about the
+   * location of the rocket part.
+   *
+   * @return An introduction message for the current room.
+   */
   public static String getIntroduction() {
     String currRoom = GameState.currRooms.get(GameState.getCurrRoom());
 
