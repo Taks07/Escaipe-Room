@@ -146,6 +146,14 @@ public abstract class RoomController {
     ImageView image = (ImageView) scene.lookup("#" + objectId);
     image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
 
+    if (objectID.equals("arrow1")) {
+      actionLabel.setText("Go to previous room");
+      return;
+    } else if (objectID.equals("arrow2")) {
+      actionLabel.setText("Go to next room");
+      return;
+    }
+
     actionLabel.setText("Search object");
   }
 
@@ -232,11 +240,13 @@ public abstract class RoomController {
   @FXML
   protected void hoverAlien(MouseEvent event) {
     actionLabel.setText("Talk to alien");
+    changeAlienImage(alienImage.getId(), "_selected");
   }
 
   @FXML
   protected void unhoverAlien(MouseEvent event) {
     actionLabel.setText("");
+    changeAlienImage(alienImage.getId(), "");
   }
 
   /**
@@ -265,7 +275,6 @@ public abstract class RoomController {
     while (true) {
       while (GameState.getAlienTalking()) {
         try {
-
           changeAlienImage(alienImage.getId(), "_talking1");
           Thread.sleep(200);
           changeAlienImage(alienImage.getId(), "_talking2");
@@ -280,6 +289,7 @@ public abstract class RoomController {
         } catch (InterruptedException e) {
           Thread.currentThread().interrupt();
           return;
+
         }
       }
       try {
@@ -287,6 +297,7 @@ public abstract class RoomController {
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
         return;
+
       }
     }
   }
