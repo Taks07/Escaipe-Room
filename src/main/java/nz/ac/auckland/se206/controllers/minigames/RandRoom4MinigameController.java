@@ -38,7 +38,6 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private ImageView image32;
 
   private Button[][] buttons;
-  private ImageView[][] imageViews;
   private Button prevButton;
   private PauseTransition pause;
   private int pairs;
@@ -52,13 +51,6 @@ public class RandRoom4MinigameController extends MinigameController {
           {button01, button11, button21, button31},
           {button02, button12, button22, button32}
         };
-    imageViews =
-        new ImageView[][] {
-          {image00, image10, image20, image30},
-          {image01, image11, image21, image31},
-          {image02, image12, image22, image32}
-        };
-
     pairs = 0;
     pause = new PauseTransition(Duration.seconds(1));
     randomizeSymbols();
