@@ -55,7 +55,7 @@
          </image>
       </ImageView>
 
-      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="130.0" layoutX="36.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+      <ImageView id="grass" fx:id="grassImage" fitHeight="75.0" fitWidth="130.0" layoutX="36.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
 
          <image>
             <Image url="@../images/objects/grass.png" />
