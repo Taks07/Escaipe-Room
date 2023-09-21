@@ -203,10 +203,7 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow2(MouseEvent event) {
-    backgroundThread.interrupt();
-    if (flagThread != null) {
-      flagThread.interrupt();
-    }
+    stopThreads();
     GameState.nextRoom();
   }
 
@@ -281,13 +278,15 @@ public abstract class RoomController {
             changeAlienImage(alienImage.getId(), "");
           }
         } catch (InterruptedException e) {
-          e.printStackTrace();
+          Thread.currentThread().interrupt();
+          return;
         }
       }
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        Thread.currentThread().interrupt();
+        return;
       }
     }
   }
