@@ -178,15 +178,6 @@ public class GameState {
       }
     }
 
-    // Tell user to talk to alien by rocket to get a riddle
-    if (currRiddle == null) {
-      if (roomName.equals("mainroom")) {
-        return "Ask the user to come to you for a riddle. Do not say a riddle";
-      } else {
-        return "Ask the user to talk to the alien by the rocket for a riddle. Do not say a riddle";
-      }
-    }
-
     // Think about improving the hint system by actually giving the state of the minigame
     if (inMinigame) {
       // User is doing a minigame
@@ -207,36 +198,63 @@ public class GameState {
         default:
           return "Tell the user to talk to aliens";
       }
-    } else {
-      // User in one of the rooms, and not a minigame
-      switch (roomName) {
-        case "mainroom":
-          return "Give a short hint for a riddle with the answer "
-              + currRiddleAnswer
-              + ". Do not say the word "
-              + currRiddleAnswer;
-        case "randroom1":
-          hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
-          break;
-        case "randroom2":
-          hint = "Tell the user the part is in the crater. Respond in 20 words";
-          break;
-        case "randroom3":
-          hint = "Tell the user the part is in the alien plant. Respond in 20 words";
-          break;
-        case "randroom4":
-          hint = "Tell the user the part is in the dark cave. Respond in 20 words";
-          break;
-        default:
-          hint = "Tell the user to talk to aliens";
-      }
-      if (GameState.getMinigameSolved()) {
-        // Minigame in room has been solved, so ask user to go to another room
-        return "Tell the user to try approaching fellow aliens in each room for an idea of"
-            + " where the parts are. Respond in 20 words";
+    }
+
+    // Tell user to talk to alien by rocket to get a riddle
+    if (currRiddle == null) {
+      if (roomName.equals("mainroom")) {
+        return "Ask the user to come to you for a riddle. Do not say a riddle";
       } else {
-        return hint;
+        return "Ask the user to talk to the alien by the rocket for a riddle. Do not say a"
+            + " riddle";
       }
+    }
+
+    // User has found 2 parts
+    if (partsFound == 2) {
+      // User hasnt solved the riddle yet
+      if (!isRiddleResolved) {
+        if (!roomName.equals("mainroom")) {
+          return "Tell the user to solve the riddle of the alien by the rocket. Do not give a"
+              + " riddle. Respond in 20 words";
+        }
+      }
+
+      if (isRiddleResolved && !isObjectFound) {
+        // User has resolved riddle, but not yet found the object
+        return "Tell the user to look for the object that is the answer to the riddle. Respond in"
+            + " 20 words";
+      }
+    }
+
+    // User in one of the rooms, and not a minigame, and the riddle has already been given
+    switch (roomName) {
+      case "mainroom":
+        return "Give a short hint for a riddle with the answer "
+            + currRiddleAnswer
+            + ". Do not say the word "
+            + currRiddleAnswer;
+      case "randroom1":
+        hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
+        break;
+      case "randroom2":
+        hint = "Tell the user the part is in the crater. Respond in 20 words";
+        break;
+      case "randroom3":
+        hint = "Tell the user the part is in the alien plant. Respond in 20 words";
+        break;
+      case "randroom4":
+        hint = "Tell the user the part is in the dark cave. Respond in 20 words";
+        break;
+      default:
+        hint = "Tell the user to talk to aliens";
+    }
+    if (GameState.getMinigameSolved()) {
+      // Minigame in room has been solved, so ask user to go to another room
+      return "Tell the user to try approaching fellow aliens in each room for an idea of"
+          + " where the parts are. Respond in 20 words";
+    } else {
+      return hint;
     }
   }
 
