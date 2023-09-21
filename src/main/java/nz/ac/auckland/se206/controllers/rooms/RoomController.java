@@ -146,6 +146,14 @@ public abstract class RoomController {
     ImageView image = (ImageView) scene.lookup("#" + objectID);
     image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
 
+    if (objectID.equals("arrow1")) {
+      actionLabel.setText("Go to previous room");
+      return;
+    } else if (objectID.equals("arrow2")) {
+      actionLabel.setText("Go to next room");
+      return;
+    }
+
     actionLabel.setText("Search object");
   }
 
