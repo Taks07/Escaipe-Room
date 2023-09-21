@@ -32,6 +32,7 @@ public class MainRoomController extends RoomController {
 
   @FXML
   protected void hoverAlien(MouseEvent event) {
+    changeAlienImage(alienImage.getId(), "_selected");
     actionLabel.setText("Ask for riddle");
   }
 
