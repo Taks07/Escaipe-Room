@@ -331,7 +331,8 @@ public class ChatController {
                 try {
                   Thread.sleep(10); // Sleep for 0.04 seconds
                 } catch (InterruptedException e) {
-                  e.printStackTrace();
+                  Thread.currentThread().interrupt();
+                  return;
                 }
               }
 
