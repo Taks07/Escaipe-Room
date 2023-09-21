@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.gpt;
 
-
 import nz.ac.auckland.se206.GameState;
 
 /** Utility class for generating GPT prompt engineering strings. */
@@ -83,7 +82,7 @@ public class GptPromptEngineering {
     }
   }
 
-  public static String introduceUser() {
+  public static String getIntroduction() {
     String currRoom = GameState.currRooms.get(GameState.getCurrRoom());
 
     switch (currRoom) {
