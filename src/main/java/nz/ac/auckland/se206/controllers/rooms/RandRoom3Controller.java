@@ -20,8 +20,7 @@ public class RandRoom3Controller extends RoomController {
   @FXML
   private void clickAlien3(MouseEvent event) {
     GameState.setAlienHead();
-    GameState.askGpt(GptPromptEngineering.introduction());
-
+    GameState.askGpt(GptPromptEngineering.getIntroduction());
   }
 
   @FXML
