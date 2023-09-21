@@ -216,6 +216,24 @@ public class GameState {
       }
     }
 
+    // User has found 2 parts
+    if (partsFound == 2) {
+      // User hasnt solved the riddle yet
+      if (!isRiddleResolved) {
+        if (!roomName.equals("mainroom")) {
+          return "Tell the user to solve the riddle of the alien by the rocket. Do not give a"
+              + " riddle. Respond in 20 words";
+        }
+      }
+
+      if (isRiddleResolved && !isObjectFound) {
+        // User has resolved riddle, but not yet found the object
+        return "Tell the user to look for the object that is the answer to the riddle. Respond in"
+            + " 20 words";
+      }
+    }
+
+
     // User in one of the rooms, and not a minigame, and the riddle has already been given
     switch (roomName) {
       case "mainroom":
