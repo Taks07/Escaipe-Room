@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" pickOnBounds="false" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
+<Pane fx:id="room" focusTraversable="true" pickOnBounds="false" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.MainRoomController">
    <children>
       <ImageView id="alien" fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-247.0" preserveRatio="true">
          <image>
@@ -19,11 +19,6 @@
             <Image url="@../images/rooms/border.png" />
          </image>
       </ImageView>
-      <Label fx:id="actionLabel" layoutX="14.0" layoutY="-10.0" prefHeight="20.0" prefWidth="209.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="29.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/arrow1.png" />
@@ -46,7 +41,29 @@
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="49.0" layoutY="411.0" onMouseClicked="#clickArrow1" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="-2.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="705.0" layoutY="408.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
-      <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="369.0" layoutX="461.0" layoutY="77.0" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" onMousePressed="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="238.0" layoutX="162.0" layoutY="199.0" onMouseClicked="#clickAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+      <Rectangle id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="369.0" layoutX="461.0" layoutY="77.0" onMouseEntered="#hoverRocket" onMouseExited="#unhoverObject" onMousePressed="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="238.0" layoutX="162.0" layoutY="199.0" onMouseClicked="#clickAlien" onMouseEntered="#hoverAlien" onMouseExited="#unhoverAlien" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+      <Label fx:id="actionLabel" alignment="CENTER" layoutX="162.0" layoutY="45.0" prefHeight="25.0" prefWidth="560.0" textFill="#ff6100">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="grayRectangle" arcHeight="5.0" arcWidth="5.0" height="510.0" layoutX="-3.0" layoutY="-7.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
+      <ImageView fx:id="partFoundTitleImage" fitHeight="76.0" fitWidth="659.0" layoutX="63.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/rooms/partfound.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="partFoundContentImage" fitHeight="321.0" fitWidth="570.0" layoutX="114.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/rooms/partsleft2.png" />
+         </image>
+      </ImageView>
+      <ImageView id="okay" fx:id="partFoundOkayImage" fitHeight="259.0" fitWidth="389.0" layoutX="198.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/objects/okay.png" />
+         </image>
+      </ImageView>
+      <Rectangle id="okay" fx:id="okayRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="323.0" layoutY="418.0" onMouseClicked="#clickOkay" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="151.0" />
    </children>
 </Pane>

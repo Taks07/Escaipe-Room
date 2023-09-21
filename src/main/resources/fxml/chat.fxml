@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
    <children>
       <ImageView fitHeight="221.0" fitWidth="840.0" layoutY="-5.0" pickOnBounds="true">
          <image>
@@ -27,31 +27,27 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="731.0" layoutY="5.0" prefHeight="19.0" prefWidth="68.0" text="Hints Left: " textFill="WHITE">
+      <Label alignment="CENTER" layoutX="718.0" layoutY="5.0" prefHeight="19.0" prefWidth="120.0" text="Hints Left: " textFill="WHITE">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="inputText" layoutX="36.0" layoutY="158.0" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the alien" style="-fx-background-color: transparent; -fx-text-fill: white;" visible="false">
+      <TextField fx:id="inputText" layoutX="36.0" layoutY="158.0" onKeyPressed="#onKeyPressed" prefHeight="35.0" prefWidth="649.0" promptText="Speak to the alien" style="-fx-background-color: transparent; -fx-text-fill: white;" visible="false">
          <font>
             <Font name="Arial" size="17.0" />
          </font></TextField>
       <Button fx:id="sendButton" layoutX="729.0" layoutY="156.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="42.0" prefWidth="85.0" text="Talk" />
-      <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="12.0" prefHeight="35.0" prefWidth="85.0" text="None" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="hintLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="12.0" prefHeight="35.0" prefWidth="120.0" text="None" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="partsLabel" alignment="CENTER" layoutX="694.0" layoutY="131.0" prefHeight="21.0" prefWidth="144.0" text="Parts Found: 0/3" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="partsLabel" layoutX="712.0" layoutY="131.0" prefHeight="21.0" prefWidth="120.0" text="Parts Found: 0/3" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
       <Polygon fill="#0b0f3c" layoutX="712.0" layoutY="81.0" points="-21.5999755859375, 49.20001220703125, 28.800048828125, 11.600006103515625, -21.5999755859375, -70.0" stroke="#0b0f3c" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="5.0" />
-      <ImageView fx:id="alienHeadImage" fitHeight="102.0" fitWidth="68.0" layoutX="746.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/chatroom/alienhead.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="alienHeadImage" fitHeight="102.0" fitWidth="68.0" layoutX="746.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

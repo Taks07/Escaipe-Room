@@ -10,49 +10,77 @@ import javafx.scene.shape.Polyline;
 import nz.ac.auckland.se206.App;
 
 public class MainRoomMinigameController extends MinigameController {
-  @FXML Pane linePane;
-  @FXML Slider frequencySlider;
-  @FXML Slider amplitudeSlider;
+  @FXML private Pane linePane;
+  @FXML private Slider frequencySlider;
+  @FXML private Slider amplitudeSlider;
 
-  private final int yOffset = 165;
+  private final int offset = 143;
   private Polyline playerPolyline;
   private double targetAmplitude;
   private double targetFrequency;
   private int round;
 
+  /**
+   * Initializes the controller, sets initial values, and adds event listeners for the amplitude and
+   * frequency sliders.
+   */
   @FXML
   public void initialize() {
+    // Initialize the puzzle as unsolved
+    isSolved = false;
+
+    // Initialize the current round
     round = 0;
 
+    // Add a listener for changes to the amplitude slider
     amplitudeSlider
         .valueProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
+              // Check if the playerPolyline is currently displayed
               if (!linePane.getChildren().contains(playerPolyline)) {
                 return;
               }
 
+              // Remove the existing playerPolyline
               linePane.getChildren().remove(playerPolyline);
+
+              // Create a new playerPolyline with updated amplitude and frequency
               playerPolyline =
                   createPolyline(amplitudeSlider.getValue(), frequencySlider.getValue(), "white");
+
+              // Add the updated playerPolyline to the linePane
               linePane.getChildren().add(playerPolyline);
+
+              // Check if the player's answer is correct
               checkAnswerCorrect();
             });
 
+    // Add a listener for changes to the frequency slider
     frequencySlider
         .valueProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
+              // Check if the playerPolyline is currently displayed
               if (!linePane.getChildren().contains(playerPolyline)) {
                 return;
               }
+
+              // Remove the existing playerPolyline
               linePane.getChildren().remove(playerPolyline);
+
+              // Create a new playerPolyline with updated amplitude and frequency
               playerPolyline =
                   createPolyline(amplitudeSlider.getValue(), frequencySlider.getValue(), "white");
+
+              // Add the updated playerPolyline to the linePane
               linePane.getChildren().add(playerPolyline);
+
+              // Check if the player's answer is correct
               checkAnswerCorrect();
             });
 
+    // Start the initial round of the puzzle
     playRound();
   }
 
@@ -69,7 +97,7 @@ public class MainRoomMinigameController extends MinigameController {
     Random random = new Random();
 
     // Generate random amplitude and frequency
-    targetAmplitude = 135 * random.nextDouble() + 30;
+    targetAmplitude = 113 * random.nextDouble() + 30;
     targetFrequency = 0.065 * random.nextDouble() + 0.635;
 
     // Create target polyline and display
@@ -97,11 +125,11 @@ public class MainRoomMinigameController extends MinigameController {
    * @return Polyline node
    */
   public Polyline createPolyline(double amplitude, double frequency, String colour) {
-    double[] points = new double[128];
+    double[] points = new double[104];
     // Calculate each coordinate of the polyline
-    for (int i = 0; i < 128; i += 2) {
+    for (int i = 0; i < 104; i += 2) {
       points[i] = i * 5;
-      points[i + 1] = amplitude * Math.sin(points[i] * frequency) + yOffset;
+      points[i + 1] = amplitude * Math.sin(points[i] * frequency) + offset;
     }
 
     // Create polyline

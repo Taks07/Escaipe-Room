@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -35,45 +36,89 @@ public class ChatController {
   @FXML private Label partsLabel;
   @FXML private ImageView alienHeadImage;
 
+  // Various fields for managing chat and interactions
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
+  private Thread animationThread;
   private Pattern riddlePattern;
   private String randomSigns;
   private TimerTask alienTextTask;
   private boolean isTranslating;
+  private int currRoom;
 
-  /** Initializes the chat view and sets up the GPT model. */
+  /**
+   * Initializes the chat view and sets up the GPT model. This method performs the following tasks:
+   * - Configures the ChatCompletionRequest parameters. - Initializes the chatThread. - Compiles the
+   * riddlePattern for pattern matching. - Sets randomSigns for use in the chat. - Sets hint and
+   * parts counters. - Loads the alien head image. - Initializes the translation flag.
+   */
   @FXML
   public void initialize() {
+    // Initialize GPT request configuration
     flavourTxtChatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
 
     chatThread = new Thread();
 
+    // Regular expression pattern for detecting riddles
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
 
-    this.randomSigns =
-        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
+    // Random signs for creating alien-like text
+    this.randomSigns = "ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ";
 
+    // Initialize hint and parts counters
     setHintCounter();
     setPartsCounter(0);
 
+    // Load the alien head image
     setAlienHeadImage(new Image("/images/chatroom/alien.png"));
 
+    // Initialize the translation flag
     isTranslating = false;
   }
 
+  /**
+   * Send a message to the GPT model when the user presses the enter key.
+   *
+   * @param event The key event triggered by the enter key.
+   * @throws IOException if there is an I/O error.
+   */
+  @FXML
+  public void onKeyPressed(KeyEvent event) throws IOException {
+    switch (event.getCode()) {
+      case ENTER:
+        try {
+          onSendMessage(new ActionEvent());
+        } catch (ApiProxyException e) {
+          System.out.println("API NOT WORKING");
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  /**
+   * Set the alien head image.
+   *
+   * @param image The alien head image to set.
+   */
   public void setAlienHeadImage(Image image) {
     alienHeadImage.setImage(image);
   }
 
+  /**
+   * Set the parts counter label.
+   *
+   * @param parts The number of parts found.
+   */
   public void setPartsCounter(int parts) {
     partsLabel.setText("Parts Found: " + parts + "/3");
   }
 
+  /** Set the hint counter label based on the game state. */
   public void setHintCounter() {
-    // Set hint counter
     if (GameState.hintsAllowed > 5) {
       hintLabel.setText("Unlimited");
     } else if (GameState.hintsAllowed == 0) {
@@ -83,19 +128,32 @@ public class ChatController {
     }
   }
 
-  /** Asks the GPT model to a request, then appends it to the chatbox */
-  public void askGPT(String request) {
+  /**
+   * Send a user's request to the GPT model and handle the response.
+   *
+   * @param request The user's request.
+   */
+  public void askGpt(String request) {
     try {
       runGpt(new ChatMessage("user", request), GameState.getChatCompletionRequest());
     } catch (ApiProxyException e) {
-      e.printStackTrace();
+      System.out.println("API NOT WORKING");
     }
   }
 
   /**
-   * Appends a chat message to the chat text area.
+   * Get the translation flag.
    *
-   * @param msg the chat message to append
+   * @return True if translating, false otherwise.
+   */
+  public boolean getIsTranslating() {
+    return isTranslating;
+  }
+
+  /**
+   * Append a chat message to the chat text area.
+   *
+   * @param msg The chat message to append.
    */
   public void appendChatMessage(String msg) {
     chatTextArea.setText(getAlienText(msg.length()));
@@ -103,11 +161,11 @@ public class ChatController {
   }
 
   /**
-   * Runs the GPT model with a given chat message.
+   * Run the GPT model with a given chat message.
    *
-   * @param msg the chat message to process
-   * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @param msg The chat message to process.
+   * @param chatCompletionRequest The chat completion request configuration.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
    */
   private void runGpt(ChatMessage msg, ChatCompletionRequest chatCompletionRequest)
       throws ApiProxyException {
@@ -116,13 +174,13 @@ public class ChatController {
       return;
     }
 
-    // Check whether AI has been set up yet by user clicking on alien in room
-
+    currRoom = GameState.getCurrRoom();
+    GameState.toggleAlienTalking(currRoom);
     isTranslating = true;
 
     // Show thinking label and disable send button
     translatingLabel.setOpacity(100);
-    translatingLabel.setText("Translating...");
+    animateWhileTranslating();
     inputText.setVisible(false);
     sendButton.setDisable(true);
 
@@ -150,9 +208,12 @@ public class ChatController {
           protected ChatMessage call() throws Exception {
             chatCompletionRequest.addMessage(msg);
             try {
+
+              // Get the response from the GPT model and return it
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
+              // If the response is a riddle, set the riddle flag to true and extract the riddle
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               System.out.println("Error communicating with API proxy");
@@ -168,7 +229,7 @@ public class ChatController {
           // Stop displaying fluctuating alien text
           myTimer.cancel();
 
-          // Set random alien text to length of response, then start trnaslating
+          // Set random alien text to length of response, then start translating
           String gptResponse = chatTask.getValue().getContent();
 
           // Play notification sound, remove thinking label and enable send button
@@ -182,38 +243,45 @@ public class ChatController {
 
           // If response is a riddle, extract the riddle and append to chat box
           if (matcher.find() && GameState.currRiddle == null) {
-            String riddle = matcher.group(1);
+            String riddle = matcher.group(1).replace("###", "");
             GameState.currRiddle = riddle;
-            appendChatMessage(riddle);
+            appendChatMessage(
+                riddle + "\nMake sure to tell the answer to me and not any other alien!");
           } else {
+            if (checkCorrectAnswer(gptResponse)) {
+              gptResponse =
+                  gptResponse
+                      + "\nA missing ship part is located where the answer to the riddle is!";
+            }
             appendChatMessage(gptResponse);
-            checkCorrectAnswer(gptResponse);
           }
-
-          isTranslating = false;
         });
 
     chatThread = new Thread(chatTask);
     chatThread.start();
   }
 
+  /**
+   * Send a message to the GPT model to say the flavor text of an object.
+   *
+   * @param object The object to say the flavor text of.
+   */
   public void sayFlavourText(String object) {
     try {
       runGpt(
           new ChatMessage("user", GptPromptEngineering.getFlavourText(object)),
           flavourTxtChatCompletionRequest);
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
-      e.printStackTrace();
+      System.out.println("API NOT WORKING");
     }
   }
 
   /**
-   * Sends a message to the GPT model.
+   * Handle sending a message to the GPT model when the user interacts with the chat interface.
    *
-   * @param event the action event triggered by the send button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @param event The action event triggered by the send button.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
+   * @throws IOException if there is an I/O error.
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
@@ -242,7 +310,7 @@ public class ChatController {
           hintLabel.setText("" + (5 - GameState.hintsCounter));
         }
       } else {
-        // No hints avaialble
+        // No hints available
         message = "Tell the user they are out of hints";
       }
       msg = new ChatMessage("user", message);
@@ -251,46 +319,56 @@ public class ChatController {
     } else {
       // User talks to AI normally
       msg = new ChatMessage("user", message);
-      // appendChatMessage(msg);
       runGpt(msg, GameState.getChatCompletionRequest());
     }
   }
 
   /**
-   * Checks if the assistant has sent a message starting with "Correct". If so, sets the
+   * Check if the assistant has sent a message starting with "Correct". If so, set the
    * isRiddleResolved flag to true.
    *
-   * @param msg the chat message to check
+   * @param msg The chat message to check.
    */
-  private void checkCorrectAnswer(String msg) {
-    if (msg.startsWith("Correct")) {
+  private boolean checkCorrectAnswer(String msg) {
+    if (msg.toLowerCase().startsWith("correct")) {
       GameState.isRiddleResolved = true;
+      return true;
     }
+
+    return false;
   }
 
   /**
-   * Creates random alien text of a given length and returns it. If given length is -1, alien text
-   * is 10 to 25 chars long
+   * Create random alien text of a given length and return it. If given length is -1, alien text is
+   * randomly generated between 20 to 319 characters.
    */
   private String getAlienText(int length) {
     Random random = new Random();
 
+    // If length is -1, generate random length between 20 to 319 characters
     if (length == -1) {
       length = random.nextInt(300) + 20;
     }
 
+    // Create random alien text of given length
     StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < length; i++) {
+
+      // Randomly choose a character from randomSigns and append to string
       sb.append(randomSigns.charAt(random.nextInt(randomSigns.length())));
     }
 
     return sb.toString();
   }
 
+  /**
+   * Transform the chat text area to display the original response.
+   *
+   * @param gptResponse The response from the GPT model.
+   */
   public void originalTransform(String gptResponse) {
     StringBuilder currentMessage = new StringBuilder(chatTextArea.getText());
-    translatingLabel.setText("Translating...");
 
     new Thread(
             () -> {
@@ -306,12 +384,66 @@ public class ChatController {
                 try {
                   Thread.sleep(10); // Sleep for 0.04 seconds
                 } catch (InterruptedException e) {
-                  e.printStackTrace();
+                  Thread.currentThread().interrupt();
+                  return;
                 }
               }
+
               translatingLabel.setOpacity(0);
               inputText.setVisible(true);
+              isTranslating = false;
+              GameState.toggleAlienTalking(currRoom);
+              Thread.currentThread().interrupt();
+              return;
             })
         .start();
+  }
+
+  /** Animate the translating label while GPT is thinking. */
+  private void animateWhileTranslating() {
+    Task<Void> translating =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            try {
+              while (isTranslating) {
+                Platform.runLater(
+                    () -> {
+                      // Loading
+                      translatingLabel.setText("Translating");
+                    });
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading.
+                      translatingLabel.setText("Translating .");
+                    });
+
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading..
+                      translatingLabel.setText("Translating . .");
+                    });
+                Thread.sleep(300);
+                Platform.runLater(
+                    () -> {
+                      // Loading...
+                      translatingLabel.setText("Translating . . .");
+                    });
+                Thread.sleep(300);
+              }
+
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              return null;
+            }
+            return null;
+          }
+        };
+
+    animationThread = new Thread(translating);
+    animationThread.setDaemon(true);
+    animationThread.start();
   }
 }

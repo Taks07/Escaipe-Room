@@ -6,16 +6,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.MainRoomMinigameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.MainRoomMinigameController">
    <children>
-      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="360.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+      <ImageView fitHeight="467.0" fitWidth="822.0" layoutX="10.0" layoutY="19.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/minigames/mainroomminigame.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/rooms/border.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="361.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#clickBackArrow" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
-      <Pane fx:id="linePane" layoutX="106.0" layoutY="28.0" prefHeight="330.0" prefWidth="630.0" style="-fx-background-color: black;" />
-      <Slider fx:id="frequencySlider" blockIncrement="0.01" layoutX="106.0" layoutY="370.0" max="0.7" min="0.635" prefHeight="14.0" prefWidth="630.0" value="0.1" />
-      <Slider fx:id="amplitudeSlider" blockIncrement="1.0" layoutX="743.0" layoutY="28.0" max="165.0" min="30.0" orientation="VERTICAL" prefHeight="330.0" prefWidth="14.0" value="100.0" />
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="379.0" layoutY="425.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
+      <Pane fx:id="linePane" layoutX="173.0" layoutY="87.0" prefHeight="286.0" prefWidth="517.0" style="-fx-background-color: black;" />
+      <Slider fx:id="frequencySlider" blockIncrement="0.01" layoutX="140.0" layoutY="37.0" max="0.7" min="0.635" prefHeight="14.0" prefWidth="584.0" value="0.67" />
+      <Slider fx:id="amplitudeSlider" blockIncrement="1.0" layoutX="716.0" layoutY="68.0" max="143.0" min="30.0" orientation="VERTICAL" prefHeight="330.0" prefWidth="14.0" value="85.0" />
    </children>
 </Pane>

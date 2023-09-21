@@ -37,10 +37,10 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
+   * This method is invoked when the application starts. It loads and shows the "mainscreen" scene.
    *
    * @param stage The primary stage of the application.
-   * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @throws IOException If "src/main/resources/fxml/mainscreen.fxml" is not found.
    */
   @Override
   public void start(final Stage stage) throws IOException {
@@ -56,12 +56,23 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * This method is invoked when the application starts. It loads and shows the "game" scene.
+   *
+   * @param stageInput The primary stage of the application.
+   * @throws IOException If "src/main/resources/fxml/game.fxml" is not found.
+   */
   public static void startGame(final Stage stageInput) throws IOException {
+
+    // Set the stage to the input stage.
     stage = stageInput;
     stage.setOnCloseRequest(
         (event) -> {
+          // Exit the application when the window is closed.
           System.exit(0);
         });
+
+    // Load the game view at width 840 and height 745.
     Parent root = loadFxml("game");
     scene = new Scene(root, 840, 745);
     stage.setScene(scene);
@@ -69,11 +80,20 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * This method ends the game and loads the results screen.
+   *
+   * @throws IOException If "src/main/resources/fxml/results.fxml" is not found.
+   */
   public static void endGame() throws IOException {
+
+    // Interrupt any background and rocket threads (if running).
     stage.setOnCloseRequest(
         (event) -> {
           System.exit(0);
         });
+
+    // Navigate to the results view. (This is the only place where the results view is loaded.)
     Parent root = loadFxml("results");
     scene = new Scene(root, 840, 510);
     stage.setScene(scene);

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ResultsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ResultsController">
    <children>
       <ImageView id="mainbackground" fx:id="mainbackground" fitHeight="535.0" fitWidth="888.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,7 +33,7 @@
             <Image url="@../images/title_screen/wintext.png" />
          </image>
       </ImageView>
-      <ImageView id="exit" fx:id="exit" fitHeight="34.0" fitWidth="98.0" layoutX="690.0" layoutY="430.0" onMouseClicked="#exitApplication" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="exit" fx:id="exit" fitHeight="34.0" fitWidth="98.0" layoutX="690.0" layoutY="430.0" onMouseClicked="#onExitApplication" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/exit.png" />
          </image>

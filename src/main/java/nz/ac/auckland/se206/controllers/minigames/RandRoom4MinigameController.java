@@ -10,7 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+/** Controller for the random symbol matching minigame in Room 4. */
 public class RandRoom4MinigameController extends MinigameController {
+
+  // The buttons in the grid pane that the player must click on.
   @FXML private Button button00;
   @FXML private Button button10;
   @FXML private Button button20;
@@ -24,6 +27,7 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private Button button22;
   @FXML private Button button32;
 
+  // The ImageView components for the symbols on the buttons
   @FXML private ImageView image00;
   @FXML private ImageView image10;
   @FXML private ImageView image20;
@@ -37,39 +41,36 @@ public class RandRoom4MinigameController extends MinigameController {
   @FXML private ImageView image22;
   @FXML private ImageView image32;
 
+  // The buttons and images in the grid pane. These are used to get the index of the button that was
   private Button[][] buttons;
-  private ImageView[][] imageViews;
   private Button prevButton;
   private PauseTransition pause;
   private int pairs;
 
+  /** Initializes the controller, sets initial values, and randomly assigns symbols to buttons. */
   public void initialize() {
+    isSolved = false;
+
+    // Initialize the buttons array and the number of pairs found
     buttons =
         new Button[][] {
           {button00, button10, button20, button30},
           {button01, button11, button21, button31},
           {button02, button12, button22, button32}
         };
-    imageViews =
-        new ImageView[][] {
-          {image00, image10, image20, image30},
-          {image01, image11, image21, image31},
-          {image02, image12, image22, image32}
-        };
-
     pairs = 0;
     pause = new PauseTransition(Duration.seconds(1));
+
+    // Hide all symbols on the buttons and randomize the symbols on the buttons
     randomizeSymbols();
   }
 
   /** Randomizes the symbols on the buttons. */
   public void randomizeSymbols() {
-    // Make sure there is 2 of each symbol on each button
+    // Make sure there are 2 of each symbol on each button
     ArrayList<String> symbols =
         new ArrayList<String>(
-            Arrays.asList(
-                "\u0E04", "\u0E52", "\u03C2", "\u0E54", "\u0454", "\u0166", "\u0E04", "\u0E52",
-                "\u03C2", "\u0E54", "\u0454", "\u0166"));
+            Arrays.asList("ค", "๒", "ς", "๔", "є", "Ŧ", "ค", "๒", "ς", "๔", "є", "Ŧ"));
     Random rand = new Random();
 
     // Loop through all buttons
@@ -88,31 +89,35 @@ public class RandRoom4MinigameController extends MinigameController {
     }
   }
 
-  /** Handles click on button */
+  /**
+   * Handles click on a button to reveal symbols and match pairs.
+   *
+   * @param event The action event triggered by clicking a button.
+   */
   @FXML
-  private void clickButton(ActionEvent event) {
+  private void onButtonClick(ActionEvent event) {
     Button button = (Button) event.getSource();
 
-    // If button is already visible, don't do anything
+    // If the button is already visible, do nothing
     if (button.getOpacity() == 1) {
       return;
     }
 
-    // If there is a pause, don't do anything
+    // If there is an ongoing pause, do nothing
     if (pause.statusProperty().get() == javafx.animation.Animation.Status.RUNNING) {
       return;
     }
 
     if (prevButton == null) {
-      // If button has not been clicked yet, simply show text
+      // If no button has been clicked yet, reveal the symbol
       button.setOpacity(1);
       prevButton = button;
     } else {
-      // Button has already been clicked, so check if it matches the previous button
+      // A button has already been clicked, check if it matches the previous button
       button.setOpacity(1);
 
       if (button.getText().equals(prevButton.getText())) {
-        // If it matches, keep both buttons visible
+        // If they match, keep both buttons visible
         prevButton = null;
 
         pairs++;
@@ -127,7 +132,7 @@ public class RandRoom4MinigameController extends MinigameController {
           pause.play();
         }
       } else {
-        // If it doesn't match, hide both buttons after a second
+        // If they don't match, hide both buttons after a second
         pause = new PauseTransition(Duration.seconds(1));
         pause.setOnFinished(
             event2 -> {

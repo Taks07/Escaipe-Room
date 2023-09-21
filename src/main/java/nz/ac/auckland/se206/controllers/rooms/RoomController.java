@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,31 +17,69 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public abstract class RoomController {
   @FXML protected Label actionLabel;
+  @FXML protected Rectangle grayRectangle;
+  @FXML protected Rectangle okayRectangle;
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
+  @FXML protected ImageView partFoundTitleImage;
+  @FXML protected ImageView partFoundContentImage;
+  @FXML protected ImageView partFoundOkayImage;
+  @FXML protected ImageView alienImage;
   protected Thread backgroundThread;
   protected Thread flagThread;
+  protected Thread alienThread;
   protected boolean visited;
 
   @FXML
   private void initialize() {
+    // Check if minigame popup shown after solved
+    if (!GameState.getPartFoundPopupShown() && GameState.getMinigameSolved()) {
+      GameState.setPartFoundPopupShown();
+      showPopup();
+    }
     animate();
+    alienThread = new Thread(() -> animateAlien());
+    alienThread.setDaemon(true);
+    alienThread.start();
   }
 
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  protected void showDialogBox(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
+  protected void stopThreads() {
+    if (backgroundThread != null) {
+      backgroundThread.interrupt();
+    }
+    if (flagThread != null) {
+      flagThread.interrupt();
+    }
+    if (alienThread != null) {
+      alienThread.interrupt();
+    }
+  }
+
+  /** Show the part found popup */
+  protected void showPopup() {
+    // Set the correct image for the contents of the popup
+    switch (GameState.partsFound) {
+      case 1:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft2.png"));
+        break;
+      case 2:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft1.png"));
+        break;
+      case 3:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft0.png"));
+        break;
+      default:
+        partFoundContentImage.setImage(new Image("/images/rooms/partsleft0.png"));
+        break;
+    }
+
+    // Show the popup
+    grayRectangle.setVisible(true);
+    okayRectangle.setVisible(true);
+    partFoundTitleImage.setVisible(true);
+    partFoundContentImage.setVisible(true);
+    partFoundOkayImage.setVisible(true);
   }
 
   /**
@@ -57,6 +94,20 @@ public abstract class RoomController {
   }
 
   /**
+   * Handles the click event on the okay button in the part found popup.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  protected void clickOkay(MouseEvent event) {
+    grayRectangle.setVisible(false);
+    okayRectangle.setVisible(false);
+    partFoundTitleImage.setVisible(false);
+    partFoundContentImage.setVisible(false);
+    partFoundOkayImage.setVisible(false);
+  }
+
+  /**
    * Handles the click event on an object.
    *
    * @param event the mouse event
@@ -65,51 +116,81 @@ public abstract class RoomController {
   @FXML
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
-    String objectID = object.getId();
-    System.out.println("Clicked " + objectID);
+    String objectId = object.getId();
+    System.out.println("Clicked " + objectId);
 
-    if (GameState.isRiddleAnswerCorrect(objectID)) {
+    if (GameState.isRiddleAnswerCorrect(objectId)) {
       // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
       GameState.incrementPartsFound();
       GameState.isObjectFound = true;
+      showPopup();
     } else {
       // Not the correct object. Provide some flavour text.
-      GameState.sayFlavourText(objectID);
+      GameState.setAlienHead();
+      GameState.sayFlavourText(objectId);
     }
   }
 
   /**
-   * Handles the hover event on an object.
+   * Handles the hover event on an object and updates the action label based on the object's ID.
    *
-   * @param event the mouse event
+   * @param event the mouse event triggered by hovering over the object
    */
   @FXML
-  private void hoverObject(MouseEvent event) {
+  protected void hoverObject(MouseEvent event) {
+    // Get the object that triggered the event
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
 
+    // Retrieve the object's unique identifier (ID)
+    String objectId = object.getId();
+
+    // Obtain the scene containing the object
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
 
-    actionLabel.setText(":D");
+    // Locate the corresponding image associated with the object
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+
+    // Change the displayed image to indicate the object is selected
+    image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
+
+    // Update the action label based on the object's ID
+    if (objectId.equals("arrow1")) {
+      actionLabel.setText("Go to previous room");
+      return;
+    } else if (objectId.equals("arrow2")) {
+      actionLabel.setText("Go to next room");
+      return;
+    }
+
+    // Default action label when hovering over other objects
+    actionLabel.setText("Search object");
   }
 
   /**
-   * Handles the unhover event on an object.
+   * Handles the event when the mouse pointer stops hovering over an object and resets its
+   * appearance.
    *
-   * @param event the mouse event
+   * @param event the mouse event triggered when unhovering over the object
    */
   @FXML
-  private void unhoverObject(MouseEvent event) {
+  protected void unhoverObject(MouseEvent event) {
+    // Get the object that triggered the event
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
 
+    // Retrieve the object's unique identifier (ID)
+    String objectId = object.getId();
+
+    // Obtain the scene containing the object
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + ".png"));
 
+    // Locate the corresponding image associated with the object
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+
+    // Restore the default image for the object
+    image.setImage(new Image("/images/objects/" + objectId + ".png"));
+
+    // Clear the action label when unhovering over the object
     actionLabel.setText("");
   }
 
@@ -120,14 +201,13 @@ public abstract class RoomController {
    */
   @FXML
   protected void clickMinigame(MouseEvent event) {
-    // Stop background animation
-    backgroundThread.interrupt();
 
     // Check if minigame has been solved
     if (GameState.getMinigameSolved()) {
+      showPopup();
       return;
     }
-    backgroundThread.interrupt();
+    stopThreads();
     GameState.inMinigame = true;
     String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
     GameState.switchRoom(fxmlPath);
@@ -140,10 +220,7 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow1(MouseEvent event) {
-    backgroundThread.interrupt();
-    if (flagThread != null) {
-      flagThread.interrupt();
-    }
+    stopThreads();
     GameState.prevRoom();
   }
 
@@ -154,10 +231,7 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow2(MouseEvent event) {
-    backgroundThread.interrupt();
-    if (flagThread != null) {
-      flagThread.interrupt();
-    }
+    stopThreads();
     GameState.nextRoom();
   }
 
@@ -169,7 +243,7 @@ public abstract class RoomController {
   @FXML
   private void hoverArrow1(MouseEvent event) {
     arrow1.setOpacity(1);
-    actionLabel.setText("Go to " + GameState.getPrevRoom());
+    actionLabel.setText("Go to previous room");
   }
 
   /**
@@ -180,7 +254,19 @@ public abstract class RoomController {
   @FXML
   private void hoverArrow2(MouseEvent event) {
     arrow2.setOpacity(1);
-    actionLabel.setText("Go to " + GameState.getNextRoom());
+    actionLabel.setText("Go to next room");
+  }
+
+  @FXML
+  protected void hoverAlien(MouseEvent event) {
+    actionLabel.setText("Talk to alien");
+    changeAlienImage(alienImage.getId(), "_selected");
+  }
+
+  @FXML
+  protected void unhoverAlien(MouseEvent event) {
+    actionLabel.setText("");
+    changeAlienImage(alienImage.getId(), "");
   }
 
   /**
@@ -203,6 +289,64 @@ public abstract class RoomController {
   private void unhoverArrow2(MouseEvent event) {
     actionLabel.setText("");
     arrow2.setOpacity(0.7);
+  }
+
+  /**
+   * Continuously animates the alien character's talking expression based on the state of the game.
+   * The animation consists of cycling through different talking frames at regular intervals.
+   */
+  protected void animateAlien() {
+    while (true) {
+      // Check if the alien is currently talking
+      while (GameState.getAlienTalking()) {
+        try {
+          // Display talking frame 1
+          changeAlienImage(alienImage.getId(), "_talking1");
+          Thread.sleep(200);
+
+          // Display talking frame 2
+          changeAlienImage(alienImage.getId(), "_talking2");
+          Thread.sleep(200);
+
+          // Display talking frame 3
+          changeAlienImage(alienImage.getId(), "_talking3");
+          Thread.sleep(200);
+
+          // Revert to talking frame 2
+          changeAlienImage(alienImage.getId(), "_talking2");
+          Thread.sleep(200);
+
+          // Check if the alien has stopped talking during animation
+          if (!GameState.getAlienTalking()) {
+            // Reset the alien's image to the default state
+            changeAlienImage(alienImage.getId(), "");
+          }
+        } catch (InterruptedException e) {
+          // Handle interruption gracefully
+          Thread.currentThread().interrupt();
+          return;
+        }
+      }
+
+      // Delay for a second before checking the talking state again
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        // Handle interruption gracefully
+        Thread.currentThread().interrupt();
+        return;
+      }
+    }
+  }
+
+  /**
+   * Changes the image of the alien.
+   *
+   * @param objectId the ID of the alien
+   * @param stageOfAnimation the stage of the animation
+   */
+  public void changeAlienImage(String objectId, String stageOfAnimation) {
+    alienImage.setImage(new Image("/images/" + objectId + stageOfAnimation + ".png"));
   }
 
   /**

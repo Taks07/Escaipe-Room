@@ -79,20 +79,27 @@ public class GameTimer {
     return String.format("%2d:%02d", minutes, seconds);
   }
 
+  /**
+   * Announces the remaining time at 30-second intervals using text-to-speech (TTS) with an AI
+   * voice.
+   */
   private static void sayTimeLeft() {
-
     Task<Void> ttsTask =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+            // Calculate remaining minutes and seconds
             int minutes = secondsLeft / 60;
             int seconds = secondsLeft % 60;
 
+            // If there are less than 10 seconds remaining and no minutes left, announce seconds
+            // only
             if (seconds <= 10 && minutes == 0) {
               tts.speak(String.valueOf(seconds));
               return null;
             }
 
+            // Announce remaining time in a human-friendly format
             if (minutes == 0) {
               tts.speak(String.format("You have %d seconds left", seconds));
             } else if (seconds == 0) {
@@ -104,6 +111,7 @@ public class GameTimer {
           }
         };
 
+    // Create a new thread for TTS task and start it
     ttsThread = new Thread(ttsTask);
     ttsThread.start();
   }

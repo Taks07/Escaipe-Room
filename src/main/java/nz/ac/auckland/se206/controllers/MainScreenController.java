@@ -12,16 +12,23 @@ public class MainScreenController extends TitleController {
   @FXML private ImageView mainbackground;
   @FXML private ImageView startImage;
 
+  /**
+   * Handles the click event on the start button.
+   *
+   * @param event The mouse event triggering the click.
+   * @throws IOException If there is an error loading the title view.
+   */
   @FXML
   private void clickStart(MouseEvent event) throws IOException {
-
+    // Interrupt any background and rocket threads (if running).
     backgroundThread.interrupt();
     rocketThread.interrupt();
 
     try {
+      // Navigate to the title view.
       App.setRoot("title");
     } catch (IOException e) {
-      e.printStackTrace();
+      e.printStackTrace(); // Handle the exception, e.g., log or display an error message.
     }
   }
 }

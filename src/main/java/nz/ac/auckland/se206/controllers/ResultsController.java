@@ -16,7 +16,7 @@ public class ResultsController extends TitleController {
   @FXML private ImageView exit;
   @FXML private ImageView mainmenu;
 
-  /** Code that is run when first starting game */
+  /** Initializes the results view and displays the appropriate result text and animations. */
   @FXML
   public void initialize() {
     if (GameState.gameWon) {
@@ -28,16 +28,22 @@ public class ResultsController extends TitleController {
     }
     animate();
 
+    // Stop any ongoing game-related timers and audio
     GameTimer.stopTts();
     GameTimer.stopTimeline();
   }
 
+  /** Switches to the title screen when the "Exit" button is clicked. */
   @FXML
   private void switchToTitle() {
     backgroundThread.interrupt();
+
+    // Stop any ongoing game-related timers and audio
     if (GameState.gameWon) {
       rocketThread.interrupt();
     }
+
+    // set the game state to the title screen
     try {
       App.setRoot("title");
     } catch (Exception e) {
@@ -45,12 +51,17 @@ public class ResultsController extends TitleController {
     }
   }
 
+  /** Switches to the main screen when the "Main Menu" button is clicked. */
   @FXML
   private void switchToMainScreen() {
     backgroundThread.interrupt();
+
+    // Stop any ongoing game-related timers and audio
     if (GameState.gameWon) {
       rocketThread.interrupt();
     }
+
+    // set the game state to the mainscreen
     try {
       App.setRoot("mainscreen");
     } catch (Exception e) {

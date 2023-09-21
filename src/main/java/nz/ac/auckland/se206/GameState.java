@@ -50,6 +50,12 @@ public class GameState {
   /** Whether or not minigame was solved in each room */
   public static ArrayList<Boolean> minigameSolved = new ArrayList<Boolean>();
 
+  /** Whether or not part found popup has been shown for minigame in room */
+  public static ArrayList<Boolean> partFoundPopupShown = new ArrayList<Boolean>();
+
+  /** Whether or not the alien in the room is currently talking */
+  public static ArrayList<Boolean> alienTalking = new ArrayList<Boolean>();
+
   /** The current loaded room as index in currRooms array */
   public static int currRoom;
 
@@ -155,8 +161,8 @@ public class GameState {
    *
    * @param request the request to ask
    */
-  public static void askGPT(String request) {
-    chatController.askGPT(request);
+  public static void askGpt(String request) {
+    chatController.askGpt(request);
   }
 
   /** Returns a hint prompt depending on game state */
@@ -169,7 +175,7 @@ public class GameState {
       if (inMinigame) {
         // User in rocket minigame
         return "Tell the user to use the slider on the right to change amplitude and the slider at"
-            + " the bottom to change frequency of the sine wave so that the 2 waves match."
+            + " the top to change frequency of the sine wave so that the 2 waves match."
             + " Explain how amplitude affects height and frequency affects how close the"
             + " waves are within 40 words";
       } else {
@@ -226,6 +232,7 @@ public class GameState {
             + " 20 words";
       }
     }
+
 
     // User in one of the rooms, and not a minigame, and the riddle has already been given
     switch (roomName) {
@@ -380,32 +387,24 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  /** Get name of previous room */
-  public static String getPrevRoom() {
-    int temp = currRoom - 1;
-
-    if (temp < 0) {
-      temp += currRooms.size();
-    }
-
-    return currRooms.get(temp);
-  }
-
-  /** Get name of next room */
-  public static String getNextRoom() {
-    int temp = currRoom + 1;
-
-    if (temp == currRooms.size()) {
-      temp -= currRooms.size();
-    }
-
-    return currRooms.get(temp);
-  }
-
   /** Increment the parts found, and update label in chat controller */
   public static void incrementPartsFound() {
     partsFound++;
     chatController.setPartsCounter(partsFound);
+  }
+
+  /**
+   * Returns whether or not the part found popup has been shown for the minigame in the current room
+   *
+   * @return true if the part found popup has been shown, false otherwise
+   */
+  public static boolean getPartFoundPopupShown() {
+    return partFoundPopupShown.get(currRoom);
+  }
+
+  /** Sets the partFoundPopupSHown value for current room to true */
+  public static void setPartFoundPopupShown() {
+    partFoundPopupShown.set(currRoom, true);
   }
 
   /** Sets the number of hints allowed for the game */
@@ -417,6 +416,20 @@ public class GameState {
     } else {
       hintsAllowed = 0;
     }
+  }
+
+  /**
+   * Toggles whether or not the alien in the current room is talking
+   *
+   * @param room the room to toggle
+   */
+  public static void toggleAlienTalking(int room) {
+    alienTalking.set(room, !alienTalking.get(room));
+  }
+
+  /** Returns whether or not the alien in the current room is talking */
+  public static boolean getAlienTalking() {
+    return alienTalking.get(currRoom);
   }
 
   /**
@@ -458,10 +471,14 @@ public class GameState {
     partsFound = 0;
     currRoom = 0;
 
-    // Reset minigameSolved
+    // Reset minigameSolved and partFoundPopupShown
     minigameSolved.clear();
+    partFoundPopupShown.clear();
+    alienTalking.clear();
     for (int i = 0; i < 3; i++) {
       minigameSolved.add(false);
+      partFoundPopupShown.add(false);
+      alienTalking.add(false);
     }
 
     currRooms.clear();

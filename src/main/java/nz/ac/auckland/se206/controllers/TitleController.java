@@ -21,7 +21,7 @@ public class TitleController extends RoomController {
   @FXML private ToggleGroup difficulty;
   @FXML private ToggleGroup timeLimit;
   @FXML private ImageView begin;
-  @FXML private ImageView X;
+  @FXML private ImageView exit;
   @FXML private ImageView paragraph;
   @FXML private Rectangle block;
 
@@ -57,7 +57,7 @@ public class TitleController extends RoomController {
   public void clickX(MouseEvent event) {
     block.setVisible(false);
     paragraph.setVisible(false);
-    X.setVisible(false);
+    exit.setVisible(false);
   }
 
   public void startGame(MouseEvent event) throws IOException {
@@ -71,7 +71,7 @@ public class TitleController extends RoomController {
     ImageView image = (ImageView) event.getSource();
     Stage stage = (Stage) image.getScene().getWindow();
     App.startGame(stage);
-    GameState.askGPT(GptPromptEngineering.getGameContext());
+    GameState.askGpt(GptPromptEngineering.getGameContext());
   }
 
   public void setDifficultyAndTimeLimit() {
@@ -150,24 +150,24 @@ public class TitleController extends RoomController {
   }
 
   @FXML
-  private void hoverObject(MouseEvent event) {
+  protected void hoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
-    object.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    object.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
   }
 
   @FXML
-  private void unhoverObject(MouseEvent event) {
+  protected void unhoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
-    object.setImage(new Image("/images/objects/" + objectID + ".png"));
+    object.setImage(new Image("/images/objects/" + objectId + ".png"));
   }
 
   /** Exits the application. */
   @FXML
-  protected void exitApplication() {
+  protected void onExitApplication() {
     System.exit(0);
   }
 }

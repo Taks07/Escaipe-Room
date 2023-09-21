@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
    <children>
       <ImageView fx:id="mainbackground" fitHeight="669.0" fitWidth="888.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,7 +21,7 @@
             <Image url="@../images/title_screen/border.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="430.0" mnemonicParsing="false" onAction="#exitApplication" opacity="0.0" prefHeight="45.0" prefWidth="124.0" text="Exit">
+      <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="430.0" mnemonicParsing="false" onAction="#onExitApplication" opacity="0.0" prefHeight="45.0" prefWidth="124.0" text="Exit">
          <font>
             <Font size="21.0" />
          </font>
@@ -78,7 +78,8 @@
             <Image url="@../images/title_screen/context_paragraph.png" />
          </image>
       </ImageView>
-      <ImageView id="X" fx:id="X" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="X" fx:id="exit" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../images/objects/X.png" />
          </image>
