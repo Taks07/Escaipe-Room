@@ -10,7 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+/** Controller for the random symbol matching minigame in Room 4. */
 public class RandRoom4MinigameController extends MinigameController {
+
   @FXML private Button button00;
   @FXML private Button button10;
   @FXML private Button button20;
@@ -42,6 +44,7 @@ public class RandRoom4MinigameController extends MinigameController {
   private PauseTransition pause;
   private int pairs;
 
+  /** Initializes the controller, sets initial values, and randomly assigns symbols to buttons. */
   public void initialize() {
     isSolved = false;
 
@@ -58,7 +61,7 @@ public class RandRoom4MinigameController extends MinigameController {
 
   /** Randomizes the symbols on the buttons. */
   public void randomizeSymbols() {
-    // Make sure there is 2 of each symbol on each button
+    // Make sure there are 2 of each symbol on each button
     ArrayList<String> symbols =
         new ArrayList<String>(
             Arrays.asList(
@@ -82,31 +85,35 @@ public class RandRoom4MinigameController extends MinigameController {
     }
   }
 
-  /** Handles click on button */
+  /**
+   * Handles click on a button to reveal symbols and match pairs.
+   *
+   * @param event The action event triggered by clicking a button.
+   */
   @FXML
   private void onButtonClick(ActionEvent event) {
     Button button = (Button) event.getSource();
 
-    // If button is already visible, don't do anything
+    // If the button is already visible, do nothing
     if (button.getOpacity() == 1) {
       return;
     }
 
-    // If there is a pause, don't do anything
+    // If there is an ongoing pause, do nothing
     if (pause.statusProperty().get() == javafx.animation.Animation.Status.RUNNING) {
       return;
     }
 
     if (prevButton == null) {
-      // If button has not been clicked yet, simply show text
+      // If no button has been clicked yet, reveal the symbol
       button.setOpacity(1);
       prevButton = button;
     } else {
-      // Button has already been clicked, so check if it matches the previous button
+      // A button has already been clicked, check if it matches the previous button
       button.setOpacity(1);
 
       if (button.getText().equals(prevButton.getText())) {
-        // If it matches, keep both buttons visible
+        // If they match, keep both buttons visible
         prevButton = null;
 
         pairs++;
@@ -121,7 +128,7 @@ public class RandRoom4MinigameController extends MinigameController {
           pause.play();
         }
       } else {
-        // If it doesn't match, hide both buttons after a second
+        // If they don't match, hide both buttons after a second
         pause = new PauseTransition(Duration.seconds(1));
         pause.setOnFinished(
             event2 -> {

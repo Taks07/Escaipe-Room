@@ -14,9 +14,9 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 /**
- * Plays the sequence game similar to simons game, where the player clicks on the buttons, and each
- * consequetive round it adds an extra button to the sequence once 5 rounds are played you win the
- * game
+ * RandRoom1MinigameController is responsible for the Simon's game-like sequence minigame. In this
+ * game, the player clicks on buttons, and with each successive round, an extra button is added to
+ * the sequence. The objective is to complete 5 rounds to win the game.
  */
 public class RandRoom1MinigameController extends MinigameController {
 
@@ -47,6 +47,10 @@ public class RandRoom1MinigameController extends MinigameController {
   private int sequenceNum = 0;
   private int round = 0;
 
+  /**
+   * Initialize the buttons and images for the game and start the first round of the game. During
+   * the first round, it highlights the sequence of buttons the player must click on.
+   */
   public void initialize() {
     isSolved = false;
     buttons =
@@ -67,13 +71,14 @@ public class RandRoom1MinigameController extends MinigameController {
   }
 
   /**
-   * Starts a new round of the game, where it adds a new button to the sequence, and highlights the
-   * sequence the button can not be the same button as the one before it
+   * Starts a new round of the game by adding a new button to the sequence and highlighting it. The
+   * new button cannot be the same as the one before it to increase difficulty and avoid duplicates.
    */
   private void startNewRound() {
     round++;
     Random random = new Random();
     int lastNumber;
+
     if (sequence.isEmpty()) {
       lastNumber = -1;
     } else {
@@ -91,7 +96,7 @@ public class RandRoom1MinigameController extends MinigameController {
     highlightSequence();
   }
 
-  /** Highlights the sequence of buttons that the player must click on */
+  /** Highlights the sequence of buttons that the player must click on. */
   private void highlightSequence() {
     PauseTransition pause = new PauseTransition(Duration.seconds(1));
     pause.setOnFinished(event -> highlightNextButton());
@@ -99,8 +104,8 @@ public class RandRoom1MinigameController extends MinigameController {
   }
 
   /**
-   * Highlights the next button in the sequence and makes the button cliked then unclicked after 0.5
-   * seconds
+   * Highlights the next button in the sequence and briefly clicks and unclicks it after 0.5
+   * seconds.
    */
   private void highlightNextButton() {
     if (sequenceNum < round) {
@@ -124,8 +129,8 @@ public class RandRoom1MinigameController extends MinigameController {
   }
 
   /**
-   * Handles the button click event, where the player clicks on the buttons in the sequence if the
-   * player clicks on the wrong button, the game ends
+   * Handles the button click event. If the player clicks on the correct button in the sequence, the
+   * game progresses. If the player clicks on the wrong button, the game restarts.
    *
    * @param event the mouse event
    * @throws IOException
@@ -146,12 +151,12 @@ public class RandRoom1MinigameController extends MinigameController {
           if (sequence.size() == round) {
             if (round == 5) {
 
-              // when player finished 5 rounds finish the game
+              // When the player finishes 5 rounds, they win the game.
               setAllButtonsGreen();
 
               System.out.println("You win!");
             } else {
-              // if player has finished the round, go onto the next roudn
+              // If the player has finished the round, proceed to the next round.
               unclickButton(image);
               startNewRound();
             }
@@ -162,7 +167,7 @@ public class RandRoom1MinigameController extends MinigameController {
 
       } else {
 
-        // restart the game if the player clicks the wrong button
+        // Restart the game if the player clicks the wrong button.
         setAllButtonsRed();
 
         sequence.clear();
@@ -175,7 +180,7 @@ public class RandRoom1MinigameController extends MinigameController {
   }
 
   /**
-   * Sets the button to the unclicked image
+   * Sets the button to the unclicked image.
    *
    * @param image the image to set
    */
@@ -189,7 +194,7 @@ public class RandRoom1MinigameController extends MinigameController {
   }
 
   /**
-   * Gets the index of the button in the grid pane
+   * Gets the index of the button in the grid pane.
    *
    * @param button the button to get the index of
    * @return the index of the button
@@ -206,8 +211,8 @@ public class RandRoom1MinigameController extends MinigameController {
   }
 
   /**
-   * Sets all the buttons to red, indicating that the player has lost the game and must restart the
-   * game
+   * Sets all the buttons to red, indicating that the player has lost the game and must restart it.
+   * This method will be called when the player clicks on the wrong button.
    */
   private void setAllButtonsRed() {
     for (int i = 0; i < buttons.length; i++) {
@@ -222,7 +227,10 @@ public class RandRoom1MinigameController extends MinigameController {
     pause.play();
   }
 
-  /** Sets all the buttons to green, indicating that the player has won the game */
+  /**
+   * Sets all the buttons to green, indicating that the player has won the game. This method will be
+   * called after the player has completed 5 rounds.
+   */
   private void setAllButtonsGreen() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {
@@ -240,7 +248,10 @@ public class RandRoom1MinigameController extends MinigameController {
     pause.play();
   }
 
-  /** Sets all the buttons to the default colour */
+  /**
+   * Sets all the buttons to the default color. This method will be called after the buttons have
+   * been set to red or green.
+   */
   private void setAllButtonsToDefaultColor() {
     for (int i = 0; i < buttons.length; i++) {
       for (int j = 0; j < buttons[i].length; j++) {

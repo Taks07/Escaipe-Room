@@ -37,10 +37,10 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
+   * This method is invoked when the application starts. It loads and shows the "mainscreen" scene.
    *
    * @param stage The primary stage of the application.
-   * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @throws IOException If "src/main/resources/fxml/mainscreen.fxml" is not found.
    */
   @Override
   public void start(final Stage stage) throws IOException {
@@ -56,6 +56,12 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * This method is invoked when the application starts. It loads and shows the "game" scene.
+   *
+   * @param stageInput The primary stage of the application.
+   * @throws IOException If "src/main/resources/fxml/game.fxml" is not found.
+   */
   public static void startGame(final Stage stageInput) throws IOException {
     stage = stageInput;
     stage.setOnCloseRequest(
@@ -69,6 +75,11 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * This method ends the game and loads the results screen.
+   *
+   * @throws IOException If "src/main/resources/fxml/results.fxml" is not found.
+   */
   public static void endGame() throws IOException {
     stage.setOnCloseRequest(
         (event) -> {
