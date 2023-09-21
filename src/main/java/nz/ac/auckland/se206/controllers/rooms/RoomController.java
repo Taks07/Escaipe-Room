@@ -235,11 +235,13 @@ public abstract class RoomController {
   @FXML
   protected void hoverAlien(MouseEvent event) {
     actionLabel.setText("Talk to alien");
+    changeAlienImage(alienImage.getId(), "_selected");
   }
 
   @FXML
   protected void unhoverAlien(MouseEvent event) {
     actionLabel.setText("");
+    changeAlienImage(alienImage.getId(), "");
   }
 
   /**
