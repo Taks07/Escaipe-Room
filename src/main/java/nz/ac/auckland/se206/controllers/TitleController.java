@@ -21,7 +21,7 @@ public class TitleController extends RoomController {
   @FXML private ToggleGroup difficulty;
   @FXML private ToggleGroup timeLimit;
   @FXML private ImageView begin;
-  @FXML private ImageView xImageView;
+  @FXML private ImageView exit;
   @FXML private ImageView paragraph;
   @FXML private Rectangle block;
 
@@ -57,8 +57,7 @@ public class TitleController extends RoomController {
   public void clickX(MouseEvent event) {
     block.setVisible(false);
     paragraph.setVisible(false);
-    xImageView.setVisible(false);
-
+    exit.setVisible(false);
   }
 
   public void startGame(MouseEvent event) throws IOException {
