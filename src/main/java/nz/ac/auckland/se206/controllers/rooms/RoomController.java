@@ -146,10 +146,10 @@ public abstract class RoomController {
     ImageView image = (ImageView) scene.lookup("#" + objectId);
     image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
 
-    if (objectID.equals("arrow1")) {
+    if (objectId.equals("arrow1")) {
       actionLabel.setText("Go to previous room");
       return;
-    } else if (objectID.equals("arrow2")) {
+    } else if (objectId.equals("arrow2")) {
       actionLabel.setText("Go to next room");
       return;
     }
@@ -289,7 +289,6 @@ public abstract class RoomController {
         } catch (InterruptedException e) {
           Thread.currentThread().interrupt();
           return;
-
         }
       }
       try {
@@ -297,7 +296,6 @@ public abstract class RoomController {
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
         return;
-
       }
     }
   }
