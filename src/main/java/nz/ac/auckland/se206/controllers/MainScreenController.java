@@ -12,6 +12,12 @@ public class MainScreenController extends TitleController {
   @FXML private ImageView mainbackground;
   @FXML private ImageView startImage;
 
+  /**
+   * Handles the click event on the start button
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the title view
+   */
   @FXML
   private void clickStart(MouseEvent event) throws IOException {
 

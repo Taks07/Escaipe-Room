@@ -116,10 +116,10 @@ public abstract class RoomController {
   @FXML
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
-    String objectID = object.getId();
-    System.out.println("Clicked " + objectID);
+    String objectId = object.getId();
+    System.out.println("Clicked " + objectId);
 
-    if (GameState.isRiddleAnswerCorrect(objectID)) {
+    if (GameState.isRiddleAnswerCorrect(objectId)) {
       // Correct object clicked. Increment parts found and set flag.
       System.out.println("Got object");
       GameState.incrementPartsFound();
@@ -128,7 +128,7 @@ public abstract class RoomController {
     } else {
       // Not the correct object. Provide some flavour text.
       GameState.setAlienHead();
-      GameState.sayFlavourText(objectID);
+      GameState.sayFlavourText(objectId);
     }
   }
 
@@ -140,11 +140,11 @@ public abstract class RoomController {
   @FXML
   protected void hoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
 
     if (objectID.equals("arrow1")) {
       actionLabel.setText("Go to previous room");
@@ -165,11 +165,11 @@ public abstract class RoomController {
   @FXML
   protected void unhoverObject(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + ".png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + ".png"));
 
     actionLabel.setText("");
   }
@@ -305,11 +305,11 @@ public abstract class RoomController {
   /**
    * Changes the image of the alien.
    *
-   * @param objectID the ID of the alien
+   * @param objectId the ID of the alien
    * @param stageOfAnimation the stage of the animation
    */
-  public void changeAlienImage(String objectID, String stageOfAnimation) {
-    alienImage.setImage(new Image("/images/" + objectID + stageOfAnimation + ".png"));
+  public void changeAlienImage(String objectId, String stageOfAnimation) {
+    alienImage.setImage(new Image("/images/" + objectId + stageOfAnimation + ".png"));
   }
 
   /**
