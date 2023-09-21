@@ -161,8 +161,8 @@ public class GameState {
    *
    * @param request the request to ask
    */
-  public static void askGPT(String request) {
-    chatController.askGPT(request);
+  public static void askGpt(String request) {
+    chatController.askGpt(request);
   }
 
   /** Returns a hint prompt depending on game state */

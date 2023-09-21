@@ -71,7 +71,7 @@ public class TitleController extends RoomController {
     ImageView image = (ImageView) event.getSource();
     Stage stage = (Stage) image.getScene().getWindow();
     App.startGame(stage);
-    GameState.askGPT(GptPromptEngineering.getGameContext());
+    GameState.askGpt(GptPromptEngineering.getGameContext());
   }
 
   public void setDifficultyAndTimeLimit() {
@@ -167,7 +167,7 @@ public class TitleController extends RoomController {
 
   /** Exits the application. */
   @FXML
-  protected void exitApplication() {
+  protected void onExitApplication() {
     System.exit(0);
   }
 }

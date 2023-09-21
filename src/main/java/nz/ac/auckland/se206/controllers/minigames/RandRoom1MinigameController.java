@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers.minigames;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -127,7 +128,7 @@ public class RandRoom1MinigameController extends MinigameController {
    * @throws IOException
    */
   @FXML
-  private void handleButtonClick(ActionEvent event) {
+  private void onButtonClick(ActionEvent event) {
 
     if (sequenceNum < sequence.size()) {
       Button clickedButton = (Button) event.getSource();
