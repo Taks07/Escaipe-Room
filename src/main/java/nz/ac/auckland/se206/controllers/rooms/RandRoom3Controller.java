@@ -26,11 +26,11 @@ public class RandRoom3Controller extends RoomController {
   @FXML
   private void hoverPlant(MouseEvent event) {
     Rectangle object = (Rectangle) event.getSource();
-    String objectID = object.getId();
+    String objectId = object.getId();
 
     Scene scene = object.getScene();
-    ImageView image = (ImageView) scene.lookup("#" + objectID);
-    image.setImage(new Image("/images/objects/" + objectID + "_selected.png"));
+    ImageView image = (ImageView) scene.lookup("#" + objectId);
+    image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
     if (GameState.getMinigameSolved()) {
       actionLabel.setText("Part already found!");
       return;

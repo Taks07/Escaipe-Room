@@ -14,7 +14,7 @@ public class MainRoomMinigameController extends MinigameController {
   @FXML private Slider frequencySlider;
   @FXML private Slider amplitudeSlider;
 
-  private final int yOffset = 143;
+  private final int yOffSet = 143;
   private Polyline playerPolyline;
   private double targetAmplitude;
   private double targetFrequency;
@@ -107,7 +107,7 @@ public class MainRoomMinigameController extends MinigameController {
     // Calculate each coordinate of the polyline
     for (int i = 0; i < 104; i += 2) {
       points[i] = i * 5;
-      points[i + 1] = amplitude * Math.sin(points[i] * frequency) + yOffset;
+      points[i + 1] = amplitude * Math.sin(points[i] * frequency) + yOffSet;
     }
 
     // Create polyline
