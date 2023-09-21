@@ -70,9 +70,7 @@ public class RandRoom4MinigameController extends MinigameController {
     // Make sure there are 2 of each symbol on each button
     ArrayList<String> symbols =
         new ArrayList<String>(
-            Arrays.asList(
-                "\u0E04", "\u0E52", "\u03C2", "\u0E54", "\u0454", "\u0166", "\u0E04", "\u0E52",
-                "\u03C2", "\u0E54", "\u0454", "\u0166"));
+            Arrays.asList("ค", "๒", "ς", "๔", "є", "Ŧ", "ค", "๒", "ς", "๔", "є", "Ŧ"));
     Random rand = new Random();
 
     // Loop through all buttons

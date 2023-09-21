@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -64,14 +65,7 @@ public class ChatController {
     riddlePattern = Pattern.compile("###((.|\n)+)###", Pattern.CASE_INSENSITIVE);
 
     // Random signs for creating alien-like text
-    this.randomSigns =
-        "\u0E04\u0E52\u03C2\u0E54\u0454\u0166\uFEEE"
-            + "\u0452\u0E40\u05DF\u043A\u026D\u0E53\u0E20\u0E4F"
-            + "\u05E7\u1EE3\u0433\u0E23\u0547\u0E22\u028B"
-            + "\u0E2C\u05D0\u05E5\u0579\u0E04\u0E52\u03C2\u0E54"
-            + "\u0454\u0166\uFEEE\u0452\u0E40\u05DF\u043A\u026D"
-            + "\u0E53\u0E20\u0E4F\u05E7\u1EE3\u0433\u0E23\u0547"
-            + "\u0E22\u05E9\u0E2C\u05D0\u05E5\u0579";
+    this.randomSigns = "ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ";
 
     // Initialize hint and parts counters
     setHintCounter();
@@ -82,6 +76,27 @@ public class ChatController {
 
     // Initialize the translation flag
     isTranslating = false;
+  }
+
+  /**
+   * Send a message to the GPT model when the user presses the enter key.
+   *
+   * @param event The key event triggered by the enter key.
+   * @throws IOException if there is an I/O error.
+   */
+  @FXML
+  public void onKeyPressed(KeyEvent event) throws IOException {
+    switch (event.getCode()) {
+      case ENTER:
+        try {
+          onSendMessage(new ActionEvent());
+        } catch (ApiProxyException e) {
+          System.out.println("API NOT WORKING");
+        }
+        break;
+      default:
+        break;
+    }
   }
 
   /**
