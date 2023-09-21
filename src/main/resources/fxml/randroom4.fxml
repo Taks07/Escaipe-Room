@@ -24,7 +24,7 @@
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0">
+      <ImageView fx:id="arrow2" fitHeight="69.0" fitWidth="123.0" layoutX="687.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/arrow2.png" />
          </image>
