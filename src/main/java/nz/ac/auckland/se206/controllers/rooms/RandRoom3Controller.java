@@ -23,8 +23,16 @@ public class RandRoom3Controller extends RoomController {
     GameState.askGpt(GptPromptEngineering.getIntroduction());
   }
 
+  /**
+   * Hovering over the plant image will change the image to the selected version and display a
+   * message in the action label.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void hoverPlant(MouseEvent event) {
+
+    // If the minigame is solved, don't allow the player to leave manually
     Rectangle object = (Rectangle) event.getSource();
     String objectId = object.getId();
 
@@ -32,9 +40,12 @@ public class RandRoom3Controller extends RoomController {
     ImageView image = (ImageView) scene.lookup("#" + objectId);
     image.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
     if (GameState.getMinigameSolved()) {
+      // If the minigame is solved, tell the player the part is already found
       actionLabel.setText("Part already found!");
       return;
     }
+
+    // Otherwise, tell the player to search for parts in the plant's mouth
     actionLabel.setText("Search for parts in plant's mouth");
   }
 }
