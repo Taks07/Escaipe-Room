@@ -23,6 +23,7 @@ public class MainRoomController extends RoomController {
     GameState.setAlienHead();
     // Check if the riddle has been asked
     if (GameState.currRiddle != null) {
+      GameState.toggleAlienTalking(0);
       showDialog("Here is the riddle again:\n" + GameState.currRiddle);
     } else {
       GameState.askGpt(
