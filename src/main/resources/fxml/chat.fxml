@@ -17,7 +17,7 @@
             <Image url="@../images/chatroom/chat_background.jpg" />
          </image>
       </ImageView>
-      <TextArea fx:id="chatTextArea" editable="false" layoutX="36.0" layoutY="14.0" prefHeight="114.0" prefWidth="649.0" stylesheets="@../css/textbox.css" wrapText="true">
+      <TextArea fx:id="chatTextArea" editable="false" layoutX="36.0" layoutY="8.0" prefHeight="127.0" prefWidth="649.0" stylesheets="@../css/textbox.css" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
