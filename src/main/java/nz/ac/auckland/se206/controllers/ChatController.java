@@ -394,6 +394,7 @@ public class ChatController {
               isTranslating = false;
               GameState.toggleAlienTalking(currRoom);
               Thread.currentThread().interrupt();
+              Platform.runLater(() -> inputText.requestFocus());
               return;
             })
         .start();
