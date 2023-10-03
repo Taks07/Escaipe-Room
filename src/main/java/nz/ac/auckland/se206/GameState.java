@@ -233,7 +233,6 @@ public class GameState {
       }
     }
 
-
     // User in one of the rooms, and not a minigame, and the riddle has already been given
     switch (roomName) {
       case "mainroom":
@@ -345,8 +344,6 @@ public class GameState {
 
       // Provide context to ai
       String context = GptPromptEngineering.getAlienContext(currRooms.get(i));
-
-      System.out.println(context);
 
       ChatMessage msg = new ChatMessage("system", context);
       chatCompletionRequest.addMessage(msg);
