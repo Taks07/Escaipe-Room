@@ -277,6 +277,10 @@ public class GameState {
 
   /** Puts message into chatbox */
   public static void showChatMessage(ChatMessage chat) {
+    if (chatController.getIsTranslating()) {
+      return;
+    }
+
     chatController.appendChatMessage(chat.getContent());
   }
 

@@ -156,10 +156,6 @@ public class ChatController {
    * @param msg The chat message to append.
    */
   public void appendChatMessage(String msg) {
-    if (isTranslating) {
-      return;
-    }
-
     chatTextArea.setText(getAlienText(msg.length()));
     originalTransform(msg);
   }
