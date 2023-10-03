@@ -65,6 +65,11 @@ public class TitleController extends RoomController {
       // Start the game by switching to the game view, starting a timer, setting the riddle answer,
       // and providing context
       startGame(event);
+
+      if (rocketThread != null) {
+        rocketThread.interrupt();
+      }
+      backgroundThread.interrupt();
     } catch (IOException e) {
       e.printStackTrace();
     }

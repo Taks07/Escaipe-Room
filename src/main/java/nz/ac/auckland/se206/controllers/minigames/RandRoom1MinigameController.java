@@ -50,6 +50,7 @@ public class RandRoom1MinigameController extends MinigameController {
   private List<Integer> sequence;
   private int sequenceNum = 0;
   private int round = 0;
+  private boolean isHighlighting;
 
   /**
    * Initialize the buttons and images for the game and start the first round of the game. During
@@ -57,6 +58,7 @@ public class RandRoom1MinigameController extends MinigameController {
    */
   public void initialize() {
     isSolved = false;
+    isHighlighting = false;
 
     // Initialize the buttons and images.
     buttons =
@@ -113,6 +115,7 @@ public class RandRoom1MinigameController extends MinigameController {
 
   /** Highlights the sequence of buttons that the player must click on. */
   private void highlightSequence() {
+    isHighlighting = true;
     PauseTransition pause = new PauseTransition(Duration.seconds(1));
     pause.setOnFinished(event -> highlightNextButton());
     pause.play();
@@ -145,7 +148,7 @@ public class RandRoom1MinigameController extends MinigameController {
           });
       pauseBetween.play();
     } else {
-
+      isHighlighting = false;
       sequenceNum = 0;
     }
   }
@@ -159,6 +162,9 @@ public class RandRoom1MinigameController extends MinigameController {
    */
   @FXML
   private void onButtonClick(ActionEvent event) {
+    if (isHighlighting) {
+      return;
+    }
 
     if (sequenceNum < sequence.size()) {
       Button clickedButton = (Button) event.getSource();

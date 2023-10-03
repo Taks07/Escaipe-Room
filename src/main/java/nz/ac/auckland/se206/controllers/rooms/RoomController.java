@@ -117,11 +117,9 @@ public abstract class RoomController {
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectId = object.getId();
-    System.out.println("Clicked " + objectId);
 
     if (GameState.isRiddleAnswerCorrect(objectId)) {
       // Correct object clicked. Increment parts found and set flag.
-      System.out.println("Got object");
       GameState.incrementPartsFound();
       GameState.isObjectFound = true;
       showPopup();
@@ -156,10 +154,10 @@ public abstract class RoomController {
 
     // Update the action label based on the object's ID
     if (objectId.equals("arrow1")) {
-      actionLabel.setText("Go to previous room");
+      actionLabel.setText("Explore area to the left");
       return;
     } else if (objectId.equals("arrow2")) {
-      actionLabel.setText("Go to next room");
+      actionLabel.setText("Explore area to the right");
       return;
     }
 

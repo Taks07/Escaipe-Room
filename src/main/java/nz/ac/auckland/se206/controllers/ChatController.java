@@ -239,8 +239,6 @@ public class ChatController {
           // Use regex to see if response is a riddle
           Matcher matcher = riddlePattern.matcher(gptResponse);
 
-          System.out.println(gptResponse);
-
           // If response is a riddle, extract the riddle and append to chat box
           if (matcher.find() && GameState.currRiddle == null) {
             String riddle = matcher.group(1).replace("###", "");

@@ -284,6 +284,10 @@ public class GameState {
 
   /** Puts message into chatbox */
   public static void showChatMessage(ChatMessage chat) {
+    if (chatController.getIsTranslating()) {
+      return;
+    }
+
     chatController.appendChatMessage(chat.getContent());
   }
 
@@ -351,8 +355,6 @@ public class GameState {
 
       // Provide context to ai
       String context = GptPromptEngineering.getAlienContext(currRooms.get(i));
-
-      System.out.println(context);
 
       ChatMessage msg = new ChatMessage("system", context);
       chatCompletionRequest.addMessage(msg);
