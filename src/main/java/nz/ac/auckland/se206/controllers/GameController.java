@@ -31,6 +31,7 @@ public class GameController {
   /** Code that is run when first starting game */
   @FXML
   public void initialize() {
+    setMuteButtonText();
     try {
       mainBorderPane.setCenter(loadFxml("mainroom").load());
       FXMLLoader chatFxmlLoader = loadFxml("chat");
@@ -48,11 +49,14 @@ public class GameController {
   @FXML
   private void onClickMute(ActionEvent event) {
     GameState.toggleMute();
+    setMuteButtonText();
+  }
 
-    if (muteButton.getText().equals("Mute Audio")) {
-      muteButton.setText("Unmute Audio");
+  private void setMuteButtonText() {
+    if (GameState.isMuted == true) {
+      muteButton.setText("Unmute");
     } else {
-      muteButton.setText("Mute Audio");
+      muteButton.setText("Mute");
     }
   }
 

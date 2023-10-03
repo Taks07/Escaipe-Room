@@ -3,7 +3,9 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -24,7 +26,7 @@ public class TitleController extends RoomController {
   @FXML private ImageView exit;
   @FXML private ImageView paragraph;
   @FXML private Rectangle block;
-
+  @FXML private Button muteButton;
   @FXML private ImageView flyingrocket;
   @FXML private ImageView mainbackground;
   protected Thread rocketThread;
@@ -35,6 +37,21 @@ public class TitleController extends RoomController {
     if (flyingrocket != null) {
       animateRocket();
     }
+
+    if (muteButton != null) {
+      setMuteButtonText();
+    }
+  }
+
+  /**
+   * Mutes the game audio.
+   *
+   * @param event the event that triggered this method
+   */
+  @FXML
+  private void onClickMute(ActionEvent event) {
+    GameState.toggleMute();
+    setMuteButtonText();
   }
 
   /**
@@ -169,5 +186,14 @@ public class TitleController extends RoomController {
   @FXML
   protected void onExitApplication() {
     System.exit(0);
+  }
+
+  /** Sets the text of the mute button according to GameState.isMuted */
+  private void setMuteButtonText() {
+    if (GameState.isMuted == true) {
+      muteButton.setText("Unmute Audio");
+    } else {
+      muteButton.setText("Mute Audio");
+    }
   }
 }
