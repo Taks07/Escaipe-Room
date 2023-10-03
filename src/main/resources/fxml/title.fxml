@@ -62,6 +62,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </RadioButton>
+      <Button fx:id="muteButton" layoutX="661.0" layoutY="443.0" mnemonicParsing="false" onAction="#onClickMute" prefHeight="35.0" prefWidth="116.0" text="Mute Audio" />
       <ImageView fitHeight="88.0" fitWidth="756.0" layoutX="46.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/title_screen/set_difficulty.png" />
