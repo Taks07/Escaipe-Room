@@ -117,11 +117,9 @@ public abstract class RoomController {
   protected void clickObject(MouseEvent event) {
     Shape object = (Shape) event.getSource();
     String objectId = object.getId();
-    System.out.println("Clicked " + objectId);
 
     if (GameState.isRiddleAnswerCorrect(objectId)) {
       // Correct object clicked. Increment parts found and set flag.
-      System.out.println("Got object");
       GameState.incrementPartsFound();
       GameState.isObjectFound = true;
       showPopup();
