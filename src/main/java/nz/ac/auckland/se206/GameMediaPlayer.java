@@ -7,6 +7,10 @@ public class GameMediaPlayer {
   private static MediaPlayer mediaPlayer;
 
   public static void playNotificationSound() {
+    if (GameState.isMuted) {
+      return;
+    }
+
     Media media = new Media(App.class.getResource("/sounds/notification.mp3").toString());
     mediaPlayer = new MediaPlayer(media);
     mediaPlayer.play();

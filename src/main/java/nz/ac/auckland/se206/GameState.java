@@ -78,6 +78,9 @@ public class GameState {
   /** Whether or not user is in a minigame */
   public static boolean inMinigame;
 
+  /** Whether audio has been muted or not */
+  public static boolean isMuted;
+
   /** The hashmap of alien heads */
   public static final HashMap<String, String> alienHeads =
       new HashMap<String, String>() {
@@ -233,7 +236,6 @@ public class GameState {
       }
     }
 
-
     // User in one of the rooms, and not a minigame, and the riddle has already been given
     switch (roomName) {
       case "mainroom":
@@ -263,6 +265,10 @@ public class GameState {
     } else {
       return hint;
     }
+  }
+
+  public static void toggleMute() {
+    isMuted = !isMuted;
   }
 
   /** Sets the alien head image in the chat controller */

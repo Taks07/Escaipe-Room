@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import nz.ac.auckland.se206.App;
@@ -24,8 +26,10 @@ public class GameController {
 
   @FXML private BorderPane mainBorderPane;
   @FXML private Label timerLabel;
+  @FXML private Button muteButton;
 
   /** Code that is run when first starting game */
+  @FXML
   public void initialize() {
     try {
       mainBorderPane.setCenter(loadFxml("mainroom").load());
@@ -38,6 +42,17 @@ public class GameController {
 
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  @FXML
+  private void onClickMute(ActionEvent event) {
+    GameState.toggleMute();
+
+    if (muteButton.getText().equals("Mute Audio")) {
+      muteButton.setText("Unmute Audio");
+    } else {
+      muteButton.setText("Mute Audio");
     }
   }
 
