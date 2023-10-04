@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -27,6 +29,8 @@ public class GameController {
   @FXML private BorderPane mainBorderPane;
   @FXML private Label timerLabel;
   @FXML private Button muteButton;
+  @FXML private ImageView mute;
+  @FXML private ImageView unmute;
 
   /** Code that is run when first starting game */
   @FXML
@@ -54,9 +58,32 @@ public class GameController {
 
   private void setMuteButtonText() {
     if (GameState.isMuted == true) {
-      muteButton.setText("Unmute");
+      mute.setVisible(false);
+      unmute.setVisible(true);
     } else {
-      muteButton.setText("Mute");
+      mute.setVisible(true);
+      unmute.setVisible(false);
+    }
+  }
+
+  @FXML
+  protected void hoverMuteButton() {
+    if (GameState.isMuted == true) {
+
+      unmute.setImage(new Image("/images/objects/unmute_selected.png"));
+    } else {
+
+      mute.setImage(new Image("/images/objects/mute_selected.png"));
+    }
+  }
+
+  @FXML
+  protected void unhoverMuteButton() {
+    if (GameState.isMuted == true) {
+      unmute.setImage(new Image("/images/objects/unmute.png"));
+    } else {
+
+      mute.setImage(new Image("/images/objects/mute.png"));
     }
   }
 

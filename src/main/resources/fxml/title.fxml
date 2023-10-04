@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
    <children>
       <ImageView fx:id="mainbackground" fitHeight="669.0" fitWidth="888.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -62,7 +62,17 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </RadioButton>
-      <Button fx:id="muteButton" layoutX="661.0" layoutY="443.0" mnemonicParsing="false" onAction="#onClickMute" prefHeight="35.0" prefWidth="116.0" text="Mute Audio" />
+      <ImageView fx:id="mute" fitHeight="24.0" fitWidth="124.0" layoutX="693.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objects/mute.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="unmute" fitHeight="24.0" fitWidth="200.0" layoutX="649.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/objects/unmute.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="muteButton" layoutX="649.0" layoutY="443.0" mnemonicParsing="false" onAction="#onClickMute" onMouseEntered="#hoverMuteButton" onMouseExited="#unhoverMuteButton" opacity="0.0" prefHeight="35.0" prefWidth="128.0" text="Mute Audio" />
       <ImageView fitHeight="88.0" fitWidth="756.0" layoutX="46.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/title_screen/set_difficulty.png" />
@@ -73,13 +83,13 @@
             <Image url="@../images/objects/begin.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="block" arcHeight="5.0" arcWidth="5.0" fill="#141414df" height="511.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
-      <ImageView fx:id="paragraph" fitHeight="424.0" fitWidth="738.0" layoutX="55.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="block" arcHeight="5.0" arcWidth="5.0" fill="#141414df" height="511.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="850.0" />
+      <ImageView fx:id="paragraph" fitHeight="424.0" fitWidth="738.0" layoutX="55.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/title_screen/context_paragraph.png" />
          </image>
       </ImageView>
-      <ImageView id="X" fx:id="exit" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="X" fx:id="exit" fitHeight="46.0" fitWidth="35.0" layoutX="744.0" layoutY="134.0" onMouseClicked="#clickX" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" pickOnBounds="true" preserveRatio="true" visible="false">
 
          <image>
             <Image url="@../images/objects/X.png" />
