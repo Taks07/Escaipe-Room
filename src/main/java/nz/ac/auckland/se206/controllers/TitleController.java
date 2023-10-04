@@ -29,6 +29,8 @@ public class TitleController extends RoomController {
   @FXML private Button muteButton;
   @FXML private ImageView flyingrocket;
   @FXML private ImageView mainbackground;
+  @FXML private ImageView mute;
+  @FXML private ImageView unmute;
   protected Thread rocketThread;
 
   @FXML
@@ -196,9 +198,32 @@ public class TitleController extends RoomController {
   /** Sets the text of the mute button according to GameState.isMuted */
   private void setMuteButtonText() {
     if (GameState.isMuted == true) {
-      muteButton.setText("Unmute Audio");
+      mute.setVisible(false);
+      unmute.setVisible(true);
     } else {
-      muteButton.setText("Mute Audio");
+      mute.setVisible(true);
+      unmute.setVisible(false);
+    }
+  }
+
+  @FXML
+  protected void hoverMuteButton() {
+    if (GameState.isMuted == true) {
+
+      unmute.setImage(new Image("/images/objects/unmute_selected.png"));
+    } else {
+
+      mute.setImage(new Image("/images/objects/mute_selected.png"));
+    }
+  }
+
+  @FXML
+  protected void unhoverMuteButton() {
+    if (GameState.isMuted == true) {
+      unmute.setImage(new Image("/images/objects/unmute.png"));
+    } else {
+
+      mute.setImage(new Image("/images/objects/mute.png"));
     }
   }
 }
