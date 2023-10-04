@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="754.0" prefWidth="840.0" style="-fx-background-color: #40414B;" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameController">
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="754.0" prefWidth="840.0" style="-fx-background-color: #40414B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameController">
    <top>
       <Pane pickOnBounds="false" prefHeight="39.0" prefWidth="842.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +22,17 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button fx:id="muteButton" layoutX="733.0" layoutY="2.0" mnemonicParsing="false" onAction="#onClickMute" prefHeight="36.0" prefWidth="99.0" text="Mute Audio" />
+            <ImageView fx:id="unmute" fitHeight="28.0" fitWidth="175.0" layoutX="676.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/objects/unmute.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mute" fitHeight="28.0" fitWidth="151.0" layoutX="726.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/objects/mute.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="muteButton" layoutX="672.0" layoutY="2.0" mnemonicParsing="false" onAction="#onClickMute" onMouseEntered="#hoverMuteButton" onMouseExited="#unhoverMuteButton" opacity="0.0" prefHeight="36.0" prefWidth="153.0" text="Mute Audio" />
          </children>
       </Pane>
    </top>
