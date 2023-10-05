@@ -407,7 +407,7 @@ public abstract class RoomController {
   protected void fadeIn() {
     fadeRectangle.setOpacity(1.0);
     fadeRectangle.setVisible(true);
-    ft = new FadeTransition(Duration.millis(250), fadeRectangle);
+    ft = new FadeTransition(Duration.millis(300), fadeRectangle);
     ft.setFromValue(1.0);
     ft.setToValue(0.0);
 
