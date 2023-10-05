@@ -3,9 +3,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom2MinigameController">
+<Pane onMouseClicked="#handlePaneClick" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom2MinigameController">
    <children>
       <ImageView fx:id="arrow1" fitHeight="69.0" fitWidth="123.0" layoutX="360.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
@@ -13,5 +14,8 @@
          </image>
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="161.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <Line fx:id="slider" endX="100.0" endY="-54.52742004394531" layoutX="319.0" layoutY="236.0" startX="100.0" startY="47.283447265625" />
+      <Line fx:id="slider1" endX="100.0" endY="-54.52742004394531" layoutX="244.0" layoutY="236.0" startX="100.0" startY="47.283447265625" />
    </children>
 </Pane>

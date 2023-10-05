@@ -181,7 +181,6 @@ public class RandRoom1MinigameController extends MinigameController {
 
               // When the player finishes 5 rounds, they win the game.
               setAllButtonsGreen();
-
               System.out.println("You win!");
             } else {
               // If the player has finished the round, proceed to the next round.
