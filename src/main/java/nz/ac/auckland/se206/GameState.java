@@ -199,6 +199,9 @@ public class GameState {
           return "Tell the user to click on each tooth of the plant's top row of teeth so that they"
               + " match the bottom row. Give a recommendation on how to solve this if this"
               + " is too hard to do. Respond in 30 words";
+        case "randroom2":
+          return "Tell the user to click the button in order to increase the pressure of the oxygen"
+              + " canister. Say they have to click quickly. Respond in 30 words";
         case "randroom4":
           return "Tell the user to match up all the pairs of symbols by clicking on a tile to"
               + " reveal a symbol. Then, give one of the following recommendations: only"
@@ -247,7 +250,9 @@ public class GameState {
         hint = "Tell the user the part is in the crashed UFO. Respond in 20 words";
         break;
       case "randroom2":
-        hint = "Tell the user the part is in the crater. Respond in 20 words";
+        hint =
+            "Tell the user you will give the part after stabilising the oxygen canister. Respond in"
+                + " 20 words";
         break;
       case "randroom3":
         hint = "Tell the user the part is in the alien plant. Respond in 20 words";
