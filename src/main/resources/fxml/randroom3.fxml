@@ -96,6 +96,7 @@
          </image>
       </ImageView>
       <Rectangle id="okay" fx:id="okayRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="333.0" layoutY="428.0" onMouseClicked="#clickOkay" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="151.0" />
+      <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
 
    </children>
 </Pane>

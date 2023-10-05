@@ -21,8 +21,18 @@ public class RandRoom2Controller extends RoomController {
 
   @FXML
   private void initialize() {
-    animateFlag();
+    fadeIn();
+
+    // Check if minigame popup shown after solved
+    if (!GameState.getPartFoundPopupShown() && GameState.getMinigameSolved()) {
+      GameState.setPartFoundPopupShown();
+      showPopup();
+    }
     animate();
+    animateFlag();
+    alienThread = new Thread(() -> animateAlien());
+    alienThread.setDaemon(true);
+    alienThread.start();
   }
 
   private void animateFlag() {

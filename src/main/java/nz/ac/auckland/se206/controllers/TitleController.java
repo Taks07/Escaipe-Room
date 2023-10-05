@@ -63,18 +63,25 @@ public class TitleController extends RoomController {
    */
   @FXML
   protected void switchToGame(MouseEvent event) {
-    try {
-      // Start the game by switching to the game view, starting a timer, setting the riddle answer,
-      // and providing context
-      startGame(event);
+    // Start the game by switching to the game view, starting a timer, setting the riddle answer,
+    // and providing context
+    fadeOut();
+    ft.setOnFinished(
+        event2 -> {
+          fadeRectangle.setVisible(false);
+          try {
+            startGame(event);
+          } catch (IOException e) {
+            System.out.println("I/O Exception");
+          }
+        });
 
-      if (rocketThread != null) {
-        rocketThread.interrupt();
-      }
-      backgroundThread.interrupt();
-    } catch (IOException e) {
-      e.printStackTrace();
+    if (rocketThread != null) {
+      rocketThread.interrupt();
     }
+    backgroundThread.interrupt();
+
+    ft.play();
   }
 
   @FXML

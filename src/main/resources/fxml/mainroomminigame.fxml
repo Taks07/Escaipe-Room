@@ -27,5 +27,6 @@
       <Pane fx:id="linePane" layoutX="173.0" layoutY="87.0" prefHeight="286.0" prefWidth="517.0" style="-fx-background-color: black;" />
       <Slider fx:id="frequencySlider" blockIncrement="0.01" layoutX="140.0" layoutY="37.0" max="0.7" min="0.635" prefHeight="14.0" prefWidth="584.0" value="0.67" />
       <Slider fx:id="amplitudeSlider" blockIncrement="1.0" layoutX="716.0" layoutY="68.0" max="143.0" min="30.0" orientation="VERTICAL" prefHeight="330.0" prefWidth="14.0" value="85.0" />
+      <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
    </children>
 </Pane>

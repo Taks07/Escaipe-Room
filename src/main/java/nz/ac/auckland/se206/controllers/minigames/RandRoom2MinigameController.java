@@ -36,7 +36,8 @@ public class RandRoom2MinigameController extends MinigameController {
   private boolean passedTargetPositive = false;
   private boolean passedTargetNegative = false;
 
-  public RandRoom2MinigameController() {
+  public void initialize() {
+    fadeIn();
     // Start the game loop
     AnimationTimer gameLoop =
         new AnimationTimer() {
