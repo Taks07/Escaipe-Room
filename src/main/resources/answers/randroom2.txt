@@ -1,4 +1,3 @@
-oxygen
 earth
 cube
 car
