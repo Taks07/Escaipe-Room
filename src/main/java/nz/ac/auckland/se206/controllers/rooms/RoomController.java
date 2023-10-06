@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -19,6 +21,7 @@ public abstract class RoomController {
   @FXML protected Label actionLabel;
   @FXML protected Rectangle grayRectangle;
   @FXML protected Rectangle okayRectangle;
+  @FXML protected Rectangle fadeRectangle;
   @FXML protected ImageView arrow1;
   @FXML protected ImageView arrow2;
   @FXML protected ImageView background;
@@ -30,9 +33,12 @@ public abstract class RoomController {
   protected Thread flagThread;
   protected Thread alienThread;
   protected boolean visited;
+  protected FadeTransition ft;
 
   @FXML
   private void initialize() {
+    fadeIn();
+
     // Check if minigame popup shown after solved
     if (!GameState.getPartFoundPopupShown() && GameState.getMinigameSolved()) {
       GameState.setPartFoundPopupShown();
@@ -208,7 +214,13 @@ public abstract class RoomController {
     stopThreads();
     GameState.inMinigame = true;
     String fxmlPath = GameState.currRooms.get(GameState.getCurrRoom()) + "minigame";
-    GameState.switchRoom(fxmlPath);
+    fadeOut();
+    ft.setOnFinished(
+        event2 -> {
+          fadeRectangle.setVisible(false);
+          GameState.switchRoom(fxmlPath);
+        });
+    ft.play();
   }
 
   /**
@@ -219,7 +231,13 @@ public abstract class RoomController {
   @FXML
   private void clickArrow1(MouseEvent event) {
     stopThreads();
-    GameState.prevRoom();
+    fadeOut();
+    ft.setOnFinished(
+        event2 -> {
+          fadeRectangle.setVisible(false);
+          GameState.prevRoom();
+        });
+    ft.play();
   }
 
   /**
@@ -230,7 +248,13 @@ public abstract class RoomController {
   @FXML
   private void clickArrow2(MouseEvent event) {
     stopThreads();
-    GameState.nextRoom();
+    fadeOut();
+    ft.setOnFinished(
+        event2 -> {
+          fadeRectangle.setVisible(false);
+          GameState.nextRoom();
+        });
+    ft.play();
   }
 
   /**
@@ -377,5 +401,32 @@ public abstract class RoomController {
 
     backgroundThread.setDaemon(true);
     backgroundThread.start();
+  }
+
+  /** Fades in the room. */
+  protected void fadeIn() {
+    fadeRectangle.setOpacity(1.0);
+    fadeRectangle.setVisible(true);
+    ft = new FadeTransition(Duration.millis(300), fadeRectangle);
+    ft.setFromValue(1.0);
+    ft.setToValue(0.0);
+
+    ft.setOnFinished(
+        event -> {
+          fadeRectangle.setVisible(false);
+        });
+
+    ft.play();
+  }
+
+  /**
+   * Sets up the fade out for the room. Need to manually play ft after setting destination room in
+   * setOnFinished
+   */
+  protected void fadeOut() {
+    ft = new FadeTransition(Duration.millis(300), fadeRectangle);
+    ft.setFromValue(0.0);
+    ft.setToValue(1.0);
+    fadeRectangle.setVisible(true);
   }
 }

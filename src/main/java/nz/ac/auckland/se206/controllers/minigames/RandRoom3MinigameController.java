@@ -56,6 +56,7 @@ public class RandRoom3MinigameController extends MinigameController {
    * bottom teeth.
    */
   public void initialize() {
+    fadeIn();
     isSolved = false;
 
     // Arrays to store top and bottom teeth ImageView components

@@ -49,6 +49,7 @@ public class RandRoom4MinigameController extends MinigameController {
 
   /** Initializes the controller, sets initial values, and randomly assigns symbols to buttons. */
   public void initialize() {
+    fadeIn();
     isSolved = false;
 
     // Initialize the buttons array and the number of pairs found

@@ -26,6 +26,7 @@ public class MainRoomMinigameController extends MinigameController {
    */
   @FXML
   public void initialize() {
+    fadeIn();
     // Initialize the puzzle as unsolved
     isSolved = false;
 

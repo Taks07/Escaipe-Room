@@ -57,6 +57,8 @@ public class RandRoom1MinigameController extends MinigameController {
    * the first round, it highlights the sequence of buttons the player must click on.
    */
   public void initialize() {
+    fadeIn();
+
     isSolved = false;
     isHighlighting = false;
 

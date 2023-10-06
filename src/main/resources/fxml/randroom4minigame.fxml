@@ -150,4 +150,5 @@
          </Button>
       </children>
    </GridPane>
+   <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
 </Pane>
