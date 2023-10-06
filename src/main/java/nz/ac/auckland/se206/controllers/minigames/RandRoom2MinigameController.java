@@ -105,6 +105,7 @@ public class RandRoom2MinigameController extends MinigameController {
     // Check if the slider is out of the desired range, if so then game over
     if (sliderPosition <= rectangleMinX || sliderPosition >= rectangleMaxX) {
       gameRunning = false;
+      sliderPosition = 319;
       start = 0;
       gameLoop.stop();
       System.out.println("Game over!");
