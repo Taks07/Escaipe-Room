@@ -31,6 +31,8 @@ public class RandRoom2MinigameController extends MinigameController {
   private double targetPosition;
   private double rectangleMinX = 62.0;
   private double rectangleMaxX = 560.0;
+  private int start = 0;
+  private AnimationTimer gameLoop;
 
   // Flags to indicate if the player has passed the target position for the current round in either
   private boolean passedTargetPositive = false;
@@ -38,8 +40,9 @@ public class RandRoom2MinigameController extends MinigameController {
 
   public void initialize() {
     fadeIn();
-    // Start the game loop
-    AnimationTimer gameLoop =
+
+    // Assign the gameLoop to the class-level variable
+    gameLoop =
         new AnimationTimer() {
           @Override
           public void handle(long now) {
@@ -48,6 +51,8 @@ public class RandRoom2MinigameController extends MinigameController {
             }
           }
         };
+
+    // Start the game loop
     gameLoop.start();
 
     // Start the first round
@@ -65,7 +70,9 @@ public class RandRoom2MinigameController extends MinigameController {
     // whenever you click on the pane, the slider will move 50 pixels to the right
     if (gameRunning) {
       sliderPosition += 50;
+      gameLoop.start();
     }
+    start++;
   }
 
   /**
@@ -86,16 +93,22 @@ public class RandRoom2MinigameController extends MinigameController {
   /**
    * Updates the position of the oxygen meter based on its speed. Checks if the slider is out of the
    * desired range. Checks if the player has passed the target position for the current round in
-   * either direction. Checks if the player has won.
+   * either direction. Checks if the player has won or lost.
    */
   private void updateOxygenMeter() {
+
     // Update the position of the oxygen meter based on its speed
-    sliderPosition -= oxygenSpeed;
+    if (start > 0) {
+      sliderPosition -= oxygenSpeed;
+    }
 
     // Check if the slider is out of the desired range, if so then game over
     if (sliderPosition <= rectangleMinX || sliderPosition >= rectangleMaxX) {
       gameRunning = false;
+      start = 0;
+      gameLoop.stop();
       System.out.println("Game over!");
+      resetGame(); // Call the resetGame method when the player loses
     }
 
     // Check if the player has passed the target position for the current round in either direction
@@ -115,6 +128,7 @@ public class RandRoom2MinigameController extends MinigameController {
     if (currentRound > roundsToWin) {
       gameRunning = false;
       System.out.println("You won the game!");
+      gameLoop.stop();
       PauseTransition pause = new PauseTransition(Duration.seconds(1));
       pause.setOnFinished(event2 -> endGame());
       pause.play();
@@ -123,5 +137,13 @@ public class RandRoom2MinigameController extends MinigameController {
     // Update the slider's position
     slider.setLayoutX(sliderPosition);
     slider1.setLayoutX(targetPosition);
+  }
+
+  /** Resets the game to zero wins when the player loses. */
+  private void resetGame() {
+    currentRound = 0;
+    gameRunning = true;
+    startNewRound();
+    slider.setLayoutX(319);
   }
 }
