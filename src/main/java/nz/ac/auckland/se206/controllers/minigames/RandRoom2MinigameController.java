@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
@@ -12,7 +13,7 @@ import javafx.util.Duration;
 /**
  * Controller for the random oxygen meter minigame in Room 2. The player must click on the pane to
  * move the slider to the right. The objective is to move the slider int between the target
- * positions for 2 seconds each round. The player must complete 3 rounds to win the game.
+ * positions for 2 seconds each round. The player must complete 5 rounds to win the game.
  */
 public class RandRoom2MinigameController extends MinigameController {
 
@@ -21,19 +22,25 @@ public class RandRoom2MinigameController extends MinigameController {
   @FXML private Line slider2;
 
   // The position of the slider
-  private double sliderPosition = 319;
+  private double sliderPosition = 342;
 
   // The speed of the oxygen meter
   private double oxygenSpeed = 2.5;
   private boolean gameRunning = true;
   private int currentRound = 0;
-  private int roundsToWin = 3;
+  private int roundsToWin = 5;
   private Random random = new Random();
   private double targetPosition;
-  private double rectangleMinX = 62.0;
-  private double rectangleMaxX = 560.0;
+  private double rectangleMinX = 91.0;
+  private double rectangleMaxX = 617.0;
   private int start = 0;
   private AnimationTimer gameLoop;
+
+  @FXML private Button button1;
+  @FXML private Button button2;
+  @FXML private Button button3;
+  @FXML private Button button4;
+  @FXML private Button button5;
 
   // Timer variables
   private int timeInTargetRange = 0;
@@ -92,8 +99,7 @@ public class RandRoom2MinigameController extends MinigameController {
     passedTargetNegative = false;
 
     // Generate a random target position for the slider1 for the current round
-    targetPosition =
-        rectangleMinX + 10 + random.nextDouble() * (rectangleMaxX - rectangleMinX - 170);
+    targetPosition = rectangleMinX + random.nextDouble() * (rectangleMaxX - rectangleMinX - 125);
     currentRound++;
   }
 
@@ -111,7 +117,11 @@ public class RandRoom2MinigameController extends MinigameController {
     // Check if the slider is out of the desired range, if so then game over
     if (sliderPosition <= rectangleMinX || sliderPosition >= rectangleMaxX) {
       gameRunning = false;
-      sliderPosition = 319;
+      sliderPosition = 342;
+      setButtonsRed(); // Set buttons to red
+      PauseTransition pause = new PauseTransition(Duration.seconds(1));
+      pause.setOnFinished(event2 -> resetButtons()); // Reset buttons after 1 second
+      pause.play();
       start = 0;
       gameLoop.stop();
       System.out.println("Game over!");
@@ -130,13 +140,15 @@ public class RandRoom2MinigameController extends MinigameController {
     }
 
     // check if slider is between target sliders
-    if (sliderPosition > targetPosition && sliderPosition < targetPosition + 150) {
+    if (sliderPosition > targetPosition && sliderPosition < targetPosition + 120) {
       inTargetRange = true; // Player is in the target range
       timeInTargetRange += 1.0;
-      // once 2 seconds have passed, move onto next round
+      // once 2 seconds have passed, move onto next round while increasing the button colour by 1
       if (timeInTargetRange >= requiredTimeInTargetRange) {
         startNewRound();
-        inTargetRange = false;
+        String buttonId = "button" + (currentRound - 1);
+        Button button = getButtonById(buttonId);
+        button.setStyle("-fx-background-color: green;");
         timeInTargetRange = 0;
       }
     } else {
@@ -157,7 +169,43 @@ public class RandRoom2MinigameController extends MinigameController {
     // Update the slider's position
     slider.setLayoutX(sliderPosition);
     slider1.setLayoutX(targetPosition);
-    slider2.setLayoutX(targetPosition + 150);
+    slider2.setLayoutX(targetPosition + 120);
+  }
+
+  /** Sets all buttons to red. */
+  private void setButtonsRed() {
+    button1.setStyle("-fx-background-color: red;");
+    button2.setStyle("-fx-background-color: red;");
+    button3.setStyle("-fx-background-color: red;");
+    button4.setStyle("-fx-background-color: red;");
+    button5.setStyle("-fx-background-color: red;");
+  }
+
+  /** Resets all buttons to their default colour. */
+  private void resetButtons() {
+    button1.setStyle("");
+    button2.setStyle("");
+    button3.setStyle("");
+    button4.setStyle("");
+    button5.setStyle("");
+  }
+
+  /** Returns the button with the given id. */
+  private Button getButtonById(String buttonId) {
+    switch (buttonId) {
+      case "button1":
+        return button1;
+      case "button2":
+        return button2;
+      case "button3":
+        return button3;
+      case "button4":
+        return button4;
+      case "button5":
+        return button5;
+      default:
+        return null;
+    }
   }
 
   /** Resets the game to zero wins when the player loses. */
