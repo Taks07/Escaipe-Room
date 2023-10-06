@@ -11,13 +11,14 @@ import javafx.util.Duration;
 
 /**
  * Controller for the random oxygen meter minigame in Room 2. The player must click on the pane to
- * move the slider to the right. The objective is to move the slider to the target position for each
- * round. The player must complete 5 rounds to win the game.
+ * move the slider to the right. The objective is to move the slider int between the target
+ * positions for 2 seconds each round. The player must complete 3 rounds to win the game.
  */
 public class RandRoom2MinigameController extends MinigameController {
 
   @FXML private Line slider;
   @FXML private Line slider1;
+  @FXML private Line slider2;
 
   // The position of the slider
   private double sliderPosition = 319;
@@ -26,13 +27,19 @@ public class RandRoom2MinigameController extends MinigameController {
   private double oxygenSpeed = 2.5;
   private boolean gameRunning = true;
   private int currentRound = 0;
-  private int roundsToWin = 5;
+  private int roundsToWin = 3;
   private Random random = new Random();
   private double targetPosition;
   private double rectangleMinX = 62.0;
   private double rectangleMaxX = 560.0;
   private int start = 0;
   private AnimationTimer gameLoop;
+
+  // Timer variables
+  private int timeInTargetRange = 0;
+  private boolean inTargetRange = false;
+
+  private final int requiredTimeInTargetRange = 120; // 2 seconds
 
   // Flags to indicate if the player has passed the target position for the current round in either
   private boolean passedTargetPositive = false;
@@ -86,7 +93,7 @@ public class RandRoom2MinigameController extends MinigameController {
 
     // Generate a random target position for the slider1 for the current round
     targetPosition =
-        rectangleMinX + 10 + random.nextDouble() * (rectangleMaxX - rectangleMinX - 20);
+        rectangleMinX + 10 + random.nextDouble() * (rectangleMaxX - rectangleMinX - 170);
     currentRound++;
   }
 
@@ -96,7 +103,6 @@ public class RandRoom2MinigameController extends MinigameController {
    * either direction. Checks if the player has won or lost.
    */
   private void updateOxygenMeter() {
-
     // Update the position of the oxygen meter based on its speed
     if (start > 0) {
       sliderPosition -= oxygenSpeed;
@@ -110,19 +116,32 @@ public class RandRoom2MinigameController extends MinigameController {
       gameLoop.stop();
       System.out.println("Game over!");
       resetGame(); // Call the resetGame method when the player loses
+      timeInTargetRange = 0; // Reset the timer when the player loses
+      inTargetRange = false;
     }
 
     // Check if the player has passed the target position for the current round in either direction
     if (sliderPosition >= targetPosition) {
       passedTargetPositive = true;
+      passedTargetNegative = false; // Reset the negative flag
     } else if (sliderPosition <= targetPosition) {
+      passedTargetPositive = false; // Reset the positive flag
       passedTargetNegative = true;
     }
 
-    // Check if both flags are set, indicating that the player has passed the target in both
-    // directions
-    if (passedTargetPositive && passedTargetNegative) {
-      startNewRound();
+    // check if slider is between target sliders
+    if (sliderPosition > targetPosition && sliderPosition < targetPosition + 150) {
+      inTargetRange = true; // Player is in the target range
+      timeInTargetRange += 1.0;
+      // once 2 seconds have passed, move onto next round
+      if (timeInTargetRange >= requiredTimeInTargetRange) {
+        startNewRound();
+        inTargetRange = false;
+        timeInTargetRange = 0;
+      }
+    } else {
+      inTargetRange = false;
+      timeInTargetRange = 0;
     }
 
     // Check if the player has won
@@ -138,6 +157,7 @@ public class RandRoom2MinigameController extends MinigameController {
     // Update the slider's position
     slider.setLayoutX(sliderPosition);
     slider1.setLayoutX(targetPosition);
+    slider2.setLayoutX(targetPosition + 150);
   }
 
   /** Resets the game to zero wins when the player loses. */
@@ -145,6 +165,5 @@ public class RandRoom2MinigameController extends MinigameController {
     currentRound = 0;
     gameRunning = true;
     startNewRound();
-    slider.setLayoutX(319);
   }
 }
