@@ -29,6 +29,7 @@ public class GameController {
   @FXML private BorderPane mainBorderPane;
   @FXML private Label timerLabel;
   @FXML private Button muteButton;
+  @FXML private Button flavourTextButton;
   @FXML private ImageView mute;
   @FXML private ImageView unmute;
 
@@ -56,6 +57,12 @@ public class GameController {
     setMuteButtonText();
   }
 
+  @FXML
+  private void onClickFlavourText(ActionEvent event) {
+    GameState.toggleFlavourText();
+    setFlavourTextButtonText();
+  }
+
   private void setMuteButtonText() {
     if (GameState.isMuted == true) {
       mute.setVisible(false);
@@ -63,6 +70,15 @@ public class GameController {
     } else {
       mute.setVisible(true);
       unmute.setVisible(false);
+    }
+  }
+
+  /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled */
+  private void setFlavourTextButtonText() {
+    if (GameState.isFlavourTextEnabled == true) {
+      flavourTextButton.setText("Disable object flavour text");
+    } else {
+      flavourTextButton.setText("Enable object flavour text");
     }
   }
 

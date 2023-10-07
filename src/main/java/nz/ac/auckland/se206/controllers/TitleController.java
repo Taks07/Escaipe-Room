@@ -27,6 +27,7 @@ public class TitleController extends RoomController {
   @FXML private ImageView paragraph;
   @FXML private Rectangle block;
   @FXML private Button muteButton;
+  @FXML private Button flavourTextButton;
   @FXML private ImageView flyingrocket;
   @FXML private ImageView mainbackground;
   @FXML private ImageView mute;
@@ -43,10 +44,14 @@ public class TitleController extends RoomController {
     if (muteButton != null) {
       setMuteButtonText();
     }
+
+    if (flavourTextButton != null) {
+      setFlavourTextButtonText();
+    }
   }
 
   /**
-   * Mutes the game audio.
+   * Mutes/unmutes the game audio.
    *
    * @param event the event that triggered this method
    */
@@ -54,6 +59,17 @@ public class TitleController extends RoomController {
   private void onClickMute(ActionEvent event) {
     GameState.toggleMute();
     setMuteButtonText();
+  }
+
+  /**
+   * Enables or disables object flavour text.
+   *
+   * @param event the event that triggered this method
+   */
+  @FXML
+  private void onClickFlavourText(ActionEvent event) {
+    GameState.toggleFlavourText();
+    setFlavourTextButtonText();
   }
 
   /**
@@ -210,6 +226,15 @@ public class TitleController extends RoomController {
     } else {
       mute.setVisible(true);
       unmute.setVisible(false);
+    }
+  }
+
+  /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled */
+  private void setFlavourTextButtonText() {
+    if (GameState.isFlavourTextEnabled == true) {
+      flavourTextButton.setText("Disable object flavour text");
+    } else {
+      flavourTextButton.setText("Enable object flavour text");
     }
   }
 

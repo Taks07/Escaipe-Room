@@ -81,6 +81,9 @@ public class GameState {
   /** Whether audio has been muted or not */
   public static boolean isMuted;
 
+  /** Whether or not to allow flavour text */
+  public static boolean isFlavourTextEnabled = true;
+
   /** The hashmap of alien heads */
   public static final HashMap<String, String> alienHeads =
       new HashMap<String, String>() {
@@ -201,7 +204,8 @@ public class GameState {
               + " is too hard to do. Respond in 30 words";
         case "randroom2":
           return "Tell the user to click the button in order to increase the pressure of the oxygen"
-              + " canister. Say they have to click quickly. Respond in 30 words";
+              + " canister, and to keep the pressure within the region. Say they have to"
+              + " click quickly. Respond in 30 words";
         case "randroom4":
           return "Tell the user to match up all the pairs of symbols by clicking on a tile to"
               + " reveal a symbol. Then, give one of the following recommendations: only"
@@ -274,6 +278,10 @@ public class GameState {
 
   public static void toggleMute() {
     isMuted = !isMuted;
+  }
+
+  public static void toggleFlavourText() {
+    isFlavourTextEnabled = !isFlavourTextEnabled;
   }
 
   /** Sets the alien head image in the chat controller */
