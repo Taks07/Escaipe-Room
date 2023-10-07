@@ -56,9 +56,9 @@
             <Image url="@../images/objects/car.png" />
          </image>
       </ImageView>
-      <ImageView id="alien" fx:id="alienImage" fitHeight="313.0" fitWidth="449.0" layoutX="178.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="alien3" fx:id="alienImage" fitHeight="313.0" fitWidth="449.0" layoutX="178.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/alien.png" />
+            <Image url="@../images/alien3.png" />
          </image>
       </ImageView>
       <Rectangle id="arrow2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="709.0" layoutY="409.0" onMouseClicked="#clickArrow2" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />

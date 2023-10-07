@@ -84,6 +84,6 @@ public class RandRoom2Controller extends RoomController {
     }
 
     // Otherwise, tell the player to search for parts in the oxygen canister
-    actionLabel.setText("Stabilise the Oxygen Canister to find a part!");
+    actionLabel.setText("Stabilise the Oxygen Canister to find part");
   }
 }
