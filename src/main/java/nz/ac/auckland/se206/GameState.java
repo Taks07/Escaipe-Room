@@ -90,7 +90,7 @@ public class GameState {
         {
           put("mainroom", "alien.png");
           put("randroom1", "alien1.png");
-          put("randroom2", "alien.png");
+          put("randroom2", "alien3.png");
           put("randroom3", "alien2.png");
           put("randroom4", "alien4.png");
         }
