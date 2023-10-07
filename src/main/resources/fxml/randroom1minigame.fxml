@@ -9,16 +9,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom1MinigameController">
+<Pane prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom1MinigameController">
    <children>
       <ImageView fitHeight="480.0" fitWidth="810.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true">
          <image>
             <Image url="@../images/minigames/room1minigame.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/title_screen/border.png" />
          </image>
       </ImageView>
       <GridPane fx:id="gridPane" layoutX="132.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="554.0">
@@ -96,5 +91,10 @@
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="379.0" layoutY="412.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0">
+         <image>
+            <Image url="@../images/title_screen/border.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

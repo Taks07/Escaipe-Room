@@ -7,16 +7,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" pickOnBounds="false" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom1Controller">
+<Pane fx:id="room" pickOnBounds="false" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom1Controller">
    <children>
       <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-247.0" preserveRatio="true">
          <image>
             <Image url="@../images/rooms/background1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0">
-         <image>
-            <Image url="@../images/rooms/border.png" />
          </image>
       </ImageView>
       <ImageView id="rocks" fx:id="rocksImage" fitHeight="277.0" fitWidth="275.0" layoutX="26.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
@@ -96,5 +91,10 @@
       </ImageView>
       <Rectangle id="okay" fx:id="okayRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="333.0" layoutY="428.0" onMouseClicked="#clickOkay" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="151.0" />
       <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0">
+         <image>
+            <Image url="@../images/rooms/border.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
