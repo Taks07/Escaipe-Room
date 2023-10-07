@@ -22,12 +22,17 @@
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="426.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
       <Line fx:id="slider" endX="100.0" endY="-28.477706909179688" layoutX="342.0" layoutY="241.0" startX="100.0" startY="28.74835205078125" stroke="WHITE" />
       <Line fx:id="slider1" endX="99.99998474121094" endY="-19.64739990234375" layoutX="91.0" layoutY="231.0" startX="99.99998474121094" startY="38.956024169921875" stroke="RED" />
-      <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
       <Line fx:id="slider2" endX="100.0" endY="-19.906585693359375" layoutX="617.0" layoutY="232.0" startX="100.0" startY="37.74835205078125" stroke="RED" />
       <Button fx:id="button1" layoutX="329.0" layoutY="117.0" mnemonicParsing="false" text="    " />
       <Button fx:id="button2" layoutX="379.0" layoutY="117.0" mnemonicParsing="false" text="    " />
       <Button fx:id="button3" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" text="    " />
       <Button fx:id="button4" layoutX="479.0" layoutY="117.0" mnemonicParsing="false" text="    " />
       <Button fx:id="button5" layoutX="529.0" layoutY="117.0" mnemonicParsing="false" text="    " />
+      <Rectangle fx:id="fadeRectangle" arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
+      <ImageView fitHeight="529.0" fitWidth="882.0" layoutX="-16.0" layoutY="-14.0">
+         <image>
+            <Image url="@../images/title_screen/border.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
