@@ -71,7 +71,7 @@ public class GptPromptEngineering {
       case "randroom2":
         msg =
             "Play the role of a shy alien on an alien planet meeting a human visitor to your"
-                + " planet. You know the part they seek can be found in the crater";
+                + " planet. You will give them a part if they stabilize the oxygen canister";
         break;
       case "randroom3":
         msg =
