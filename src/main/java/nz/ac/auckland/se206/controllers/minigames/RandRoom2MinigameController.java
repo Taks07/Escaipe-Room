@@ -74,16 +74,16 @@ public class RandRoom2MinigameController extends MinigameController {
   }
 
   /**
-   * Handles the click event on the pane. Moves the slider to the right by 50 pixels.
+   * Handles the click event on the pane. Moves the slider to the right by 75 pixels.
    *
    * @param event the mouse event
    * @throws IOException
    */
   @FXML
   private void handlePaneClick(MouseEvent event) {
-    // whenever you click on the pane, the slider will move 50 pixels to the right
+    // whenever you click on the pane, the slider will move 75 pixels to the right
     if (gameRunning) {
-      sliderPosition += 50;
+      sliderPosition += 80;
       gameLoop.start();
     }
     start++;
@@ -99,7 +99,7 @@ public class RandRoom2MinigameController extends MinigameController {
     passedTargetNegative = false;
 
     // Generate a random target position for the slider1 for the current round
-    targetPosition = rectangleMinX + random.nextDouble() * (rectangleMaxX - rectangleMinX - 125);
+    targetPosition = rectangleMinX + random.nextDouble() * (rectangleMaxX - rectangleMinX - 185);
     currentRound++;
   }
 
@@ -140,7 +140,7 @@ public class RandRoom2MinigameController extends MinigameController {
     }
 
     // check if slider is between target sliders
-    if (sliderPosition > targetPosition && sliderPosition < targetPosition + 120) {
+    if (sliderPosition > targetPosition && sliderPosition < targetPosition + 175) {
       inTargetRange = true; // Player is in the target range
       timeInTargetRange += 1.0;
       // once 2 seconds have passed, move onto next round while increasing the button colour by 1
@@ -169,7 +169,7 @@ public class RandRoom2MinigameController extends MinigameController {
     // Update the slider's position
     slider.setLayoutX(sliderPosition);
     slider1.setLayoutX(targetPosition);
-    slider2.setLayoutX(targetPosition + 120);
+    slider2.setLayoutX(targetPosition + 175);
   }
 
   /** Sets all buttons to red. */

@@ -7,9 +7,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane onMouseClicked="#handlePaneClick" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom2MinigameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handlePaneClick" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom2MinigameController">
    <children>
-      <ImageView fitHeight="685.0" fitWidth="930.0" layoutX="-40.0" layoutY="-62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="635.0" fitWidth="876.0" layoutX="-18.0" layoutY="-62.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/minigames/oxygencanister.png" />
          </image>
@@ -20,9 +20,9 @@
          </image>
       </ImageView>
       <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="415.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
-      <Line fx:id="slider" endX="100.0" endY="-28.477706909179688" layoutX="342.0" layoutY="241.0" startX="100.0" startY="28.74835205078125" stroke="WHITE" />
-      <Line fx:id="slider1" endX="99.99998474121094" endY="-19.64739990234375" layoutX="91.0" layoutY="231.0" startX="99.99998474121094" startY="38.956024169921875" stroke="RED" />
-      <Line fx:id="slider2" endX="100.0" endY="-19.906585693359375" layoutX="617.0" layoutY="232.0" startX="100.0" startY="37.74835205078125" stroke="RED" />
+      <Line fx:id="slider" endX="100.00003051757812" endY="-46.169036865234375" layoutX="342.0" layoutY="241.0" startX="100.00003051757812" startY="7.4176788330078125" stroke="WHITE" />
+      <Line fx:id="slider1" endX="110.81338500976562" endY="-35.91731262207031" layoutX="91.0" layoutY="231.0" startX="110.81338500976562" startY="19.152328491210938" stroke="RED" />
+      <Line fx:id="slider2" endX="84.15521240234375" endY="-36.59230041503906" layoutX="617.0" layoutY="232.0" startX="84.15521240234375" startY="18.197158813476562" stroke="RED" />
       <Button fx:id="button1" layoutX="329.0" layoutY="117.0" mnemonicParsing="false" text="    " />
       <Button fx:id="button2" layoutX="379.0" layoutY="117.0" mnemonicParsing="false" text="    " />
       <Button fx:id="button3" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" text="    " />
