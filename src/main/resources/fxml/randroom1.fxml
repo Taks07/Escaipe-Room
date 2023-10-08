@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" pickOnBounds="false" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom1Controller">
+<Pane fx:id="room" pickOnBounds="false" prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.RandRoom1Controller">
    <children>
       <ImageView fx:id="background" fitHeight="1021.0" fitWidth="1351.0" layoutX="-224.0" layoutY="-247.0" preserveRatio="true">
          <image>
@@ -73,7 +73,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Rectangle fx:id="grayRectangle" arcHeight="5.0" arcWidth="5.0" height="510.0" layoutX="7.0" layoutY="3.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
+      <Rectangle fx:id="grayRectangle" arcHeight="5.0" arcWidth="5.0" height="479.0" layoutX="7.0" layoutY="3.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" visible="false" width="840.0" />
       <ImageView fx:id="partFoundTitleImage" fitHeight="76.0" fitWidth="659.0" layoutX="73.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/rooms/partfound.png" />

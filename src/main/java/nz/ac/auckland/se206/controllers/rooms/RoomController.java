@@ -131,6 +131,10 @@ public abstract class RoomController {
       showPopup();
     } else {
       // Not the correct object. Provide some flavour text.
+      if (!GameState.isFlavourTextEnabled) {
+        return;
+      }
+
       GameState.setAlienHead();
       GameState.sayFlavourText(objectId);
     }

@@ -25,7 +25,7 @@ public class RandRoom2MinigameController extends MinigameController {
   private double sliderPosition = 342;
 
   // The speed of the oxygen meter
-  private double oxygenSpeed = 2.5;
+  private double oxygenSpeed = 1.5;
   private boolean gameRunning = true;
   private int currentRound = 0;
   private int roundsToWin = 5;
@@ -83,7 +83,7 @@ public class RandRoom2MinigameController extends MinigameController {
   private void handlePaneClick(MouseEvent event) {
     // whenever you click on the pane, the slider will move 75 pixels to the right
     if (gameRunning) {
-      sliderPosition += 80;
+      sliderPosition += 75;
       gameLoop.start();
     }
     start++;

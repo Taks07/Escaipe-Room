@@ -37,6 +37,7 @@ public class GameController {
   @FXML
   public void initialize() {
     setMuteButtonText();
+    setFlavourTextButtonText();
     try {
       mainBorderPane.setCenter(loadFxml("mainroom").load());
       FXMLLoader chatFxmlLoader = loadFxml("chat");
