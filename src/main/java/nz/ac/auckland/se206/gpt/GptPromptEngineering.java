@@ -71,7 +71,7 @@ public class GptPromptEngineering {
       case "randroom2":
         msg =
             "Play the role of a shy alien on an alien planet meeting a human visitor to your"
-                + " planet. You know the part they seek can be found in the crater";
+                + " planet. You will give them a part if they stabilize the oxygen canister";
         break;
       case "randroom3":
         msg =
@@ -109,6 +109,10 @@ public class GptPromptEngineering {
   public static String getIntroduction() {
     String currRoom = GameState.currRooms.get(GameState.getCurrRoom());
 
+    if (GameState.getMinigameSolved()) {
+      return "Congratulate the human for finding the part";
+    }
+
     // If the current room is the main room, return the main room introduction message. Otherwise,
     // return the introduction message for the current room.
     switch (currRoom) {
@@ -118,8 +122,8 @@ public class GptPromptEngineering {
         return "Say that the part the human seeks"
             + " can be found in the crashed UFO. Respond in 30 words";
       case "randroom2":
-        return "Say that the part the human seeks"
-            + " can be found in the crater. Respond in 30 words";
+        return "Say that the part the human seeks is with you. Say you'll give the part if they can"
+            + " stabilize the oxygen canister. Respond in 30 words";
       case "randroom3":
         return "Say that the part the human"
             + " seeks can be found in the alien plant. Respond in 30 words";
