@@ -203,9 +203,9 @@ public class GameState {
               + " match the bottom row. Give a recommendation on how to solve this if this"
               + " is too hard to do. Respond in 30 words";
         case "randroom2":
-          return "Tell the user to click in order to increase the pressure of the oxygen"
-              + " canister, and to keep the pressure between the red lines. Say they can hold to"
-              + " keep increasing the pressure. Respond in 30 words";
+          return "Tell the user to click quickly in order to increase the pressure of the oxygen"
+              + " canister, and to keep the pressure between the red lines. Tell them not to"
+              + " let the pressure be too low or high. Respond in 30 words";
         case "randroom4":
           return "Tell the user to match up all the pairs of symbols by clicking on a tile to"
               + " reveal a symbol. Then, give one of the following recommendations: only"
