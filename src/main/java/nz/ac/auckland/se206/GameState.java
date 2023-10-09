@@ -22,69 +22,69 @@ public class GameState {
   /** Indicates whether the object in the room has been found. */
   public static boolean isObjectFound = false;
 
-  /** Indicates whether the game was won */
+  /** Indicates whether the game was won. */
   public static boolean gameWon = true;
 
-  /** Reference to chat controller */
+  /** Reference to chat controller. */
   private static ChatController chatController;
 
-  /** Reference to game controller */
+  /** Reference to game controller. */
   private static GameController gameController;
 
-  /** The hashmap to array of riddle answers */
+  /** The hashmap to array of riddle answers. */
   private static HashMap<String, ArrayList<String>> riddleAnswers =
       new HashMap<String, ArrayList<String>>();
 
-  /** The current answer to the riddle */
+  /** The current answer to the riddle. */
   private static String currRiddleAnswer;
 
-  /** The current riddle */
+  /** The current riddle. */
   public static String currRiddle;
 
-  /** The randomised rooms from text file */
+  /** The randomised rooms from text file. */
   public static ArrayList<String> randomRooms = new ArrayList<String>();
 
-  /** Rooms in current game */
+  /** Rooms in current game. */
   public static ArrayList<String> currRooms = new ArrayList<String>();
 
-  /** Whether or not minigame was solved in each room */
+  /** Whether or not minigame was solved in each room. */
   public static ArrayList<Boolean> minigameSolved = new ArrayList<Boolean>();
 
-  /** Whether or not part found popup has been shown for minigame in room */
+  /** Whether or not part found popup has been shown for minigame in room. */
   public static ArrayList<Boolean> partFoundPopupShown = new ArrayList<Boolean>();
 
-  /** Whether or not the alien in the room is currently talking */
+  /** Whether or not the alien in the room is currently talking. */
   public static ArrayList<Boolean> alienTalking = new ArrayList<Boolean>();
 
-  /** The current loaded room as index in currRooms array */
+  /** The current loaded room as index in currRooms array. */
   public static int currRoom;
 
-  /** The chat completion requests for each room */
+  /** The chat completion requests for each room. */
   public static ArrayList<ChatCompletionRequest> roomChatCompletionRequests =
       new ArrayList<ChatCompletionRequest>();
 
-  /** The number of hints given */
+  /** The number of hints given. */
   public static int hintsCounter;
 
-  /** The number of hints allowed */
+  /** The number of hints allowed. */
   public static int hintsAllowed;
 
-  /** The time limit for the game */
+  /** The time limit for the game. */
   public static int timeLimit;
 
-  /** The number of parts found */
+  /** The number of parts found. */
   public static int partsFound;
 
-  /** Whether or not user is in a minigame */
+  /** Whether or not user is in a minigame. */
   public static boolean inMinigame;
 
-  /** Whether audio has been muted or not */
+  /** Whether audio has been muted or not. */
   public static boolean isMuted;
 
-  /** Whether or not to allow flavour text */
+  /** Whether or not to allow flavour text. */
   public static boolean isFlavourTextEnabled = true;
 
-  /** The hashmap of alien heads */
+  /** The hashmap of alien heads. */
   public static final HashMap<String, String> alienHeads =
       new HashMap<String, String>() {
         {
@@ -171,7 +171,7 @@ public class GameState {
     chatController.askGpt(request);
   }
 
-  /** Returns a hint prompt depending on game state */
+  /** Returns a hint prompt depending on game state. */
   public static String getHint() {
     String roomName = currRooms.get(currRoom);
     String hint;
@@ -276,26 +276,28 @@ public class GameState {
     }
   }
 
+  /** Toggles the mute flag. */
   public static void toggleMute() {
     isMuted = !isMuted;
   }
 
+  /** Toggles the flavour text flag. */
   public static void toggleFlavourText() {
     isFlavourTextEnabled = !isFlavourTextEnabled;
   }
 
-  /** Sets the alien head image in the chat controller */
+  /** Sets the alien head image in the chat controller. */
   public static void setAlienHead() {
     Image alienImage = new Image("/images/chatroom/" + alienHeads.get(currRooms.get(currRoom)));
     chatController.setAlienHeadImage(alienImage);
   }
 
-  /** Gets AI to say some flavour text */
+  /** Gets AI to say some flavour text. */
   public static void sayFlavourText(String object) {
     chatController.sayFlavourText(object);
   }
 
-  /** Puts message into chatbox */
+  /** Puts message into chatbox. */
   public static void showChatMessage(ChatMessage chat) {
     if (chatController.getIsTranslating()) {
       return;
@@ -304,7 +306,7 @@ public class GameState {
     chatController.appendChatMessage(chat.getContent());
   }
 
-  /** Sets the current riddle answer to a random answer from the list of riddle answers */
+  /** Sets the current riddle answer to a random answer from the list of riddle answers. */
   public static void setRandomCurrRiddleAnswer() {
     ArrayList<String> temp = new ArrayList<String>();
     temp.addAll(riddleAnswers.get(currRooms.get(1)));
@@ -347,7 +349,7 @@ public class GameState {
     return currRiddleAnswer;
   }
 
-  /** Chooses 2 random rooms from the pool of 4 */
+  /** Chooses 2 random rooms from the pool of 4. */
   public static void setRandomRooms() {
     Random rand = new Random();
     ArrayList<String> randomRoomsCopy = (ArrayList<String>) randomRooms.clone();
@@ -376,17 +378,17 @@ public class GameState {
     }
   }
 
-  /** Returns the chat completion request for the current room */
+  /** Returns the chat completion request for the current room. */
   public static ChatCompletionRequest getChatCompletionRequest() {
     return roomChatCompletionRequests.get(currRoom);
   }
 
-  /** Returns the current room index */
+  /** Returns the current room index. */
   public static int getCurrRoom() {
     return currRoom;
   }
 
-  /** Switches to previous room */
+  /** Switches to previous room. */
   public static void prevRoom() {
     currRoom--;
 
@@ -397,7 +399,7 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  /** Switches to next room */
+  /** Switches to next room. */
   public static void nextRoom() {
     currRoom++;
 
@@ -408,14 +410,15 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  /** Increment the parts found, and update label in chat controller */
+  /** Increment the parts found, and update label in chat controller. */
   public static void incrementPartsFound() {
     partsFound++;
     chatController.setPartsCounter(partsFound);
   }
 
   /**
-   * Returns whether or not the part found popup has been shown for the minigame in the current room
+   * Returns whether or not the part found popup has been shown for the minigame in the current
+   * room.
    *
    * @return true if the part found popup has been shown, false otherwise
    */
@@ -423,12 +426,12 @@ public class GameState {
     return partFoundPopupShown.get(currRoom);
   }
 
-  /** Sets the partFoundPopupSHown value for current room to true */
+  /** Sets the partFoundPopupSHown value for current room to true. */
   public static void setPartFoundPopupShown() {
     partFoundPopupShown.set(currRoom, true);
   }
 
-  /** Sets the number of hints allowed for the game */
+  /** Sets the number of hints allowed for the game. */
   public static void setHintsAllowed(String difficulty) {
     if (difficulty.equals("easy")) {
       hintsAllowed = Integer.MAX_VALUE;
@@ -440,7 +443,7 @@ public class GameState {
   }
 
   /**
-   * Toggles whether or not the alien in the current room is talking
+   * Toggles whether or not the alien in the current room is talking.
    *
    * @param room the room to toggle
    */
@@ -448,13 +451,13 @@ public class GameState {
     alienTalking.set(room, !alienTalking.get(room));
   }
 
-  /** Returns whether or not the alien in the current room is talking */
+  /** Returns whether or not the alien in the current room is talking. */
   public static boolean getAlienTalking() {
     return alienTalking.get(currRoom);
   }
 
   /**
-   * Check whether minigame in current room has been solved
+   * Check whether minigame in current room has been solved.
    *
    * @return true if minigame has been solved, false otherwise
    */
@@ -462,12 +465,12 @@ public class GameState {
     return minigameSolved.get(currRoom);
   }
 
-  /** Sets the minigame in the current room as solved */
+  /** Sets the minigame in the current room as solved. */
   public static void setMinigameSolved() {
     minigameSolved.set(currRoom, true);
   }
 
-  /** Sets the time limit for the game */
+  /** Sets the time limit for the game. */
   public static void setTimeLimit(int minutes) {
     timeLimit = minutes * 60;
   }
@@ -481,7 +484,7 @@ public class GameState {
     return hintsCounter < hintsAllowed;
   }
 
-  /** Resets all flags in the game, making it ready for the next round */
+  /** Resets all flags in the game, making it ready for the next round. */
   public static void resetGameState() {
     isRiddleResolved = false;
     isObjectFound = false;

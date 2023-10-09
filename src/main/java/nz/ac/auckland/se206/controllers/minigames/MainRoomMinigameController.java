@@ -85,7 +85,7 @@ public class MainRoomMinigameController extends MinigameController {
     playRound();
   }
 
-  /** Play a round of the game */
+  /** Play a round of the game. */
   public void playRound() {
     linePane.getChildren().removeAll(linePane.getChildren());
 
@@ -93,7 +93,7 @@ public class MainRoomMinigameController extends MinigameController {
     createTargetPolyline();
   }
 
-  /** Create a red target sine wave with random amplitude and frequency */
+  /** Create a red target sine wave with random amplitude and frequency. */
   public void createTargetPolyline() {
     Random random = new Random();
 
@@ -106,7 +106,7 @@ public class MainRoomMinigameController extends MinigameController {
     linePane.getChildren().add(targetPolyline);
   }
 
-  /** Create a white player sine wave */
+  /** Create a white player sine wave. */
   public void createPlayerPolyline() {
     amplitudeSlider.setValue(100);
     frequencySlider.setValue(0.64);
@@ -118,7 +118,7 @@ public class MainRoomMinigameController extends MinigameController {
   }
 
   /**
-   * Create a sine wave Polyline node with the given amplitude, frequency and colour
+   * Create a sine wave Polyline node with the given amplitude, frequency and colour.
    *
    * @param amplitude amplitude of the sine wave
    * @param frequency frequency of the sine wave
@@ -152,7 +152,7 @@ public class MainRoomMinigameController extends MinigameController {
     return polyline;
   }
 
-  /** Check if the player's answer is correct (within 1% of the target amplitude and frequency) */
+  /** Check if the player's answer is correct (within 1% of the target amplitude and frequency). */
   public void checkAnswerCorrect() {
     boolean answerCorrect =
         Math.abs(amplitudeSlider.getValue() - targetAmplitude) / targetAmplitude < 0.01

@@ -192,6 +192,7 @@ public class RandRoom2MinigameController extends MinigameController {
 
   /** Returns the button with the given id. */
   private Button getButtonById(String buttonId) {
+    // switches between the button ids and returns the button with the given id
     switch (buttonId) {
       case "button1":
         return button1;

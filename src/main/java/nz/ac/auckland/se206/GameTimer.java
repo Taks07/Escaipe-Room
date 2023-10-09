@@ -10,19 +10,19 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Utility class for controlling the game timer. */
 public class GameTimer {
-  /** Indicates what to display on the timer label */
+  /** Indicates what to display on the timer label. */
   public static StringProperty timerLabel = new SimpleStringProperty();
 
-  /** Controls the timer */
+  /** Controls the timer. */
   public static Timeline timerTimeline = new Timeline();
 
-  /** Indicates the number of seconds left on the timer */
+  /** Indicates the number of seconds left on the timer. */
   private static int secondsLeft;
 
-  /** Text to speech object */
+  /** Text to speech object. */
   private static TextToSpeech tts = new TextToSpeech();
 
-  /** Thread to run the text to speech object */
+  /** Thread to run the text to speech object. */
   private static Thread ttsThread;
 
   static {
@@ -71,6 +71,8 @@ public class GameTimer {
   }
 
   /**
+   * Gets the time left on the timer in a easier to read format.
+   *
    * @return the string to display on the timer label, calculated from secondsLeft
    */
   private static String getTimerLabel() {
@@ -116,11 +118,13 @@ public class GameTimer {
     ttsThread.start();
   }
 
+  /** Stops the timer. */
   public static void stopTts() {
     tts.terminate();
     ttsThread.interrupt();
   }
 
+  /** Stops the timer timeline. */
   public static void stopTimeline() {
     timerTimeline.stop();
   }
