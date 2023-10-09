@@ -293,11 +293,14 @@ public class ChatController {
    * @param object The object to say the flavor text of.
    */
   public void sayFlavourText(String object) {
+
+    // does nothing if the flavour text button is not enabled
     if (!GameState.isFlavourTextEnabled) {
       return;
     }
 
     try {
+      // Send message to GPT model
       runGpt(
           new ChatMessage("user", GptPromptEngineering.getFlavourText(object)),
           flavourTxtChatCompletionRequest);

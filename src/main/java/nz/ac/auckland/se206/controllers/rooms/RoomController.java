@@ -234,7 +234,10 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow1(MouseEvent event) {
+    // Stops all threads when switching rooms
     stopThreads();
+
+    // Initiates the fade transition
     fadeOut();
     ft.setOnFinished(
         event2 -> {
@@ -251,7 +254,10 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow2(MouseEvent event) {
+    // Stops all threads when switching rooms
     stopThreads();
+
+    // Initiates the fade transition
     fadeOut();
     ft.setOnFinished(
         event2 -> {
@@ -415,6 +421,7 @@ public abstract class RoomController {
     ft.setFromValue(1.0);
     ft.setToValue(0.0);
 
+    // makes sure the fade rectangle is hidden after the fade in
     ft.setOnFinished(
         event -> {
           fadeRectangle.setVisible(false);

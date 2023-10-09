@@ -44,11 +44,13 @@ public class TitleController extends RoomController {
    */
   @FXML
   private void initialize() {
+
+    // Animates background and rocket
     animate();
     if (flyingrocket != null) {
       animateRocket();
     }
-
+    // Checks if the game is muted or flavour text is enabled
     if (muteButton != null) {
       setMuteButtonText();
     }

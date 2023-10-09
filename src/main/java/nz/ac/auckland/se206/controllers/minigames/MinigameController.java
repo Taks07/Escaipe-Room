@@ -74,6 +74,8 @@ public abstract class MinigameController {
     isSolved = true;
     GameState.incrementPartsFound();
     GameState.setMinigameSolved();
+
+    // Fade out the room and switch to the next room
     fadeOut();
     ft.setOnFinished(
         event2 -> {
@@ -91,6 +93,7 @@ public abstract class MinigameController {
     ft.setFromValue(1.0);
     ft.setToValue(0.0);
 
+    // Makes sure that the fade rectangle is not visible after the fade in
     ft.setOnFinished(
         event -> {
           fadeRectangle.setVisible(false);
