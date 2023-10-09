@@ -10,6 +10,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 
+/**
+ * Abstract class for minigame controllers. Contains methods for handling the back arrow click and
+ * hovering over objects.
+ */
 public abstract class MinigameController {
   @FXML private Rectangle fadeRectangle;
 
@@ -68,7 +72,7 @@ public abstract class MinigameController {
     image.setImage(new Image("/images/objects/" + objectId + ".png"));
   }
 
-  /** Ends minigame, incrementing part counter and setting the game to solved */
+  /** Ends minigame, incrementing part counter and setting the game to solved. */
   protected void endGame() {
     GameState.inMinigame = false;
     isSolved = true;
@@ -85,7 +89,7 @@ public abstract class MinigameController {
     ft.play();
   }
 
-  /** Fades in the room. */
+  /** Fades in the room when the player enters. */
   protected void fadeIn() {
     fadeRectangle.setOpacity(1.0);
     fadeRectangle.setVisible(true);
@@ -104,7 +108,7 @@ public abstract class MinigameController {
 
   /**
    * Sets up the fade out for the room. Need to manually play ft after setting destination room in
-   * setOnFinished
+   * setOnFinished.
    */
   protected void fadeOut() {
     ft = new FadeTransition(Duration.millis(300), fadeRectangle);

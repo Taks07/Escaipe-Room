@@ -154,7 +154,7 @@ public class GameState {
   }
 
   /**
-   * Sets the chat controller.
+   * Sets the chat controller for the game.
    *
    * @param controller the chat controller
    */
@@ -399,7 +399,7 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  /** Switches to next room. */
+  /** Switches to next room from the current room. */
   public static void nextRoom() {
     currRoom++;
 

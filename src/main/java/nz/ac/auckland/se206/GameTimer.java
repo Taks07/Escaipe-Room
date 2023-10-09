@@ -114,7 +114,7 @@ public class GameTimer {
     ttsThread.start();
   }
 
-  /** Stops the timer. */
+  /** Stops the timer and TTS thread. */
   public static void stopTts() {
     tts.terminate();
     ttsThread.interrupt();

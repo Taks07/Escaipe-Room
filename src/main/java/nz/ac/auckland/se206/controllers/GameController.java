@@ -106,6 +106,11 @@ public class GameController {
     image.setImage(new Image("/images/objects/" + name + ".png"));
   }
 
+  /**
+   * Switches the room to the room with the given FXML file name.
+   *
+   * @param fxml the name of the FXML file to load
+   */
   public void switchRoom(String fxml) {
     try {
       mainBorderPane.setCenter(loadFxml(fxml).load());
