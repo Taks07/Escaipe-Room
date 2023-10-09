@@ -143,6 +143,7 @@ public class TitleController extends RoomController {
     GameState.askGpt(GptPromptEngineering.getGameContext());
   }
 
+  /** Sets the difficulty and time limit according to the selected radio buttons. */
   public void setDifficultyAndTimeLimit() {
     RadioButton difficultyOption = (RadioButton) difficulty.getSelectedToggle();
     RadioButton timeLimitOption = (RadioButton) timeLimit.getSelectedToggle();

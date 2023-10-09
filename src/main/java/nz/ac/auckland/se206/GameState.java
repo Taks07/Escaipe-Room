@@ -145,7 +145,7 @@ public class GameState {
   }
 
   /**
-   * Switches the room.
+   * Switches the current room to the given room.
    *
    * @param room the room to switch to
    */
@@ -388,7 +388,7 @@ public class GameState {
     return currRoom;
   }
 
-  /** Switches to previous room. */
+  /** Switches to previous room from the current room in the game. */
   public static void prevRoom() {
     currRoom--;
 

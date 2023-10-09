@@ -51,11 +51,7 @@ public class GameTimer {
         });
   }
 
-  /**
-   * Starts the timer.
-   *
-   * @param seconds the number of seconds to set the timer to
-   */
+  /** Starts the timer in a new thread. This method should be called when the game starts. */
   public static void startTimer() {
     secondsLeft = GameState.timeLimit;
     timerLabel.setValue(getTimerLabel());

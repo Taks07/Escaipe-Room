@@ -17,7 +17,7 @@ public abstract class MinigameController {
   protected FadeTransition ft;
 
   /**
-   * Returns user back to room
+   * Returns user back to room.
    *
    * @param event mouse event
    */

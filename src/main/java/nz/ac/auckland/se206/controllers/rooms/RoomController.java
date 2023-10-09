@@ -62,7 +62,7 @@ public abstract class RoomController {
     }
   }
 
-  /** Show the part found popup */
+  /** Show the part found popup. */
   protected void showPopup() {
     // Set the correct image for the contents of the popup
     switch (GameState.partsFound) {
@@ -117,7 +117,7 @@ public abstract class RoomController {
    * Handles the click event on an object.
    *
    * @param event the mouse event
-   * @throws IOException
+   * @throws IOException if the FXML file for the next room cannot be found
    */
   @FXML
   protected void clickObject(MouseEvent event) {
@@ -384,7 +384,7 @@ public abstract class RoomController {
   /**
    * Animates the background.
    *
-   * @throws InterruptedException
+   * @throws InterruptedException if the thread is interrupted
    */
   protected void animate() {
     Task<Void> animation =
