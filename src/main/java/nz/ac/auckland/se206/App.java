@@ -20,6 +20,12 @@ public class App extends Application {
     launch();
   }
 
+  /**
+   * Sets the root of the scene to the input file.
+   *
+   * @param fxml The name of the FXML file (without extension).
+   * @throws IOException If the file is not found.
+   */
   public static void setRoot(String fxml) throws IOException {
     scene.setRoot(loadFxml(fxml));
   }

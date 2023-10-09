@@ -19,6 +19,10 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.controllers.rooms.RoomController;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * Controller for the title screen. This extends RoomController so that it can use the same fade
+ * animation.
+ */
 public class TitleController extends RoomController {
   @FXML private ToggleGroup difficulty;
   @FXML private ToggleGroup timeLimit;
@@ -34,6 +38,10 @@ public class TitleController extends RoomController {
   @FXML private ImageView unmute;
   protected Thread rocketThread;
 
+  /**
+   * Initializes the controller, sets initial values, and adds event listeners for the mute and
+   * flavour text buttons.
+   */
   @FXML
   private void initialize() {
     animate();
@@ -100,6 +108,11 @@ public class TitleController extends RoomController {
     ft.play();
   }
 
+  /**
+   * Closes the background paragraph.
+   *
+   * @param event the event triggered by clicking the X
+   */
   @FXML
   public void clickX(MouseEvent event) {
     block.setVisible(false);
@@ -107,6 +120,13 @@ public class TitleController extends RoomController {
     exit.setVisible(false);
   }
 
+  /**
+   * Starts the game by switching to the game view, starting a timer, setting the riddle answer, and
+   * providing context to the AI.
+   *
+   * @param event the event that triggered this method
+   * @throws IOException if the game view cannot be loaded
+   */
   public void startGame(MouseEvent event) throws IOException {
     GameState.resetGameState();
     setDifficultyAndTimeLimit();
@@ -129,6 +149,7 @@ public class TitleController extends RoomController {
     GameState.setTimeLimit(Integer.parseInt(timeLimitOption.getText().substring(0, 1)));
   }
 
+  /** Animates the background of the title screen. */
   @FXML
   protected void animate() {
     Task<Void> animation =
@@ -157,6 +178,7 @@ public class TitleController extends RoomController {
     backgroundThread.start();
   }
 
+  /** Animates the rocket on the main screen. */
   protected void animateRocket() {
     Task<Void> animation =
         new Task<Void>() {
@@ -196,6 +218,11 @@ public class TitleController extends RoomController {
     rocketThread.start();
   }
 
+  /**
+   * Changes the object to selected image when hovered over.
+   *
+   * @param event the event that triggered this method
+   */
   @FXML
   protected void hoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
@@ -204,6 +231,11 @@ public class TitleController extends RoomController {
     object.setImage(new Image("/images/objects/" + objectId + "_selected.png"));
   }
 
+  /**
+   * Changes the object to unselected image when not hovered over.
+   *
+   * @param event the event that triggered this method
+   */
   @FXML
   protected void unhoverObject(MouseEvent event) {
     ImageView object = (ImageView) event.getSource();
@@ -218,7 +250,7 @@ public class TitleController extends RoomController {
     System.exit(0);
   }
 
-  /** Sets the text of the mute button according to GameState.isMuted */
+  /** Sets the text of the mute button according to GameState.isMuted. */
   private void setMuteButtonText() {
     if (GameState.isMuted == true) {
       mute.setVisible(false);
@@ -229,7 +261,7 @@ public class TitleController extends RoomController {
     }
   }
 
-  /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled */
+  /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled. */
   private void setFlavourTextButtonText() {
     if (GameState.isFlavourTextEnabled == true) {
       flavourTextButton.setText("Disable object flavour text");
@@ -238,6 +270,7 @@ public class TitleController extends RoomController {
     }
   }
 
+  /** Changes the mute button to selected image when hovered over. */
   @FXML
   protected void hoverMuteButton() {
     if (GameState.isMuted == true) {
@@ -249,6 +282,7 @@ public class TitleController extends RoomController {
     }
   }
 
+  /** Changes the mute button to unselected image when not hovered over. */
   @FXML
   protected void unhoverMuteButton() {
     if (GameState.isMuted == true) {
