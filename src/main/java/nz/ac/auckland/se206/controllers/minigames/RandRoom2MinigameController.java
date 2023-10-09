@@ -44,13 +44,13 @@ public class RandRoom2MinigameController extends MinigameController {
 
   // Timer variables
   private int timeInTargetRange = 0;
-  private boolean inTargetRange = false;
+  // private boolean inTargetRange = false;
 
   private final int requiredTimeInTargetRange = 120; // 2 seconds
 
   // Flags to indicate if the player has passed the target position for the current round in either
-  private boolean passedTargetPositive = false;
-  private boolean passedTargetNegative = false;
+  // private boolean passedTargetPositive = false;
+  // private boolean passedTargetNegative = false;
 
   /**
    * Initializes the controller, sets initial values, and fades in the view. Creates a new
@@ -99,9 +99,6 @@ public class RandRoom2MinigameController extends MinigameController {
    */
   private void startNewRound() {
 
-    passedTargetPositive = false;
-    passedTargetNegative = false;
-
     // Generate a random target position for the slider1 for the current round
     targetPosition = rectangleMinX + random.nextDouble() * (rectangleMaxX - rectangleMinX - 185);
     currentRound++;
@@ -131,21 +128,10 @@ public class RandRoom2MinigameController extends MinigameController {
       System.out.println("Game over!");
       resetGame(); // Call the resetGame method when the player loses
       timeInTargetRange = 0; // Reset the timer when the player loses
-      inTargetRange = false;
-    }
-
-    // Check if the player has passed the target position for the current round in either direction
-    if (sliderPosition >= targetPosition) {
-      passedTargetPositive = true;
-      passedTargetNegative = false; // Reset the negative flag
-    } else if (sliderPosition <= targetPosition) {
-      passedTargetPositive = false; // Reset the positive flag
-      passedTargetNegative = true;
     }
 
     // check if slider is between target sliders
     if (sliderPosition > targetPosition && sliderPosition < targetPosition + 175) {
-      inTargetRange = true; // Player is in the target range
       timeInTargetRange += 1.0;
       // once 2 seconds have passed, move onto next round while increasing the button colour by 1
       if (timeInTargetRange >= requiredTimeInTargetRange) {
@@ -156,7 +142,6 @@ public class RandRoom2MinigameController extends MinigameController {
         timeInTargetRange = 0;
       }
     } else {
-      inTargetRange = false;
       timeInTargetRange = 0;
     }
 
