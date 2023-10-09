@@ -9,18 +9,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
    <children>
       <ImageView fx:id="mainbackground" fitHeight="669.0" fitWidth="888.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/title_screen/mainbackground1.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="430.0" mnemonicParsing="false" onAction="#onExitApplication" opacity="0.0" prefHeight="45.0" prefWidth="124.0" text="Exit">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
       <RadioButton fx:id="easy" layoutX="109.0" layoutY="162.0" mnemonicParsing="false" selected="true" text="Easy (Unlimited hints)" textFill="#bababa">
          <font>
             <Font name="Arial Bold" size="18.0" />
@@ -57,18 +52,18 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </RadioButton>
-      <ImageView fx:id="mute" fitHeight="24.0" fitWidth="124.0" layoutX="693.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mute" fitHeight="24.0" fitWidth="124.0" layoutX="644.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/objects/mute.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="unmute" fitHeight="24.0" fitWidth="200.0" layoutX="649.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="flavourTextImage" fitHeight="35.0" fitWidth="181.0" layoutX="51.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/objects/unmute.png" />
+            <Image url="@../images/objects/disable_flavour_text.png" />
          </image>
       </ImageView>
-      <Button fx:id="muteButton" layoutX="649.0" layoutY="443.0" mnemonicParsing="false" onAction="#onClickMute" onMouseEntered="#hoverMuteButton" onMouseExited="#unhoverMuteButton" opacity="0.0" prefHeight="35.0" prefWidth="128.0" text="Mute Audio" />
-      <Button fx:id="flavourTextButton" layoutX="27.0" layoutY="448.0" mnemonicParsing="false" onAction="#onClickFlavourText" text="Disable object flavour text" />
+      <Button fx:id="muteButton" layoutX="644.0" layoutY="439.0" mnemonicParsing="false" onAction="#onClickMute" onMouseEntered="#hoverMuteButton" onMouseExited="#unhoverMuteButton" opacity="0.0" prefHeight="35.0" prefWidth="128.0" text="Mute Audio" />
+      <Button fx:id="flavourTextButton" layoutX="55.0" layoutY="437.0" mnemonicParsing="false" onAction="#onClickFlavourText" onMouseEntered="#hoverFlavourTextButton" onMouseExited="#unhoverFlavourTextButton" opacity="0.0" prefHeight="35.0" prefWidth="181.0" text="Disable object flavour text" />
       <ImageView fitHeight="88.0" fitWidth="756.0" layoutX="46.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/title_screen/set_difficulty.png" />

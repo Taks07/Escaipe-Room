@@ -31,7 +31,7 @@ public class GameController {
   @FXML private Button muteButton;
   @FXML private Button flavourTextButton;
   @FXML private ImageView mute;
-  @FXML private ImageView unmute;
+  @FXML private ImageView flavourTextImage;
 
   /** Code that is run when first starting game */
   @FXML
@@ -65,43 +65,45 @@ public class GameController {
   }
 
   private void setMuteButtonText() {
-    if (GameState.isMuted == true) {
-      mute.setVisible(false);
-      unmute.setVisible(true);
-    } else {
-      mute.setVisible(true);
-      unmute.setVisible(false);
-    }
+    String name = (GameState.isMuted) ? "unmute" : "mute";
+    setButtonImage(name, mute);
   }
 
   /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled */
   private void setFlavourTextButtonText() {
-    if (GameState.isFlavourTextEnabled == true) {
-      flavourTextButton.setText("Disable object flavour text");
-    } else {
-      flavourTextButton.setText("Enable object flavour text");
-    }
+    String name = (GameState.isFlavourTextEnabled) ? "disable_flavour_text" : "enable_flavour_text";
+    setButtonImage(name, flavourTextImage);
+  }
+
+  @FXML
+  protected void hoverFlavourTextButton() {
+    String name =
+        (GameState.isFlavourTextEnabled)
+            ? "disable_flavour_text_selected"
+            : "enable_flavour_text_selected";
+    setButtonImage(name, flavourTextImage);
+  }
+
+  @FXML
+  protected void unhoverFlavourTextButton() {
+    String name = (GameState.isFlavourTextEnabled) ? "disable_flavour_text" : "enable_flavour_text";
+    setButtonImage(name, flavourTextImage);
   }
 
   @FXML
   protected void hoverMuteButton() {
-    if (GameState.isMuted == true) {
-
-      unmute.setImage(new Image("/images/objects/unmute_selected.png"));
-    } else {
-
-      mute.setImage(new Image("/images/objects/mute_selected.png"));
-    }
+    String name = (GameState.isMuted) ? "unmute_selected" : "mute_selected";
+    setButtonImage(name, mute);
   }
 
   @FXML
   protected void unhoverMuteButton() {
-    if (GameState.isMuted == true) {
-      unmute.setImage(new Image("/images/objects/unmute.png"));
-    } else {
+    String name = (GameState.isMuted) ? "unmute" : "mute";
+    setButtonImage(name, mute);
+  }
 
-      mute.setImage(new Image("/images/objects/mute.png"));
-    }
+  protected void setButtonImage(String name, ImageView image) {
+    image.setImage(new Image("/images/objects/" + name + ".png"));
   }
 
   public void switchRoom(String fxml) {
