@@ -33,7 +33,7 @@ public class GameController {
   @FXML private ImageView mute;
   @FXML private ImageView flavourTextImage;
 
-  /** Code that is run when first starting game */
+  /** Code that is run when first starting game. */
   @FXML
   public void initialize() {
     setMuteButtonText();

@@ -52,6 +52,10 @@ public class RandRoom2MinigameController extends MinigameController {
   private boolean passedTargetPositive = false;
   private boolean passedTargetNegative = false;
 
+  /**
+   * Initializes the controller, sets initial values, and fades in the view. Creates a new
+   * AnimationTimer to update the oxygen meter. Starts the game loop. Starts the first round.
+   */
   public void initialize() {
     fadeIn();
 
@@ -77,7 +81,7 @@ public class RandRoom2MinigameController extends MinigameController {
    * Handles the click event on the pane. Moves the slider to the right by 75 pixels.
    *
    * @param event the mouse event
-   * @throws IOException
+   * @throws IOException if there is an error loading the title view
    */
   @FXML
   private void handlePaneClick(MouseEvent event) {

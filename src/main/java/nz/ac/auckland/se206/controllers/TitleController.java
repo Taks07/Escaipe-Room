@@ -111,7 +111,7 @@ public class TitleController extends RoomController {
   }
 
   /**
-   * Closes the background paragraph.
+   * Closes the background paragraph when the X is clicked.
    *
    * @param event the event triggered by clicking the X
    */
@@ -247,7 +247,7 @@ public class TitleController extends RoomController {
     object.setImage(new Image("/images/objects/" + objectId + ".png"));
   }
 
-  /** Exits the application. */
+  /** Exits the application when the exit button is clicked. */
   @FXML
   protected void onExitApplication() {
     System.exit(0);

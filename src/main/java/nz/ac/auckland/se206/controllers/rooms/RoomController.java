@@ -17,6 +17,10 @@ import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
+/**
+ * Abstract class for room controllers. Contains methods for handling the click and hover events on
+ * objects, as well as the click events on the arrows. Also has the popup for when a part is found.
+ */
 public abstract class RoomController {
   @FXML protected Label actionLabel;
   @FXML protected Rectangle grayRectangle;
@@ -413,7 +417,7 @@ public abstract class RoomController {
     backgroundThread.start();
   }
 
-  /** Fades in the room. */
+  /** Fades in the room when the player enters. */
   protected void fadeIn() {
     fadeRectangle.setOpacity(1.0);
     fadeRectangle.setVisible(true);

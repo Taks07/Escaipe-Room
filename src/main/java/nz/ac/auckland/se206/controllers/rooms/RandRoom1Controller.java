@@ -9,6 +9,10 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * Controller for the first random room. This room contains the helmet, panel, rocks, tire, boot,
+ * and ufo objects. It holds the ufo minigame for the ufo object.
+ */
 public class RandRoom1Controller extends RoomController {
 
   @FXML private ImageView helmetImage;

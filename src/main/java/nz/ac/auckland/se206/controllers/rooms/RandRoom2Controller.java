@@ -11,6 +11,10 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * Controller for the second random room. This room contains the oxygen, flag, cube, car, and earth
+ * objects. It holds the oxygen minigame for the oxygen object.
+ */
 public class RandRoom2Controller extends RoomController {
 
   @FXML private ImageView oxygenImage;

@@ -114,13 +114,13 @@ public class GameTimer {
     ttsThread.start();
   }
 
-  /** Stops the timer and TTS thread. */
+  /** Stops the timer and the TTS thread. */
   public static void stopTts() {
     tts.terminate();
     ttsThread.interrupt();
   }
 
-  /** Stops the timer timeline. */
+  /** Stops the timer timeline and TTS thread. */
   public static void stopTimeline() {
     timerTimeline.stop();
   }
