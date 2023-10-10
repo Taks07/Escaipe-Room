@@ -18,8 +18,6 @@ public abstract class MinigameController extends RoomController {
 
   protected boolean isSolved;
 
-  // protected FadeTransition ft;
-
   /**
    * Returns user back to room.
    *
