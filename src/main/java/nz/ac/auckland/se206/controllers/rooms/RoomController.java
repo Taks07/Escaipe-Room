@@ -271,28 +271,6 @@ public abstract class RoomController {
     ft.play();
   }
 
-  /**
-   * Handles the hover event on the left arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void hoverArrow1(MouseEvent event) {
-    arrow1.setOpacity(1);
-    actionLabel.setText("Go to previous room");
-  }
-
-  /**
-   * Handles the hover event on the right arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void hoverArrow2(MouseEvent event) {
-    arrow2.setOpacity(1);
-    actionLabel.setText("Go to next room");
-  }
-
   @FXML
   protected void hoverAlien(MouseEvent event) {
     actionLabel.setText("Talk to alien");
@@ -303,28 +281,6 @@ public abstract class RoomController {
   protected void unhoverAlien(MouseEvent event) {
     actionLabel.setText("");
     changeAlienImage(alienImage.getId(), "");
-  }
-
-  /**
-   * Handles the unhover event on the left arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void unhoverArrow1(MouseEvent event) {
-    actionLabel.setText("");
-    arrow1.setOpacity(0.7);
-  }
-
-  /**
-   * Handles the unhover event on the right arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void unhoverArrow2(MouseEvent event) {
-    actionLabel.setText("");
-    arrow2.setOpacity(0.7);
   }
 
   /**
