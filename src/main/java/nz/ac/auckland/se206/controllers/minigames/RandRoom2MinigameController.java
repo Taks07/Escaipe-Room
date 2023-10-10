@@ -44,7 +44,6 @@ public class RandRoom2MinigameController extends MinigameController {
 
   // Timer variables
   private int timeInTargetRange = 0;
-  // private boolean inTargetRange = false;
 
   private final int requiredTimeInTargetRange = 120; // 2 seconds
 

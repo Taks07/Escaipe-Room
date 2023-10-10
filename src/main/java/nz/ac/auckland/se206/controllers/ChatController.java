@@ -28,24 +28,6 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Controller class for the chat view. */
 public class ChatController {
-  // Various fields for managing chat and interactions
-  @FXML private TextArea chatTextArea;
-  @FXML private TextField inputText;
-  @FXML private Button sendButton;
-  @FXML private Label translatingLabel;
-  @FXML private Label hintLabel;
-  @FXML private Label partsLabel;
-  @FXML private ImageView alienHeadImage;
-
-  private ChatCompletionRequest flavourTxtChatCompletionRequest;
-  private ChatCompletionRequest hintTxtCompletionRequest;
-  private Thread chatThread;
-  private Thread animationThread;
-  private Pattern riddlePattern;
-  private String randomSigns;
-  private TimerTask alienTextTask;
-  private boolean isTranslating;
-  private int currRoom;
 
   private static String[] randomAlienTexts = {
     "คгђקкภשєгץฬคเкฬђєש๔ยгคє",
@@ -73,6 +55,25 @@ public class ChatController {
         + "гคยย๔เยкยкเคгคкเยฬђєยг๔гยשкค๔гкคยкђгยคгคгкฬคкเггเг๔кгкггยกยгยקкภשєгץฬคเкฬђєש๔"
         + "ยгคє๒кเคгคкเยฬђєยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเยยкกгยคгђ๔гยשкค๔г"
   };
+
+  // Various fields for managing chat and interactions
+  @FXML private TextArea chatTextArea;
+  @FXML private TextField inputText;
+  @FXML private Button sendButton;
+  @FXML private Label translatingLabel;
+  @FXML private Label hintLabel;
+  @FXML private Label partsLabel;
+  @FXML private ImageView alienHeadImage;
+
+  private ChatCompletionRequest flavourTxtChatCompletionRequest;
+  private ChatCompletionRequest hintTxtCompletionRequest;
+  private Thread chatThread;
+  private Thread animationThread;
+  private Pattern riddlePattern;
+  private String randomSigns;
+  private TimerTask alienTextTask;
+  private boolean isTranslating;
+  private int currRoom;
 
   /**
    * Initializes the chat view and sets up the GPT model. This method performs the following tasks:
