@@ -61,27 +61,31 @@ public class GptPromptEngineering {
     // the context message for the current room.
     switch (room) {
       case "mainroom":
-        msg = "Play the role of a whimsical alien meeting a human visitor to your planet";
+        msg =
+            "Play the role of a noticeably whimsical alien meeting a human visitor to your"
+                + " planet";
         break;
       case "randroom1":
         msg =
-            "Play the role of a sad alien on an alien planet meeting a human visitor to your"
-                + " planet. You know the part they seek can be found in the crashed UFO";
+            "Play the role of a noticeably sad alien on an alien planet meeting a human visitor"
+                + " to your planet. You know the part they seek can be found in the crashed UFO";
         break;
       case "randroom2":
         msg =
-            "Play the role of a shy alien on an alien planet meeting a human visitor to your"
-                + " planet. You will give them a part if they stabilize the oxygen canister";
+            "Play the role of a noticeably shy alien on an alien planet meeting a human visitor"
+                + " to your planet. You will give them a part if they stabilize the oxygen"
+                + " canister";
         break;
       case "randroom3":
         msg =
-            "Play the role of an excited alien meeting a human visitor to your planet. You know the"
-                + " part they seek can be found in the alien plant";
+            "Play the role of a noticeably excited alien meeting a human visitor to your"
+                + " planet. You know the part they seek can be found in the alien plant";
         break;
       case "randroom4":
         msg =
-            "Play the role of a moody alien on an alien planet meeting a human visitor to your"
-                + " planet. You know the part they seek can be found in the dark cave";
+            "Play the role of a noticeably moody alien on an alien planet meeting a human"
+                + " visitor to your planet. You know the part they seek can be found in the dark"
+                + " cave";
         break;
       default:
         msg = "Play the role of an alien on an alien planet";
@@ -92,11 +96,12 @@ public class GptPromptEngineering {
     if (GameState.hintsAllowed != 0) {
       return msg
           + ". If the human asks for hints, ask them to say 'tawlung seya' first. You can tell them"
-          + " where the part is. Don't reply with over 2 sentences";
+          + " where the part is. Don't reply with over 3 sentences. Don't break character by"
+          + " referring to yourself as an AI.";
     } else {
       return msg
           + ". Do not give the human any hints. You can tell them where the part is. Don't reply"
-          + " with over 2 sentences";
+          + " with over 3 sentences. Don't break character by referring to yourself as an AI.";
     }
   }
 
