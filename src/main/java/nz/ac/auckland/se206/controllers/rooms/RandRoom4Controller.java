@@ -9,6 +9,10 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * Controller for the fourth random room. This room contains the cave, spikes1, and spikes2 objects.
+ * It holds the cave minigame for the cave object.
+ */
 public class RandRoom4Controller extends RoomController {
 
   @FXML private ImageView caveImage;

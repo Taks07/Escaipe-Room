@@ -9,6 +9,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polyline;
 import nz.ac.auckland.se206.App;
 
+/**
+ * Controller for the main room minigame. The player must adjust the amplitude and frequency sliders
+ * to match the target sine wave. The player must complete 3 rounds to win the game.
+ */
 public class MainRoomMinigameController extends MinigameController {
   @FXML private Pane linePane;
   @FXML private Slider frequencySlider;

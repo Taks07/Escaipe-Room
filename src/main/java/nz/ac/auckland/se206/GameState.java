@@ -136,7 +136,7 @@ public class GameState {
   }
 
   /**
-   * Sets the game controller.
+   * Sets the game controller for the game.
    *
    * @param controller the game controller
    */
@@ -145,7 +145,7 @@ public class GameState {
   }
 
   /**
-   * Switches the room.
+   * Switches the current room to the given room.
    *
    * @param room the room to switch to
    */
@@ -154,7 +154,7 @@ public class GameState {
   }
 
   /**
-   * Sets the chat controller.
+   * Sets the chat controller for the game.
    *
    * @param controller the chat controller
    */
@@ -276,7 +276,7 @@ public class GameState {
     }
   }
 
-  /** Toggles the mute flag. */
+  /** Toggles the mute flag for audio. */
   public static void toggleMute() {
     isMuted = !isMuted;
   }
@@ -297,7 +297,7 @@ public class GameState {
     chatController.sayFlavourText(object);
   }
 
-  /** Puts message into chatbox. */
+  /** Puts message into chatbox if it is not already translating. */
   public static void showChatMessage(ChatMessage chat) {
     if (chatController.getIsTranslating()) {
       return;
@@ -388,7 +388,7 @@ public class GameState {
     return currRoom;
   }
 
-  /** Switches to previous room. */
+  /** Switches to previous room from the current room in the game. */
   public static void prevRoom() {
     currRoom--;
 
@@ -399,7 +399,7 @@ public class GameState {
     switchRoom(currRooms.get(currRoom));
   }
 
-  /** Switches to next room. */
+  /** Switches to next room from the current room. */
   public static void nextRoom() {
     currRoom++;
 

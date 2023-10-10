@@ -6,6 +6,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 
+/**
+ * Controller for the title screen. This extends RoomController so that it can use the same fade
+ * animation. The main screen is the first screen the user sees when they open the game.
+ */
 public class MainScreenController extends TitleController {
 
   @FXML private ImageView flyingrocket;

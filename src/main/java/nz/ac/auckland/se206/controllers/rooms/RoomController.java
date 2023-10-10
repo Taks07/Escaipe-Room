@@ -4,8 +4,10 @@ import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +19,10 @@ import nz.ac.auckland.se206.GameMediaPlayer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
+/**
+ * Abstract class for room controllers. Contains methods for handling the click and hover events on
+ * objects, as well as the click events on the arrows. Also has the popup for when a part is found.
+ */
 public abstract class RoomController {
   @FXML protected Label actionLabel;
   @FXML protected Rectangle grayRectangle;
@@ -29,6 +35,12 @@ public abstract class RoomController {
   @FXML protected ImageView partFoundContentImage;
   @FXML protected ImageView partFoundOkayImage;
   @FXML protected ImageView alienImage;
+
+  @FXML protected Button muteButton;
+  @FXML protected Button flavourTextButton;
+  @FXML protected ImageView mute;
+  @FXML protected ImageView flavourTextImage;
+
   protected Thread backgroundThread;
   protected Thread flagThread;
   protected Thread alienThread;
@@ -62,7 +74,7 @@ public abstract class RoomController {
     }
   }
 
-  /** Show the part found popup */
+  /** Show the part found popup. */
   protected void showPopup() {
     // Set the correct image for the contents of the popup
     switch (GameState.partsFound) {
@@ -117,7 +129,7 @@ public abstract class RoomController {
    * Handles the click event on an object.
    *
    * @param event the mouse event
-   * @throws IOException
+   * @throws IOException if the FXML file for the next room cannot be found
    */
   @FXML
   protected void clickObject(MouseEvent event) {
@@ -234,7 +246,10 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow1(MouseEvent event) {
+    // Stops all threads when switching rooms
     stopThreads();
+
+    // Initiates the fade transition
     fadeOut();
     ft.setOnFinished(
         event2 -> {
@@ -251,7 +266,10 @@ public abstract class RoomController {
    */
   @FXML
   private void clickArrow2(MouseEvent event) {
+    // Stops all threads when switching rooms
     stopThreads();
+
+    // Initiates the fade transition
     fadeOut();
     ft.setOnFinished(
         event2 -> {
@@ -259,28 +277,6 @@ public abstract class RoomController {
           GameState.nextRoom();
         });
     ft.play();
-  }
-
-  /**
-   * Handles the hover event on the left arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void hoverArrow1(MouseEvent event) {
-    arrow1.setOpacity(1);
-    actionLabel.setText("Go to previous room");
-  }
-
-  /**
-   * Handles the hover event on the right arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void hoverArrow2(MouseEvent event) {
-    arrow2.setOpacity(1);
-    actionLabel.setText("Go to next room");
   }
 
   @FXML
@@ -293,28 +289,6 @@ public abstract class RoomController {
   protected void unhoverAlien(MouseEvent event) {
     actionLabel.setText("");
     changeAlienImage(alienImage.getId(), "");
-  }
-
-  /**
-   * Handles the unhover event on the left arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void unhoverArrow1(MouseEvent event) {
-    actionLabel.setText("");
-    arrow1.setOpacity(0.7);
-  }
-
-  /**
-   * Handles the unhover event on the right arrow.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void unhoverArrow2(MouseEvent event) {
-    actionLabel.setText("");
-    arrow2.setOpacity(0.7);
   }
 
   /**
@@ -378,7 +352,7 @@ public abstract class RoomController {
   /**
    * Animates the background.
    *
-   * @throws InterruptedException
+   * @throws InterruptedException if the thread is interrupted
    */
   protected void animate() {
     Task<Void> animation =
@@ -407,7 +381,74 @@ public abstract class RoomController {
     backgroundThread.start();
   }
 
-  /** Fades in the room. */
+  /** Sets the text of the mute button according to GameState.isMuted. */
+  protected void setMuteButtonText() {
+    String name = (GameState.isMuted) ? "unmute" : "mute";
+    setButtonImage(name, mute);
+  }
+
+  /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled. */
+  protected void setFlavourTextButtonText() {
+    String name = (GameState.isFlavourTextEnabled) ? "disable_flavour_text" : "enable_flavour_text";
+    setButtonImage(name, flavourTextImage);
+  }
+
+  @FXML
+  protected void hoverFlavourTextButton() {
+    String name =
+        (GameState.isFlavourTextEnabled)
+            ? "disable_flavour_text_selected"
+            : "enable_flavour_text_selected";
+    setButtonImage(name, flavourTextImage);
+  }
+
+  @FXML
+  protected void unhoverFlavourTextButton() {
+    String name = (GameState.isFlavourTextEnabled) ? "disable_flavour_text" : "enable_flavour_text";
+    setButtonImage(name, flavourTextImage);
+  }
+
+  /** Changes the mute button to selected image when hovered over. */
+  @FXML
+  protected void hoverMuteButton() {
+    String name = (GameState.isMuted) ? "unmute_selected" : "mute_selected";
+    setButtonImage(name, mute);
+  }
+
+  /** Changes the mute button to unselected image when not hovered over. */
+  @FXML
+  protected void unhoverMuteButton() {
+    String name = (GameState.isMuted) ? "unmute" : "mute";
+    setButtonImage(name, mute);
+  }
+
+  protected void setButtonImage(String name, ImageView image) {
+    image.setImage(new Image("/images/objects/" + name + ".png"));
+  }
+
+  /**
+   * Mutes/unmutes the game audio.
+   *
+   * @param event the event that triggered this method
+   */
+  @FXML
+  protected void onClickMute(ActionEvent event) {
+    GameState.toggleMute();
+    setMuteButtonText();
+  }
+
+  /**
+   * Enables or disables object flavour text.
+   *
+   * @param event the event that triggered this method
+   */
+  @FXML
+  protected void onClickFlavourText(ActionEvent event) {
+    GameState.toggleFlavourText();
+    setFlavourTextButtonText();
+  }
+
+  /** Fades in the room when the player enters. */
   protected void fadeIn() {
     fadeRectangle.setOpacity(1.0);
     fadeRectangle.setVisible(true);
@@ -415,6 +456,7 @@ public abstract class RoomController {
     ft.setFromValue(1.0);
     ft.setToValue(0.0);
 
+    // makes sure the fade rectangle is hidden after the fade in
     ft.setOnFinished(
         event -> {
           fadeRectangle.setVisible(false);

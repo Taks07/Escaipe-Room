@@ -160,7 +160,7 @@ public class RandRoom1MinigameController extends MinigameController {
    * game progresses. If the player clicks on the wrong button, the game restarts.
    *
    * @param event the mouse event
-   * @throws IOException
+   * @throws IOException if the game cannot be ended
    */
   @FXML
   private void onButtonClick(ActionEvent event) {

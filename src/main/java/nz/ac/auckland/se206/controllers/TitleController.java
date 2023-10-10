@@ -3,9 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -30,12 +28,10 @@ public class TitleController extends RoomController {
   @FXML private ImageView exit;
   @FXML private ImageView paragraph;
   @FXML private Rectangle block;
-  @FXML private Button muteButton;
-  @FXML private Button flavourTextButton;
+
   @FXML private ImageView flyingrocket;
   @FXML private ImageView mainbackground;
-  @FXML private ImageView mute;
-  @FXML private ImageView flavourTextImage;
+
   protected Thread rocketThread;
 
   /**
@@ -44,11 +40,13 @@ public class TitleController extends RoomController {
    */
   @FXML
   private void initialize() {
+
+    // Animates background and rocket
     animate();
     if (flyingrocket != null) {
       animateRocket();
     }
-
+    // Checks if the game is muted or flavour text is enabled
     if (muteButton != null) {
       setMuteButtonText();
     }
@@ -56,28 +54,6 @@ public class TitleController extends RoomController {
     if (flavourTextButton != null) {
       setFlavourTextButtonText();
     }
-  }
-
-  /**
-   * Mutes/unmutes the game audio.
-   *
-   * @param event the event that triggered this method
-   */
-  @FXML
-  private void onClickMute(ActionEvent event) {
-    GameState.toggleMute();
-    setMuteButtonText();
-  }
-
-  /**
-   * Enables or disables object flavour text.
-   *
-   * @param event the event that triggered this method
-   */
-  @FXML
-  private void onClickFlavourText(ActionEvent event) {
-    GameState.toggleFlavourText();
-    setFlavourTextButtonText();
   }
 
   /**
@@ -109,7 +85,7 @@ public class TitleController extends RoomController {
   }
 
   /**
-   * Closes the background paragraph.
+   * Closes the background paragraph when the X is clicked.
    *
    * @param event the event triggered by clicking the X
    */
@@ -141,6 +117,7 @@ public class TitleController extends RoomController {
     GameState.askGpt(GptPromptEngineering.getGameContext());
   }
 
+  /** Sets the difficulty and time limit according to the selected radio buttons. */
   public void setDifficultyAndTimeLimit() {
     RadioButton difficultyOption = (RadioButton) difficulty.getSelectedToggle();
     RadioButton timeLimitOption = (RadioButton) timeLimit.getSelectedToggle();
@@ -244,54 +221,9 @@ public class TitleController extends RoomController {
     object.setImage(new Image("/images/objects/" + objectId + ".png"));
   }
 
-  /** Exits the application. */
+  /** Exits the application when the exit button is clicked. */
   @FXML
   protected void onExitApplication() {
     System.exit(0);
-  }
-
-  /** Sets the text of the mute button according to GameState.isMuted. */
-  private void setMuteButtonText() {
-    String name = (GameState.isMuted) ? "unmute" : "mute";
-    setButtonImage(name, mute);
-  }
-
-  /** Sets the text of the flavour text button according to GameState.isFlavourTextEnabled. */
-  private void setFlavourTextButtonText() {
-    String name = (GameState.isFlavourTextEnabled) ? "disable_flavour_text" : "enable_flavour_text";
-    setButtonImage(name, flavourTextImage);
-  }
-
-  @FXML
-  protected void hoverFlavourTextButton() {
-    String name =
-        (GameState.isFlavourTextEnabled)
-            ? "disable_flavour_text_selected"
-            : "enable_flavour_text_selected";
-    setButtonImage(name, flavourTextImage);
-  }
-
-  @FXML
-  protected void unhoverFlavourTextButton() {
-    String name = (GameState.isFlavourTextEnabled) ? "disable_flavour_text" : "enable_flavour_text";
-    setButtonImage(name, flavourTextImage);
-  }
-
-  /** Changes the mute button to selected image when hovered over. */
-  @FXML
-  protected void hoverMuteButton() {
-    String name = (GameState.isMuted) ? "unmute_selected" : "mute_selected";
-    setButtonImage(name, mute);
-  }
-
-  /** Changes the mute button to unselected image when not hovered over. */
-  @FXML
-  protected void unhoverMuteButton() {
-    String name = (GameState.isMuted) ? "unmute" : "mute";
-    setButtonImage(name, mute);
-  }
-
-  protected void setButtonImage(String name, ImageView image) {
-    image.setImage(new Image("/images/objects/" + name + ".png"));
   }
 }

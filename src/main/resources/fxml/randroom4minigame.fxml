@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom4MinigameController">
+<Pane prefHeight="500.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.minigames.RandRoom4MinigameController">
    <ImageView fitHeight="506.0" fitWidth="840.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/minigames/room4minigame.png" />
@@ -21,7 +21,7 @@
             <Image url="@../images/objects/arrow1.png" />
          </image>
       </ImageView>
-      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="412.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverObject" onMouseExited="#unhoverObject" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
+      <Rectangle id="arrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="380.0" layoutY="412.0" onMouseClicked="#handleBackArrowClick" onMouseEntered="#hoverArrow" onMouseExited="#unhoverArrow" opacity="0.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE" width="81.0" />
    <GridPane alignment="CENTER" layoutX="171.0" layoutY="42.0" prefHeight="339.0" prefWidth="491.0">
      <columnConstraints>
        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="60.0" />

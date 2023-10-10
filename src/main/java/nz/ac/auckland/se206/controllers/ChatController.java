@@ -29,6 +29,14 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   // Various fields for managing chat and interactions
+  @FXML private TextArea chatTextArea;
+  @FXML private TextField inputText;
+  @FXML private Button sendButton;
+  @FXML private Label translatingLabel;
+  @FXML private Label hintLabel;
+  @FXML private Label partsLabel;
+  @FXML private ImageView alienHeadImage;
+
   private ChatCompletionRequest flavourTxtChatCompletionRequest;
   private ChatCompletionRequest hintTxtCompletionRequest;
   private Thread chatThread;
@@ -38,6 +46,7 @@ public class ChatController {
   private TimerTask alienTextTask;
   private boolean isTranslating;
   private int currRoom;
+
   private static String[] randomAlienTexts = {
     "คгђקкภשєгץฬคเкฬђєש๔ยгคє",
     "เ๒เקгคкฬђเгђคєเђคгкשקгคгђקภђђשкђђђгยคгคгкฬคкเгкคשђคк๔ק๔คשђเ๒๔г๔",
@@ -45,8 +54,8 @@ public class ChatController {
         + "ןђคгคคє๔гשђן๔гคг๔гђค๔คгןคยค๒ยкєקคкгк๔ןคк๔๔คєгђ",
     "кђคгןןкคк๔гкคค๔ђןคкץչשкเยเгןђคгยкเยкгןг๔ןђเยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔ค"
         + "гкเรкค๔ย๒к๒кђย๒ยยשץչןย๒เยןкคкгเק๔เкค๔เгยק๔กץฬคเкฬђєש๔ยשкค๔гкฬђєคยк๔๔เเгคгђ",
-    "๔๔๔๒кคשк๔๒гкคשยคยยгยกยгคгเђยยгคเยן๔гเกเรкєк๔เย๒קคเค๒кเ๔гคยเкггย๔คยเгггคк๔เ๔гเย"
-        + "ยก๔๔เггץչкггคยย๔เยкยкเคгคкเยฬђєยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ย๒к๒кђย๒ยยשןย๒เยןкคкгเק๔เ",
+    "๔๔๔๒кคשк๔๒гкคשยคยยгยกยгคгเђยยгคเยן๔гเกเรкєк๔เย๒קคเค๒кเ๔гคยเкггย๔คยเгггคк๔เ๔гเยยก๔๔เггץ"
+        + "չкггคยย๔เยкยкเคгคкเยฬђєยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ย๒к๒кђย๒ยยשןย๒เยןкคкгเק๔เ",
     "ггคгןןשгย๒гкยยгกןเгเยเкคשยгкยןยยггยк๔ยןยคк๔гยคยןгยкгเг๔кгкггยกยгยยยкกгยץչคгђקк"
         + "ภשєгץฬคเкฬђยยฬђєยยยкยккคยเкгยкгยยкคгђקкภשєгץฬคเкฬђгยกยггยгкг๔",
     "๒קгคгђקภђђשєгץฬคเкฬђєש๔ยгקкภשєгץฬคเкฬђยยฬђєยยยкยккคยเкгยкгยยкคгђקкภשєгץฬคเк"
@@ -55,23 +64,15 @@ public class ChatController {
         + "ย๔คгןคยค๒ยкєקคкгк๔ןคк๔๔คєгђยгยกยгץչคгเђยยгคเยן๔гเกเรкєк๔เย๒קคเค๒кเ๔гคยเкггย๔คย"
         + "เгггค๔คгןคยค๒ยкєקคкгк๔ןคк๔๔คєгђк๔เ๔гเยยก๔๔เггкггคยย๔เ",
     "ןђคгยкเยкгןг๔ןђเยгเยเкคשยгкยןยยггยк๔ยןยคк๔гยคยןгยкקгคгђקภђђשкђђђгยคгคгкฬץչคкเг"
-        + "гเг๔кгкггยกยгยץչยยкกгยคгђ๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ย๒к๒кђย๒ยยשןย๒เยןкคкгเкг"
-        + "гคยย๔เยкยкเคгคкเยฬђєยг๔ยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ยкггคยย๔เยкยкเคгคкเยฬђєยг๔๒к๒кђย๒кเคг"
+        + "гเг๔кгкггยกยгยץչยยкกгยคгђ๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ย๒к๒кђย๒ยยשןย๒เยןкคкгเкггคย"
+        + "ย๔เยкยкเคгคкเยฬђєยг๔ยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ยкггคยย๔เยкยкเคгคкเยฬђєยг๔๒к๒кђย๒кเคг"
         + "คкเยฬђєยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเรкค๔ย๒к๒кђย๒ยยשןย๒เยןкเยเкคשยгкยןยยггยк๔ยןยค"
         + " к๔гยคยןгยкгเг๔кгкггยกยгยยยкกгยคгђคкгเק๔ยยשןยק๔เ",
     "๒ןยคкเ๒єเคггђןђคгคคє๔гשђן๔гคггкยןยยггยץչк๔ยןยคк๔гยคยןгย๔гђค๔คгןคยค๒ยкєקคкгк๔ןยץչย"
         + "ггยк๔ยןยคк๔гยคยןгยкקгץչคгђקภђђשкђђן๔гเกเรкєк๔เย๒קคเค๒кเ๔гคยเкггย๔คยเгггคк๔เ๔гเยยก๔๔เггкг"
-        + "гคยย๔เยкยкเคгคкเยฬђєยг๔гยשкค๔гкคยкђгยคгคгкฬคкเггเг๔кгкггยกยгยקкภשєгץฬคเкฬђєש๔ยгคє๒кเคгคкเยฬ"
-        + "ђєยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเยยкกгยคгђ๔гยשкค๔г"
+        + "гคยย๔เยкยкเคгคкเยฬђєยг๔гยשкค๔гкคยкђгยคгคгкฬคкเггเг๔кгкггยกยгยקкภשєгץฬคเкฬђєש๔"
+        + "ยгคє๒кเคгคкเยฬђєยг๔гยשкค๔гкคยк๔๔เเгคгђเเ๔คгкเยยкกгยคгђ๔гยשкค๔г"
   };
-
-  @FXML private TextArea chatTextArea;
-  @FXML private TextField inputText;
-  @FXML private Button sendButton;
-  @FXML private Label translatingLabel;
-  @FXML private Label hintLabel;
-  @FXML private Label partsLabel;
-  @FXML private ImageView alienHeadImage;
 
   /**
    * Initializes the chat view and sets up the GPT model. This method performs the following tasks:
@@ -113,8 +114,8 @@ public class ChatController {
   @FXML
   public void onKeyPressed(KeyEvent event) throws IOException {
     switch (event.getCode()) {
-        // Send message when enter key is pressed - makes it easier to send messages
       case ENTER:
+        // Send message when enter key is pressed - makes it easier to send messages
         try {
           onSendMessage(new ActionEvent());
         } catch (ApiProxyException e) {
@@ -293,11 +294,14 @@ public class ChatController {
    * @param object The object to say the flavor text of.
    */
   public void sayFlavourText(String object) {
+
+    // does nothing if the flavour text button is not enabled
     if (!GameState.isFlavourTextEnabled) {
       return;
     }
 
     try {
+      // Send message to GPT model
       runGpt(
           new ChatMessage("user", GptPromptEngineering.getFlavourText(object)),
           flavourTxtChatCompletionRequest);

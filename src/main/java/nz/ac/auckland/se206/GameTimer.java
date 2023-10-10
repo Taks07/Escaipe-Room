@@ -51,11 +51,7 @@ public class GameTimer {
         });
   }
 
-  /**
-   * Starts the timer.
-   *
-   * @param seconds the number of seconds to set the timer to
-   */
+  /** Starts the timer in a new thread. This method should be called when the game starts. */
   public static void startTimer() {
     secondsLeft = GameState.timeLimit;
     timerLabel.setValue(getTimerLabel());
@@ -118,13 +114,13 @@ public class GameTimer {
     ttsThread.start();
   }
 
-  /** Stops the timer. */
+  /** Stops the timer and the TTS thread. */
   public static void stopTts() {
     tts.terminate();
     ttsThread.interrupt();
   }
 
-  /** Stops the timer timeline. */
+  /** Stops the timer timeline and TTS thread. */
   public static void stopTimeline() {
     timerTimeline.stop();
   }

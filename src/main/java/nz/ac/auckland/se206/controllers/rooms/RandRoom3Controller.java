@@ -9,6 +9,10 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * Controller for the third random room. This room contains the plant, pipe, shovel, flower, and
+ * grass objects. It holds the teeth minigame for the plant object.
+ */
 public class RandRoom3Controller extends RoomController {
 
   @FXML private ImageView plantsImage;
