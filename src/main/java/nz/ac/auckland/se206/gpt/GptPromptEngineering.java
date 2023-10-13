@@ -131,7 +131,7 @@ public class GptPromptEngineering {
             + " stabilize the oxygen canister. Respond in 30 words";
       case "randroom3":
         return "Say that the part the human"
-            + " seeks can be found in the alien plant. Respond in 30 words";
+            + " seeks can be found in the alien plant's mouth. Respond in 30 words";
       case "randroom4":
         return "Say that the part the human seeks"
             + " can be found in the cave. Respond in 30 words";
